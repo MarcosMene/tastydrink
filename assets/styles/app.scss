@@ -1,0 +1,23 @@
+$primary: #dfb674;
+$secondary: red;
+$dark: #141414;
+$white: #fff;
+$info: #31343b;
+
+// the ~ allows you to reference things in node_modules
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: $dark;
+}
+
+.fa-cart-shopping {
+  color: $primary;
+  cursor: pointer;
+}
+
+.btn-signIn,
+.btn-signOut,
+.fa-cart-shopping {
+  margin-left: 30px;
+}
