@@ -3,6 +3,7 @@ $secondary: red;
 $dark: #141414;
 $white: #fff;
 $info: #31343b;
+$black: #000000;
 
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap/scss/bootstrap';
@@ -20,4 +21,45 @@ body {
 .btn-signOut,
 .fa-cart-shopping {
   margin-left: 30px;
+}
+
+.divisor {
+  height: 2px;
+  width: 100px;
+  margin: auto;
+  background-color: $primary;
+}
+
+footer {
+  .fa-brands {
+    color: white;
+  }
+
+  .social-networks {
+    width: 200px;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-weight: 600;
+    color: $black;
+
+    &:hover {
+      background-color: transparent;
+      color: $white;
+      border-color: $white;
+    }
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+    font-size: 1rem;
+  }
+
+  .footer-titles {
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
 }

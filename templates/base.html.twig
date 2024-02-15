@@ -22,12 +22,12 @@
     <script src="{{ asset('assets/js/scripts.js') }}" defer></script>
   </head>
   <body>
-    {% include '_partials/_navbar.html.twig' %}
+    {% include '_partials/_header.html.twig' %}
     <div class="container">
       {% block body %}
 
       {% endblock %}
     </div>
-    {# {% include '_partials/_footer.html.twig' %} #}
+    {% include '_partials/_footer.html.twig' %}
   </body>
 </html>
