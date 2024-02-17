@@ -1,9 +1,179 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-  Hello HomeController!
+{% block carousel %}
+
 {% endblock %}
 
-{% block body %}
-  <h1>testye</h1>
+{% block content %}
+  {# -----------------STORY #}
+
+  <div class="text-center mt-5">
+    <h2 class="main-titles my-3 text-capitalize">Drink Shop & Bar in Vancouver</h2>
+    <p class="main-titles-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
+    <a href="" class="btn btn-outline mt-5">Story</a>
+  </div>
+
+  {# -----------DIVISOR #}
+  <div class="divisor divisor-lg"></div>
+
+  {# -----------------VISIT TASTY DRINK #}
+  <div class="row d-flex align-items-start justify-content-between bg-black mx-0">
+    <div class="col-12 col-md-7 pt-lg-5 px-5">
+      <h2 class="headers my-3 text-capitalize">Visit Tasty Drink</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
+      <a href="" class="btn btn-outline mt-2 mb-5">Make Reservation</a>
+    </div>
+    <div class="col-12 col-md-5 p-0">
+      <img class="img-fluid" src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="tasty drink building" />
+    </div>
+  </div>
+  {#- --------------- STORE TASTY DRINK #}
+  <div class="row d-flex align-items-start mx-0">
+    <div class="col-12 col-md-7 order-md-2 pt-lg-5 px-5">
+      <h2 class="headers my-3 text-capitalize">Store</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
+
+      <a href="" class="btn btn-outline mt-2 mb-5 text-capitalize">Learn More</a>
+    </div>
+    <div class="col-12 col-md-5 p-0">
+      <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+    </div>
+  </div>
+  {#- --------------- BAR TASTY DRINK #}
+  <div class="row d-flex align-items-start bg-black mx-0">
+    <div class="col-12 col-md-7 pt-lg-5 px-5">
+      <h2 class="headers my-3 text-capitalize">Bar</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
+      <a href="" class="btn btn-outline mt-2 mb-5 text-capitalize">Learn more</a>
+    </div>
+    <div class="col-12 col-md-5 p-0">
+      <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+    </div>
+  </div>
+
+  {# -----------DIVISOR #}
+  <div class="divisor divisor-lg"></div>
+
+  {# --------------------------------- NEW PRODUCTS #}
+  <div class="text-center mt-5">
+    <h2 class="headers my-3 text-capitalize">New products</h2>
+    <div class="wrapper info">
+      <div class="row gx-5">
+        <div class="col-12 col-sm-6 col-lg-4 my-3">
+          <div class="product-card m-auto">
+            <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+            <div class="overlay">
+              <div class="text">Hello World</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 my-3">
+          <div class="product-card m-auto">
+            <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+            <div class="overlay">
+              <div class="text">Hello World</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 my-3">
+          <div class="product-card m-auto">
+            <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+            <div class="overlay">
+              <div class="text">Hello World</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 my-3">
+          <div class="product-card m-auto">
+            <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+            <div class="overlay">
+              <div class="text">Hello World</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 my-3">
+          <div class="product-card m-auto">
+            <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+            <div class="overlay">
+              <div class="text">Hello World</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 my-3">
+          <div class="product-card m-auto">
+            <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid" />
+            <div class="overlay">
+              <div class="text">Hello World</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# END PRODUCTS #}
+
+  {# -----------DIVISOR #}
+  <div class="divisor divisor-lg"></div>
+
+  {# ----------------- HOURS #}
+
+  <div class="text-center mt-5">
+    <h2 class="headers my-3 text-capitalize">Openning Hours</h2>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-0 col-sm-1col-lg-0 d-none"></div>
+        <div class="col-0 col-lg-3 d-flex align-items-stretch p-0">
+          <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid d-none d-lg-block" />
+        </div>
+        <div class="col-12 col-sm-5 col-lg-3 p-4 border border-primary">
+          <h3 class="sub-titles text-capitalize">Shop</h3>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+        </div>
+        <div class="col-12 col-sm-5 col-lg-3 p-4 border border-primary">
+          <h3 class="sub-titles text-capitalize">Bar</h3>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+          <p>Sunday 14h - 18h</p>
+        </div>
+        <div class="col-0 col-sm-1 col-lg-0 d-none"></div>
+      </div>
+    </div>
+
+    {# <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-12 col-sm-0 col-md-0 col-lg-3 p-0">
+        <img src="{{ asset('build/images/tasty_drink.jpeg') }}" alt="" class="img-fluid d-sm-none d-lg-block" height="100" />
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-0 m-0">
+        <h3>Shop</h3>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-0 m-0">
+        <h3>Bar</h3>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+        <p>Sunday 14h - 18h</p>
+      </div>
+    </div> #}
+  </div>
 {% endblock %}
