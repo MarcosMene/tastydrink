@@ -28,7 +28,17 @@ body {
 
 .container {
   max-width: $maxContainer;
-  // padding: 0 20px;
+  padding: 0 20px;
+
+  @media screen and (min-width: 576px) {
+    padding: 0 40px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 0 60px;
+  }
+  @media screen and (min-width: 992px) {
+    padding: 0 80px;
+  }
 }
 
 .navbar {
@@ -96,7 +106,7 @@ img {
 .wrapper {
   background-color: $info;
   padding: 40px;
-  border-radius: 20px;
+  border-radius: 5px;
   margin: 40px 0 60px;
 }
 
@@ -131,6 +141,11 @@ img {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+//----------------OUR STORE
+.wrapper-store {
+  max-width: 900px;
 }
 
 // ------------SHOPPING -----------
@@ -196,7 +211,8 @@ footer {
   }
 
   .footer-titles {
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.1rem;
+    color: $primary;
   }
 }
