@@ -5,7 +5,7 @@ $white: #fff;
 $info: #31343b;
 $black: #000000;
 $limit: 2000px;
-$maxContainer: 1400px;
+$maxContainer: 1600px;
 
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap/scss/bootstrap';
@@ -56,6 +56,32 @@ img {
   max-width: 300px;
 }
 
+p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.white-titles {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 90px 0 30px;
+}
+
+.team-cards {
+  .team-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  img {
+    max-width: 300px;
+  }
+}
+
 // -------------------TITLES ---------------
 
 .main-titles {
@@ -63,10 +89,6 @@ img {
   font-weight: 600;
   font-size: 2.3rem;
   font-family: 'Merriweather', serif;
-
-  &-paragraph {
-    font-size: 1.2rem;
-  }
 }
 
 .headers {
