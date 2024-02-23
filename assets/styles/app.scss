@@ -1,9 +1,10 @@
 $primary: #dfb674;
-$secondary: red;
+$danger: #ff4f03;
 $dark: #141414;
 $white: #fff;
 $info: #31343b;
 $black: #000000;
+$light: #d9d9d9;
 $limit: 2000px;
 $maxContainer: 1600px;
 
@@ -12,7 +13,7 @@ $maxContainer: 1600px;
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-// --------------------GENERAL
+// --------------------GENERAL-----------
 
 html {
   background-color: $dark;
@@ -48,6 +49,14 @@ body {
   }
 }
 
+.back_to {
+  color: $white;
+  text-decoration: underline;
+  &:hover {
+    color: $primary;
+  }
+}
+
 img {
   display: block;
   // width: 100%;
@@ -76,10 +85,30 @@ p {
   p {
     font-size: 1rem;
   }
+}
 
-  img {
-    max-width: 300px;
-  }
+// -----------------BREADCRUMPS ---------------------
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+  color: $primary;
+}
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: $white;
+  content: '>';
+}
+ul.breadcrumb li a {
+  color: $white;
+  text-decoration: underline;
+}
+ul.breadcrumb li a:hover {
+  color: $primary;
+  text-decoration: underline;
 }
 
 // -------------------TITLES ---------------
@@ -127,7 +156,7 @@ p {
 
 .wrapper {
   background-color: $info;
-  padding: 40px;
+  padding: 20px;
   border-radius: 5px;
   margin: 40px 0 60px;
 }
@@ -180,6 +209,99 @@ p {
 //----------------OUR STORE
 .wrapper-store {
   max-width: 900px;
+}
+
+//-----------------DRINKS FILTERS
+.wrapper-filter {
+  background-color: $white;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 40px 0 60px;
+  color: $dark;
+  font-weight: 400;
+
+  .filter-title {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+}
+//------------------DRINKS products
+.products {
+  &-quantity {
+    color: $white;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  &-price {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  .card-title {
+    font-weight: 600;
+  }
+
+  .card-text {
+    padding: 0;
+    color: $dark;
+  }
+
+  .card {
+    position: relative;
+
+    .heart {
+      position: absolute;
+      color: $danger;
+      right: 20px;
+      top: 20px;
+      background-color: $light;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i.fa-heart {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+
+    .pagination-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $light;
+      padding: 5px 10px;
+      border-radius: 10px;
+
+      .prev-button,
+      .next-button {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary;
+        color: $dark;
+        border-radius: 50%;
+      }
+
+      .pages {
+        color: $dark;
+        padding: 0 20px;
+      }
+    }
+  }
 }
 
 // ------------SHOPPING -----------

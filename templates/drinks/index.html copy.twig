@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Welcome
+{% endblock %}
+
+{% block carousel %}
+
+{% endblock %}
+
+{% block content %}
+  {# -----------------breadcrump #}
+
+  <div class="mt-5">
+    <div class="d-flex align-items-start justify-content-between mx-0">
+      <div class="p-0">
+        <ul class="breadcrumb p-0">
+          <li>
+            <a href="#">All drinks</a>
+          </li>
+          <li>Beers</li>
+        </ul>
+      </div>
+      <div class="p-0">
+        <a href="" class="back_to">< Back to products</a>
+      </div>
+    </div>
+  </div>
+
+  {# --------------------------------- NEW PRODUCTS #}
+
+  <div class="row">
+    <div class="col-12 col-lg-3">
+      <div class="wrapper-filter info wrapper-max m-auto">
+        <p class="filter-title">filter by</p>
+        <form>
+          <div class="form-group">
+            <label for="findDrink">Find a drink</label>
+            <input type="text" class="form-control" id="findDrink" aria-describedby="findDrink" placeholder="ex. beer" />
+          </div>
+
+          {# ----------country #}
+          <p class="mt-4 mb-1 filter-title">Country</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+            <label class="form-check-label" for="flexCheckDefault">France(22)</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+            <label class="form-check-label" for="flexCheckChecked">Italy(10)</label>
+          </div>
+
+          {# ----------vintage #}
+          <p class="mt-4 mb-1 filter-title">Year</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+            <label class="form-check-label" for="flexCheckDefault">2021(22)</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+            <label class="form-check-label" for="flexCheckChecked">2022(10)</label>
+          </div>
+
+          {# ----------Ingredients #}
+          <p class="mt-4 mb-1 filter-title">Ingredients</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+            <label class="form-check-label" for="flexCheckDefault">Plants/flowers(22)</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+            <label class="form-check-label" for="flexCheckChecked">With fruit(10)</label>
+          </div>
+
+          {# ----------Capacity #}
+          <p class="mt-4 mb-1 filter-title">Capacity</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+            <label class="form-check-label" for="flexCheckDefault">75cl(22)</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+            <label class="form-check-label" for="flexCheckChecked">44cl</label>
+          </div>
+
+          {# ----------PRICE #}
+          <label for="customRange1" class="form-label filter-title mt-4">Price</label>
+          <input type="range" class="form-range" id="customRange1" />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-12 col-lg-9">
+      <div class="wrapper info wrapper-max m-auto">
+        <div class="row gx-4 wrapper-max">
+          <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <div class="product-card m-auto">
+              <img src="{{ asset('uploads/new_products/cachaca2.jpeg') }}" alt="" class="img-fluid" />
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <div class="product-card m-auto">
+              <img src="{{ asset('uploads/new_products/champagne.jpeg') }}" alt="" class="img-fluid" />
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <div class="product-card m-auto">
+              <img src="{{ asset('uploads/new_products/calvados.jpeg') }}" alt="" class="img-fluid" />
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <div class="product-card m-auto">
+              <img src="{{ asset('uploads/new_products/beer4.jpeg') }}" alt="" class="img-fluid" />
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <div class="product-card m-auto">
+              <img src="{{ asset('uploads/new_products/wine.jpeg') }}" alt="" class="img-fluid" />
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <div class="product-card m-auto">
+              <img src="{{ asset('uploads/new_products/tequila1.jpeg') }}" alt="" class="img-fluid" />
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
