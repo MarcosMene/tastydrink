@@ -1,0 +1,571 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Welcome
+{% endblock %}
+
+{% block carousel %}
+
+{% endblock %}
+
+{% block content %}
+  {# -----------------breadcrump #}
+  <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
+    <div class="d-flex align-items-start justify-content-between mx-0">
+      <div class="p-0">
+        <ul class="breadcrumb p-0">
+          <li>
+            <a href="#">All drinks</a>
+          </li>
+          <li>Beers</li>
+        </ul>
+      </div>
+      <div class="p-0">
+        <a href="" class="back-to">< Back to products</a>
+      </div>
+    </div>
+  </div>
+
+  {# --------------------------------- NEW PRODUCTS #}
+
+  {# --------Accordion #}
+  <div class="row">
+    <div class="col-12 col-lg-3 products-filter">
+      <div class="wrapper-filter info wrapper-max m-auto mb-3 p-1">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Filter by</button></h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form>
+                  <div class="form-group">
+                    <label for="findDrink">Find a drink</label>
+                    <input type="text" class="form-control" id="findDrink" aria-describedby="findDrink" placeholder="ex. beer" />
+                  </div>
+
+                  {# ----------country #}
+                  <p class="mt-4 mb-1 filter-title">Country</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+                    <label class="form-check-label" for="flexCheckDefault">France(22)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                    <label class="form-check-label" for="flexCheckChecked">Italy(10)</label>
+                  </div>
+
+                  {# ----------vintage #}
+                  <p class="mt-4 mb-1 filter-title">Year</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <label class="form-check-label" for="flexCheckDefault">2021(22)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                    <label class="form-check-label" for="flexCheckChecked">2022(10)</label>
+                  </div>
+
+                  {# ----------Ingredients #}
+                  <p class="mt-4 mb-1 filter-title">Ingredients</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+                    <label class="form-check-label" for="flexCheckDefault">Plants/flowers(22)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                    <label class="form-check-label" for="flexCheckChecked">With fruit(10)</label>
+                  </div>
+
+                  {# ----------Capacity #}
+                  <p class="mt-4 mb-1 filter-title">Capacity</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <label class="form-check-label" for="flexCheckDefault">75cl(22)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                    <label class="form-check-label" for="flexCheckChecked">44cl</label>
+                  </div>
+
+                  {# ----------PRICE #}
+                  <label for="customRange1" class="form-label filter-title mt-4">Price</label>
+                  <input type="range" class="form-range" id="customRange1" />
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# ------------DRINKS total and sort by #}
+    <div class="col-12 col-lg-9 products">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h3 class="products-quantity">320 products</h3>
+        </div>
+        <div class="products-sort d-flex justify-content-between">
+          <div>Sort By:</div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary ms-4" type="button">Price <span><i class="fa-solid fa-chevron-up"></i></span><span><i class="fa-solid fa-chevron-down"></i></span></button>
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary ms-4" type="button">Year <span><i class="fa-solid fa-chevron-up"></i></span><span><i class="fa-solid fa-chevron-down"></i></span></button>
+          </div>
+        </div>
+      </div>
+
+      {# -----------CARDS #}
+      <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4 p-xl-5">
+        <div class="row gx-4 wrapper-max d-flex justify-content-center">
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_black.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_1.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_2.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_5.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_red_1.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_red_2.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_red_3.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <div class="card-body bg-light">
+                <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="card-text">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# ---------- pagination #}
+        <div class="pagination">
+          <div class="pagination-buttons">
+            <div class="prev-button">
+              <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="pages">1 2 3 4 5</div>
+            <div class="next-button">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

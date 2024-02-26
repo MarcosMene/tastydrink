@@ -2,11 +2,13 @@ $primary: #dfb674;
 $danger: #ff4f03;
 $dark: #141414;
 $white: #fff;
+$success: #fff;
 $info: #31343b;
 $black: #000000;
 $light: #d9d9d9;
 $limit: 2000px;
 $maxContainer: 1600px;
+$border-width: 2px;
 
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap/scss/bootstrap';
@@ -29,16 +31,16 @@ body {
 
 .container {
   max-width: $maxContainer;
-  padding: 0 20px;
+  padding: 0 80px;
 
-  @media screen and (min-width: 576px) {
-    padding: 0 40px;
-  }
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 992px) {
     padding: 0 60px;
   }
-  @media screen and (min-width: 992px) {
-    padding: 0 80px;
+  @media screen and (max-width: 768px) {
+    padding: 0 40px;
+  }
+  @media screen and (max-width: 576px) {
+    padding: 0 20px;
   }
 }
 
@@ -49,11 +51,15 @@ body {
   }
 }
 
-.back_to {
+.back-to {
   color: $white;
   text-decoration: underline;
   &:hover {
     color: $primary;
+  }
+
+  @media screen and (max-width: 576px) {
+    font-size: 0.8rem;
   }
 }
 
@@ -96,6 +102,10 @@ ul.breadcrumb li {
   display: inline;
   font-size: 18px;
   color: $primary;
+
+  @media screen and (max-width: 576px) {
+    font-size: 0.8rem;
+  }
 }
 ul.breadcrumb li + li:before {
   padding: 8px;
@@ -105,6 +115,10 @@ ul.breadcrumb li + li:before {
 ul.breadcrumb li a {
   color: $white;
   text-decoration: underline;
+
+  @media screen and (max-width: 576px) {
+    font-size: 0.8rem;
+  }
 }
 ul.breadcrumb li a:hover {
   color: $primary;
@@ -212,6 +226,14 @@ ul.breadcrumb li a:hover {
 }
 
 //-----------------DRINKS FILTERS
+.products-filter {
+  margin-top: 55px;
+
+  @media screen and (max-width: 992px) {
+    margin-top: 0;
+  }
+}
+
 .wrapper-filter {
   background-color: $white;
   padding: 20px;
@@ -226,80 +248,163 @@ ul.breadcrumb li a:hover {
     font-size: 1rem;
   }
 }
-//------------------DRINKS products
+//------------------OUR PRODUCTS
 .products {
   &-quantity {
     color: $white;
     font-size: 1rem;
     font-weight: 400;
-  }
-  &-price {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: $dark;
+    position: relative;
   }
 
   .card-title {
     font-weight: 600;
+    font-size: 1.3rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .card-title-quantity {
+    font-weight: 500;
+
+    @media screen and (max-width: 992px) {
+      font-size: 1.2rem;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 1rem;
+    }
   }
 
   .card-text {
     padding: 0;
     color: $dark;
+
+    @media screen and (max-width: 992px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 0.9rem;
+    }
   }
 
-  .card {
-    position: relative;
+  .heart {
+    position: absolute;
+    color: $danger;
+    right: 20px;
+    top: 20px;
+    background-color: $light;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .heart {
-      position: absolute;
-      color: $danger;
-      right: 20px;
-      top: 20px;
-      background-color: $light;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    i.fa-heart {
+      font-size: 1.5rem;
+    }
+  }
 
-      i.fa-heart {
-        font-size: 1.5rem;
+  .reviews {
+    font-size: 1rem;
+    .full-star {
+      color: $primary;
+    }
+    .border-star {
+      color: $primary;
+    }
+
+    @media screen and (max-width: 992px) {
+      font-size: 0.7rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 0.6rem;
+    }
+  }
+
+  &-price {
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    @media screen and (max-width: 992px) {
+      font-size: 1.4rem;
+    }
+  }
+
+  .btn-link {
+    font-weight: 500;
+    color: $black;
+    text-transform: uppercase;
+    border-color: $white;
+    text-decoration: none;
+    background-color: $primary;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+      border-color: $primary;
+    }
+  }
+
+  .social-networks-icon {
+    color: $white;
+
+    i {
+      font-size: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+
+      &:hover {
+        color: $dark;
       }
     }
   }
 
-  .pagination {
+  .card-available-text {
+    font-weight: 500;
+
+    i {
+      color: green;
+      font-size: 1rem;
+      margin-right: 10px;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+
+  .pagination-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px 0;
+    background-color: $light;
+    padding: 5px 10px;
+    border-radius: 10px;
 
-    .pagination-buttons {
+    .prev-button,
+    .next-button {
+      width: 30px;
+      height: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: $light;
-      padding: 5px 10px;
-      border-radius: 10px;
+      background-color: $primary;
+      color: $dark;
+      border-radius: 50%;
+    }
 
-      .prev-button,
-      .next-button {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: $primary;
-        color: $dark;
-        border-radius: 50%;
-      }
-
-      .pages {
-        color: $dark;
-        padding: 0 20px;
-      }
+    .pages {
+      color: $dark;
+      padding: 0 20px;
     }
   }
 }
@@ -326,7 +431,6 @@ ul.breadcrumb li a:hover {
 
 .divisor {
   height: 2px;
-
   margin: auto;
   background-color: $primary;
 
@@ -337,6 +441,11 @@ ul.breadcrumb li a:hover {
   &-lg {
     margin: 93px auto 50px;
     width: 50%;
+  }
+
+  &-line {
+    border: 1px dotted lighten($info, 20%);
+    margin: 30px 0;
   }
 }
 
@@ -354,7 +463,7 @@ footer {
   }
 
   .btn {
-    font-weight: 600;
+    font-weight: 500;
     color: $black;
 
     &:hover {
@@ -375,5 +484,18 @@ footer {
     font-weight: 400;
     font-size: 1.1rem;
     color: $primary;
+  }
+
+  .copyright span {
+    font-size: 0.9rem;
+    @media screen and (max-width: 992px) {
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 0.7rem;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 0.6rem;
+    }
   }
 }
