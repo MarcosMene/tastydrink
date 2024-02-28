@@ -249,6 +249,11 @@ ul.breadcrumb li a:hover {
   }
 }
 //------------------OUR PRODUCTS
+
+.row-products {
+  max-width: 70%;
+  margin: auto;
+}
 .products {
   &-quantity {
     color: $white;
@@ -409,6 +414,22 @@ ul.breadcrumb li a:hover {
   }
 }
 
+//-----------CONTACT
+.contact {
+  i {
+    color: $primary;
+  }
+
+  .google-map {
+    width: 100%;
+    height: 50%;
+
+    @media screen and (max-width: 992px) {
+      height: 400px;
+    }
+  }
+}
+
 // ------------SHOPPING -----------
 
 .shop-card-name {
@@ -446,6 +467,12 @@ ul.breadcrumb li a:hover {
   &-line {
     border: 1px dotted lighten($info, 20%);
     margin: 30px 0;
+  }
+
+  &-light {
+    background-color: #5f657342;
+    margin: 40px auto;
+    width: 50%;
   }
 }
 
