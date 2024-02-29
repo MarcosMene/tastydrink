@@ -11,6 +11,6 @@ class OurStoryController extends AbstractController
     #[Route('/our-story', name: 'app_our_story')]
     public function index(): Response
     {
-        return $this->render('our_story/index.html.twig');
+        return $this->render('pages/our-story.html.twig');
     }
 }

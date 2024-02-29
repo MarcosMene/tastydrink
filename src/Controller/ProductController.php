@@ -11,12 +11,12 @@ class ProductController extends AbstractController
     #[Route('/our-products', name: 'app_product')]
     public function index(): Response
     {
-        return $this->render('product/index.html.twig');
+        return $this->render('pages/our-products.html.twig');
     }
 
-    #[Route('/our-product/{slug}', name: 'show')]
+    #[Route('/product/{slug}', name: 'show')]
     public function show(): Response
     {
-        return $this->render('product/show.html.twig');
+        return $this->render('pages/product.html.twig');
     }
 }

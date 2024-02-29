@@ -21,6 +21,7 @@ html {
   background-color: $dark;
   max-width: $limit;
   margin: auto;
+  font-size: 62.5%;
 }
 
 body {
@@ -46,20 +47,26 @@ body {
 
 .navbar {
   .nav-link {
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: 600;
   }
+}
+
+.user-name {
+  font-size: 1.6rem;
 }
 
 .back-to {
   color: $white;
   text-decoration: underline;
+  font-size: 1.4rem;
+
   &:hover {
     color: $primary;
   }
 
   @media screen and (max-width: 576px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
@@ -72,24 +79,20 @@ img {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 300;
 }
 
 .white-titles {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 500;
   margin: 90px 0 30px;
 }
 
 .team-cards {
   .team-title {
-    font-size: 1.3rem;
+    font-size: 1.9rem;
     font-weight: 400;
-  }
-
-  p {
-    font-size: 1rem;
   }
 }
 
@@ -100,11 +103,11 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
   display: inline;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: $primary;
 
   @media screen and (max-width: 576px) {
-    font-size: 0.8rem;
+    font-size: 1.5rem;
   }
 }
 ul.breadcrumb li + li:before {
@@ -117,7 +120,7 @@ ul.breadcrumb li a {
   text-decoration: underline;
 
   @media screen and (max-width: 576px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 ul.breadcrumb li a:hover {
@@ -130,19 +133,19 @@ ul.breadcrumb li a:hover {
 .main-titles {
   color: $primary;
   font-weight: 600;
-  font-size: 2.3rem;
+  font-size: 3rem;
   font-family: 'Merriweather', serif;
 }
 
 .headers {
   color: $primary;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: 'Merriweather', serif;
 }
 
 .sub-titles {
-  font-size: 1rem;
+  font-size: 1.8rem;
 }
 
 // --------------BUTTONS
@@ -152,8 +155,8 @@ ul.breadcrumb li a:hover {
   border-color: $white;
   font-weight: 600;
   letter-spacing: 0.05em;
-  border-radius: 2px;
-  font-size: 1.2rem;
+  border-radius: 1px;
+  font-size: 1.8rem;
   text-transform: initial;
   padding: 5px 20px;
 
@@ -193,7 +196,7 @@ ul.breadcrumb li a:hover {
 
   .text {
     color: white;
-    font-size: 20px;
+    font-size: 1.8rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -205,7 +208,7 @@ ul.breadcrumb li a:hover {
 
   i {
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem;
     position: absolute;
     top: 30%;
     left: 50%;
@@ -245,7 +248,7 @@ ul.breadcrumb li a:hover {
   .filter-title {
     font-weight: 500;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
 }
 //------------------OUR PRODUCTS
@@ -257,20 +260,32 @@ ul.breadcrumb li a:hover {
 .products {
   &-quantity {
     color: $white;
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: 400;
     position: relative;
   }
 
   .card-title {
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.8rem;
 
     @media screen and (max-width: 768px) {
       font-size: 1.2rem;
     }
     @media screen and (max-width: 576px) {
       font-size: 1.1rem;
+    }
+  }
+
+  .card-title-small {
+    font-weight: 600;
+    font-size: 1.8rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 1rem;
     }
   }
 
@@ -288,6 +303,7 @@ ul.breadcrumb li a:hover {
   .card-text {
     padding: 0;
     color: $dark;
+    font-size: 1.6rem;
 
     @media screen and (max-width: 992px) {
       font-size: 1rem;
@@ -332,12 +348,12 @@ ul.breadcrumb li a:hover {
     }
   }
 
-  &-price {
-    font-size: 1.6rem;
+  & .products-price {
+    font-size: 2rem;
     font-weight: 600;
 
     @media screen and (max-width: 992px) {
-      font-size: 1.4rem;
+      font-size: 1.8rem;
     }
   }
 
@@ -438,14 +454,16 @@ ul.breadcrumb li a:hover {
 }
 
 .btn-signIn,
-.btn-signOut,
-.fa-cart-shopping {
+.btn-signOut {
   margin-left: 30px;
+  font-size: 1.5rem;
 }
 
 .fa-cart-shopping {
   color: $primary;
   cursor: pointer;
+  font-size: 1.8rem;
+  margin-left: 20px;
 }
 
 // ------------DIVISORS --------------
@@ -474,6 +492,11 @@ ul.breadcrumb li a:hover {
     margin: 40px auto;
     width: 50%;
   }
+
+  &-drink {
+    margin: 40px auto;
+    width: 50%;
+  }
 }
 
 // ---------------FOOTER -----------------
@@ -492,6 +515,7 @@ footer {
   .btn {
     font-weight: 500;
     color: $black;
+    border-radius: 2px;
 
     &:hover {
       background-color: transparent;
@@ -504,7 +528,7 @@ footer {
     padding: 0;
     margin: 0;
     font-weight: 300;
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
 
   .footer-titles {

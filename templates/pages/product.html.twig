@@ -1,0 +1,302 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Welcome
+{% endblock %}
+
+{% block carousel %}
+
+{% endblock %}
+
+{% block content %}
+  {# -----------------breadcrump #}
+
+  <div class="mt-4 mb-5">
+    <div class="d-flex align-items-start justify-content-between mx-0">
+      <div class="p-0">
+        <ul class="breadcrumb p-0">
+          <li>
+            <a href="#">All drinks</a>
+          </li>
+          <li>Beers</li>
+        </ul>
+      </div>
+      <div class="p-0">
+        <a href="" class="back-to">< Back to products</a>
+      </div>
+    </div>
+  </div>
+
+  {# --------------------------------- PRODUCT #}
+  <div class="row row-products">
+    {# ------------DRINKS quantity and sort by #}
+    <div class="products">
+      {# -----------CARDS #}
+
+      <div class="row gx-4 wrapper-max d-flex justify-content-center">
+        <div class="col-12">
+          <div class="card border-primary mb-3">
+            <div class="row g-0">
+              <div class="col-md-4 bg-light">
+                <img src="{{ asset('uploads/shop/beer.jpeg') }}" class="img-fluid rounded" alt="..." style="height: 100%; width:100%;" />
+              </div>
+              <div class="col-md-8 bg-light">
+                <div class="card-body">
+                  <article class="d-flex justify-content-between">
+                    <h2 class="card-title text-uppercase">Petrolette 33cl</h2>
+                    <div class="reviews d-flex align-items-end flex-column">
+                      <div class="reviews-title">5 reviews</div>
+                      <div class="reviews-star">
+                        <i class="fa-solid fa-star full-star"></i>
+                        <i class="fa-solid fa-star full-star"></i>
+                        <i class="fa-solid fa-star full-star"></i>
+                        <i class="fa-solid fa-star full-star"></i>
+                        <i class="fa-regular fa-star border-star"></i>
+                      </div>
+                    </div>
+                  </article>
+                  <div class="row d-flex justify-content-end align-items-end">
+                    <div class="col-7">
+                      <div class="card-text">
+                        Origin: <span>France</span>
+                      </div>
+                      <div class="card-text">
+                        Category: <span>Red wine</span>
+                      </div>
+                      <div class="card-text">
+                        Year: <span>2021</span>
+                      </div>
+                      <div class="card-text">
+                        Quatity: <span>100cl</span>
+                      </div>
+                    </div>
+                    <div class="col-5 text-end">
+                      <div class="products-price">
+                        <span class="card-price">23,</span>90€
+                      </div>
+                    </div>
+                  </div>
+                  {# divisor #}
+                  <div class="divisor-dotted"></div>
+
+                  {# quantity #}
+                  <div class="d-flex flex-column align-items-center align-items-md-end">
+                    <p class="card-title-quantity m-0">Quantity</p>
+                    <div class="available d-flex flex-column-reverse flex-md-row align-items-center align-items-md-end">
+                      <span class="card-available-text mx-0 mx-md-1"><i class="fa-solid fa-check"></i>Available in store</span> <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group border border-primary mx-auto" role="group" aria-label="First group">
+                          <button type="button" class="btn btn-success">-</button>
+                          <button type="button" class="btn btn-success">1</button>
+                          <button type="button" class="btn btn-success">+</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {# CARD BOTTOM #}
+                  <div class="mt-5 row card-bottom d-flex flex-column-reverse align-items-center align-items-lg-start flex-lg-row">
+                    <div class="col-md-12 col-lg-6">
+                      <div class="social-networks text-center text-lg-start">
+                        <span class="">Share this product on your favorite social networks.</span>
+                        <div class="social-networks-icon my-2">
+                          <i class="fa-brands fa-pinterest"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-linkedin"></i>
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-solid fa-envelope"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 text-center text-lg-end mb-4 mt-lg-0">
+                      <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# -----------DIVISOR #}
+  <div class="divisor divisor-lg"></div>
+
+  {# --------------------------------- OUR SUGGESTIONS #}
+  <article class="text-center mt-5">
+    <h2 class="headers my-3 text-capitalize wrapper-max">Our suggestions</h2>
+    <div class="col-12 products">
+      {# -----------CARDS #}
+      <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4 p-xl-5">
+        <div class="row gx-4 wrapper-max d-flex justify-content-center">
+          {# card #}
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <article class="card-body bg-light">
+                <h2 class="card-title text-uppercase text-start">Petrolette 33cl</h2>
+                {# description quantity #}
+                <div class="row">
+                  <div class="col-12 col-sm-6 d-flex flex-column">
+                    <div class="card-text text-start">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </article>
+            </div>
+          </div>
+          {# card #}
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <article class="card-body bg-light">
+                <h2 class="card-title text-uppercase text-start">Petrolette 33cl</h2>
+                {# description quantity #}
+                <div class="row">
+                  <div class="col-12 col-sm-6 d-flex flex-column">
+                    <div class="card-text text-start">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </article>
+            </div>
+          </div>
+          {# card #}
+          <div class="col-12 col-md-6 col-xxl-4 my-2">
+            <div class="card">
+              {# heart #}
+              <div class="heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+
+              {# image #}
+              <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
+
+              {# card body #}
+              <article class="card-body bg-light">
+                <h2 class="card-title text-uppercase text-start">Petrolette 33cl</h2>
+                {# description quantity #}
+                <div class="row">
+                  <div class="col-12 col-sm-6 d-flex flex-column">
+                    <div class="card-text text-start">
+                      Origin: <span>France</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Category: <span>Red wine</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Year: <span>2021</span>
+                    </div>
+                    <div class="card-text text-start">
+                      Quatity: <span>100cl</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 text-end">
+                    {# quantity #}
+                    <div class="d-flex flex-column align-items-end">
+                      <p class="card-title-quantity m-0">Quantity</p>
+                      <div class="btn-group border border-primary" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-success">-</button>
+                        <button type="button" class="btn btn-success">1</button>
+                        <button type="button" class="btn btn-success">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# price #}
+                <div class="products-price my-2 text-end">
+                  <span class="card-price">23,</span>90€
+                </div>
+
+                {# button add basket #}
+                <div class="col-12 text-center mt-3 mb-2">
+                  <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock %}

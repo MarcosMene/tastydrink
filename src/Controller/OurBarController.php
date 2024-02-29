@@ -11,6 +11,6 @@ class OurBarController extends AbstractController
     #[Route('/our-bar', name: 'app_our_bar')]
     public function index(): Response
     {
-        return $this->render('our_bar/index.html.twig');
+        return $this->render('pages/our-bar.html.twig');
     }
 }
