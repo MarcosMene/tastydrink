@@ -229,6 +229,14 @@ ul.breadcrumb li a:hover {
 }
 
 //-----------------DRINKS FILTERS
+.accordion-button {
+  font-size: 1.6rem;
+}
+
+label {
+  font-size: 1.6rem;
+}
+
 .products-filter {
   margin-top: 55px;
 
@@ -503,19 +511,33 @@ ul.breadcrumb li a:hover {
 
 footer {
   background-color: $black;
+
   .fa-brands {
     color: white;
   }
 
+  .footer-title {
+    font-size: 1.8rem;
+  }
+  .footer-description {
+    font-size: 1.4rem;
+  }
+
   .social-networks {
     width: 200px;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin: 20px 0;
+  }
+
+  .nav-link {
+    font-size: 1.4rem;
   }
 
   .btn {
     font-weight: 500;
     color: $black;
     border-radius: 2px;
+    font-size: 1.6rem;
 
     &:hover {
       background-color: transparent;
@@ -533,20 +555,23 @@ footer {
 
   .footer-titles {
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     color: $primary;
   }
 
   .copyright span {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     @media screen and (max-width: 992px) {
-      font-size: 0.8rem;
+      font-size: 1.1rem;
     }
     @media screen and (max-width: 768px) {
-      font-size: 0.7rem;
+      font-size: 1rem;
     }
     @media screen and (max-width: 576px) {
-      font-size: 0.6rem;
+      font-size: 0.9rem;
     }
   }
+}
+.form-control {
+  font-size: 1.3rem;
 }
