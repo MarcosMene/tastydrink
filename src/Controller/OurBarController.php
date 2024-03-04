@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class OurBarController extends AbstractController
 {
-    #[Route('/our-bar', name: 'app_our_bar')]
+    #[Route('/our-bar', name: 'our_bar')]
     public function index(): Response
     {
         return $this->render('pages/our-bar.html.twig');

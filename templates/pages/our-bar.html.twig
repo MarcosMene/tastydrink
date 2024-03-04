@@ -12,7 +12,7 @@
   {# -----------------DRINK SHOP & BAR #}
 
   <article class="mt-5">
-    <h2 class="main-titles my-3 text-capitalize text-center">The Tasty Drink Bar</h2>
+    <h2 class="main-titles text-capitalize text-center">The Tasty Drink Bar</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
     <p>Mattis integer cursus viverra sem sodales augue nascetur, quis faucibus magna mi lacus praesent ornare justo, feugiat quisque nibh tempus est leo. Pharetra iaculis lobortis duis pulvinar turpis donec imperdiet aliquet, dictumst dictum fames urna blandit conubia rutrum.</p>
   </article>
@@ -22,7 +22,7 @@
 
   {# -----------------INSIDE BAR #}
   <div class="row d-flex align-items-start mx-0">
-    <article class="col-12 col-md-7 pt-lg-5">
+    <article class="col-12 col-md-6 pt-lg-5">
       <h2 class="headers text-capitalize">Inside Bar</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
       <p>Mattis integer cursus viverra sem sodales augue nascetur, quis faucibus magna mi lacus praesent ornare justo, feugiat quisque nibh tempus est leo. Pharetra iaculis lobortis duis pulvinar turpis donec imperdiet aliquet, dictumst dictum fames urna blandit conubia rutrum,</p>
@@ -30,18 +30,18 @@
       {# ----------------BUTTON----------------- #}
       <a href="" class="btn btn-outline mt-2 mb-5">Make Reservation</a>
     </article>
-    <div class="col-12 col-md-5 p-0">
+    <div class="col-12 col-md-6 p-0">
       <img class="img-fluid" src="{{ asset('assets/images/inside_bar.jpeg') }}" alt="tasty drink building" />
     </div>
   </div>
   {#- --------------- TERRACE #}
   <div class="row d-flex align-items-start mx-0">
-    <article class="col-12 col-md-7 order-md-2 px-lg-5 pt-lg-5">
+    <article class="col-12 col-md-6 order-md-2 px-lg-5 pt-lg-5">
       <h2 class="headers text-capitalize">Terrace</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
       <p>Aturient taciti facilisi fermentum at sociis tincidunt, venenatis mollis iaculis eget curabitur cras. Metus curabitur pellentesque hac laoreet sollicitudin condimentum nibh penatibus nec scelerisque facilisi, torquent himenaeos nunc risus pretium eleifend conubia.</p>
     </article>
-    <div class="col-12 col-md-5 p-0">
+    <div class="col-12 col-md-6 p-0">
       <img src="{{ asset('assets/images/terrace.jpeg') }}" alt="" class="img-fluid" />
     </div>
   </div>
@@ -51,24 +51,24 @@
 
   {# --------------------------------- OUR MENU #}
   <section class="text-center mt-5">
-    <h2 class="headers my-3 text-capitalize wrapper-max">Our Menu</h2>
-    <div class="wrapper info wrapper-max m-auto">
-      <div class="row gx-4 wrapper-max">
-        <div class="col-12 col-sm-6 my-2">
+    <h2 class="headers text-capitalize">Our Menu</h2>
+    <div class="wrapper info m-auto p-5">
+      <div class="row d-flex justify-content-around justify-content-lg-evenly">
+        <div class="col-9 col-lg-5 my-5">
           <div class="product-card m-auto">
-            <img src="{{ asset('assets/images/menu_drinks.jpg') }}" alt="" class="img-fluid mx-auto" width="400" loading="lazy" />
+            <img src="{{ asset('assets/images/menu_drinks.jpg') }}" alt="" class="img-fluid mx-auto" loading="lazy" />
           </div>
           {# ----------------BUTTON----------------- #}
           <a href="" class="btn btn-outline mt-3">Menu Drinks</a>
         </div>
-        <div class="col-12 col-sm-6 my-2">
+        <div class="col-9 col-lg-5 my-5">
           <div class="product-card m-auto">
-            <img src="{{ asset('assets/images/menu_food.jpeg') }}" alt="" class="img-fluid mx-auto" width="400" loading="lazy" />
+            <img src="{{ asset('assets/images/menu_food.jpeg') }}" alt="" class="img-fluid mx-auto" loading="lazy" />
           </div>
           {# ----------------BUTTON----------------- #}
           <a href="" class="btn btn-outline mt-3">Menu Food</a>
         </div>
       </div>
     </div>
-  </s>
+  </section>
 {% endblock %}

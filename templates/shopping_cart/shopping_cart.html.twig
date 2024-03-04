@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Shopping Cart
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+    <h1 class="main-titles text-center">Shopping cart</h1>
+  </div>
+
+  <div class="row bg-info p-5 products rounded">
+    <div class="col-12 col-lg-8 text-dark">
+      {# -----------CARD #}
+      <div class="wrapper info wrapper-max bg-light m-0 mb-3">
+        <div class="row gx-4 wrapper-max d-flex justify-content-between">
+          <div class="bg-light d-flex justify-content-between align-items-start">
+            {# IMAGE AND DESCRIPTION #}
+            <div class="product d-flex flex-column flex-md-row">
+              {# IMAGE #}
+              <div class="product-img me-3">
+                <img src="{{ asset('uploads/menu/beer.jpg') }}" class="img-fluid rounded" width="150px" alt="..." />
+              </div>
+              {# DESCRIPTION #}
+              <div class="product-description">
+                <h2>Lorem ipsum dolor sit amet.</h2>
+                <div class="">
+                  <p class="m-0">Origin: France</p>
+                  <p class="m-0">Category: Red wine</p>
+                  <p class="m-0">Year: 2021</p>
+                  <p class="m-0">Quatity: 100cl</p>
+                </div>
+              </div>
+            </div>
+            {# QUANTITY #}
+            <div class="product-quantity d-flex align-items-center flex-column">
+              <div class="quantity">
+                {# quantity #}
+                <div class="d-flex flex-column flex-md-row align-items-center">
+                  <div>
+                    <p class="card-title-quantity text-center m-0">Quantity</p>
+                    <div class="btn-group border border-primary" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-success">-</button>
+                      <button type="button" class="btn btn-success">1</button>
+                      <button type="button" class="btn btn-success">+</button>
+                    </div>
+                  </div>
+                  <div class="trash-icon ms-4 mt-4 mt-md-0" style="font-size: 1.2rem;">
+                    <i class="fa-solid fa-trash-can fa-2xl"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {# PRICE #}
+          <div class="product-price text-end">
+            <h3 class="products-price text-end">23,90€</h3>
+          </div>
+        </div>
+      </div>
+      {# -----------CARD #}
+      <div class="wrapper info wrapper-max bg-light m-0 mb-3">
+        <div class="row gx-4 wrapper-max d-flex justify-content-between">
+          <div class="bg-light d-flex justify-content-between align-items-start">
+            {# IMAGE AND DESCRIPTION #}
+            <div class="product d-flex flex-column flex-md-row">
+              {# IMAGE #}
+              <div class="product-img me-3">
+                <img src="{{ asset('uploads/menu/beer.jpg') }}" class="img-fluid rounded" width="150px" alt="..." />
+              </div>
+              {# DESCRIPTION #}
+              <div class="product-description">
+                <h2>Lorem ipsum dolor sit amet.</h2>
+                <div class="">
+                  <p class="m-0">Origin: France</p>
+                  <p class="m-0">Category: Red wine</p>
+                  <p class="m-0">Year: 2021</p>
+                  <p class="m-0">Quatity: 100cl</p>
+                </div>
+              </div>
+            </div>
+            {# QUANTITY #}
+            <div class="product-quantity d-flex align-items-center flex-column">
+              <div class="quantity">
+                {# quantity #}
+                <div class="d-flex flex-column flex-md-row align-items-center">
+                  <div>
+                    <p class="card-title-quantity text-center m-0">Quantity</p>
+                    <div class="btn-group border border-primary" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-success">-</button>
+                      <button type="button" class="btn btn-success">1</button>
+                      <button type="button" class="btn btn-success">+</button>
+                    </div>
+                  </div>
+                  <div class="trash-icon ms-4 mt-4 mt-md-0" style="font-size: 1.2rem;">
+                    <i class="fa-solid fa-trash-can fa-2xl"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {# PRICE #}
+          <div class="product-price text-end">
+            <h3 class="products-price text-end">23,90€</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# ------------total #}
+    <div class="col-12 col-lg-4">
+      {# -----------CARDS #}
+      <div class="wrapper info wrapper-max border border-primary m-0 mb-3">
+        <div class="row gx-4 wrapper-max d-flex justify-content-center">
+          <div class="product-value-results">
+            <div class="product-total d-flex justify-content-between">
+              <p>total of products</p>
+              <p>2</p>
+            </div>
+            <div class="product-subtotal d-flex justify-content-between">
+              <p>Subtotal</p>
+              <p>47,80€</p>
+            </div>
+          </div>
+
+          <div class="buttons">
+            {# button add basket #}
+            <div class="text-center mt-3 mb-2">
+              <a href="#" class="btn btn-primary btn-link w-100">Validate my cart</a>
+              <a href="" class="btn btn-outline-info w-100 mt-3 fw-normal">Continue shopping</a>
+            </div>
+          </div>
+
+          <p class="text-center m-5">Shiping taxes and discout codes calculated at checkout.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

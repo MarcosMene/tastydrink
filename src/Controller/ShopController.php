@@ -8,9 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ShopController extends AbstractController
 {
-    #[Route('/shop', name: 'app_shop')]
+    #[Route('/shop', name: 'shop')]
     public function index(): Response
     {
-        return $this->render('pages/shop.html.twig');
+        return $this->render('shop/shop.html.twig');
     }
 }
