@@ -5,5 +5,123 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="text-white">Order</h1>
+  <div class="mt-5">
+    <h1 class="main-titles text-center">Your order</h1>
+  </div>
+
+  <div class="row bg-info products d-flex justify-content-between p-5">
+    <h2 class="text-white text-center mt-3">Choose your preferences before placing your order on Tasty Drink.</h2>
+    <p class="text-white text-center mb-5"></p>
+    <div class="col-12 col-lg-7 text-dark">
+      <p class="text-white text-center text-uppercase my-3">My order</p>
+      <div class="cards bg-light rounded p-5">
+        {# -----------CARD #}
+        <div class="info wrapper-max">
+          <div class="row wrapper-max d-flex justify-content-between">
+            <div class="bg-light d-flex justify-content-between align-items-start">
+              {# IMAGE AND DESCRIPTION #}
+              <div class="col-8 product d-flex flex-column flex-md-row">
+                {# IMAGE #}
+                <div class="product-img me-3">
+                  <img src="{{ asset('uploads/menu/beer.jpg') }}" class="img-fluid rounded" width="150px" alt="..." />
+                </div>
+                {# DESCRIPTION #}
+                <div class="product-description">
+                  <h2>Lorem ipsum dolor sit amet.</h2>
+                  <div class="">
+                    <p class="m-0">Origin: France</p>
+                    <p class="m-0">Category: Red wine</p>
+                    <p class="m-0">Year: 2021</p>
+                    <p class="m-0">Quatity: 100cl</p>
+                  </div>
+                </div>
+              </div>
+              {# QUANTITY #}
+              <div class="col-4 product-quantity d-flex flex-column align-items-end justify-content-between">
+                <p class="fw-bold">X2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# divisor #}
+        <div class="divisor divisor-light my-5 w-100"></div>
+
+        {# -----------CARD #}
+        <div class="info wrapper-max">
+          <div class="row wrapper-max d-flex justify-content-between">
+            <div class="bg-light d-flex justify-content-between align-items-start">
+              {# IMAGE AND DESCRIPTION #}
+              <div class="col-8 product d-flex flex-column flex-md-row">
+                {# IMAGE #}
+                <div class="product-img me-3">
+                  <img src="{{ asset('uploads/menu/beer.jpg') }}" class="img-fluid rounded" width="150px" alt="..." />
+                </div>
+                {# DESCRIPTION #}
+                <div class="product-description">
+                  <h2>Lorem ipsum dolor sit amet.</h2>
+                  <div class="">
+                    <p class="m-0">Origin: France</p>
+                    <p class="m-0">Category: Red wine</p>
+                    <p class="m-0">Year: 2021</p>
+                    <p class="m-0">Quatity: 100cl</p>
+                  </div>
+                </div>
+              </div>
+              {# QUANTITY #}
+              <div class="col-4 product-quantity d-flex flex-column align-items-end justify-content-between">
+                <p class="fw-bold">X2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# ------------total #}
+    <div class="col-12 col-lg-5 mt-4 mt-lg-0">
+      <p class="text-white text-center text-uppercase my-3">Choose your delivery address</p>
+      {# card address #}
+      <div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded">
+        <div class="text-end mb-5 px-5">
+          <a href="#" class="btn btn-primary btn-link">Add new address</a>
+        </div>
+        {# FORM #}
+        <div class="wrapper-max">
+          <form>
+            <div class="mb-5 form-check">
+              <input type="checkbox" class="form-check-input" id="address" />
+              <label class="form-check-label fw-bold text-uppercase" for="address">House</label>
+              <p class="w-75">22 Albert Einsteins street ER233R Vancouver - CA</p>
+            </div>
+            <div class="mb-5 form-check">
+              <input type="checkbox" class="form-check-input" id="address" />
+              <label class="form-check-label fw-bold text-uppercase" for="address">Office</label>
+              <p class="w-75">22 Albert Einsteins street ER233R Vancouver - CA</p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {# card transporter #}
+      <p class="text-white text-center text-uppercase my-3">Choose your transporter</p>
+      <div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded">
+        {# FORM #}
+        <div class="wrapper-max px-5">
+          <form>
+            <div class="mb-5 form-check d-flex justify-content-start align-items-center">
+              <input type="checkbox" class="form-check-input me-2" id="address" />
+              <label class="form-check-label fw-bold text-uppercase" for="address">Cronopost</label>
+              <p class="m-0 ms-auto">9,90€</p>
+            </div>
+            <div class="mb-5 form-check d-flex justify-content-start align-items-center">
+              <input type="checkbox" class="form-check-input me-2" id="address" />
+              <label class="form-check-label fw-bold text-uppercase" for="address">Fedex</label>
+              <p class="m-0 ms-auto">9,90€</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
