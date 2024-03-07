@@ -4,10 +4,17 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+
+//email must be unique
+#[UniqueEntity('email')]
+
+
 #[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -17,6 +24,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 10, max: 180)]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -26,7 +35,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Password cannot be empty.')]
+    #[Assert\Length( min: 4,
+    max: 16,
+    minMessage: 'Password must be at least {{ limit }} characters long',
+    maxMessage: 'Password must be no longer than {{ limit }} characters')]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'First name cannot be empty.')]
+    #[Assert\Length(
+        min: 2,
+        max: 30,
+        minMessage: 'First name must be at least {{ limit }} characters long',
+        maxMessage: 'First name must be no longer than {{ limit }} characters'
+    )]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Last name cannot be empty.')]
+    #[Assert\Length(
+        min: 5,
+        max: 45,
+        minMessage: 'Last name must be at least {{ limit }} characters long',
+        maxMessage: 'Last name must be no longer than {{ limit }} characters'
+    )]
+    private ?string $lastname = null;
 
     public function getId(): ?int
     {
@@ -96,5 +130,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+
+        return $this;
     }
 }

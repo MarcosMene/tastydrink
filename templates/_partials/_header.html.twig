@@ -1,19 +1,20 @@
 <div class="py-3 bg-info">
   <div class="container d-flex justify-content-end align-items-center">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <ul class="nav col-12 col-lg-auto my-2 justify-content-end my-md-0 text-small">
+      <ul class="nav col-12 col-lg-auto my-2 justify-content-end align-items-center my-md-0 text-small">
         <li>
-          <div href="#" class="user-name text-white px-0">
-            <i class="fa-regular fa-circle-user"></i>
-            John Doe
-          </div>
+          {% if app.user %}
+            <i class="fa-regular fa-circle-user mx-3 fa-xl"></i>
+            <p class="d-inline">Hello {{ app.user.firstname }} -</p>
+            <a href="{{ path('account') }}" class="btn btn-primary btn-signOut">My account</a>
+            <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-signOut">Log out</a>
+          {% else %}
+            <a href="{{ path('app_login') }}" class="mx-1 btn btn-primary mr-5 btn-signIn">Sign In</a> |
+            <a href="{{ path('sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
+          {% endif %}
         </li>
         <li>
-          <div class="text-right">
-            <a href="" class="btn btn-primary mr-5 btn-signIn">Sign In</a>
-            <a href="" class="btn btn-outline-primary btn-signOut">Sign Out</a>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
+          <i class="fa-solid fa-cart-shopping"></i>
         </li>
       </ul>
     </div>
@@ -27,10 +28,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-sm-center justify-content-sm-between px-0">
         <li class="nav-item">
-          <a class="nav-link active text-center" href="#">Our Story</a>
+          <a class="nav-link active text-center" href="{{ path('our_story') }}">Our Story</a>
         </li>
         <li class="nav-item text-center">
-          <a class="nav-link" href="#">Our Team</a>
+          <a class="nav-link" href="{{ path('team') }}">Our Team</a>
         </li>
         <li class="nav-item dropdown text-center">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar</a>
@@ -44,10 +45,10 @@
           </ul>
         </li>
         <li class="nav-item text-center">
-          <a class="nav-link" href="#">Shop</a>
+          <a class="nav-link" href="{{ path('shop') }}">Shop</a>
         </li>
         <li class="nav-item text-center">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="{{ path('contact') }}">Contact</a>
         </li>
       </ul>
     </div>

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Login
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+    <h1 class="main-titles text-center">Sign in</h1>
+  </div>
+
+  {% include '_partials/flash.html.twig' %}
+  <div class="container">
+    <div class="wrapper wrapper-form w-50 mx-auto bg-light text-black contact p-5">
+      <form method="post">
+        {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+          <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+          </div>
+        {% endif %}
+        <div class="mb-4">
+          <label for="inputEmail">Email</label>
+          <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus />
+        </div>
+
+        <div class="mb-4">
+          <label for="inputPassword">Password</label>
+          <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required />
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+
+        {# button add basket #}
+        <div class="col-12 text-center mt-3 mb-2">
+          <button type="submit" class="btn btn-primary btn-link mt-5 mb-3">Sign in</button>
+        </div>
+      </form>
+
+      <hr class="w-75 mx-auto" />
+      <p class="text-center">
+        <a href="" class="text-dark">Forgot your password?</a>
+      </p>
+      <p class="text-center">
+        <span style="color:#8a8a8a">Don’t you have an account?</span> <a href="{{ path('sign-up') }}" class="text-dark">Create one here.</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

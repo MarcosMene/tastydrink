@@ -2,13 +2,14 @@ $primary: #dfb674;
 $danger: #ff4f03;
 $dark: #141414;
 $white: #fff;
-$success: #fff;
+$success: #52d89c;
 $info: #31343b;
 $black: #000000;
 $light: #d9d9d9;
 $limit: 2000px;
 $maxContainer: 1600px;
 $border-width: 2px;
+$darkgrey: #8a8a8a;
 
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap/scss/bootstrap';
@@ -94,6 +95,13 @@ p {
     font-size: 1.9rem;
     font-weight: 400;
   }
+}
+
+.alert {
+  font-size: 1.6rem;
+}
+.invalid-feedback {
+  font-size: 1.3rem;
 }
 
 // -----------------BREADCRUMPS ---------------------
@@ -468,8 +476,17 @@ label {
 
 //-----------CONTACT
 .contact {
-  i {
-    color: $primary;
+  &-phone,
+  &-email {
+    i {
+      color: $primary;
+      font-size: 1.6rem;
+      margin-right: 5px;
+    }
+
+    span {
+      font-size: 1.6rem;
+    }
   }
 
   .google-map {
@@ -491,7 +508,7 @@ label {
 
 .btn-signIn,
 .btn-signOut {
-  margin-left: 30px;
+  margin-left: 10px;
   font-size: 1.5rem;
 }
 
