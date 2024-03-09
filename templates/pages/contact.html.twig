@@ -10,42 +10,23 @@
       <article class="col-12 col-lg-8 px-2 px-md-3">
         <h2 class="mb-3">Have a question? Reservation?</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique adipisci aliquam assumenda libero dolore magni.</p>
-        <form class="needs-validation" novalidate="">
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" />
-              <div class="invalid-feedback">Valid first name is required.</div>
-            </div>
 
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" />
-              <div class="invalid-feedback">Valid last name is required.</div>
-            </div>
+        {% include '_partials/flash.html.twig' %}
 
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" />
-              <div class="invalid-feedback">Please enter a valid email address for shipping updates.</div>
-            </div>
+        {{ form_start(form) }}
+        <div class="row">
+          <div class="col-sm">{{ form_row(form.firstName) }}</div>
+          <div class="col-sm">{{ form_row(form.lastName) }}</div>
+          <div class="col-12">{{ form_row(form.email) }}</div>
+          <div class="col-12">{{ form_row(form.subject) }}</div>
+          <div class="col-12">{{ form_row(form.message) }}</div>
+        </div>
+        {# button add basket #}
+        <div class="col-12 text-center mt-3 mb-2">
+          <button type="submit" href="#" class="btn btn-primary btn-link my-4">Send</button>
+        </div>
+        {{ form_end(form) }}
 
-            <div class="col-12">
-              <label for="subject" class="form-label">Subject</label>
-              <input type="text" class="form-control" id="subject" placeholder="1234 Main St" required="" />
-              <div class="invalid-feedback">Please enter your shipping subject.</div>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="textAreaExample">Message</label>
-              <textarea class="form-control" id="textAreaExample1" rows="4"></textarea>
-            </div>
-          </div>
-
-          {# button submit #}
-          <div class="col-12 text-center mt-3 mb-2">
-            <a href="#" class="btn btn-primary btn-link">Submit</a>
-          </div>
-        </form>
         {# divisor #}
         <div class="divisor divisor-light d-block d-lg-none"></div>
       </article>
