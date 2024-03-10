@@ -36,10 +36,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Password cannot be empty.')]
-    #[Assert\Length( min: 4,
-    max: 16,
-    minMessage: 'Password must be at least {{ limit }} characters long',
-    maxMessage: 'Password must be no longer than {{ limit }} characters')]
+    // #[Assert\Length( min: 4,
+    // max: 16,
+    // minMessage: 'Password must be at least {{ limit }} characters long',
+    // maxMessage: 'Password must be no longer than {{ limit }} characters')]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]

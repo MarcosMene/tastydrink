@@ -84,6 +84,11 @@ p {
   font-weight: 300;
 }
 
+.form-control:disabled {
+  color: $darkgrey;
+  background-color: $light;
+}
+
 .white-titles {
   font-size: 1.8rem;
   font-weight: 500;

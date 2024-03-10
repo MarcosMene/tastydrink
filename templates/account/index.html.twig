@@ -9,7 +9,7 @@
     <h1 class="main-titles text-center">My account</h1>
   </div>
   <div class="p-0 text-end">
-    <a href="" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to products</a>
+    <a href="" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to home page</a>
   </div>
   {% include '_partials/flash.html.twig' %}
   <div class="account wrapper wrapper-form mx-auto bg-light text-black contact p-5">
@@ -19,7 +19,7 @@
     <div class="cards-account">
       <div class="row">
         <div class="col-md-4">
-          <a href="" class="account-link">
+          <a href="{{ path('account_password') }}" class="account-link">
             <div class="account-item text-center">
               <i class="fa-solid fa-lock"></i>
               <span>Modify my password</span>
