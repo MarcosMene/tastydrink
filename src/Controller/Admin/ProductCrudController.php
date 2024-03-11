@@ -25,16 +25,14 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name'),
             SlugField::new('slug')->setTargetFieldName('name'),
             ImageField::new('illustration')
-                ->setBasePath('/uploads') // the base path where files are stored
+                ->setBasePath('/uploads/products') // the base path where files are stored
                 ->setUploadDir('public/uploads/products') // the relative directory to store files in
                 ->setUploadedFileNamePattern('[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
                 ->setRequired(false),
             TextField::new('subtitle'),
             TextEditorField::new('description'),
-            MoneyField::new('price')->setCurrency('EUR'),
+            MoneyField::new('price')->setCurrency('USD'),
             AssociationField::new('category')
-
-
         ];
     }
 }

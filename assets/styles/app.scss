@@ -237,6 +237,21 @@ ul.breadcrumb li a:hover {
   width: 100%;
 }
 
+.card-body {
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+
+  @media screen and (max-width: 1200px) {
+    height: 260px;
+  }
+  @media screen and (max-width: 768px) {
+    height: 200px;
+  }
+}
+
 .overlay {
   position: absolute;
   bottom: 0;

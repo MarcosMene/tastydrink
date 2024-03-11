@@ -1,0 +1,13 @@
+App\Entity\Product:
+  product_{1..100}:
+    name: <name()>
+    price: <numberBetween(50, 4000)>
+    description: <text(100)>
+    image: http://picsum.photos/id/<numberBetween(400,800)>/290/180
+    categories: '<numberBetween(1,5)>x @category_*'
+    promo: '10%? 1 : 0'
+    context: 'a'
+
+App\Entity\Category:
+  category_{1..10}:
+    name: <name()>
