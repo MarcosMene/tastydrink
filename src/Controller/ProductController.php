@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/our-products/{slug}', name: 'product')]
+    #[Route('/our-products', name: 'product')]
     public function index(): Response
     {
         return $this->render('products/our-products.html.twig');
