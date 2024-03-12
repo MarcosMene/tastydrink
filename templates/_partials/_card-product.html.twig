@@ -6,43 +6,34 @@
     </div>
 
     {# image #}
-    <img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" />
+    <a href="{{ path('app_product', { slug: drink.slug }) }}"><img src="/uploads/products/{{ drink.illustration }}" alt="{{ drink.name }}" class="img-fluid" /></a>
 
     {# card body #}
     <article class="card-body bg-light">
-      <h2 class="card-title text-uppercase">{{ product.name }}</h2>
+      <h2 class="card-title text-uppercase">{{ drink.name }}</h2>
 
       <div class="row">
-        <div class="col">
-          <div class="card-text">
-            Origin: <span>France</span>
-          </div>
-          <div class="card-text">
-            Category: <span>{{ product.category }}</span>
-          </div>
-          <div class="card-text">
-            Year: <span>2021</span>
-          </div>
-          <div class="card-text">
-            Quatity: <span>100cl</span>
-          </div>
+        {# description #}
+        <div class="col-8 col-sm-6 col-lg-8">
+          <h3 class="text-capitalize mt-2 mb-4">{{ drink.subtitle }}</h3>
+
+          <div class="product-description">{{ drink.description|raw }}</div>
         </div>
-        <div class="col text-end">
+        <div class="col-4 col-sm-6 col-lg-4 text-end">
           {# quantity #}
           <div class="d-flex flex-column align-items-end">
             <p class="card-title-quantity m-0">Quantity</p>
-            <div class="btn-group" role="group" aria-label="First group">
+            <div class="btn-group border border-primary" role="group" aria-label="First group">
               <button type="button" class="btn btn-light bg-white">-</button>
               <button type="button" class="btn btn-light bg-white disabled">1</button>
               <button type="button" class="btn btn-light bg-white">+</button>
             </div>
+            {# price #}
+            <div class="products-price text-end my-3">
+              <span class="card-price">{{ (drink.price / 100)|number_format('2', ',', '.') }}$</span>
+            </div>
           </div>
         </div>
-      </div>
-
-      {# price #}
-      <div class="products-price my-2 text-end">
-        <span class="card-price">{{ (product.price / 100)|number_format('2', ',', '.') }} $</span>
       </div>
 
       {# button add basket #}

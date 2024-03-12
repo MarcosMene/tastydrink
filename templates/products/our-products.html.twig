@@ -32,63 +32,8 @@
           <article class="accordion-item">
             <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Filter by</button></h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <form>
-                  <div class="form-group">
-                    <label for="findDrink">Find a drink</label>
-                    <input type="text" class="form-control" id="findDrink" aria-describedby="findDrink" placeholder="ex. beer" />
-                  </div>
-
-                  {# ----------country #}
-                  <p class="mt-4 mb-1 filter-title">Country</p>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                    <label class="form-check-label" for="flexCheckDefault">France(22)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                    <label class="form-check-label" for="flexCheckChecked">Italy(10)</label>
-                  </div>
-
-                  {# ----------vintage #}
-                  <p class="mt-4 mb-1 filter-title">Year</p>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label class="form-check-label" for="flexCheckDefault">2021(22)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-                    <label class="form-check-label" for="flexCheckChecked">2022(10)</label>
-                  </div>
-
-                  {# ----------Ingredients #}
-                  <p class="mt-4 mb-1 filter-title">Ingredients</p>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                    <label class="form-check-label" for="flexCheckDefault">Plants/flowers(22)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                    <label class="form-check-label" for="flexCheckChecked">With fruit(10)</label>
-                  </div>
-
-                  {# ----------Capacity #}
-                  <p class="mt-4 mb-1 filter-title">Capacity</p>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label class="form-check-label" for="flexCheckDefault">75cl(22)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-                    <label class="form-check-label" for="flexCheckChecked">44cl</label>
-                  </div>
-
-                  {# ----------PRICE #}
-                  <label for="customRange1" class="form-label filter-title mt-4">Price</label>
-                  <input type="range" class="form-range" id="customRange1" />
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
+              {# form filter #}
+              <div class="accordion-body">{{ form(form) }}</div>
             </div>
           </article>
         </div>
@@ -115,7 +60,7 @@
       {# -----------CARDS #}
       <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4 p-xl-5">
         <div class="row gx-4 wrapper-max d-flex justify-content-center">
-          {% for product in products %}
+          {% for drink in products %}
             {% include '_partials/_card-product.html.twig' %}
           {% endfor %}
         </div>

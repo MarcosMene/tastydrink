@@ -238,18 +238,10 @@ ul.breadcrumb li a:hover {
 }
 
 .card-body {
-  height: 290px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: stretch;
-
-  @media screen and (max-width: 1200px) {
-    height: 260px;
-  }
-  @media screen and (max-width: 768px) {
-    height: 200px;
-  }
 }
 
 .overlay {
@@ -292,6 +284,11 @@ ul.breadcrumb li a:hover {
   height: 80%;
 }
 
+.product-description {
+  font-size: 1.6rem;
+  color: $dark;
+}
+
 //----------------OUR STORE
 .wrapper-store {
   max-width: 1200px;
@@ -314,6 +311,11 @@ label {
   }
 }
 
+.form-check-input[type='checkbox'] {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
 .wrapper-filter {
   background-color: $white;
   padding: 20px;
@@ -330,10 +332,6 @@ label {
 }
 //------------------OUR PRODUCTS
 
-// .row-products {
-//   max-width: 70%;
-//   margin: auto;
-// }
 .products {
   &-quantity {
     color: $white;
@@ -383,10 +381,10 @@ label {
     font-size: 1.6rem;
 
     @media screen and (max-width: 992px) {
-      font-size: 1rem;
+      font-size: 1.3rem;
     }
     @media screen and (max-width: 576px) {
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
   }
 
@@ -420,10 +418,11 @@ label {
     }
 
     @media screen and (max-width: 992px) {
-      font-size: 0.7rem;
+      font-size: 1rem;
+      margin-bottom: 10px;
     }
     @media screen and (max-width: 768px) {
-      font-size: 0.6rem;
+      font-size: 1rem;
     }
   }
 
@@ -434,6 +433,11 @@ label {
     @media screen and (max-width: 992px) {
       font-size: 1.8rem;
     }
+  }
+
+  .social-networks-message {
+    font-size: 1.4rem;
+    color: $info;
   }
 
   .social-networks-icon {
