@@ -237,11 +237,12 @@ ul.breadcrumb li a:hover {
   width: 100%;
 }
 
-.card-body {
+.card-body.vertical {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: stretch;
+  height: 270px;
 }
 
 .overlay {
@@ -284,9 +285,22 @@ ul.breadcrumb li a:hover {
   height: 80%;
 }
 
+.product-subtitle {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
 .product-description {
   font-size: 1.6rem;
   color: $dark;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 //----------------OUR STORE
@@ -304,7 +318,7 @@ label {
 }
 
 .products-filter {
-  margin-top: 55px;
+  margin-top: 36px;
 
   @media screen and (max-width: 992px) {
     margin-top: 0;
@@ -674,6 +688,10 @@ footer {
     font-weight: 400;
     font-size: 1.6rem;
     color: $primary;
+  }
+
+  .footer-subscribe {
+    max-width: 400px;
   }
 
   .copyright span {

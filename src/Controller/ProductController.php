@@ -17,7 +17,7 @@ class ProductController extends AbstractController
     {
     }
 
-    #[Route('/our-products', name: 'app_products')]
+    #[Route('/our-products', name: 'products')]
     public function index(Request $request): Response
     {
         $search = new Search();
@@ -36,16 +36,17 @@ class ProductController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    #[Route('/product/{slug}', name: 'app_product')]
+    #[Route('/product/{slug}', name: 'product')]
+
     public function show($slug): Response
     {
 
         $product = $this->em->getRepository(Product::class)->findOneBySlug($slug);
         if (!$product) {
-            return $this->redirectToRoute('app_products');
+            return $this->redirectToRoute('products');
         }
 
-        return $this->render('products/product.html.twig', [
+        return $this->render('products/show.html.twig', [
             'product' => $product
         ]);
     }

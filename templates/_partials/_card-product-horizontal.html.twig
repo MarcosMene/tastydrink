@@ -62,7 +62,7 @@
           {# divisor #}
           <div class="divisor-line my-2"></div>
           {# product description #}
-          <div class="product-description my-3">{{ product.description|raw }}</div>
+          <div class="product-description my-3 lead">{{ product.description|raw }}</div>
 
           {# CARD BOTTOM #}
           <div class="mt-5 row card-bottom d-flex flex-column-reverse align-items-center align-items-lg-start flex-lg-row">
@@ -79,7 +79,7 @@
               </div>
             </div>
             <div class="col-md-12 col-lg-6 text-center text-lg-end mb-4 mt-lg-0">
-              <a href="#" class="btn btn-primary btn-link">Add to basket</a>
+              <a href="{{ path('add_to_cart', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
             </div>
           </div>
         </div>
