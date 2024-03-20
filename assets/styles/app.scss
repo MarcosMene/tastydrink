@@ -10,6 +10,7 @@ $limit: 2000px;
 $maxContainer: 1600px;
 $border-width: 2px;
 $darkgrey: #8a8a8a;
+$placeholder: #b8b8b8;
 
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap/scss/bootstrap';
@@ -46,6 +47,15 @@ body {
   }
 }
 
+.block-small {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.block-medium {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .navbar {
   .nav-link {
     font-size: 2rem;
@@ -60,7 +70,7 @@ body {
 .back-to {
   color: $white;
   text-decoration: underline;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 
   &:hover {
     color: $primary;
@@ -84,9 +94,38 @@ p {
   font-weight: 300;
 }
 
+a {
+  text-decoration: none;
+}
+
 .form-control:disabled {
   color: $darkgrey;
   background-color: $light;
+}
+
+.form-select {
+  font-size: 1.6rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.form-control {
+  font-size: 1.6rem;
+}
+
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $placeholder;
+  opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $placeholder;
+}
+
+.form-control::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $placeholder;
 }
 
 .white-titles {
@@ -110,17 +149,25 @@ p {
 }
 
 // -----------------BREADCRUMPS ---------------------
+.breadcrumb-paragraph {
+  font-size: 1.3rem;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1rem;
+  }
+}
+
 ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
 }
 ul.breadcrumb li {
   display: inline;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: $primary;
 
   @media screen and (max-width: 576px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 ul.breadcrumb li + li:before {
@@ -214,7 +261,7 @@ ul.breadcrumb li a:hover {
   border-color: $white;
   text-decoration: none;
   background-color: $primary;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 
   &:hover {
     background-color: $info;
@@ -229,7 +276,7 @@ ul.breadcrumb li a:hover {
   background-color: $info;
   padding: 20px;
   border-radius: 5px;
-  margin: 40px 0 60px;
+  margin: 20px 0 60px;
 }
 
 .product-card {
@@ -353,129 +400,128 @@ label {
     font-weight: 400;
     position: relative;
   }
+}
+.card-title {
+  font-weight: 600;
+  font-size: 1.8rem;
 
-  .card-title {
-    font-weight: 600;
-    font-size: 1.8rem;
-
-    @media screen and (max-width: 768px) {
-      font-size: 1.2rem;
-    }
-    @media screen and (max-width: 576px) {
-      font-size: 1.1rem;
-    }
-  }
-
-  .card-title-small {
-    font-weight: 600;
-    font-size: 1.8rem;
-
-    @media screen and (max-width: 768px) {
-      font-size: 1.5rem;
-    }
-    @media screen and (max-width: 576px) {
-      font-size: 1rem;
-    }
-  }
-
-  .card-title-quantity {
-    font-weight: 500;
-
-    @media screen and (max-width: 992px) {
-      font-size: 1.4rem;
-    }
-    @media screen and (max-width: 576px) {
-      font-size: 1.2rem;
-    }
-  }
-
-  .card-text {
-    padding: 0;
-    color: $dark;
-    font-size: 1.6rem;
-
-    @media screen and (max-width: 992px) {
-      font-size: 1.3rem;
-    }
-    @media screen and (max-width: 576px) {
-      font-size: 1rem;
-    }
-  }
-
-  .heart {
-    position: absolute;
-    color: $danger;
-    right: 20px;
-    top: 20px;
-    background-color: $light;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    i.fa-heart {
-      font-size: 2.2rem;
-      cursor: pointer;
-    }
-  }
-
-  .reviews {
+  @media screen and (max-width: 768px) {
     font-size: 1.2rem;
-
-    .full-star {
-      color: $info;
-    }
-    .border-star {
-      color: $info;
-    }
-
-    @media screen and (max-width: 992px) {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-    @media screen and (max-width: 768px) {
-      font-size: 1rem;
-    }
   }
-
-  & .products-price {
-    font-size: 2rem;
-    font-weight: 600;
-
-    @media screen and (max-width: 992px) {
-      font-size: 1.8rem;
-    }
+  @media screen and (max-width: 576px) {
+    font-size: 1.1rem;
   }
+}
 
-  .social-networks-message {
+.card-title-small {
+  font-weight: 600;
+  font-size: 1.8rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 1rem;
+  }
+}
+
+.card-title-quantity {
+  font-weight: 500;
+
+  @media screen and (max-width: 992px) {
     font-size: 1.4rem;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 1.2rem;
+  }
+}
+
+.card-text {
+  padding: 0;
+  color: $dark;
+  font-size: 1.6rem;
+
+  @media screen and (max-width: 992px) {
+    font-size: 1.3rem;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 1rem;
+  }
+}
+
+.heart {
+  position: absolute;
+  color: $danger;
+  right: 20px;
+  top: 20px;
+  background-color: $light;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i.fa-heart {
+    font-size: 2.2rem;
+    cursor: pointer;
+  }
+}
+
+.reviews {
+  font-size: 1.2rem;
+
+  .full-star {
+    color: $info;
+  }
+  .border-star {
     color: $info;
   }
 
-  .social-networks-icon {
-    color: $white;
+  @media screen and (max-width: 992px) {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
 
-    i {
-      font-size: 20px;
-      margin-right: 10px;
-      cursor: pointer;
+.products-price {
+  font-size: 2rem;
+  font-weight: 600;
 
-      &:hover {
-        color: $dark;
-      }
+  @media screen and (max-width: 992px) {
+    font-size: 1.8rem;
+  }
+}
+
+.social-networks-message {
+  font-size: 1.4rem;
+  color: $info;
+}
+
+.social-networks-icon {
+  color: $white;
+
+  i {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+
+    &:hover {
+      color: $dark;
     }
   }
+}
 
-  .card-available-text {
-    font-weight: 500;
+.card-available-text {
+  font-weight: 500;
 
-    i {
-      color: green;
-      font-size: 1rem;
-      margin-right: 10px;
-    }
+  i {
+    color: green;
+    font-size: 1rem;
+    margin-right: 10px;
   }
 }
 
@@ -638,6 +684,29 @@ label {
     }
   }
 }
+//-------------------ADDRESS -------------
+.address {
+  a {
+    font-size: 1.6rem;
+    padding: 5px;
+    color: $info;
+
+    &.change,
+    &.delete {
+      font-weight: 400;
+      border-bottom: 2px solid transparent;
+      display: inline-block;
+      color: $dark;
+      padding: 5px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: $primary;
+        cursor: pointer;
+      }
+    }
+  }
+}
 // ---------------FOOTER -----------------
 
 footer {
@@ -676,6 +745,9 @@ footer {
       border-color: $white;
     }
   }
+  .btn-primary {
+    font-size: 1.6rem;
+  }
 
   p {
     padding: 0;
@@ -706,7 +778,4 @@ footer {
       font-size: 0.9rem;
     }
   }
-}
-.form-control {
-  font-size: 1.3rem;
 }

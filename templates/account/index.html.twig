@@ -13,7 +13,7 @@
   </div>
   {% include '_partials/flash.html.twig' %}
   <div class="account wrapper wrapper-form mx-auto bg-light text-black contact p-5">
-    <h2 class="text-center">Welcome {{ app.user.firstName }} in your account.</h2>
+    <h2 class="text-center">Hi {{ app.user.firstName }}. Here is your dashboard account.</h2>
 
     {# cards #}
     <div class="cards-account">
@@ -27,7 +27,7 @@
           </a>
         </div>
         <div class="col-md-4">
-          <a href="" class="account-link">
+          <a href="{{ path('account_address') }}" class="account-link">
             <div class="account-item text-center">
               <i class="fa-solid fa-location-dot"></i>
               <span>Manage my addresses</span>

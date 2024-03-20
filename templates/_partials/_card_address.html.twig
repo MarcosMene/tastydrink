@@ -1,0 +1,17 @@
+<div class="col-md-6 col-lg-4 mb-3">
+  <div class="card rounded p-3">
+    <div class="card-body">
+      <div class="card-title text-capitalize">{{ address.name }}</div>
+      <p class="card-text">
+        {{ address.address }}<br />
+        {{ address.postal }},{{ address.city }}, {{ address.country }}<br />
+      </p>
+      {# divisor #}
+      <div class="divisor my-3"></div>
+      <div class="">
+        <a href="{{ path('account_address_modify', { id: address.id }) }}" class="change">Modify</a> |
+        <a href="{{ path('account_address_delete', { id: address.id }) }}" class="delete">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>

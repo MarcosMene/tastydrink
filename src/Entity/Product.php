@@ -36,6 +36,9 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\Column]
+    private ?float $tva = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -113,6 +116,12 @@ class Product
         return $this;
     }
 
+    public function getPriceWt()
+    {
+        $coeff = 1 + ($this->tva / 100);
+        return $coeff * $this->price;
+    }
+
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -121,6 +130,18 @@ class Product
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getTva(): ?float
+    {
+        return $this->tva;
+    }
+
+    public function setTva(float $tva): static
+    {
+        $this->tva = $tva;
 
         return $this;
     }

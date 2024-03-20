@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Create address
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+    <h1 class="main-titles text-center">Create address</h1>
+  </div>
+  <div class="p-0 text-end">
+    <a href="{{ path('account_address') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to my addresses</a>
+  </div>
+  <div class="wrapper wrapper-form mx-auto bg-light text-black contact p-5">
+    <div class="">
+      {{ form_start(form) }}
+      <div class="row">
+        <div class="col-12">{{ form_row(form.name) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.firstname) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.lastname) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.company) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.address) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.postal) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.city) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.country) }}</div>
+        <div class="col-12 col-md-6">{{ form_row(form.phone) }}</div>
+      </div>
+
+      {# button message if id exist #}
+      {% if form.vars.value.id %}
+        <div class="col-12 col-md-2 text-center mt-3 mb-2 mx-auto">
+          <button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-100">Modify</button>
+        </div>
+      {% else %}
+        <div class="col-12 col-md-2 text-center mt-3 mb-2 mx-auto">
+          <button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-100">Create</button>
+        </div>
+      {% endif %}
+
+      {{ form_end(form) }}
+    </div>
+  </div>
+{% endblock %}

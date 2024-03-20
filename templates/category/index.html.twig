@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - {{ category.name }}
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+    <h1 class="main-titles text-center">{{ category.name }}</h1>
+  </div>
+  <div class="p-0 text-end">
+    <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
+  </div>
+  <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+    {# -----------------breadcrump and total products--------------- #}
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
+        <div class="d-flex align-items-start justify-content-between mx-0">
+          <nav class="p-0">
+            <ul class="breadcrumb p-0">
+              <li>
+                <a href="{{ path('shop') }}">Shop</a>
+              </li>
+              <li>{{ category.name }}s</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <p class="breadcrumb-paragraph m-0">Total of products : {{ category.products|length }}</p>
+    </div>
+
+    {# products #}
+    <div class="row d-flex justify-content-center">
+      {% for product in category.products %}
+        <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-2">
+          <div class="card">
+            {# heart #}
+            <div class="heart">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+
+            {# image #}
+            <a href="{{ path('product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" /></a>
+
+            {# card body #}
+            <article class="card-body bg-light">
+              <h2 class="card-title text-uppercase">{{ product.name }}</h2>
+              <h3 class="text-capitalize product-subtitle">{{ product.subtitle }}</h3>
+
+              <div class="row">
+                {# description #}
+                <div class="col-8 col-sm-6 col-lg-8">
+                  <div class="product-description mt-4 lead">{{ product.description|raw }}</div>
+                </div>
+                <div class="col-4 col-sm-6 col-lg-4 d-flex align-items-end justify-content-end">
+                  {# price #}
+                  <div class="products-price text-end">
+                    <span class="card-price">$ {{ (product.price / 100)|number_format('2', ',', '.') }}</span>
+                  </div>
+                </div>
+              </div>
+
+              {# button add basket #}
+              <div class="col-12 text-center mt-5 mb-2">
+                <a href="{{ path('add_to_cart', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

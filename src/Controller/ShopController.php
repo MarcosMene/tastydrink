@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,9 +20,11 @@ class ShopController extends AbstractController
     #[Route('/shop', name: 'shop')]
     public function index(): Response
     {
-        $products = $this->em->getRepository(Product::class)->findAll();
+        $categories = $this->em->getRepository(Category::class)->findAll();
+
+
         return $this->render('shop/shop.html.twig', [
-            'products' => $products
+            'categories' => $categories
         ]);
     }
 }

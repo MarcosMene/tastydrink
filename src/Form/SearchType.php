@@ -35,8 +35,6 @@ class SearchType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Search',
                 'attr' => ['class' => 'd-block w-100  btn btn-primary btn-link my-4']
-
-
             ]);
     }
 

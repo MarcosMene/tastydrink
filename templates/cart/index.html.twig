@@ -9,12 +9,15 @@
     <h1 class="main-titles text-center">My shopping</h1>
   </div>
   {% include '_partials/flash.html.twig' %}
-  <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4 p-xl-5">
+  <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
     <p class="text-center mb-5">All the products you have added to your shoppping cart.</p>
     <div class="row d-flex flex-column flex-md-row">
       {# products #}
       <div class="col-12 col-lg-8 mx-auto">
         <div class="products wrapper wrapper-form m-0 bg-light text-black contact p-3 p-md-5">
+          {# total variable #}
+
+          {% set total = null %}
           {% for product in cart %}
             <div class="row d-flex">
               {# product #}
@@ -54,11 +57,12 @@
                 </div>
                 {# price #}
                 <div class="products-price text-end my-3">
-                  <span class="card-price">{{ (product.product.price / 100)|number_format('2', ',', '.') }}$</span>
+                  <span class="card-price">$ {{ (product.product.price / 100)|number_format('2', ',', '.') }}</span>
                 </div>
               </div>
               <hr class="divison-line my-3" />
             </div>
+            {% set total = total + product.product.price * product.quantity %}
           {% endfor %}
         </div>
       </div>
@@ -74,15 +78,15 @@
           {# subtotal #}
           <div class="sub-total d-flex justify-content-between mt-3">
             <p>Subtotal</p>
-            <p>$4000000</p>
+            <p>$ {{ (total / 100)|number_format('2', ',', '.') }}</p>
           </div>
           {# button validate #}
           <div class="col-12 text-center">
-            <button type="submit" href="#" class="w-100 d-block-inline mx-auto btn btn-primary btn-link my-2">Validate my cart</button>
+            <button type="submit" href="#" class="w-100 btn-block mx-auto btn btn-primary btn-link my-2">Validate my cart</button>
           </div>
           {# button continue shopping #}
           <div class="col-12 text-center">
-            <button type="submit" href="#" class="w-100 d-block-inline btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</button>
+            <button type="submit" href="#" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</button>
           </div>
           <p class="text-center mt-3">Shiping taxes and discout codes calculated at checkout.</p>
         </div>

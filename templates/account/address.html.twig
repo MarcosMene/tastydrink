@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - My account
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+    <h1 class="main-titles text-center">My addresses</h1>
+  </div>
+  <div class="p-0 text-end">
+    <a href="{{ path('account') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span>Back to my account</a>
+  </div>
+  <div class="address wrapper wrapper-form mx-auto bg-light text-black contact p-5">
+    {% include '_partials/flash.html.twig' %}
+
+    <!-- button add address -->
+    <div class="text-end my-4">
+      <a href="{{ path('account_add_address') }}" class="btn btn-link">Create address</a>
+    </div>
+    {% if (app.user.addresses|length) == 0 %}
+      <p class="text-center">
+        <strong>You have not yet added an address to your customer account. To add one, please &nbsp</strong><a href="{{ path('account_add_address') }}" class="text-dark"><strong>click here.</strong></a>
+      </p>
+    {% else %}
+      <div class="row d-flex justify-content-center align-items-start flex-wrap">
+        {% for address in app.user.addresses %}
+          {% include '_partials/_card_address.html.twig' %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -11,33 +11,23 @@
     {# card body #}
     <article class="card-body bg-light">
       <h2 class="card-title text-uppercase">{{ drink.name }}</h2>
+      <h3 class="text-capitalize product-subtitle">{{ drink.subtitle }}</h3>
 
       <div class="row">
         {# description #}
         <div class="col-8 col-sm-6 col-lg-8">
-          <h3 class="text-capitalize product-subtitle">{{ drink.subtitle }}</h3>
-
           <div class="product-description mt-4 lead">{{ drink.description|raw }}</div>
         </div>
-        <div class="col-4 col-sm-6 col-lg-4 text-end">
-          {# quantity #}
-          <div class="d-flex flex-column align-items-end">
-            <p class="card-title-quantity m-0">Quantity</p>
-            <div class="btn-group border border-primary" role="group" aria-label="First group">
-              <button type="button" class="btn btn-light bg-white">-</button>
-              <button type="button" class="btn btn-light bg-white disabled">1</button>
-              <button type="button" class="btn btn-light bg-white">+</button>
-            </div>
-            {# price #}
-            <div class="products-price text-end my-3">
-              <span class="card-price">{{ (drink.price / 100)|number_format('2', ',', '.') }}$</span>
-            </div>
+        <div class="col-4 col-sm-6 col-lg-4 d-flex align-items-end justify-content-end">
+          {# price #}
+          <div class="products-price text-end">
+            <span class="card-price">{{ (drink.price / 100)|number_format('2', ',', '.') }}$</span>
           </div>
         </div>
       </div>
 
       {# button add basket #}
-      <div class="col-12 text-center mt-3 mb-2">
+      <div class="col-12 text-center mt-5 mb-2">
         <a href="{{ path('add_to_cart', { id: drink.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
       </div>
     </article>
