@@ -13,8 +13,14 @@
             <a href="{{ path('sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
           {% endif %}
         </li>
-        <li>
-          <a href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping"></i></a>
+        <li class="shopping-icon">
+          <a href="{{ path('app_cart') }}">
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            {% if fullCartQuantity > 0 %}
+              <span>{{ fullCartQuantity }}</span>
+            {% endif %}
+          </a>
         </li>
       </ul>
     </div>
@@ -44,9 +50,22 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item text-center">
-          <a class="nav-link" href="{{ path('shop') }}">Shop</a>
+        <li class="nav-item dropdown text-center">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item text-center" href="{{ path('shop') }}">All products</a>
+            </li>
+            {% for category in allCategories %}
+              {% if (category.products|length) > 0 %}
+                <li>
+                  <a class="dropdown-item text-center" href="{{ path('app_category', { slug: category.slug }) }}">{{ category.name }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
         </li>
+
         <li class="nav-item text-center">
           <a class="nav-link" href="{{ path('contact') }}">Contact</a>
         </li>

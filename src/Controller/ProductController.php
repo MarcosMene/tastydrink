@@ -17,33 +17,35 @@ class ProductController extends AbstractController
     {
     }
 
-    #[Route('/our-products', name: 'products')]
-    public function index(Request $request): Response
-    {
-        $search = new Search();
-        $form = $this->createForm(SearchType::class, $search);
-        $form->handleRequest($request);
+    // #[Route('/our-products', name: 'products')]
+    // public function index(Request $request): Response
+    // {
+    //     $search = new Search();
+    //     $form = $this->createForm(SearchType::class, $search);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    //     if ($form->isSubmitted() && $form->isValid()) {
 
-            $products = $this->em->getRepository(Product::class)->findWithSearch($search);
-        } else {
-            $products = $this->em->getRepository(Product::class)->findAll();
-        }
+    //         $products = $this->em->getRepository(Product::class)->findWithSearch($search);
+    //     } else {
+    //         $products = $this->em->getRepository(Product::class)->findAll();
+    //     }
 
-        return $this->render('products/our-products.html.twig', [
-            'products' => $products,
-            'form' => $form->createView()
-        ]);
-    }
-    #[Route('/product/{slug}', name: 'product')]
+    //     return $this->render('products/our-products.html.twig', [
+    //         'products' => $products,
+    //         'form' => $form->createView()
+    //     ]);
+    // }
+
+
+    #[Route('/product/{slug}', name: 'app_product')]
 
     public function show($slug): Response
     {
 
         $product = $this->em->getRepository(Product::class)->findOneBySlug($slug);
         if (!$product) {
-            return $this->redirectToRoute('products');
+            return $this->redirectToRoute('shop');
         }
 
         return $this->render('products/show.html.twig', [

@@ -6,29 +6,29 @@
     </div>
 
     {# image #}
-    <a href="{{ path('product', { slug: drink.slug }) }}"><img src="/uploads/products/{{ drink.illustration }}" alt="{{ drink.name }}" class="img-fluid" /></a>
+    <a href="{{ path('product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" /></a>
 
     {# card body #}
     <article class="card-body bg-light">
-      <h2 class="card-title text-uppercase">{{ drink.name }}</h2>
-      <h3 class="text-capitalize product-subtitle">{{ drink.subtitle }}</h3>
+      <h2 class="card-title text-uppercase">{{ product.name }}</h2>
+      <h3 class="text-capitalize product-subtitle">{{ product.subtitle }}</h3>
 
       <div class="row">
         {# description #}
         <div class="col-8 col-sm-6 col-lg-8">
-          <div class="product-description mt-4 lead">{{ drink.description|raw }}</div>
+          <div class="product-description mt-4 lead">{{ product.description|raw }}</div>
         </div>
         <div class="col-4 col-sm-6 col-lg-4 d-flex align-items-end justify-content-end">
           {# price #}
           <div class="products-price text-end">
-            <span class="card-price">{{ (drink.price / 100)|number_format('2', ',', '.') }}$</span>
+            <span class="card-price">{{ (product.price / 100)|price }}</span>
           </div>
         </div>
       </div>
 
       {# button add basket #}
       <div class="col-12 text-center mt-5 mb-2">
-        <a href="{{ path('add_to_cart', { id: drink.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
+        <a href="{{ path('add_to_cart', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
       </div>
     </article>
   </div>

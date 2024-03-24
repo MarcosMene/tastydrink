@@ -8,37 +8,82 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class Cart
 {
 
-  private $session;
 
-  public function __construct(RequestStack $session)
+  public function __construct(private RequestStack $requestStack)
   {
-    $this->session = $session;
   }
 
-  public function add($id)
+  public function add($product)
   {
-    $session = $this->session->getSession();
-
-    $cart = $session->get('cart', []);
-
-
-    if (!empty($cart[$id])) {
-      $cart[$id]++;
+    //call session symfony
+    $cart = $this->requestStack->getSession()->get('cart');
+    //add quantity to the product
+    if (isset($cart[$product->getId()])) {
+      $cart[$product->getId()] = [
+        'object' => $product,
+        'qty' => $cart[$product->getId()]['qty'] + 1
+      ];
     } else {
-      $cart[$id] = 1;
+      $cart[$product->getId()] = [
+        'object' => $product,
+        'qty' => 1
+      ];
     }
 
-    $session->set('cart', $cart);
+    // create session cart 
+    $this->requestStack->getSession()->set('cart', $cart);
   }
 
-  public function get()
+  public function decrease($id)
   {
-    $methodget = $this->session->getSession();
-    return $methodget->get('cart');
+    $cart = $this->requestStack->getSession()->get('cart');
+
+    //if product  is in the cart and more than one , we can decrease the quantity
+    if ($cart[$id]['qty'] > 1) {
+      $cart[$id]['qty'] = $cart[$id]['qty'] - 1;
+
+      //if product is less than one, delete product from the cart
+    } else {
+      unset($cart[$id]);
+    }
+
+    //update  the session with the new data
+    $this->requestStack->getSession()->set('cart', $cart);
   }
+
+  //verify total products  in the shopping cart
+  public function fullQuantity()
+  {
+    $cart = $this->requestStack->getSession()->get('cart');
+    $quantity = 0;
+
+    if (!isset($cart)) {
+      return $quantity;
+    }
+
+    foreach ($cart as $product) {
+
+      $quantity += $product['qty'];
+    }
+    return $quantity;
+  }
+
+  //total with tax
+  public function getTotalWithTaxes()
+  {
+  }
+
+
+
+  //remove all items from the list of products in the shopping cart.
   public function remove()
   {
-    $methodget = $this->session->getSession();
-    return $methodget->remove('cart');
+    return $this->requestStack->getSession()->remove('cart');
+  }
+
+
+  public function getCart()
+  {
+    return $this->requestStack->getSession()->get('cart');
   }
 }

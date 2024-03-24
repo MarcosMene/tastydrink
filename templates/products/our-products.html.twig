@@ -62,7 +62,7 @@
       <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
         <div class="row gx-4 wrapper-max d-flex justify-content-center">
           {% if (products|length) > 0 %}
-            {% for drink in products %}
+            {% for product in products %}
               {% include '_partials/_card-product.html.twig' %}
             {% endfor %}
           {% else %}

@@ -8,11 +8,14 @@
   <div class="mt-5">
     <h1 class="main-titles text-center">{{ product.category.name }}</h1>
   </div>
+
   <div class="p-0 text-end">
     <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
   </div>
   <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+    {% include '_partials/flash.html.twig' %}
     {# -----------------breadcrump #}
+
     <div class="d-flex flex-wrap align-items-center justify-content-between">
       <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
         <div class="d-flex align-items-start justify-content-between mx-0">

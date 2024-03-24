@@ -40,7 +40,7 @@
             </div>
 
             {# image #}
-            <a href="{{ path('product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" /></a>
+            <a href="{{ path('app_product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" /></a>
 
             {# card body #}
             <article class="card-body bg-light">
@@ -55,15 +55,15 @@
                 <div class="col-4 col-sm-6 col-lg-4 d-flex align-items-end justify-content-end">
                   {# price #}
                   <div class="products-price text-end">
-                    <span class="card-price">$ {{ (product.price / 100)|number_format('2', ',', '.') }}</span>
+                    <span class="card-price">{{ (product.pricewt / 100)|price }}</span>
                   </div>
                 </div>
               </div>
 
               {# button add basket #}
-              <div class="col-12 text-center mt-5 mb-2">
-                <a href="{{ path('add_to_cart', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
-              </div>
+              {# <div class="col-12 text-center mt-5 mb-2">
+                <a href="{{ path('app_cart_add', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
+              </div> #}
             </article>
           </div>
         </div>

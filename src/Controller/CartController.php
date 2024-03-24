@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Entity\Product;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use LDAP\Result;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -19,35 +22,41 @@ class CartController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-
-    #[Route('/my-shopping', name: 'cart')]
-    public function index(Cart $cart)
+    #[Route('/my-shopping', name: 'app_cart')]
+    public function index(Cart $cart): Response
     {
-        $cartComplete = [];
-
-        foreach ($cart->get() as $id => $quantity) {
-            $cartComplete[] = [
-                'product' => $this->entityManager->getRepository(Product::class)->findOneById($id),
-                'quantity' => $quantity
-            ];
-        }
-
         return $this->render('cart/index.html.twig', [
-            'cart' => $cartComplete
+            'cart' => $cart->getCart()
         ]);
     }
 
-    #[Route('/cart/add/{id}', name: 'add_to_cart')]
-    public function add(Cart $cart, $id)
+    #[Route('/cart/add/{id}', name: 'app_cart_add')]
+    public function add($id, Cart $cart, ProductRepository $productRepository, Request $request): Response
     {
-        $cart->add($id);
-        return $this->redirectToRoute('cart');
+        $product = $productRepository->findOneById($id);
+        $cart->add($product);
+
+        //message
+        $this->addFlash('success', 'The product has been add to your cart.');
+
+        // back to last page visited 
+        return $this->redirect($request->headers->get('referer'));
     }
 
-    #[Route('/cart/remove', name: 'remove_my_cart')]
-    public function remove(Cart $cart)
+    #[Route('/cart/decrease/{id}', name: 'app_cart_decrease')]
+    public function decrease($id, Cart $cart): Response
+    {
+        $cart->decrease($id);
+        //message
+        $this->addFlash('success', 'The product has been deleted from your cart.');
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/remove', name: 'app_cart_remove')]
+    public function remove(Cart $cart): Response
     {
         $cart->remove();
-        return $this->redirectToRoute('products');
+        return $this->redirectToRoute('app_cart');
     }
 }

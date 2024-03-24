@@ -31,6 +31,13 @@ class ProductCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        //if mode edit, image is not required, but if new product, image is required
+        $required = true;
+        if ($pageName == 'edit') {
+            $required = false;
+        }
+
+
         return [
             TextField::new('name')->setHelp('Name of your product'),
             SlugField::new('slug')->setTargetFieldName('name')->setHelp('URL of the category based on the title'),
@@ -38,7 +45,7 @@ class ProductCrudController extends AbstractCrudController
                 ->setBasePath('/uploads/products') // the base path where files are stored
                 ->setUploadDir('public/uploads/products') // the relative directory to store files in
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
-                ->setRequired(false)
+                ->setRequired($required)
                 ->setHelp('Image of your product, 600x600px'),
             TextField::new('subtitle')->setHelp('Subtitle of your product'),
             TextEditorField::new('description')->setHelp('Description of your product'),

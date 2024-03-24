@@ -1,3 +1,6 @@
 {% for type, messages in app.flashes %}
-  <div class="mt-2 alert alert-{{ type }}" role="alert">{{ messages|join('. ') }}</div>
+  <div class="mt-2 alert alert-{{ type }} alert-dismissible" role="alert">
+    {{ messages|join('. ') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
 {% endfor %}
