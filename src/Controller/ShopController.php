@@ -17,7 +17,7 @@ class ShopController extends AbstractController
     {
     }
 
-    #[Route('/shop', name: 'shop')]
+    #[Route('/shop', name: 'app_shop')]
     public function index(): Response
     {
         $categories = $this->em->getRepository(Category::class)->findAll();

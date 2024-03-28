@@ -17,18 +17,8 @@ class ChangePasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('firstname', TextType::class, [
-            //     'disabled' => 'true',
 
-            // ])
-            // ->add('lastname', TextType::class, [
-            //     'disabled' => 'true',
-
-            // ])
-            // ->add('email', EmailType::class, [
-            //     'disabled' => true,
-            // ])
-            ->add('old_password', PasswordType::class, [
+            ->add('current_password', PasswordType::class, [
                 'label' => 'Current password',
                 'mapped' => false,
                 'attr' => [
@@ -59,7 +49,7 @@ class ChangePasswordType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Update profile',
                 'attr' => [
-                    'class' => 'btn btn-primary btn-link my-4 mx-auto d-flex'
+                    'class' => 'btn btn-primary btn-link mt-5 mx-auto d-flex'
                 ]
             ]);
     }

@@ -7,16 +7,19 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Cart
 {
-
-
   public function __construct(private RequestStack $requestStack)
   {
   }
 
+  /**
+   * add()
+   * function add product into the shopping cart.
+   */
+
   public function add($product)
   {
     //call session symfony
-    $cart = $this->requestStack->getSession()->get('cart');
+    $cart = $this->getCart();
     //add quantity to the product
     if (isset($cart[$product->getId()])) {
       $cart[$product->getId()] = [
@@ -34,9 +37,14 @@ class Cart
     $this->requestStack->getSession()->set('cart', $cart);
   }
 
+  /**
+   * decrease()
+   *
+   *function that decrease product from the shopping cart
+   */
   public function decrease($id)
   {
-    $cart = $this->requestStack->getSession()->get('cart');
+    $cart = $this->getCart();
 
     //if product  is in the cart and more than one , we can decrease the quantity
     if ($cart[$id]['qty'] > 1) {
@@ -54,7 +62,7 @@ class Cart
   //verify total products  in the shopping cart
   public function fullQuantity()
   {
-    $cart = $this->requestStack->getSession()->get('cart');
+    $cart = $this->getCart();
     $quantity = 0;
 
     if (!isset($cart)) {
@@ -68,14 +76,13 @@ class Cart
     return $quantity;
   }
 
-  //total with tax
-  public function getTotalWithTaxes()
-  {
-  }
 
 
+  /**
+   * remove()
+   * remove all items from the list of products in the shopping cart.
+   */
 
-  //remove all items from the list of products in the shopping cart.
   public function remove()
   {
     return $this->requestStack->getSession()->remove('cart');

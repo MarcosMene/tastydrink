@@ -4,25 +4,16 @@
   Tasty Drink - Sign up
 {% endblock %}
 
-{% block content %}
+{% block body %}
   <div class="mt-5">
     <h1 class="main-titles text-center">Create account</h1>
   </div>
 
-  {% include '_partials/flash.html.twig' %}
-  <div class="wrapper wrapper-form bg-light text-black contact">
-    <div class="row px-2 px-md-5 py-3">
-      {{ form_start(form) }}
-      {{ form_row(form.firstname) }}
-      {{ form_row(form.lastname) }}
-      {{ form_row(form.email) }}
-      {{ form_row(form.password) }}
-
-      {# button add basket #}
-      <div class="col-12 text-center mt-3 mb-2">
-        <button type="submit" href="#" class="btn btn-primary btn-link my-4">Create</button>
-      </div>
-      {{ form_end(form) }}
-    </div>
+  {# {% include '_partials/flash.html.twig' %} #}
+  <div class="wrapper wrapper-form col-12 col-md-10 col-lg-6 bg-light mx-auto text-black p-lg-5">
+    <div>{{ form(registerForm) }}</div>
+    <p class="text-center mt-5">
+      You already have an account? Please <a href="{{ path('app_login') }}" class="text-decoration-underline text-dark">Login</a>
+    </p>
   </div>
 {% endblock %}

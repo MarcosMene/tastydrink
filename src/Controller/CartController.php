@@ -37,7 +37,7 @@ class CartController extends AbstractController
         $cart->add($product);
 
         //message
-        $this->addFlash('success', 'The product has been add to your cart.');
+        $this->addFlash('success', 'The product has been add to your shopping cart.');
 
         // back to last page visited 
         return $this->redirect($request->headers->get('referer'));
@@ -47,8 +47,14 @@ class CartController extends AbstractController
     public function decrease($id, Cart $cart): Response
     {
         $cart->decrease($id);
-        //message
-        $this->addFlash('success', 'The product has been deleted from your cart.');
+        if (count($cart->getCart()) == 0) {
+            //message
+            $this->addFlash('danger', 'You don\'t have any product in your shopping cart.');
+        } else {
+            //message
+            $this->addFlash('success', 'The product has been deleted from your shopping cart.');
+        }
+
 
         return $this->redirectToRoute('app_cart');
     }
@@ -56,7 +62,10 @@ class CartController extends AbstractController
     #[Route('/cart/remove', name: 'app_cart_remove')]
     public function remove(Cart $cart): Response
     {
+
         $cart->remove();
+        //message
+        $this->addFlash('danger', 'All products have been deleted from your shopping cart.');
         return $this->redirectToRoute('app_cart');
     }
 }

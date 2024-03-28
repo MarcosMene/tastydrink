@@ -4,7 +4,7 @@
   Tasty Drink - {{ category.name }}
 {% endblock %}
 
-{% block content %}
+{% block body %}
   <div class="mt-5">
     <h1 class="main-titles text-center">{{ category.name }}</h1>
   </div>
@@ -12,6 +12,7 @@
     <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
   </div>
   <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+    {# {% include '_partials/flash.html.twig' %} #}
     {# -----------------breadcrump and total products--------------- #}
     <div class="d-flex flex-wrap align-items-center justify-content-between">
       <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
@@ -61,9 +62,9 @@
               </div>
 
               {# button add basket #}
-              {# <div class="col-12 text-center mt-5 mb-2">
+              <div class="col-12 text-center mt-5 mb-2">
                 <a href="{{ path('app_cart_add', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
-              </div> #}
+              </div>
             </article>
           </div>
         </div>

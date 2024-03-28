@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class SignUpType extends AbstractType
 {
@@ -18,11 +19,13 @@ class SignUpType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
+
                 'attr' => [
                     'placeholder' => 'John'
                 ]
             ])
             ->add('lastname', TextType::class, [
+
                 'attr' => [
                     'placeholder' => 'Smith'
                 ]
@@ -34,6 +37,7 @@ class SignUpType extends AbstractType
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
+
                 'invalid_message' => 'The password fields must match.',
                 'required' => true,
                 'first_options'  => [
@@ -48,6 +52,12 @@ class SignUpType extends AbstractType
                     'placeholder' => 'Enter your password again'
                 ]
 
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Create',
+                'attr' => [
+                    'class' => 'btn btn-primary btn-link mt-5 mx-auto d-flex flex-column align-items-center'
+                ]
             ]);
     }
 

@@ -4,7 +4,7 @@
   Tasty Drink - My shopping
 {% endblock %}
 
-{% block content %}
+{% block body %}
   <div class="mt-5">
     <h1 class="main-titles text-center">My shopping</h1>
   </div>
@@ -12,9 +12,10 @@
   <div class="p-0 text-end">
     <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
   </div>
-  {% include '_partials/flash.html.twig' %}
-  <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
-    {% if (cart|length) > 0 %}
+
+  {% if (cart|length) > 0 %}
+    {# {% include '_partials/flash.html.twig' %} #}
+    <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
       <p class="text-center mb-5">All the products you have added to your shoppping cart.</p>
 
       <div class="row d-flex flex-column flex-md-row">
@@ -91,17 +92,18 @@
             <p class="text-center mt-3">Shiping taxes and discout codes calculated at checkout.</p>
           </div>
         </div>
-        {% else %}
-        <div class="col-6 mx-auto">
-          <div class="products wrapper m-0 bg-light text-black contact p-3 p-md-5">
-            <h2 class="text-center">Your shopping cart is empty.</h2>
-            {# button continue shopping #}
-            <div class="text-center">
-              <a href="{{ path('shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
-            </div>
-          </div>
+      </div>
+    </div>
+  {% else %}
+    {# {% include '_partials/flash.html.twig' %} #}
+    <div class="col-12 col-md-10 mx-auto p-3 p-md-5">
+      <div class="products wrapper m-0 bg-light text-black contact p-3 p-md-5">
+        <h2 class="text-center mt-3">Your shopping cart is empty.</h2>
+        {# button continue shopping #}
+        <div class="text-center">
+          <a href="{{ path('shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
         </div>
       </div>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 {% endblock %}

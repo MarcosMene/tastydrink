@@ -1,33 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Tasty Drink - My account
+  Tasty Drink - My addresses
 {% endblock %}
 
-{% block content %}
+{% block body %}
   <div class="mt-5">
-    <h1 class="main-titles text-center">My addresses</h1>
+    <h1 class="main-titles text-center">Member area</h1>
   </div>
   <div class="p-0 text-end">
-    <a href="{{ path('account') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span>Back to my account</a>
+    <a href="{{ path('app_account') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span>Back to my account</a>
   </div>
-  <div class="address wrapper wrapper-form mx-auto bg-light text-black contact p-5">
-    {% include '_partials/flash.html.twig' %}
-
-    <!-- button add address -->
-    <div class="text-end my-4">
-      <a href="{{ path('account_add_address') }}" class="btn btn-link">Create address</a>
-    </div>
-    {% if (app.user.addresses|length) == 0 %}
-      <p class="text-center">
-        <strong>You have not yet added an address to your customer account. To add one, please &nbsp</strong><a href="{{ path('account_add_address') }}" class="text-dark"><strong>click here.</strong></a>
-      </p>
-    {% else %}
-      <div class="row d-flex justify-content-center align-items-start flex-wrap">
-        {% for address in app.user.addresses %}
-          {% include '_partials/_card_address.html.twig' %}
-        {% endfor %}
+  {# {% include '_partials/flash.html.twig' %} #}
+  <div class="account wrapper wrapper-max mx-auto bg-light text-black contact">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        {% include 'account/_menu.html.twig' %}
       </div>
-    {% endif %}
+      <div class="col-md-9 px-2 py-2 border border-dark-subtle rounded">
+        <h2 class="text-center mb-4">My addresses</h2>
+        <!-- button add address -->
+        <div class="text-end my-4">
+          <a href="{{ path('account_add_address') }}" class="btn btn-link">Create address</a>
+        </div>
+        {% if (app.user.addresses|length) == 0 %}
+          <div class="text-center py-4 px-2">
+            <p class="text-dark bg-success-subtle border border-secondary rounded py-4 px-5">
+              You don’t have any saved address yet.<br /> To create one, please click button <strong>CREATE ADDRESS.</strong>
+            </p>
+          </div>
+        {% else %}
+          <div class="row d-flex justify-content-center align-items-start flex-wrap">
+            {% for address in app.user.addresses %}
+              {% include '_partials/_card_address.html.twig' %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
   </div>
 {% endblock %}

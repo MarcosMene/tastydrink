@@ -26,8 +26,9 @@
 
       {% endif %}
 
-      <section class="container mb-5">
-        {% block content %}
+      <section class="mb-5">
+        {% include '_partials/flash.html.twig' %}
+        {% block body %}
 
         {% endblock %}
       </section>

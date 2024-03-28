@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class AccountPasswordController extends AbstractController
 {
-    #[Route('/account/change-password', name: 'account_password')]
+    #[Route('/account/change-password', name: 'app_account_password')]
     public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $encoder): Response
     {
         $user = $this->getUser();
@@ -24,7 +24,7 @@ class AccountPasswordController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $old_pwd = $form->get('old_password')->getData();
+            $old_pwd = $form->get('current_password')->getData();
 
             if ($encoder->isPasswordValid($user, $old_pwd)) {
                 $new_pwd = $form->get('new_password')->getData();
@@ -35,18 +35,15 @@ class AccountPasswordController extends AbstractController
                 $user->setPassword($password);
 
                 //upgrade password
-                $entityManager->persist($user);
                 $entityManager->flush();
-                $this->addFlash('success', 'Your  password has been changed successfully');
-                return $this->redirectToRoute('account');
+                $this->addFlash('success', 'Your  password has been changed successfully.');
+                return $this->redirectToRoute('app_account');
             } else {
-                $this->addFlash('danger', 'Your  old password is incorrect. Please try again');
+                $this->addFlash('danger', 'Your  old password is incorrect. Please try again.');
             }
         }
-
-
         return $this->render('account/password.html.twig', [
-            'form' => $form->createView()
+            'modifyPwd' => $form->createView()
         ]);
     }
 }
