@@ -76,6 +76,22 @@ class Cart
     return $quantity;
   }
 
+  public function getTotalWt()
+  {
+    $cart = $this->getCart();
+    $price = 0;
+
+    if (!isset($cart)) {
+      return $price;
+    }
+
+    foreach ($cart as $product) {
+      $price = $price + ($product['object']->getPriceWt() * $product['qty']);
+    }
+
+    return $price;
+  }
+
 
 
   /**

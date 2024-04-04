@@ -10,7 +10,7 @@
   </div>
 
   <div class="p-0 text-end">
-    <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
+    <a href="{{ path('app_shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
   </div>
   <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
     {# {% include '_partials/flash.html.twig' %} #}
@@ -22,7 +22,7 @@
           <nav class="p-0">
             <ul class="breadcrumb p-0">
               <li>
-                <a href="{{ path('shop') }}">Shop</a>
+                <a href="{{ path('app_shop') }}">Shop</a>
               </li>
               <li>
                 <a href="{{ path('app_category', { slug: product.category.slug }) }}">{{ product.category }}s</a>

@@ -17,6 +17,11 @@ class Address
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    public function __toString()
+    {
+        return $this->getName() . '<br/>' . $this->getAddress() . '<br/>' . $this->getCity() . '-' . $this->getCountry();
+    }
+
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Change password
+{% endblock %}
+
+{% block body %}
+  <div class="mt-5">
+    <h1 class="main-titles text-center">My account</h1>
+  </div>
+
+  <div class="wrapper account">
+    <div class="row p-2">
+      <div class="col-md-12 col-lg-3 mb-3">
+        {% include 'account/_menu.html.twig' %}
+      </div>
+      <div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
+        <h2 class="text-center text-black mt-3 mb-5">Modify password</h2>
+        {{ form(modifyPwd) }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

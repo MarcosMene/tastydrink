@@ -122,6 +122,7 @@ class Product
         return $coeff * $this->price;
     }
 
+
     public function getCategory(): ?Category
     {
         return $this->category;

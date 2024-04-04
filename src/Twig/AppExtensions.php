@@ -30,8 +30,10 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
 
   public function formatPrice($number)
   {
-    return '$ ' . number_format($number, 2, '.', ',');
+    return '$ ' . number_format($number / 100, '2', '.', ',');
   }
+
+
 
 
   //variable global get all categories on all pages

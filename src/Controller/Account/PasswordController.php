@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Account;
 
 use App\Entity\User;
 use App\Form\ChangePasswordType;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AccountPasswordController extends AbstractController
+class PasswordController extends AbstractController
 {
     #[Route('/account/change-password', name: 'app_account_password')]
     public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $encoder): Response
@@ -42,7 +42,7 @@ class AccountPasswordController extends AbstractController
                 $this->addFlash('danger', 'Your  old password is incorrect. Please try again.');
             }
         }
-        return $this->render('account/password.html.twig', [
+        return $this->render('account/password/index.html.twig', [
             'modifyPwd' => $form->createView()
         ]);
     }

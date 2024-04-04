@@ -11,7 +11,7 @@ class ShoppingCartController extends AbstractController
     #[Route('/shopping-cart', name: 'shopping_cart')]
     public function index(): Response
     {
-        return $this->render('shopping_cart/shopping_cart.html.twig', [
+        return $this->render('order/shopping_cart.html.twig', [
             'controller_name' => 'ShoppingCartController',
         ]);
     }

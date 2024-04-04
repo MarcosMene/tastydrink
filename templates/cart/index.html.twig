@@ -10,7 +10,7 @@
   </div>
 
   <div class="p-0 text-end">
-    <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
+    <a href="{{ path('app_shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
   </div>
 
   {% if (cart|length) > 0 %}
@@ -34,7 +34,7 @@
                   <div class="card-product my-2 my-sm-0 mx-sm-4">
                     <h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
                     <p>
-                      <strong>Unit price: {{ (product.object.price / 100)|price }}</strong>
+                      <strong>Unit price: {{ product.object.price|price }}</strong>
                     </p>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
                   </div>
                   {# price #}
                   <div class="products-price text-end my-3">
-                    <span class="card-price">{{ (product.object.pricewt / 100 * product.qty)|price }}</span>
+                    <span class="card-price">{{ (product.object.pricewt * product.qty)|price }}</span>
                   </div>
                 </div>
                 <hr class="divison-line my-3" />
@@ -79,15 +79,15 @@
             {# subtotal #}
             <div class="sub-total d-flex justify-content-between mt-3">
               <p>Subtotal with VAT</p>
-              <p>{{ (total / 100)|price }}</p>
+              <p>{{ totalWt|price }}</p>
             </div>
             {# button validate #}
             <div class="col-12 text-center">
-              <button type="submit" href="#" class="w-100 btn-block mx-auto btn btn-primary btn-link my-2">Validate my cart</button>
+              <a href="{{ path('app_order') }}" class="w-100 btn-block mx-auto btn btn-primary btn-link my-2">Validate my order</a>
             </div>
             {# button continue shopping #}
             <div class="col-12 text-center">
-              <a href="{{ path('shop') }}" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</a>
+              <a href="{{ path('app_shop') }}" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</a>
             </div>
             <p class="text-center mt-3">Shiping taxes and discout codes calculated at checkout.</p>
           </div>
@@ -101,7 +101,7 @@
         <h2 class="text-center mt-3">Your shopping cart is empty.</h2>
         {# button continue shopping #}
         <div class="text-center">
-          <a href="{{ path('shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
+          <a href="{{ path('app_shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
         </div>
       </div>
     </div>

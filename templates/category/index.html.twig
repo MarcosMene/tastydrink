@@ -9,7 +9,7 @@
     <h1 class="main-titles text-center">{{ category.name }}</h1>
   </div>
   <div class="p-0 text-end">
-    <a href="{{ path('shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
+    <a href="{{ path('app_shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
   </div>
   <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
     {# {% include '_partials/flash.html.twig' %} #}
@@ -20,7 +20,7 @@
           <nav class="p-0">
             <ul class="breadcrumb p-0">
               <li>
-                <a href="{{ path('shop') }}">Shop</a>
+                <a href="{{ path('app_shop') }}">Shop</a>
               </li>
               <li>{{ category.name }}s</li>
             </ul>
@@ -56,7 +56,7 @@
                 <div class="col-4 col-sm-6 col-lg-4 d-flex align-items-end justify-content-end">
                   {# price #}
                   <div class="products-price text-end">
-                    <span class="card-price">{{ (product.pricewt / 100)|price }}</span>
+                    <span class="card-price">{{ product.pricewt|price }}</span>
                   </div>
                 </div>
               </div>
