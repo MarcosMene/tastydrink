@@ -90,8 +90,6 @@ class OrderDetail
         return $coeff * $this->productPrice;
     }
 
-
-
     public function getProductPrice(): ?float
     {
         return $this->productPrice;

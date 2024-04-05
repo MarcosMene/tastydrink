@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="text-center">
-          <a href="" class="btn btn-link w-25 mt-5">Pay {{ (totalWt + choices.carriers.price)|price }}</a>
+          <a href="{{ path('app_payment', { id_order: order.id }) }}" class="btn btn-link w-25 mt-5">Pay {{ (totalWt + choices.carriers.price)|price }}</a>
         </div>
       </div>
     </div>

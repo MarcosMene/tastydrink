@@ -5,6 +5,7 @@
   <p>
     <strong>Date of your order:</strong> {{ order.createdAt|date('d/m/Y') }}
   </p>
+  <p>Stripe session id : {{ order.stripeSessionId }}</p>
 
   {# field is inside of state.html.twig #}
   <p>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</p>
@@ -20,9 +21,7 @@
     </div>
   </div>
   <hr />
-  <p>
-    <h5>Order content:</h5>
-  </p>
+  <h5>Order content:</h5>
 
   <table class="table">
     <thead>

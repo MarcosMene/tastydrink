@@ -15,35 +15,35 @@
       </div>
       <div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
         <h2 class="text-center text-black mt-3 mb-5">My last orders</h2>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+
+        {% if (orders|length) == 0 %}
+          <div class="alert alert-info">You have not yet placed an order</div>
+        {% else %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">N# Order</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Total with tax</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+                <tr>
+                  <td>{{ order.id }}</td>
+                  <td>{{ order.createdAt|date('m/d/Y') }}</td>
+                  <td>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</td>
+                  <td>{{ order.totalWt|price }}</td>
+                  <td>
+                    <a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-outline-primary btn-signOut text-black">View order</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
       </div>
     </div>
   </div>

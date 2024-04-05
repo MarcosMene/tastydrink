@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\SignUpType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,6 +38,14 @@ class RegisterController extends AbstractController
 
             //message
             $this->addFlash('success', 'Your account was  created successfully! You can now log in.');
+
+            //send email to user to confirm sign up
+            $mail = new Mail();
+            $vars = [
+                "firstname" => $user->getFirstname(),
+                "lastname" => $user->getLastname(),
+            ];
+            $mail->send($user->getEmail(), $user->getFirstName() . ' ' . $user->getLastName(), 'Welcome to Tasty Drink Bar & Shop', 'welcome.html', $vars);
 
             return $this->redirectToRoute('app_login');
         }
