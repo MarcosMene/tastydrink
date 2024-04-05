@@ -22,9 +22,17 @@ class CartController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/my-shopping', name: 'app_cart')]
-    public function index(Cart $cart): Response
+    #[Route('/my-shopping/{reason}', name: 'app_cart', defaults: ['reason' => null])]
+    public function index(Cart $cart, $reason): Response
     {
+        if ($reason == "cancelation") {
+            $this->addFlash(
+                'danger',
+                'Payment canceled: you can update your cart and order. If the problem persists please contact us.'
+            );
+        }
+
+
         return $this->render('cart/index.html.twig', [
             'cart' => $cart->getCart(),
             'totalWt' => $cart->getTotalWt()
