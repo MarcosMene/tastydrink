@@ -167,7 +167,7 @@ a {
   font-size: 1.3rem;
 }
 
-//TABLES
+//-------------------TABLES-----------------
 
 table {
   td,
@@ -179,6 +179,15 @@ table {
 @media screen and (max-width: 1200px) {
   .wrap-table {
     overflow-x: scroll;
+  }
+}
+
+// -------------------CAROUSEL ------------------
+.carousel {
+  img {
+    width: 100%;
+    max-width: 1600px;
+    filter: brightness(50%);
   }
 }
 
@@ -347,6 +356,8 @@ ul.breadcrumb li a:hover {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 100%;
+    padding: 10px;
   }
 
   i {
@@ -382,6 +393,20 @@ ul.breadcrumb li a:hover {
   -webkit-line-clamp: 5; /* number of lines to show */
   line-clamp: 5;
   -webkit-box-orient: vertical;
+}
+
+// ------------ SUGGESTIONS SECTION
+/* [1] The container */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.1);
 }
 
 //----------------OUR STORE

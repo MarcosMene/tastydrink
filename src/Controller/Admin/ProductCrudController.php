@@ -6,6 +6,7 @@ use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -38,6 +39,8 @@ class ProductCrudController extends AbstractCrudController
 
         return [
             TextField::new('name')->setHelp('Name of your product'),
+            BooleanField::new('isSuggestion')->setLabel('Product suggestion?')->setHelp('Show products at home page on suggestion section'),
+            // BooleandField::new('isIsSuggestion')->setLabel('Product suggestion?')->setHelp('Show products at home page on suggestion section'),
             SlugField::new('slug')->setTargetFieldName('name')->setHelp('URL of the category based on the title'),
             ImageField::new('illustration')
                 ->setBasePath('/uploads/products') // the base path where files are stored

@@ -39,6 +39,9 @@ class Product
     #[ORM\Column]
     private ?float $tva = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isSuggestion = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -143,6 +146,18 @@ class Product
     public function setTva(float $tva): static
     {
         $this->tva = $tva;
+
+        return $this;
+    }
+
+    public function isIsSuggestion(): ?bool
+    {
+        return $this->isSuggestion;
+    }
+
+    public function setIsSuggestion(?bool $isSuggestion): static
+    {
+        $this->isSuggestion = $isSuggestion;
 
         return $this;
     }

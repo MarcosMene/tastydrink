@@ -9,10 +9,49 @@
 {% endblock %}
 
 {% block body %}
+  {# CAROUSEL #}
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+    {%if headers|length >1 %}
+      {% for key,header in headers %}
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{key}}" aria-label="{{header.title}}" 
+        {% if key == 0 %} class="active" aria-current="true" 
+        {% endif %}>
+        </button>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="carousel-inner">
+      {% for key, header in headers %}
+        <div {% if key == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+          <img src="/uploads/header_carousel/{{ header.illustration }}" class="bd-placeholder-img" width="100%" height="100%" x/>
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>{{ header.title }}</h1>
+              <p class="opacity-75">{{ header.content }}</p>
+              <p>
+                <a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<div class="container">
+
   {# -----------------DRINK SHOP & BAR #}
 
   <article class="mt-5">
-    <h1 class="main-titles text-center">Drink Shop & Bar in Vancouver</h1>
+    <h1 class="main-titles text-center">Drink Bar & Shop in Vancouver</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
 
     <!-- BUTTON STORY -->
@@ -62,64 +101,25 @@
   {# -----------DIVISOR #}
   <div class="divisor divisor-lg"></div>
 
-  {# --------------------------------- NEW PRODUCTS #}
+  {# --------------------------------- OUR SUGGESTIONS #}
   <section class="text-center mt-5">
-    <h2 class="headers text-capitalize wrapper-max">New products</h2>
+    <h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
     <div class="wrapper info wrapper-max m-auto">
       <div class="row gx-4 wrapper-max">
+
+      {%for product in productSuggestions%}
         <div class="col-12 col-sm-6 col-lg-4 my-2">
-          <div class="product-card m-auto">
-            <img src="{{ asset('uploads/new_products/cachaca2.jpeg') }}" alt="" class="img-fluid" />
-            <div class="overlay">
-              <div class="text">Lorem ipsum dolor sit amet consectetur adipiscing elit quis hac, tempor urna primis sociis ridiculus neque ante nisl faucibus, magna donec nibh mus bibendum feugiat tincidunt vivamus.</div>
-            </div>
+          <div class="product-card m-auto img-hover-zoom">
+          <a href="{{ path('app_product', { slug: product.slug }) }}"> <img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" /></a>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-4 my-2">
-          <div class="product-card m-auto">
-            <img src="{{ asset('uploads/new_products/champagne.jpeg') }}" alt="" class="img-fluid" />
-            <div class="overlay">
-              <div class="text">Lorem ipsum dolor sit amet consectetur adipiscing elit quis hac, tempor urna primis sociis ridiculus neque ante nisl faucibus, magna donec nibh mus bibendum feugiat tincidunt vivamus.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 my-2">
-          <div class="product-card m-auto">
-            <img src="{{ asset('uploads/new_products/calvados.jpeg') }}" alt="" class="img-fluid" />
-            <div class="overlay">
-              <div class="text">Lorem ipsum dolor sit amet consectetur adipiscing elit quis hac, tempor urna primis sociis ridiculus neque ante nisl faucibus, magna donec nibh mus bibendum feugiat tincidunt vivamus.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 my-2">
-          <div class="product-card m-auto">
-            <img src="{{ asset('uploads/new_products/beer4.jpeg') }}" alt="" class="img-fluid" />
-            <div class="overlay">
-              <div class="text">Lorem ipsum dolor sit amet consectetur adipiscing elit quis hac, tempor urna primis sociis ridiculus neque ante nisl faucibus, magna donec nibh mus bibendum feugiat tincidunt vivamus.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 my-2">
-          <div class="product-card m-auto">
-            <img src="{{ asset('uploads/new_products/wine.jpeg') }}" alt="" class="img-fluid" />
-            <div class="overlay">
-              <div class="text">Lorem ipsum dolor sit amet consectetur adipiscing elit quis hac, tempor urna primis sociis ridiculus neque ante nisl faucibus, magna donec nibh mus bibendum feugiat tincidunt vivamus.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 my-2">
-          <div class="product-card m-auto">
-            <img src="{{ asset('uploads/new_products/tequila1.jpeg') }}" alt="" class="img-fluid" />
-            <div class="overlay">
-              <div class="text">Lorem ipsum dolor sit amet consectetur adipiscing elit quis hac, tempor urna primis sociis ridiculus neque ante nisl faucibus, magna donec nibh mus bibendum feugiat tincidunt vivamus.</div>
-            </div>
-          </div>
-        </div>
+      {%endfor%}
+     
       </div>
 
       {# button add basket #}
       <div class="col-12 text-center my-5">
-        <a href="" class="btn btn-outline mt-2 mb-5">See our products</a>
+        <a href="{{path('app_shop')}}" class="btn btn-outline mt-2 mb-5">See our products</a>
       </div>
     </div>
   </section>
@@ -163,4 +163,6 @@
       </div>
     </div>
   </section>
+
+</div> 
 {% endblock %}
