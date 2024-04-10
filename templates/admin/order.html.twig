@@ -1,6 +1,9 @@
 {# layout to show detail orders on easyadmin #}
 {% extends '@!EasyAdmin/layout.html.twig' %}
 {% block main %}
+  <div class="text-end">
+    <a target="_blank" href="{{ path('app_invoice_admin', { id_order: order.id }) }}" class="btn btn-primary">View/Print invoice</a>
+  </div>
   <p class="h4">Order n#{{ order.id }}</p>
   <p>
     <strong>Date of your order:</strong> {{ order.createdAt|date('d/m/Y') }}
@@ -44,7 +47,7 @@
           <td>{{ product.productQuantity }}</td>
           <td>{{ product.productPrice|price }}</td>
           <td>{{ product.productTva }}%</td>
-          {% set coeff = 1 + product.productTva / 100 %}
+          {% set coeff = 1 + product.productTva %}
           <td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
         </tr>
       {% endfor %}

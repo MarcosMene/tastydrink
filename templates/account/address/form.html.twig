@@ -5,49 +5,51 @@
 {% endblock %}
 
 {% block body %}
-  <div class="mt-5">
-    <h1 class="main-titles text-center">My account</h1>
-  </div>
+  <div class="container">
+    <div class="mt-5">
+      <h1 class="main-titles text-center">My account</h1>
+    </div>
 
-  {# <div class="p-0 text-end">
+    {# <div class="p-0 text-end">
     <a href="{{ path('app_account_address') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to my addresses</a>
   </div> #}
-  <div class="wrapper account">
-    <div class="row p-2">
-      <div class="col-md-12 col-lg-3 mb-3">
-        {% include 'account/_menu.html.twig' %}
-      </div>
-      <div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
-        {# title if id exist #}
-        {% if addressForm.vars.value.id %}
-          <h2 class="text-center text-black mt-3 mb-5">Modify my address</h2>
-        {% else %}
-          <h2 class="text-center text-black mt-3 mb-5">Create Address</h2>
-        {% endif %}
-        {{ form_start(addressForm) }}
-        <div class="row">
-          <div class="col-12">{{ form_row(addressForm.name) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.firstname) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.lastname) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.company) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.address) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.postal) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.city) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.country) }}</div>
-          <div class="col-12 col-md-6">{{ form_row(addressForm.phone) }}</div>
+    <div class="wrapper account">
+      <div class="row p-2">
+        <div class="col-md-12 col-lg-3 mb-3">
+          {% include 'account/_menu.html.twig' %}
         </div>
+        <div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
+          {# title if id exist #}
+          {% if addressForm.vars.value.id %}
+            <h2 class="text-center text-black mt-3 mb-5">Modify my address</h2>
+          {% else %}
+            <h2 class="text-center text-black mt-3 mb-5">Create Address</h2>
+          {% endif %}
+          {{ form_start(addressForm) }}
+          <div class="row">
+            <div class="col-12">{{ form_row(addressForm.name) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.firstname) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.lastname) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.company) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.address) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.postal) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.city) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.country) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(addressForm.phone) }}</div>
+          </div>
 
-        {# button message if id exist #}
-        {% if addressForm.vars.value.id %}
-          <div class="col-12 col-md-2 text-center mt-3 mb-2 mx-auto">
-            <button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-100">Modify</button>
-          </div>
-        {% else %}
-          <div class="col-12 col-md-2 text-center mt-3 mb-2 mx-auto">
-            <button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-100">Create</button>
-          </div>
-        {% endif %}
-        {{ form_end(addressForm) }}
+          {# button message if id exist #}
+          {% if addressForm.vars.value.id %}
+            <div class="col-12 col-md-2 text-center mt-3 mb-2 mx-auto">
+              <button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-100">Modify</button>
+            </div>
+          {% else %}
+            <div class="col-12 col-md-2 text-center mt-3 mb-2 mx-auto">
+              <button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-100">Create</button>
+            </div>
+          {% endif %}
+          {{ form_end(addressForm) }}
+        </div>
       </div>
     </div>
   </div>

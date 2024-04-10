@@ -1,10 +1,33 @@
+<div class="collapse" id="collapseCardHoriz">
+  <div class="text-black fs-4 bg-primary my-2 p-2 rounded text-center">
+    To take advantage of the whislist, <a class="text-dark text-decoration-underline" href="{{ path('app_login') }}"><strong>log in</strong></a> or <a class="text-dark text-decoration-underline" href="{{ path('app_sign-up') }}"><strong>create an account</strong></a> at Tasty Drink Bar & Shop.
+  </div>
+</div>
 <div class="col-12">
   <div class="card border-white mb-3">
+    {# heart #}
+
     <div class="row g-0">
-      <div class="col-md-3 bg-light">
+      <div class="col-12 col-md-4 col-lg-2 bg-light" style="position:relative;">
+        {% if app.user %}
+          {% if product in app.user.wishlists %}
+            <div class="heart">
+              <a href="{{ path('app_account_wishlist_remove', { id: product.id }) }}"><i class="fa-solid fa-heart"></i></a>
+            </div>
+          {% else %}
+            <div class="heart">
+              <a href="{{ path('app_account_wishlist_add', { id: product.id }) }}"><i class="fa-regular fa-heart"></i></a>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="heart">
+            <a data-bs-toggle="collapse" href="#collapseCardHoriz" role="button" aria-expanded="false" aria-controls="collapseCardHoriz"><i class="fa-regular fa-heart"></i></a>
+          </div>
+        {% endif %}
+
         <img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" style="height: 100%; width:100%;" />
       </div>
-      <div class="col-md-9 bg-light px-1 px-sm-4">
+      <div class="col-12 col-md-8 col-lg-10 bg-light px-1 px-sm-4">
         <div class="card-body">
           <article class="d-flex justify-content-between">
             <div class="card-titles d-flex flex-column">

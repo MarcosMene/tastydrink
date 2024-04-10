@@ -20,12 +20,7 @@ class Order
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * state order
-     * 1 stand by for paying the order
-     * 2 payiment accepted by not shipped yet
-     * 3 shipped
-     */
+
     #[ORM\Column]
     private ?int $state = null;
 

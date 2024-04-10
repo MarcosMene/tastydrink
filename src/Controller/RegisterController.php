@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegisterController extends AbstractController
 {
-    #[Route('/sign-up', name: 'sign-up')]
+    #[Route('/sign-up', name: 'app_sign-up')]
     public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $encoder): Response
     {
         $user = new User();

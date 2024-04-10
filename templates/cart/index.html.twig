@@ -5,105 +5,107 @@
 {% endblock %}
 
 {% block body %}
-  <div class="mt-5">
-    <h1 class="main-titles text-center">My shopping</h1>
-  </div>
+  <div class="container">
+    <div class="mt-5">
+      <h1 class="main-titles text-center">My shopping</h1>
+    </div>
 
-  <div class="p-0 text-end">
-    <a href="{{ path('app_shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
-  </div>
+    <div class="p-0 text-end">
+      <a href="{{ path('app_shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
+    </div>
 
-  {% if (cart|length) > 0 %}
-    {# {% include '_partials/flash.html.twig' %} #}
-    <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
-      <p class="text-center mb-5">All the products you have added to your shoppping cart.</p>
+    {% if (cart|length) > 0 %}
+      {# {% include '_partials/flash.html.twig' %} #}
+      <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+        <p class="text-center mb-5">All the products you have added to your shoppping cart.</p>
 
-      <div class="row d-flex flex-column flex-md-row">
-        {# verify is cart is empty or not to send a message #}
-        {# PRODUCTS #}
-        <div class="col-12 col-lg-8 mx-auto">
-          <div class="products wrapper wrapper-form m-0 bg-light text-black contact p-3 p-md-5">
-            {# total variable #}
+        <div class="row d-flex flex-column flex-md-row">
+          {# verify is cart is empty or not to send a message #}
+          {# PRODUCTS #}
+          <div class="col-12 col-lg-8 mx-auto">
+            <div class="products wrapper wrapper-form m-0 bg-light text-black contact p-3 p-md-5">
+              {# total variable #}
 
-            {% set total = null %}
-            {% for product in cart %}
-              <div class="row d-flex">
-                {# product #}
-                <div class="col-6 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
-                  <img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px" />
-                  <div class="card-product my-2 my-sm-0 mx-sm-4">
-                    <h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
-                    <p>
-                      <strong>Unit price: {{ product.object.price|price }}</strong>
-                    </p>
+              {% set total = null %}
+              {% for product in cart %}
+                <div class="row d-flex">
+                  {# product #}
+                  <div class="col-6 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
+                    <img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px" />
+                    <div class="card-product my-2 my-sm-0 mx-sm-4">
+                      <h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
+                      <p>
+                        <strong>Unit price: {{ product.object.price|price }}</strong>
+                      </p>
+                    </div>
                   </div>
-                </div>
-                {# quantity and price #}
-                <div class="col-6 col-md-6 d-flex flex-column flex-sm-row justify-content-between">
-                  {# quantity #}
-                  <div class="d-flex flex-column flex-sm-row align-items-start">
-                    <div class="card-quantity">
-                      <p class="card-title-quantity m-0">Quantity</p>
-                      <div class="btn-group border border-primary" role="group" aria-label="First group">
-                        <a href="{{ path('app_cart_decrease', { id: product.object.id }) }}" class="btn btn-light bg-white">-</a>
-                        <button type="button" class="btn btn-light bg-white disabled fw-bold">{{ product.qty }}</button>
-                        <a href="{{ path('app_cart_add', { id: product.object.id }) }}" class="btn btn-light bg-white">+</a>
+                  {# quantity and price #}
+                  <div class="col-6 col-md-6 d-flex flex-column flex-sm-row justify-content-between">
+                    {# quantity #}
+                    <div class="d-flex flex-column flex-sm-row align-items-start">
+                      <div class="card-quantity">
+                        <p class="card-title-quantity m-0">Quantity</p>
+                        <div class="btn-group border border-primary" role="group" aria-label="First group">
+                          <a href="{{ path('app_cart_decrease', { id: product.object.id }) }}" class="btn btn-light bg-white">-</a>
+                          <button type="button" class="btn btn-light bg-white disabled fw-bold">{{ product.qty }}</button>
+                          <a href="{{ path('app_cart_add', { id: product.object.id }) }}" class="btn btn-light bg-white">+</a>
+                        </div>
+                      </div>
+                      <div class="trash-icon m-3" style="font-size: 1rem;">
+                        <i class="fa-solid fa-trash-can fa-2xl"></i>
                       </div>
                     </div>
-                    <div class="trash-icon m-3" style="font-size: 1rem;">
-                      <i class="fa-solid fa-trash-can fa-2xl"></i>
+                    {# price #}
+                    <div class="products-price text-end my-3">
+                      <span class="card-price">{{ (product.object.pricewt * product.qty)|price }}</span>
                     </div>
                   </div>
-                  {# price #}
-                  <div class="products-price text-end my-3">
-                    <span class="card-price">{{ (product.object.pricewt * product.qty)|price }}</span>
-                  </div>
+                  <hr class="divison-line my-3" />
                 </div>
-                <hr class="divison-line my-3" />
+                {% set total = total + product.object.pricewt * product.qty %}
+              {% endfor %}
+              <a href="{{ path('app_cart_remove') }}" class="small btn btn-light border-white text-black">Empty the basket</a>
+            </div>
+          </div>
+
+          {# TOTAL AND SUBTOTAL #}
+          <div class="col-12 col-lg-4 my-5 my-lg-0">
+            <div class="products wrapper wrapper-form m-0 border border-primary text-white">
+              {# total #}
+              <div class="total d-flex justify-content-between">
+                <p>Total of products</p>
+                <p>{{ fullCartQuantity }}</p>
               </div>
-              {% set total = total + product.object.pricewt * product.qty %}
-            {% endfor %}
-            <a href="{{ path('app_cart_remove') }}" class="small btn btn-light border-white text-black">Empty the basket</a>
-          </div>
-        </div>
 
-        {# TOTAL AND SUBTOTAL #}
-        <div class="col-12 col-lg-4 my-5 my-lg-0">
-          <div class="products wrapper wrapper-form m-0 border border-primary text-white">
-            {# total #}
-            <div class="total d-flex justify-content-between">
-              <p>Total of products</p>
-              <p>{{ fullCartQuantity }}</p>
+              {# subtotal #}
+              <div class="sub-total d-flex justify-content-between mt-3">
+                <p>Subtotal with VAT</p>
+                <p>{{ totalWt|price }}</p>
+              </div>
+              {# button validate #}
+              <div class="col-12 text-center">
+                <a href="{{ path('app_order') }}" class="w-100 btn-block mx-auto btn btn-primary btn-link my-2">Validate my order</a>
+              </div>
+              {# button continue shopping #}
+              <div class="col-12 text-center">
+                <a href="{{ path('app_shop') }}" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</a>
+              </div>
+              <p class="text-center mt-3">Shiping taxes and discout codes calculated at checkout.</p>
             </div>
-
-            {# subtotal #}
-            <div class="sub-total d-flex justify-content-between mt-3">
-              <p>Subtotal with VAT</p>
-              <p>{{ totalWt|price }}</p>
-            </div>
-            {# button validate #}
-            <div class="col-12 text-center">
-              <a href="{{ path('app_order') }}" class="w-100 btn-block mx-auto btn btn-primary btn-link my-2">Validate my order</a>
-            </div>
-            {# button continue shopping #}
-            <div class="col-12 text-center">
-              <a href="{{ path('app_shop') }}" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</a>
-            </div>
-            <p class="text-center mt-3">Shiping taxes and discout codes calculated at checkout.</p>
           </div>
         </div>
       </div>
-    </div>
-  {% else %}
-    {# {% include '_partials/flash.html.twig' %} #}
-    <div class="col-12 col-md-10 mx-auto p-3 p-md-5">
-      <div class="products wrapper m-0 bg-light text-black contact p-3 p-md-5">
-        <h2 class="text-center mt-3">Your shopping cart is empty.</h2>
-        {# button continue shopping #}
-        <div class="text-center">
-          <a href="{{ path('app_shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
+    {% else %}
+      {# {% include '_partials/flash.html.twig' %} #}
+      <div class="col-12 col-md-10 mx-auto p-3 p-md-5">
+        <div class="products wrapper m-0 bg-light text-black contact p-3 p-md-5">
+          <h2 class="text-center mt-3">Your shopping cart is empty.</h2>
+          {# button continue shopping #}
+          <div class="text-center">
+            <a href="{{ path('app_shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
+          </div>
         </div>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
+  </div>
 {% endblock %}

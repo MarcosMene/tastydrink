@@ -3,5 +3,7 @@
 {% elseif field.value == 2 %}
   <span class="badge text-bg-success">Paid</span>
 {% elseif field.value == 3 %}
-  <span class="badge text-bg-primary">Shipped</span>
+  <span class="badge text-bg-primary">On preparation</span>
+{% elseif field.value == 4 %}
+  <span class="badge text-bg-warning">Shipped</span>
 {% endif %}

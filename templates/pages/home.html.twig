@@ -46,10 +46,9 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-<div class="container">
 
   {# -----------------DRINK SHOP & BAR #}
-
+  <div class="container">
   <article class="mt-5">
     <h1 class="main-titles text-center">Drink Bar & Shop in Vancouver</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
@@ -102,13 +101,13 @@
   <div class="divisor divisor-lg"></div>
 
   {# --------------------------------- OUR SUGGESTIONS #}
-  <section class="text-center mt-5">
+  <section class="text-center mt-5 p-1 px-md-5">
     <h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
-    <div class="wrapper info wrapper-max m-auto">
-      <div class="row gx-4 wrapper-max">
+    <div class="wrapper info wrapper-max m-auto p-0">
+      <div class="row d-flex align-items-center justify-content-between">
 
       {%for product in productSuggestions%}
-        <div class="col-12 col-sm-6 col-lg-4 my-2">
+        <div class="col-12 col-sm-6 col-md-4 my-2">
           <div class="product-card m-auto img-hover-zoom">
           <a href="{{ path('app_product', { slug: product.slug }) }}"> <img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" /></a>
           </div>
@@ -118,8 +117,8 @@
       </div>
 
       {# button add basket #}
-      <div class="col-12 text-center my-5">
-        <a href="{{path('app_shop')}}" class="btn btn-outline mt-2 mb-5">See our products</a>
+      <div class="col-12 text-center mt-5">
+        <a href="{{path('app_shop')}}" class="btn btn-outline mt-2">See all products</a>
       </div>
     </div>
   </section>
@@ -163,6 +162,6 @@
       </div>
     </div>
   </section>
+  </div>
 
-</div> 
 {% endblock %}

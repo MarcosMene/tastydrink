@@ -12,29 +12,31 @@
   {# -----------------DRINK SHOP & BAR #}
 
   {# --------------------------------- SHOPS #}
-  <article class="text-center mt-5">
-    <h2 class="main-titles text-capitalize text-center">Shop</h2>
-    <p class="text-start mb-5">Tasty Drink dolor sit amet consectetur adipisicing elit. Enim magni unde earum impedit nesciunt doloremque quam eaque praesentium exercitationem asperiores tenetur nisi accusamus atque recusandae sequi itaque doloribus quos, minima ut sunt saepe voluptate ducimus quisquam. Sit sunt, doloribus eos accusantium ipsa sint vitae, porro animi vero, recusandae repudiandae? Quibusdam?</p>
-    <div class="wrapper info wrapper-max m-auto p-4">
-      <div class="row gx-4 wrapper-max">
-        {% for category in categories %}
-          {# verify if category has a product - if not dont show category #}
-          {% if (category.products|length) > 0 %}
-            <div class="col-12 col-sm-6 col-lg-3 my-2">
-              <div class="product-card m-auto">
-                <img src="/uploads/category/{{ category.illustration }}" alt="{{ category.name }}" class="img-fluid" />
-                <a href="{{ path('app_category', { slug: category.slug }) }}">
-                  <div class="overlay rounded-bottom">
-                    <i class="fa-solid fa-circle-plus fa-2xl"></i>
-                    <div class="text">View all</div>
-                  </div>
-                </a>
+  <div class="container">
+    <article class="text-center mt-5">
+      <h2 class="main-titles text-capitalize text-center">Shop</h2>
+      <p class="text-start mb-5">Tasty Drink dolor sit amet consectetur adipisicing elit. Enim magni unde earum impedit nesciunt doloremque quam eaque praesentium exercitationem asperiores tenetur nisi accusamus atque recusandae sequi itaque doloribus quos, minima ut sunt saepe voluptate ducimus quisquam. Sit sunt, doloribus eos accusantium ipsa sint vitae, porro animi vero, recusandae repudiandae? Quibusdam?</p>
+      <div class="wrapper info wrapper-max m-auto p-4">
+        <div class="row gx-4 wrapper-max">
+          {% for category in categories %}
+            {# verify if category has a product - if not dont show category #}
+            {% if (category.products|length) > 0 %}
+              <div class="col-12 col-sm-6 col-lg-3 my-2">
+                <div class="product-card m-auto">
+                  <img src="/uploads/category/{{ category.illustration }}" alt="{{ category.name }}" class="img-fluid" />
+                  <a href="{{ path('app_category', { slug: category.slug }) }}">
+                    <div class="overlay rounded-bottom">
+                      <i class="fa-solid fa-circle-plus fa-2xl"></i>
+                      <div class="text">View all</div>
+                    </div>
+                  </a>
+                </div>
+                <p class="shop-card-name my-3 text-capitalize text-center">{{ category.name }}</p>
               </div>
-              <p class="shop-card-name my-3 text-capitalize text-center">{{ category.name }}</p>
-            </div>
-          {% endif %}
-        {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
-    </div>
-  </article>
+    </article>
+  </div>
 {% endblock %}

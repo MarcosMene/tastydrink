@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block body %}
-  <div class="container d-flex align-items-center flex-column my-5">
-    <img src="/assets/images/shopping-bag.png" alt="confirmed order" width="120" />
-    <h1>Thank you for your order.</h1>
-  </div>
-  <div class="text-center">
-    <a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-link my-5">Check my order</a>
+  <div class="container">
+    <div class="container d-flex align-items-center flex-column my-5">
+      <img src="/assets/images/shopping-bag.png" alt="confirmed order" width="120" />
+      <h1>Thank you for your order.</h1>
+    </div>
+    <div class="text-center">
+      <a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-link my-5">Check my order</a>
+    </div>
   </div>
 {% endblock %}

@@ -50,7 +50,8 @@ class ProductController extends AbstractController
         }
 
         return $this->render('products/show.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'productSuggestions' => $productRepository->findByIsSuggestion(true, ['id' => 'DESC'], 3),
         ]);
     }
 }

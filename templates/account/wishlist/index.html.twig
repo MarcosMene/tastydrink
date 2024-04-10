@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Change password
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="mt-5">
+      <h1 class="main-titles text-center">My account</h1>
+    </div>
+
+    <div class="wrapper account">
+      <div class="row p-2">
+        <div class="col-md-12 col-lg-3 mb-3">
+          {% include 'account/_menu.html.twig' %}
+        </div>
+        <div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
+          <h2 class="text-center text-black mt-3">My whishlist</h2>
+          <div class="text-start">
+            <p class="text-info h5 fw-light mt-3 mb-5 fw-medium">{{ app.user.wishlists|length }} wish(es) in your list.</p>
+          </div>
+
+          {% if (app.user.wishlists|length) > 0 %}
+            <div class="row d-flex align-items-start justify-content-around pb-4">
+              {% for product in app.user.wishlists %}
+                <div class="col-sm-6 col-md-4 col-lg-3 text-center m-3 bg-white p-3 rounded shadow">
+                  <a href="{{ path('app_product', { slug: product.slug }) }}" class="text-decoration-none">
+                    <img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid mx-auto rounded mb-2" />
+                    <p class="text-black text-capitalize h-1 fw-medium m-0">{{ product.name }}</p>
+                  </a>
+                  <p class="d-block text-black">{{ product.pricewt|price }}</p>
+                  {# buttons #}
+
+                  <a href="{{ path('app_account_wishlist_remove', { id: product.id }) }}" class="delete text-black btn btn-primary fw-medium">Delete</a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="text-center w-100 p-5">
+              <p class="text-dark fw-medium bg-white border border-secondary rounded py-4 px-5">
+                Your wishlist is empty<br />
+              </p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

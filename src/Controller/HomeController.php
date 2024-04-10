@@ -18,7 +18,7 @@ class HomeController extends AbstractController
 
         return $this->render('pages/home.html.twig', [
             'headers' => $headerRepository->findAll(),
-            'productSuggestions' => $productRepository->findByIsSuggestion(true)
+            'productSuggestions' => $productRepository->findByIsSuggestion(true, ['id' => 'DESC'], 3),
         ]);
     }
 }

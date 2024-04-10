@@ -5,87 +5,89 @@
 {% endblock %}
 
 {% block body %}
-  <div class="mt-5">
-    <h1 class="main-titles text-center">Summary</h1>
-  </div>
-
-  <div class="row bg-info products d-flex justify-content-between p-5">
-    <p class="text-white text-center mt-3">Please check your details before paying for your order on Tasty Drink.</p>
-    <p class="text-white text-center mb-5"></p>
-    <div class="col-12 col-lg-8 text-dark">
-      <p class="text-white text-center text-uppercase my-3">Your order</p>
-      <div class="cards bg-light rounded p-5">
-        {# -----------CARD #}
-        {% set total = null %}
-        {% for product in cart %}
-          <div class="row d-flex my-3 bg-white p-3 rounded shadow-sm">
-            {# product #}
-            <div class="col-6 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
-              <img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px" />
-              <div class="card-product my-2 my-sm-0 mx-sm-4">
-                <h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
-                <p>
-                  <strong>Unit price: {{ product.object.price|price }}</strong>
-                </p>
-              </div>
-            </div>
-            {# quantity and price #}
-            <div class="col-6 col-md-6 d-flex flex-column flex-sm-row justify-content-between">
-              {# quantity #}
-              <div class="fs-4 fw-bold">x {{ product.qty }}</div>
-
-              {# price #}
-              <div class="products-price text-end">
-                <span class="card-price">{{ (product.object.pricewt * product.qty)|price }}</span>
-              </div>
-            </div>
-          </div>
-          {% set total = total + product.object.pricewt * product.qty %}
-        {% endfor %}
-        {# total order #}
-
-        <div class="divisor divisor-line mt-5 mb-3"></div>
-        <div class="total-order mt-2 text-dark">
-          <div class="d-flex justify-content-end">
-            <p class="h2">Total of product(s) :</p>
-            <p class="mx-4 h2">{{ fullCartQuantity }}</p>
-          </div>
-          <div class="d-flex justify-content-end">
-            <p class="h2">Total carrier :</p>
-            <p class="mx-4 h2">{{ choices.carriers.price|price }}</p>
-          </div>
-          <div class="d-flex justify-content-end mt-23">
-            <p class="h2">
-              <b>Total order :</b>
-            </p>
-            <p class="mx-4 h2">
-              <strong>{{ (totalWt + choices.carriers.price)|price }}</strong>
-            </p>
-          </div>
-        </div>
-        <div class="text-center">
-          <a href="{{ path('app_payment', { id_order: order.id }) }}" class="btn btn-link w-25 mt-5">Pay {{ (totalWt + choices.carriers.price)|price }}</a>
-        </div>
-      </div>
+  <div class="container">
+    <div class="mt-5">
+      <h1 class="main-titles text-center">Summary</h1>
     </div>
 
-    {# ------------total #}
-    <div class="col-12 col-lg-4 account">
-      {# address #}
-      <p class="text-white text-center text-uppercase my-3">Your address</p>
-      <div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded">
-        <div class="d-flex justify-content-between flex-column">
-          <p class="p-0 m-0">{{ choices.addresses.name }}</p>
-          <p class="p-0 m-0">{{ choices.addresses.address }}</p>
-          <p class="p-0 m-0">{{ choices.addresses.city }} - {{ choices.addresses.country }}</p>
+    <div class="row bg-info products d-flex justify-content-between p-5">
+      <p class="text-white text-center mt-3">Please check your details before paying for your order on Tasty Drink.</p>
+      <p class="text-white text-center mb-5"></p>
+      <div class="col-12 col-lg-8 text-dark">
+        <p class="text-white text-center text-uppercase my-3">Your order</p>
+        <div class="cards bg-light rounded p-5">
+          {# -----------CARD #}
+          {% set total = null %}
+          {% for product in cart %}
+            <div class="row d-flex my-3 bg-white p-3 rounded shadow-sm">
+              {# product #}
+              <div class="col-6 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
+                <img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px" />
+                <div class="card-product my-2 my-sm-0 mx-sm-4">
+                  <h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
+                  <p>
+                    <strong>Unit price: {{ product.object.price|price }}</strong>
+                  </p>
+                </div>
+              </div>
+              {# quantity and price #}
+              <div class="col-6 col-md-6 d-flex flex-column flex-sm-row justify-content-between">
+                {# quantity #}
+                <div class="fs-4 fw-bold">x {{ product.qty }}</div>
+
+                {# price #}
+                <div class="products-price text-end">
+                  <span class="card-price">{{ (product.object.pricewt * product.qty)|price }}</span>
+                </div>
+              </div>
+            </div>
+            {% set total = total + product.object.pricewt * product.qty %}
+          {% endfor %}
+          {# total order #}
+
+          <div class="divisor divisor-line mt-5 mb-3"></div>
+          <div class="total-order mt-2 text-dark">
+            <div class="d-flex justify-content-end">
+              <p class="h2">Total of product(s) :</p>
+              <p class="mx-4 h2">{{ fullCartQuantity }}</p>
+            </div>
+            <div class="d-flex justify-content-end">
+              <p class="h2">Total carrier :</p>
+              <p class="mx-4 h2">{{ choices.carriers.price|price }}</p>
+            </div>
+            <div class="d-flex justify-content-end mt-23">
+              <p class="h2">
+                <b>Total order :</b>
+              </p>
+              <p class="mx-4 h2">
+                <strong>{{ (totalWt + choices.carriers.price)|price }}</strong>
+              </p>
+            </div>
+          </div>
+          <div class="text-center">
+            <a href="{{ path('app_payment', { id_order: order.id }) }}" class="btn btn-link w-25 mt-5">Pay {{ (totalWt + choices.carriers.price)|price }}</a>
+          </div>
         </div>
       </div>
-      <hr class="my-5" />
-      <p class="text-white text-center text-uppercase my-3">Your delivery transporter</p>
 
-      <div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded d-flex justify-content-between">
-        <p>{{ choices.carriers.name }}</p>
-        <p>{{ choices.carriers.price|price }}</p>
+      {# ------------total #}
+      <div class="col-12 col-lg-4 account">
+        {# address #}
+        <p class="text-white text-center text-uppercase my-3">Your address</p>
+        <div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded">
+          <div class="d-flex justify-content-between flex-column">
+            <p class="p-0 m-0">{{ choices.addresses.name }}</p>
+            <p class="p-0 m-0">{{ choices.addresses.address }}</p>
+            <p class="p-0 m-0">{{ choices.addresses.city }} - {{ choices.addresses.country }}</p>
+          </div>
+        </div>
+        <hr class="my-5" />
+        <p class="text-white text-center text-uppercase my-3">Your delivery transporter</p>
+
+        <div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded d-flex justify-content-between">
+          <p>{{ choices.carriers.name }}</p>
+          <p>{{ choices.carriers.price|price }}</p>
+        </div>
       </div>
     </div>
   </div>
