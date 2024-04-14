@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Carrier;
 use App\Entity\Category;
+use App\Entity\Departament;
+use App\Entity\Employee;
 use App\Entity\Header;
 use App\Entity\Order;
 use App\Entity\Product;
@@ -40,5 +42,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Carriers', 'fas fa-tag', Carrier::class);
         yield MenuItem::linkToCrud('Orders', 'fas fa-tag', Order::class);
         yield MenuItem::linkToCrud('Header', 'fas fa-tag', Header::class);
+        yield MenuItem::linkToCrud('employee', 'fas fa-tag', Employee::class);
+        yield MenuItem::linkToCrud('departament', 'fas fa-tag', Departament::class);
     }
 }
