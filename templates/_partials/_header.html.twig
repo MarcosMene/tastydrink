@@ -57,17 +57,20 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar</a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item text-center" href="#">Menu Drinks</a>
+              <a class="dropdown-item text-center" href="{{path('app_menu_drinks')}}">Menu Drinks</a>
             </li>
             <li>
-              <a class="dropdown-item text-center" href="#">Menu Eats</a>
+              <a class="dropdown-item text-center" href="{{path('app_menu_foods')}}">Menu Food</a>
+            </li>
+            <li>
+              <a class="dropdown-item text-center" href="{{path('app_menu_desserts')}}">Desserts</a>
             </li>
           </ul>
         </li>
         <li class="nav-item dropdown text-center">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
           <ul class="dropdown-menu">
-            {% for category in allCategories %}
+            {% for category in allCategories|sort((a, b) => a.name <=> b.name) %}
               {% if (category.products|length) > 0 %}
                 <li>
                   <a class="dropdown-item text-center" href="{{ path('app_category', { slug: category.slug }) }}">{{ category.name }}</a>

@@ -69,9 +69,9 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
       <a href="" class="btn btn-outline mt-2 mb-5">Make Reservation</a>
     </article>
-    <div class="col-12 col-md-6 p-0">
+    <article class="col-12 col-md-6 p-0">
       <img class="img-fluid" src="{{ asset('assets/images/tasty_drink.jpeg') }}" alt="tasty drink building" />
-    </div>
+    </article>
   </div>
   {#- --------------- STORE TASTY DRINK #}
   <div class="row d-flex align-items-start mx-0">
@@ -101,9 +101,9 @@
   <div class="divisor divisor-lg"></div>
 
   {# --------------------------------- OUR SUGGESTIONS #}
-  <section class="text-center mt-5 p-1 px-md-5">
+  <section class="text-center mt-5">
     <h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
-    <div class="wrapper info wrapper-max m-auto p-0">
+    <div class="wrapper info wrapper-max m-auto">
       <div class="row d-flex align-items-center justify-content-between">
 
       {%for product in productSuggestions%}
@@ -135,8 +135,8 @@
     <div class="container mt-4">
       <div class="row justify-content-center">
         <div class="col-0 col-sm-1col-lg-0 d-none"></div>
-        <div class="col-0 col-lg-3 d-flex align-items-stretch p-0 border border-light">
-          <img src="{{ asset('assets/images/open.jpeg') }}" alt="" class="img-fluid d-none d-lg-block" />
+        <div class="col-0 col-lg-3 d-flex align-items-stretch p-0 border border-light d-none d-lg-block">
+          <img src="{{ asset('assets/images/open.jpeg') }}" alt="open hours sign"  width="100%" height="100%"/>
         </div>
         <article class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
           <h3 class="sub-titles">Shop</h3>

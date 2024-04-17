@@ -5,8 +5,11 @@ namespace App\Controller\Admin;
 use App\Entity\Carrier;
 use App\Entity\Category;
 use App\Entity\Departament;
+use App\Entity\Drink;
+use App\Entity\DrinkCategory;
 use App\Entity\Employee;
 use App\Entity\Header;
+use App\Entity\MenuDrink;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
@@ -44,5 +47,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Header', 'fas fa-tag', Header::class);
         yield MenuItem::linkToCrud('employee', 'fas fa-tag', Employee::class);
         yield MenuItem::linkToCrud('departament', 'fas fa-tag', Departament::class);
+        yield MenuItem::linkToCrud('drink', 'fas fa-tag', Drink::class);
+        yield MenuItem::linkToCrud('menu drink', 'fas fa-tag', DrinkCategory::class);
     }
 }

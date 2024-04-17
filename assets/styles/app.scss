@@ -30,6 +30,7 @@ body {
   color: $white;
   font-family: 'Poppins', sans-serif;
   background-color: $dark;
+  font-size: 1.6rem;
 }
 
 h1,
@@ -103,9 +104,9 @@ h6 {
 img {
   display: block;
   // width: 100%;
-  height: auto;
+  // height: auto;
   object-fit: cover;
-  max-width: 300px;
+  max-width: 350px;
 }
 
 p {
@@ -394,8 +395,8 @@ ul.breadcrumb li a:hover {
   color: $dark;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 5; /* number of lines to show */
-  line-clamp: 5;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
   -webkit-box-orient: vertical;
 }
 
@@ -716,7 +717,8 @@ ul.breadcrumb li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $dark;
+    color: $white;
+    font-size: 1.4rem;
   }
 }
 
