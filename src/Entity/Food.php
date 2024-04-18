@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\DrinkRepository;
+use App\Repository\FoodRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DrinkRepository::class)]
-class Drink
+#[ORM\Entity(repositoryClass: FoodRepository::class)]
+class Food
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,18 +17,19 @@ class Drink
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
-
-    #[ORM\Column]
-    private ?float $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $illustration = null;
 
-    #[ORM\ManyToOne(inversedBy: 'drinks')]
+    #[ORM\ManyToOne(inversedBy: 'food')]
     #[ORM\JoinColumn(nullable: true)]
-    private ?DrinkCategory $drinkcategory = null;
+    private ?FoodCategory $foodcategory = null;
+
+    #[ORM\Column]
+    private ?float $price = null;
+
 
     public function getId(): ?int
     {
@@ -58,18 +60,6 @@ class Drink
         return $this;
     }
 
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(float $price): static
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
     public function getIllustration(): ?string
     {
         return $this->illustration;
@@ -82,14 +72,26 @@ class Drink
         return $this;
     }
 
-    public function getDrinkcategory(): ?DrinkCategory
+    public function getFoodcategory(): ?FoodCategory
     {
-        return $this->drinkcategory;
+        return $this->foodcategory;
     }
 
-    public function setDrinkcategory(?DrinkCategory $drinkcategory): static
+    public function setFoodcategory(?FoodCategory $foodcategory): static
     {
-        $this->drinkcategory = $drinkcategory;
+        $this->foodcategory = $foodcategory;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

@@ -24,9 +24,4 @@ class MenuController extends AbstractController
     {
         return $this->render('pages/menu-foods.html.twig');
     }
-    #[Route('/menu/desserts', name: 'app_menu_desserts')]
-    public function desserts(): Response
-    {
-        return $this->render('pages/menu-desserts.html.twig');
-    }
 }

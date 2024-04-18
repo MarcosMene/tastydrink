@@ -8,6 +8,8 @@ use App\Entity\Departament;
 use App\Entity\Drink;
 use App\Entity\DrinkCategory;
 use App\Entity\Employee;
+use App\Entity\Food;
+use App\Entity\FoodCategory;
 use App\Entity\Header;
 use App\Entity\MenuDrink;
 use App\Entity\Order;
@@ -49,5 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('departament', 'fas fa-tag', Departament::class);
         yield MenuItem::linkToCrud('drink', 'fas fa-tag', Drink::class);
         yield MenuItem::linkToCrud('menu drink', 'fas fa-tag', DrinkCategory::class);
+        yield MenuItem::linkToCrud('food', 'fas fa-tag', Food::class);
+        yield MenuItem::linkToCrud('menu food', 'fas fa-tag', FoodCategory::class);
     }
 }

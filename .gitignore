@@ -7,6 +7,9 @@
 /public/bundles/
 /var/
 /vendor/
+/*.jpg
+/*.jpeg
+/*.png
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

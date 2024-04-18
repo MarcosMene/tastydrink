@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Tasty Drink - Menu Drinks
+{% endblock %}
+
+{% block body %}
+  {# --------------------------------- foods container #}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="products">
+        <section class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+
+        {# FOODS  #}
+          {% for categoryFood in allFoodCategories|sort((a, b) => a.orderAppear <=> b.orderAppear) %}
+            {% if (categoryFood.food|length) > 0 %}
+
+              <h2 class="text-center mt-3 text-uppercase">{{categoryFood.name}}</h2>
+            
+                <div class="d-flex flex-wrap align-items-center justify-content-center  gap-3">
+
+                  {%for  drink in categoryFood.food%}
+                  {# -----------CARD #}
+                    <div class="card m-3 " style="max-width: 540px;">
+                      <div class="row g-0 bg-white">
+                        <div class="col-md-10">
+                          <article class="card-body">
+                            <h5 class="card-title text-capitalize">{{drink.name}}</h5>
+                            <p class="card-text lead">{{drink.description|raw}}</p>
+                            <div class="card-text">
+                              <h3 class="products-price text-end">{{drink.price|price}}</h3>
+                            </div>
+                          </article>
+                        </div>
+                        <div class="col-md-2 d-none d-sm-block">
+                          <img src="/uploads/menu/{{ drink.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ drink.name }}" />
+                        </div>
+                      </div>
+                    </div>
+                  {%endfor%}
+                </div>
+            
+                {# -----------DIVISOR #}
+                <div class="divisor divisor-drink"></div>
+              {% endif %}
+          {% endfor %}
+        </section>
+      </div>
+    </div>
+  </div>
+{% endblock %}
