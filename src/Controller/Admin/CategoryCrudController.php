@@ -21,8 +21,8 @@ class CategoryCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Category')
-            ->setEntityLabelInPlural('Categories');
+            ->setEntityLabelInSingular('Category of product')
+            ->setEntityLabelInPlural('Category of products');
     }
 
     public function configureFields(string $pageName): iterable

@@ -32,6 +32,13 @@ class FoodCrudController extends AbstractCrudController
         return Food::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Menu food')
+            ->setEntityLabelInPlural('Menu foods');
+    }
+
     public function configureFields(string $pageName): iterable
     {
         //if mode edit, image is not required, but if new product, image is required

@@ -65,10 +65,10 @@
                       </td>
                       <td>{{ product.productName }}</td>
                       <td>{{ product.productQuantity }}</td>
-                      <td>{{ product.productPrice|price }}</td>
+                      <td>{{ (product.productPrice / 100)|price }}</td>
                       <td>{{ product.productTva }}%</td>
                       {% set coeff = 1 + product.productTva / 100 %}
-                      <td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
+                      <td>{{ (product.productPrice * coeff * product.productQuantity / 100)|price }}</td>
                     </tr>
                   {% endfor %}
                   <tr>
@@ -79,12 +79,13 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{ order.carrierPrice|price }}</td>
+                    <td>{{ (order.carrierPrice / 100)|price }}</td>
                   </tr>
                 </tbody>
               </table>
               <div class="text-end fs-3 me-5">
-                <strong>Total Ex.T.:</strong> ${{ order.totalWt - order.totalTva }} <br />
+                <strong>Total Ex.T.:</strong> {{ (order.totalWt - order.totalTva)|price }} <br />
+
                 <strong>Tax:</strong> {{ order.totalTva }}%<br />
                 <strong>Total VAT:</strong> ${{ order.totalWt }} <br />
               </div>

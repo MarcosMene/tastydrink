@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,6 +30,13 @@ class EmployeeCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Employee::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Employee')
+            ->setEntityLabelInPlural('Employees');
     }
 
     public function configureFields(string $pageName): iterable
@@ -58,12 +66,27 @@ class EmployeeCrudController extends AbstractCrudController
             }
         }
 
+        //if mode edit, image is not required, but if new product, image is required
+        $required = true;
+        if ($pageName == 'edit') {
+            $required = false;
+        }
+
         return [
             IdField::new('id')->hideOnForm(),
+       
             TextField::new('firstName'),
             TextField::new('lastName'),
+            ImageField::new('illustration')
+            ->setBasePath('/uploads/team') // the base path where files are stored
+            ->setUploadDir('public/uploads/team') // the relative directory to store files in
+            ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
+            ->setRequired($required)
+            ->setHelp('Image of your product, 600x600px'),
             DateField::new('joinDate'),
             TextField::new('email'),
+            AssociationField::new('team', 'Team')
+                ->setRequired(true),
             ChoiceField::new('position')
                 ->setChoices(
                     array_flip($jobChoices)
