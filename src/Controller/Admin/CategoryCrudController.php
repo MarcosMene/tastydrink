@@ -28,14 +28,13 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name')->setLabel('Title')->setHelp('Title of the category'),
-            SlugField::new('slug')->setLabel('URL')->setTargetFieldName('name')->setHelp('URL of the category based on the title'),
+            TextField::new('name')->setLabel('Title'),
+            SlugField::new('slug')->setLabel('URL')->setTargetFieldName('name'),
             ImageField::new('illustration')
                 ->setBasePath('/uploads/category') // the base path where files are stored
                 ->setUploadDir('public/uploads/category') // the relative directory to store files in
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
                 ->setRequired(false)
-                ->setHelp('Image of your category, 600x600px')
         ];
     }
 }

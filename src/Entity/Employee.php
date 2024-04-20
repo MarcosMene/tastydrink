@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EmployeeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 class Employee
@@ -15,9 +16,23 @@ class Employee
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank('This field cannot be empty.')]
+    #[Assert\Length(
+        min: 3,
+        max: 60,
+        minMessage: 'First name must be at least {{ limit }} characters long',
+        maxMessage: 'First name must be no longer than {{ limit }} characters'
+    )]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank('This field cannot be empty.')]
+    #[Assert\Length(
+        min: 5,
+        max: 60,
+        minMessage: 'Last name must be at least {{ limit }} characters long',
+        maxMessage: 'Last name must be no longer than {{ limit }} characters'
+    )]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -29,6 +44,7 @@ class Employee
     private ?string $email = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThanOrEqual('today', message: 'The join date must be today or ten days after today.')]
     private ?\DateTimeInterface $joinDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'employees')]

@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -20,6 +21,13 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank('Title cannot be empty.')]
+    #[Assert\Length(
+        min: 3,
+        max: 20,
+        minMessage: 'The title must be at least {{ limit }} characters long',
+        maxMessage: 'The title must be no longer than {{ limit }} characters'
+    )]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'category')]

@@ -74,20 +74,20 @@ class EmployeeCrudController extends AbstractCrudController
 
         return [
             IdField::new('id')->hideOnForm(),
-       
             TextField::new('firstName'),
             TextField::new('lastName'),
             ImageField::new('illustration')
-            ->setBasePath('/uploads/team') // the base path where files are stored
-            ->setUploadDir('public/uploads/team') // the relative directory to store files in
-            ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
-            ->setRequired($required)
-            ->setHelp('Image of your product, 600x600px'),
+                ->setBasePath('/uploads/team') // the base path where files are stored
+                ->setUploadDir('public/uploads/team') // the relative directory to store files in
+                ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
+                ->setRequired($required)
+                ->setHelp('Image of your product, 600x600px'),
             DateField::new('joinDate'),
             TextField::new('email'),
-            AssociationField::new('team', 'Team')
+            AssociationField::new('team', 'Team')->setHelp('Which team to work')
                 ->setRequired(true),
             ChoiceField::new('position')
+                ->setHelp('Which positon on the team')
                 ->setChoices(
                     array_flip($jobChoices)
                 )

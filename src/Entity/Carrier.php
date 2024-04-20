@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CarrierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarrierRepository::class)]
 class Carrier
@@ -15,12 +16,30 @@ class Carrier
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 3,
+        max: 40,
+        minMessage: 'The name of company must be at least {{ limit }} characters long.',
+        maxMessage: 'The name of company must be no longer than {{ limit }} characters.'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 20,
+        max: 50,
+        minMessage: 'The description of the carrier must be at least {{ limit }} characters long.',
+        maxMessage: 'The description of the carrier must be no longer than {{ limit }} characters.'
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\LessThanOrEqual(1000, message: 'The maximum price for transportation is ${{ compared_value }}.')]
+    #[Assert\GreaterThanOrEqual(5, message: 'The mininum price for transportation is ${{ compared_value }}.')]
     private ?float $price = null;
 
     public function __toString()

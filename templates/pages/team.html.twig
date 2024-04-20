@@ -15,18 +15,16 @@
 
 		{# CATEGORY  #}
 		{% for category in teamCategories|sort((a, b) => b.nameTeam <=> a.nameTeam) %}
-			<h2 class="text-white text-center text-uppercase my-5">{{category.nameTeam}}
+			<h2 class="text-white text-center text-uppercase mt-5 mb-0">{{category.nameTeam}}
 				team</h2>
 			<div class="team-cards">
-
-
 				<div class="row gx-4 mt-3">
 					{% for employee in category.employees %}
 						{% for  department in departments %}
 							{% if employee.position == department.id  %}
 								{% if department.name == 'Manager' or department.name == 'manager' %}
 									<div class="w-100">
-										<div class="col-12 col-sm-6 col-lg-3 mx-auto">
+										<div class="col-12 col-sm-6 col-lg-3 mx-auto my-5">
 											<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto"/>
 											<article class="text-center p-3">
 												<h4 class="team-title">{{employee.firstName}}
@@ -37,7 +35,7 @@
 										</div>
 									</div>
 								{% else %}
-									<div class="col-12 col-sm-6 col-lg-3 mx-auto">
+									<div class="col-12 col-sm-6 col-lg-3 mx-auto mb-3">
 										<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto"/>
 										<article class="text-center p-3">
 											<h4 class="team-title">{{employee.firstName}}

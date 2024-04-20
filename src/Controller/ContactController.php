@@ -17,30 +17,30 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'contact')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
-        $data = new ContactDTO();
+        // $data = new ContactDTO();
 
-        $form = $this->createForm(ContactType::class, $data);
-        $form->handleRequest($request);
+        // $form = $this->createForm(ContactType::class, $data);
+        // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                // send mail
-                $mail = (new TemplatedEmail())
-                    ->to('contact@tastydrink.fr')
-                    ->from($data->email)
-                    ->subject('Contact request')
-                    ->htmlTemplate('emails/contact.html.twig')
-                    ->context(["data" => $data]);
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     try {
+        //         // send mail
+        //         $mail = (new TemplatedEmail())
+        //             ->to('contact@tastydrink.fr')
+        //             ->from($data->email)
+        //             ->subject('Contact request')
+        //             ->htmlTemplate('emails/contact.html.twig')
+        //             ->context(["data" => $data]);
 
-                $mailer->send($mail);
-                $this->addFlash('success', 'Your  message has been sent successfully');
-                return $this->redirectToRoute('app_contact');
-            } catch (\Exception $e) {
-                $this->addFlash('danger', 'Impossible to send your email');
-            }
-        }
+        //         $mailer->send($mail);
+        //         $this->addFlash('success', 'Your  message has been sent successfully');
+        //         return $this->redirectToRoute('app_contact');
+        //     } catch (\Exception $e) {
+        //         $this->addFlash('danger', 'Impossible to send your email');
+        //     }
+        // }
         return $this->render('pages/contact.html.twig', [
-            'form' => $form,
+            // 'form' => $form,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -15,6 +16,13 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank('This field cannot be empty.')]
+    #[Assert\Length(
+        min: 3,
+        max: 40,
+        minMessage: 'The name of the product must be at least {{ limit }} characters long.',
+        maxMessage: 'The name of the product must be no longer than {{ limit }} characters.'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -24,12 +32,27 @@ class Product
     private ?string $illustration = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        max: 40,
+        minMessage: 'The subtitle of the product must be at least {{ limit }} characters long.',
+        maxMessage: 'The subtitle of the product must be no longer than {{ limit }} characters.'
+    )]
     private ?string $subtitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(
+        min: 20,
+        max: 200,
+        minMessage: 'The description of the product must be at least {{ limit }} characters long.',
+        maxMessage: 'The description of the product must be no longer than {{ limit }} characters.'
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
+    #[Assert\LessThanOrEqual(100, message: 'The maximum price for this product is ${{ compared_value }}.')]
+    #[Assert\GreaterThanOrEqual(10, message: 'The mininum price for this product is ${{ compared_value }}.')]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]

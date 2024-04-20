@@ -15,7 +15,7 @@ class Team
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $nameTeam = null;
 
     #[ORM\OneToMany(targetEntity: Employee::class, mappedBy: 'team', orphanRemoval: true)]
