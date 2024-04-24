@@ -36,7 +36,7 @@ class PaymentController extends AbstractController
             $products_for_stripe[] = [
                 'price_data' => [
                     'currency' => 'usd',
-                    'unit_amount' => number_format($product->getProductPriceWt(), 0, '', ''), //for stripe the number must be without , and .
+                    'unit_amount' => number_format($product->getProductPriceWt(), 2, '', ''), //for stripe the number must be without , and .
                     'product_data' => [
                         'name' => $product->getProductName(),
                         'images' => [
@@ -51,7 +51,7 @@ class PaymentController extends AbstractController
         $products_for_stripe[] = [
             'price_data' => [
                 'currency' => 'usd',
-                'unit_amount' => number_format($order->getCarrierPrice(), 0, '', ''), //for stripe the number must be without , and .
+                'unit_amount' => number_format($order->getCarrierPrice(), 2, '', ''), //for stripe the number must be without , and .
                 'product_data' => [
                     'name' => 'Carrier company: ' . $order->getCarrierName(),
                 ],
