@@ -25,7 +25,7 @@ class Carrier
 
     public function __toString()
     {
-        $price = number_format($this->getPrice() / 100, 2, '.', ',');
+        $price = number_format($this->getPrice(),  2, '.', ',');
         return $this->getName() . '<br/>' . '$ ' . $price;
     }
 
