@@ -1,68 +1,75 @@
 {# layout to show detail orders on easyadmin #}
 {% extends '@!EasyAdmin/layout.html.twig' %}
 {% block main %}
-  <p class="h4">Order n#{{ order.id }}</p>
-  <p>
-    <strong>Date of your order:</strong> {{ order.createdAt|date('d/m/Y') }}
-  </p>
-  <p>Stripe session id : {{ order.stripeSessionId }}</p>
+	<p class="h4">Order n#{{ order.id }}</p>
+	<p>
+		<strong>Date of your order:</strong>
+		{{ order.createdAt|date('d/m/Y') }}
+	</p>
+	<p>Stripe session id :
+		{{ order.stripeSessionId }}</p>
 
-  {# field is inside of state.html.twig #}
-  <p>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</p>
+	{# field is inside of state.html.twig #}
+	<p>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</p>
 
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Delivery address:</h5>
-      <p>{{ order.delivery|raw }}</p>
-    </div>
-    <div class="col-md-6">
-      <h5>Carrier:</h5>
-      <p>{{ order.carrierName|raw }}</p>
-    </div>
-  </div>
-  <hr />
-  <h5>Order content:</h5>
+	<div class="row">
+		<div class="col-md-6">
+			<h5>Delivery address:</h5>
+			<p>{{ order.delivery|raw }}</p>
+		</div>
+		<div class="col-md-6">
+			<h5>Carrier:</h5>
+			<p>{{ order.carrierName|raw }}</p>
+		</div>
+	</div>
+	<hr/>
+	<h5>Order content:</h5>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Name of product</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Unitary price Ex.T.</th>
-        <th scope="col">Tax</th>
-        <th scope="col">Total VAT</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for product in order.orderDetails %}
-        <tr>
-          <td>
-            <img src="/uploads/products/{{ product.productIllustration }}" alt="{{ product.productName }}" width="100" />
-          </td>
-          <td>{{ product.productName }}</td>
-          <td>{{ product.productQuantity }}</td>
-          <td>{{ product.productPrice|price }}</td>
-          <td>{{ product.productTva }}%</td>
-          {% set coeff = 1 + product.productTva / 100 %}
-          <td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
-        </tr>
-      {% endfor %}
-      <tr>
-        <td>
-          <strong>Carrier company</strong>
-        </td>
-        <td>{{ order.carrierName }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>{{ order.carrierPrice|price }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="text-end fs-5 me-5">
-    <strong>Total Ex.T.:</strong> ${{ order.totalWt - order.totalTva }} <br />
-    <strong>Tax:</strong> {{ order.totalTva }}%<br />
-    <strong>Total VAT:</strong> ${{ order.totalWt }} <br />
-  </div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Image</th>
+				<th scope="col">Name of product</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Unitary price Ex.T.</th>
+				<th scope="col">Tax</th>
+				<th scope="col">Total VAT</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in order.orderDetails %}
+				<tr>
+					<td>
+						<img src="/uploads/products/{{ product.productIllustration }}" alt="{{ product.productName }}" width="100"/>
+					</td>
+					<td>{{ product.productName }}</td>
+					<td>{{ product.productQuantity }}</td>
+					<td>{{ product.productPrice|price }}</td>
+					<td>{{ product.productTva }}%</td>
+					{% set coeff = 1 + product.productTva %}
+					<td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<td>
+					<strong>Carrier company</strong>
+				</td>
+				<td>{{ order.carrierName }}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>{{ order.carrierPrice|price }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="text-end fs-5 me-5">
+		<strong>Total Ex.T.:</strong>
+		${{ order.totalWt - order.totalTva }}
+		<br/>
+		<strong>Tax:</strong>
+		{{ order.totalTva }}%<br/>
+		<strong>Total VAT:</strong>
+		${{ order.totalWt }}
+		<br/>
+	</div>
 {% endblock %}
