@@ -1,50 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Tasty Drink - My account
+	Tasty Drink - My account
 {% endblock %}
 
 {% block body %}
-  <div class="mt-5">
-    <h1 class="main-titles text-center">My account</h1>
-  </div>
-  <div class="wrapper account">
-    <div class="row p-2">
-      <div class="col-md-12 col-lg-3 mb-3">
-        {% include 'account/_menu.html.twig' %}
-      </div>
-      <div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
-        <h2 class="text-center text-black mt-3 mb-5">My last orders</h2>
+	<div class="mt-5">
+		<h1 class="main-titles text-center">My account</h1>
+	</div>
+	<div class="wrapper account">
+		<div class="row p-2">
+			<div class="col-md-12 col-lg-3 mb-3">
+				{% include 'account/_menu.html.twig' %}
+			</div>
+			<div class="col-md-12 col-lg-9 px-4 py-2 bg-light rounded">
+				<h2 class="text-center text-black mt-3 mb-5">My last orders</h2>
 
-        {% if (orders|length) == 0 %}
-          <div class="alert alert-info">You have not yet placed an order</div>
-        {% else %}
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">N# Order</th>
-                <th scope="col">Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Total with tax</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for order in orders %}
-                <tr>
-                  <td>{{ order.id }}</td>
-                  <td>{{ order.createdAt|date('m/d/Y') }}</td>
-                  <td>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</td>
-                  <td>{{ order.totalWt|price }}</td>
-                  <td>
-                    <a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-outline-primary btn-signOut text-black">View order</a>
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+				{% if (orders|length) == 0 %}
+					<div class="alert alert-info">You have not yet placed an order</div>
+				{% else %}
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">N# Order</th>
+								<th scope="col">Date</th>
+								<th scope="col">Status</th>
+								<th scope="col">Total with tax</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for order in orders %}
+
+
+								<tr>
+									<td>{{ order.id }}</td>
+									<td>{{ order.createdAt|date('m/d/Y') }}</td>
+									<td>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</td>
+									<td>{{ order.totalWt|price }}</td>
+									<td>
+										<a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-outline-primary btn-signOut text-black">View order</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}
