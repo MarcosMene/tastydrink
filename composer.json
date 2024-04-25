@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.0",
+        "dompdf/dompdf": "^2.0",
         "easycorp/easyadmin-bundle": "^4.9",
         "knplabs/knp-paginator-bundle": "^6.3",
         "mailjet/mailjet-apiv3-php": "^1.6",

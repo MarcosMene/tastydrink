@@ -42,7 +42,7 @@ class OrderType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-link mt-5 mx-auto d-flex text-uppercase'
                 ]
-            ]);;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
