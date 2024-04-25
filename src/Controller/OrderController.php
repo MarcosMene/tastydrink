@@ -56,6 +56,7 @@ class OrderController extends AbstractController
         //get information from cart
         $products = $cart->getCart();
 
+
         $form = $this->createForm(OrderType::class, null, [
             //to find only addresses of the connected user
             'addresses' => $this->getUser()->getAddresses(),
