@@ -24,9 +24,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 10, max: 180)]
+    #[Assert\NotBlank('This field cannot be empty.')]
+    #[Assert\Length(
+        min: 10,
+        max: 60,
+        minMessage: 'Your email must be at least {{ limit }} characters long',
+        maxMessage: 'Your email must be no longer than {{ limit }} characters'
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -36,12 +42,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message: 'Password cannot be empty.')]
+    #[Assert\NotBlank('This field cannot be empty.')]
+    #[Assert\Length(
+        min: 6,
+        max: 18,
+        minMessage: 'Your password must be at least {{ limit }} characters long',
+        maxMessage: 'Your password must be no longer than {{ limit }} characters'
+    )]
 
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'First name cannot be empty.')]
+    #[Assert\NotBlank('This field cannot be empty.')]
     #[Assert\Length(
         min: 2,
         max: 30,
@@ -51,7 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Last name cannot be empty.')]
+    #[Assert\NotBlank('This field cannot be empty.')]
     #[Assert\Length(
         min: 5,
         max: 45,
@@ -66,10 +78,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
     private Collection $orders;
 
+    #[ORM\ManyToMany(targetEntity: Product::class)]
+    private Collection $wishlists;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->wishlists = new ArrayCollection();
     }
 
     public function __toString()
@@ -227,6 +243,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getWishlists(): Collection
+    {
+        return $this->wishlists;
+    }
+
+    public function addWishlist(Product $wishlist): static
+    {
+        if (!$this->wishlists->contains($wishlist)) {
+            $this->wishlists->add($wishlist);
+        }
+
+        return $this;
+    }
+
+    public function removeWishlist(Product $wishlist): static
+    {
+        $this->wishlists->removeElement($wishlist);
 
         return $this;
     }
