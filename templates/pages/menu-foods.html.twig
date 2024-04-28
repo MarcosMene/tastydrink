@@ -5,27 +5,26 @@
 {% endblock %}
 
 {% block body %}
-	{# --------------------------------- drinks container #}
+	{# --------------------------------- foods container #}
 	<div class="container">
 		<div class="mt-5">
-			<h1 class="main-titles text-center text-capitalize">Our menu drinks</h1>
+			<h1 class="main-titles text-center text-capitalize">Our menu foods</h1>
 			<p class="mt-5">A slice of heaven. O for awesome, this chocka full cuzzie is as rip-off as a cracker. Meanwhile, in behind the bicycle shed, Hercules Morse, as big as a horse and Mrs Falani were up to no good with a bunch of crook pikelets. Meanwhile, at the black singlet woolshed party, not even au, sort your drinking out.</p>
 		</div>
-
 		<div class="row mt-5">
 			<div class="products">
 				<section
 					class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
 
-					{# DRINKS  #}
-					{% for categoryDrink in allDrinkCategories|sort((a, b) => a.name <=> b.name) %}
-						{% if (categoryDrink.drinks|length) > 0 %}
+					{# FOODS  #}
+					{% for categoryFood in allFoodCategories|sort((a, b) => a.orderAppear <=> b.orderAppear) %}
+						{% if (categoryFood.food|length) > 0 %}
 
-							<h2 class="text-center mt-3 text-uppercase">{{categoryDrink.name}}</h2>
+							<h2 class="text-center mt-3 text-uppercase">{{categoryFood.name}}</h2>
 
 							<div class="d-flex flex-wrap align-items-center justify-content-center  gap-3">
 
-								{%for  drink in categoryDrink.drinks%}
+								{%for  drink in categoryFood.food%}
 									{# -----------CARD #}
 									<div class="card m-3 " style="max-width: 540px;">
 										<div class="row g-0 bg-white">

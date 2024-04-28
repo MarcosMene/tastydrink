@@ -8,10 +8,10 @@
 	<div
 		class="container">
 		{# -----------------main title #}
-		<article class="mt-5">
+		<div class="mt-5">
 			<h2 class="main-titles text-capitalize text-center">Our team</h2>
 			<p>Curae ridiculus vivamus volutpat mus magnis aliquam, placerat ut nulla torquent risus orci, donec dis convallis eget odio. Nisl suspendisse duis tempus tristique ultricies feugiat integer nulla aptent malesuada sociis est ac non et, laoreet conubia eu interdum quam urna convallis eget arcu rutrum auctor sagittis at aenean. Porttitor dapibus bibendum et mattis pharetra aliquam nibh, placerat scelerisque vel .</p>
-		</article>
+		</div>
 
 		{# CATEGORY  #}
 		{% for category in teamCategories|sort((a, b) => b.nameTeam <=> a.nameTeam) %}
@@ -40,12 +40,12 @@
 								{% if employee.orderAppear != 1 %}
 									<div class="col-12 col-sm-6 col-lg-3 mx-auto my-5">
 										<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto"/>
-										<article class="text-center p-3">
+										<div class="text-center p-3">
 											<h4 class="team-title">{{employee.firstName}}
 												{{employee.lastName}}</h4>
 											<p>
 												{{department.name}}</p>
-										</article>
+										</div>
 									</div>
 								{% endif %}
 							{% endif %}

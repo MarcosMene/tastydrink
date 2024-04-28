@@ -1,230 +1,83 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Tasty Drink - {{ product.category }}
+	Tasty Drink -
+	{{ product.category }}
 {% endblock %}
 
 {% block body %}
-  <div class="mt-5">
-    <h1 class="main-titles text-center">{{ product.category.name }}</h1>
-  </div>
+	<div class="container">
 
-  <div class="p-0 text-end">
-    <a href="{{ path('app_shop') }}" class="back-to"><span><i class="fa-solid fa-angles-left"></i></span> Back to shop</a>
-  </div>
-  <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
-    {# {% include '_partials/flash.html.twig' %} #}
-    {# -----------------breadcrump #}
+		<div class="mt-5">
+			<h1 class="main-titles text-center">{{ product.category.name }}</h1>
+		</div>
 
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
-      <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
-        <div class="d-flex align-items-start justify-content-between mx-0">
-          <nav class="p-0">
-            <ul class="breadcrumb p-0">
-              <li>
-                <a href="{{ path('app_shop') }}">Shop</a>
-              </li>
-              <li>
-                <a href="{{ path('app_category', { slug: product.category.slug }) }}">{{ product.category }}s</a>
-              </li>
-              <li class="text-capitalize">{{ product.name }}</li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
+		<div class="p-0 text-end">
+			<a href="{{ path('app_shop') }}" class="back-to">
+				<span>
+					<i class="fa-solid fa-angles-left"></i>
+				</span>
+				Back to shop</a>
+		</div>
+		<div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+			{# {% include '_partials/flash.html.twig' %} #}
+			{# -----------------breadcrump #}
 
-    {# --------------------------------- PRODUCT #}
+				<div class="d-flex flex-wrap align-items-center justify-content-between"> <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
+					<div class="d-flex align-items-start justify-content-between mx-0">
+						<nav class="p-0">
+							<ul class="breadcrumb p-0">
+								<li>
+									<a href="{{ path('app_shop') }}">Shop</a>
+								</li>
+								<li>
+									<a href="{{ path('app_category', { slug: product.category.slug }) }}">{{ product.category }}s</a>
+								</li>
+								<li class="text-capitalize">{{ product.name }}</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
 
-    <div class="row">
-      {# ------------DRINKS quantity and sort by #}
-      <div class="products">
-        {# -----------CARDS #}
+			{# --------------------------------- PRODUCT #}
 
-        <div class="row gx-4 wrapper-max d-flex justify-content-center">
-          {% include '_partials/_card-product-horizontal.html.twig' %}
-        </div>
-      </div>
-    </div>
+			<div
+				class="row">
+				{# ------------DRINKS quantity and sort by #}
+				<div
+					class="products">
+					{# -----------CARDS #}
 
-    {# -----------DIVISOR #}
-    <div class="divisor divisor-lg"></div>
+					<div class="row gx-4 wrapper-max d-flex justify-content-center">
+						{% include '_partials/_card-product-horizontal.html.twig' %}
+					</div>
+				</div>
+			</div>
 
-    {# --------------------------------- OUR SUGGESTIONS #}
-    <article class="text-center mt-5">
-      <h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
-      <div class="col-12 products">
-        {# -----------CARDS #}
-        <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
-          <div class="row gx-4 wrapper-max d-flex justify-content-center">
-            {# card #}
-            <div class="col-12 col-md-6 col-xxl-4 my-2">
-              <div class="card">
-                {# heart #}
-                <div class="heart">
-                  <i class="fa-regular fa-heart"></i>
-                </div>
+			{# -----------DIVISOR #}
+			<div class="divisor divisor-lg"></div>
 
-                {# image #}
-                <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
+			{# --------------------------------- OUR SUGGESTIONS #}
+			<section class="text-center mt-5 p-1 ">
+				<h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
+				<div class="wrapper info wrapper-max m-auto p-0 w-75">
+					<div class="row d-flex align-items-center justify-content-between ">
+						{% for product in productSuggestions %}
+							<div class="col-12 col-sm-6 col-md-4 my-3 ">
+								<div class="product-card m-auto img-hover-zoom rounded-1">
+									<a href="{{ path('app_product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid "/></a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
 
-                {# card body #}
-                <article class="card-body bg-light">
-                  <h2 class="card-title text-uppercase text-start">Petrolette 33cl</h2>
-                  {# description quantity #}
-                  <div class="row">
-                    <div class="col-12 col-sm-6 d-flex flex-column">
-                      <div class="card-text text-start">
-                        Origin: <span>France</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Category: <span>Red wine</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Year: <span>2021</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Quatity: <span>100cl</span>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-6 text-end">
-                      {# quantity #}
-                      <div class="d-flex flex-column align-items-end">
-                        <p class="card-title-quantity m-0">Quantity</p>
-                        <div class="btn-group border border-primary" role="group" aria-label="First group">
-                          <button type="button" class="btn btn-success">-</button>
-                          <button type="button" class="btn btn-light bg-white disabled">1</button>
-                          <button type="button" class="btn btn-success">+</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {# price #}
-                  <div class="products-price my-2 text-end">
-                    <span class="card-price">23,</span>90€
-                  </div>
-
-                  {# button add basket #}
-                  <div class="col-12 text-center mt-3 mb-2">
-                    <a href="#" class="btn btn-primary btn-link">Add to basket</a>
-                  </div>
-                </article>
-              </div>
-            </div>
-            {# card #}
-            <div class="col-12 col-md-6 col-xxl-4 my-2">
-              <div class="card">
-                {# heart #}
-                <div class="heart">
-                  <i class="fa-regular fa-heart"></i>
-                </div>
-
-                {# image #}
-                <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
-
-                {# card body #}
-                <article class="card-body bg-light">
-                  <h2 class="card-title text-uppercase text-start">Petrolette 33cl</h2>
-                  {# description quantity #}
-                  <div class="row">
-                    <div class="col-12 col-sm-6 d-flex flex-column">
-                      <div class="card-text text-start">
-                        Origin: <span>France</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Category: <span>Red wine</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Year: <span>2021</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Quatity: <span>100cl</span>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-6 text-end">
-                      {# quantity #}
-                      <div class="d-flex flex-column align-items-end">
-                        <p class="card-title-quantity m-0">Quantity</p>
-                        <div class="btn-group border border-primary" role="group" aria-label="First group">
-                          <button type="button" class="btn btn-success">-</button>
-                          <button type="button" class="btn btn-light bg-white disabled">1</button>
-                          <button type="button" class="btn btn-success">+</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {# price #}
-                  <div class="products-price my-2 text-end">
-                    <span class="card-price">23,</span>90€
-                  </div>
-
-                  {# button add basket #}
-                  <div class="col-12 text-center mt-3 mb-2">
-                    <a href="#" class="btn btn-primary btn-link">Add to basket</a>
-                  </div>
-                </article>
-              </div>
-            </div>
-            {# card #}
-            <div class="col-12 col-md-6 col-xxl-4 my-2">
-              <div class="card">
-                {# heart #}
-                <div class="heart">
-                  <i class="fa-regular fa-heart"></i>
-                </div>
-
-                {# image #}
-                <img src="{{ asset('uploads/products/beer_blond_4.jpeg') }}" alt="" class="img-fluid card-img-top" />
-
-                {# card body #}
-                <article class="card-body bg-light">
-                  <h2 class="card-title text-uppercase text-start">Petrolette 33cl</h2>
-                  {# description quantity #}
-                  <div class="row">
-                    <div class="col-12 col-sm-6 d-flex flex-column">
-                      <div class="card-text text-start">
-                        Origin: <span>France</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Category: <span>Red wine</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Year: <span>2021</span>
-                      </div>
-                      <div class="card-text text-start">
-                        Quatity: <span>100cl</span>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-6 text-end">
-                      {# quantity #}
-                      <div class="d-flex flex-column align-items-end">
-                        <p class="card-title-quantity m-0">Quantity</p>
-                        <div class="btn-group border border-primary" role="group" aria-label="First group">
-                          <button type="button" class="btn btn-success">-</button>
-                          <button type="button" class="btn btn-light bg-white disabled">1</button>
-                          <button type="button" class="btn btn-success">+</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {# price #}
-                  <div class="products-price my-2 text-end">
-                    <span class="card-price">23,</span>90€
-                  </div>
-
-                  {# button add basket #}
-                  <div class="col-12 text-center mt-3 mb-2">
-                    <a href="#" class="btn btn-primary btn-link">Add to basket</a>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+					{# button add basket #}
+					<div class="col-12 text-center mt-5">
+						<a href="{{ path('app_shop') }}" class="btn btn-outline mt-2">Find other products</a>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
 {% endblock %}

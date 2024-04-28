@@ -1,80 +1,105 @@
 {# LOGIN BAR #}
 <div class="py-3 bg-info">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a class="navbar-brand fs-3" href="{{ path('app_home') }}">Tasty Drink</a>
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <ul class="nav col-12 col-lg-auto my-2 justify-content-end align-items-center my-md-0 text-small">
-        <li>
-          {% if app.user %}
-            <i class="fa-regular fa-circle-user mx-3 fa-xl"></i>
-            <p class="d-inline">Hello {{ app.user.firstname }} -</p>
-            <a href="{{ path('app_account') }}" class="btn btn-primary btn-signOut">My account</a>
-            <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-signOut">Log out</a>
-          {% else %}
-            <a href="{{ path('app_login') }}" class="mx-1 btn btn-primary mr-5 btn-signIn">Login</a> |
-            <a href="{{ path('sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
-          {% endif %}
-        </li>
-        <li class="shopping-icon">
-          <a href="{{ path('app_cart') }}">
-            <i class="fa-solid fa-cart-shopping"></i>
+	<div class="container d-flex justify-content-between align-items-center">
+		<a class="navbar-brand fs-3" href="{{ path('app_home') }}">Tasty Drink</a>
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<ul class="nav col-12 col-lg-auto my-2 justify-content-end align-items-center my-md-0 text-small">
+				{% if app.user %}
+					<li class="shopping-icon">
+						<i class="fa-regular fa-circle-user mx-3 fa-xl"></i>
+						<p class="d-inline">Hello
+							{{ app.user.firstname }}
+							-</p>
+						{# whishlist #}
 
-            {% if fullCartQuantity > 0 %}
-              <span>{{ fullCartQuantity }}</span>
-            {% endif %}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+						<a href="{{ path('app_account') }}" class="btn btn-primary btn-signOut">My account</a>
+						<a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-signOut">Log out</a>
+
+						{# wishlist #}
+						<a href="{{ path('app_account_wishlist') }}" class="wishlist-icon">
+							<i class="fa-solid fa-heart fa-heart-header"></i>
+
+							{% if (app.user.wishlists|length) > 0 %}
+								<span>{{ app.user.wishlists|length }}</span>
+							{% endif %}
+						</a>
+					{% else %}
+						<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary mr-5 btn-signIn">Login</a>
+						|
+						<a href="{{ path('app_sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
+					</li>
+				{% endif %}
+				<li class="shopping-icon">
+					<a href="{{ path('app_cart') }}">
+						<i class="fa-solid fa-cart-shopping"></i>
+
+						{% if fullCartQuantity > 0 %}
+							<span>{{ fullCartQuantity }}</span>
+						{% endif %}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 {# NAV BAR #}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container d-flex justify-content-end">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+	<div class="container d-flex justify-content-end">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-sm-center justify-content-sm-between px-0">
-        <li class="nav-item">
-          <a class="nav-link active text-center" href="{{ path('our_story') }}">Our Story</a>
-        </li>
-        <li class="nav-item text-center">
-          <a class="nav-link" href="{{ path('team') }}">Our Team</a>
-        </li>
-        <li class="nav-item dropdown text-center">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar</a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item text-center" href="#">Menu Drinks</a>
-            </li>
-            <li>
-              <a class="dropdown-item text-center" href="#">Menu Eats</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown text-center">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item text-center" href="{{ path('app_shop') }}">All products</a>
-            </li>
-            {% for category in allCategories %}
-              {% if (category.products|length) > 0 %}
-                <li>
-                  <a class="dropdown-item text-center" href="{{ path('app_category', { slug: category.slug }) }}">{{ category.name }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </li>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-sm-center justify-content-sm-between px-0">
+				<li class="nav-item">
+					<a class="nav-link active text-center" href="{{ path('our_story') }}">Our Story</a>
+				</li>
+				<li class="nav-item text-center">
+					<a class="nav-link" href="{{ path('team') }}">Our Team</a>
+				</li>
+				<li class="nav-item dropdown text-center">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item text-center" href="{{path('app_our_bar')}}">Our Bar</a>
+						</li>
+						<li>
+							<hr class="dropdown-divider bg-black"/>
+						</li>
+						<li>
+							<a class="dropdown-item text-center" href="{{path('app_menu_drinks')}}">Menu Drinks</a>
+						</li>
+						<li>
+							<a class="dropdown-item text-center" href="{{path('app_menu_foods')}}">Menu Foods</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown text-center">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+					<ul class="dropdown-menu">
+						{% for category in allCategories|sort((a, b) => a.name <=> b.name) %}
+							{% if (category.products|length) > 0 %}
+								<li>
+									<a class="dropdown-item text-center" href="{{ path('app_category', { slug: category.slug }) }}">{{ category.name }}</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+						<li>
+							<hr class="dropdown-divider bg-black"/>
+						</li>
+						<li>
+							<a class="dropdown-item text-center" href="{{ path('app_shop') }}">All products</a>
+						</li>
+					</ul>
+				</li>
 
-        <li class="nav-item text-center">
-          <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+				<li class="nav-item text-center">
+					<a class="nav-link" href="{{ path('contact') }}">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </nav>
 
 <!-- line divisor -->

@@ -1,88 +1,108 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Tasty Drink - Welcome
+	Tasty Drink - Welcome
 {% endblock %}
 
 {% block body %}
-  {# -----------------breadcrump #}
-  {# <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
-    <div class="d-flex align-items-start justify-content-between mx-0">
-      <div class="p-0">
-        <ul class="breadcrumb p-0">
-          <li>
-            <a href="#">All drinks</a>
-          </li>
-          <li>Beers</li>
-        </ul>
-      </div>
-      <div class="p-0">
-        <a href="" class="back-to"><= Back to products</a>
-      </div>
-    </div>
-  </div> #}
+	{# -----------------breadcrump #}
+	{# <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
+		    <div class="d-flex align-items-start justify-content-between mx-0">
+		      <div class="p-0">
+		        <ul class="breadcrumb p-0">
+		          <li>
+		            <a href="#">All drinks</a>
+		          </li>
+		          <li>Beers</li>
+		        </ul>
+		      </div>
+		      <div class="p-0">
+		        <a href="" class="back-to"><= Back to products</a>
+		      </div>
+		    </div>
+		  </div> #}
 
-  {# <div class="row product-container"></div> #}
+	{# <div class="row product-container"></div> #}
 
-  <div class="row mt-5">
-    {# --------Accordion #}
-    <div class="col-12 col-lg-3 products-filter">
-      <div class="wrapper-filter info wrapper-max m-auto mb-3 p-1">
-        <div class="accordion" id="accordionExample">
-          <article class="accordion-item">
-            <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Filter by</button></h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-              {# form filter #}
-              <div class="accordion-body">{{ form(form) }}</div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
+		<div
+		class="row mt-5"> {# --------Accordion #}
+		<div class="col-12 col-lg-3 products-filter">
+			<div class="wrapper-filter info wrapper-max m-auto mb-3 p-1">
+				<div class="accordion" id="accordionExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Filter by</button>
+						</h2>
+						<div
+							id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							{# form filter #}
+							<div class="accordion-body">
+								{{ form(form) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-    {# ------------DRINKS total and sort by #}
-    <div class="col-12 col-lg-9 products">
-      <div class="d-flex justify-content-between align-items-center">
-        <article>
-          <h3 class="products-quantity">{{ products|length }} results found</h3>
-          <p></p>
-        </article>
-        <div class="products-sort d-flex justify-content-between">
-          <div>Sort By:</div>
-          <div class="d-grid gap-2">
-            <button class="btn btn-outline-primary ms-4" type="button">Price <span><i class="fa-solid fa-chevron-up"></i></span><span><i class="fa-solid fa-chevron-down"></i></span></button>
-          </div>
-          <div class="d-grid gap-2">
-            <button class="btn btn-outline-primary ms-4" type="button">Year <span><i class="fa-solid fa-chevron-up"></i></span><span><i class="fa-solid fa-chevron-down"></i></span></button>
-          </div>
-        </div>
-      </div>
+			{# ------------DRINKS total and sort by #}
+			<div class="col-12 col-lg-9 products">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<h3 class="products-quantity">{{ products|length }}
+							results found</h3>
+						<p></p>
+					</div>
+					<div class="products-sort d-flex justify-content-between">
+						<div>Sort By:</div>
+						<div class="d-grid gap-2">
+							<button class="btn btn-outline-primary ms-4" type="button">Price
+								<span>
+									<i class="fa-solid fa-chevron-up"></i>
+								</span>
+								<span>
+									<i class="fa-solid fa-chevron-down"></i>
+								</span>
+							</button>
+						</div>
+						<div class="d-grid gap-2">
+							<button class="btn btn-outline-primary ms-4" type="button">Year
+								<span>
+									<i class="fa-solid fa-chevron-up"></i>
+								</span>
+								<span>
+									<i class="fa-solid fa-chevron-down"></i>
+								</span>
+							</button>
+						</div>
+					</div>
+				</div>
 
-      {# -----------CARDS #}
-      <div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
-        <div class="row gx-4 wrapper-max d-flex justify-content-center">
-          {% if (products|length) > 0 %}
-            {% for product in products %}
-              {% include '_partials/_card-product.html.twig' %}
-            {% endfor %}
-          {% else %}
-            <h3 class="text-center m-5">No Drinks Found!</h3>
-          {% endif %}
-        </div>
+				{# -----------CARDS #}
+				<div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+					<div class="row gx-4 wrapper-max d-flex justify-content-center">
+						{% if (products|length) > 0 %}
+							{% for product in products %}
+								{% include '_partials/_card-product.html.twig' %}
+							{% endfor %}
+						{% else %}
+							<h3 class="text-center m-5">No Drinks Found!</h3>
+						{% endif %}
+					</div>
 
-        {# ---------- pagination #}
-        {# <div class="pagination">
-          <div class="pagination-buttons">
-            <div class="prev-button">
-              <i class="fa-solid fa-chevron-left"></i>
-            </div>
-            <div class="pages">1 2 3 4 5</div>
-            <div class="next-button">
-              <i class="fa-solid fa-chevron-right"></i>
-            </div>
-          </div>
-        </div> #}
-      </div>
-    </div>
-  </div>
-{% endblock %}
+					{# ---------- pagination #}
+					{# <div class="pagination">
+										          <div class="pagination-buttons">
+										            <div class="prev-button">
+										              <i class="fa-solid fa-chevron-left"></i>
+										            </div>
+										            <div class="pages">1 2 3 4 5</div>
+										            <div class="next-button">
+										              <i class="fa-solid fa-chevron-right"></i>
+										            </div>
+										          </div>
+										        </div> #}
+				</div>
+			</div>
+		</div>
+	{% endblock %}

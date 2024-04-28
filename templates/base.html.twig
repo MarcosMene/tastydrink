@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>
-      {% block title %}
+	<head>
+		<meta charset="UTF-8"/>
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-      {% endblock %}
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block stylesheets %}
-      {{ encore_entry_link_tags('app') }}
-    {% endblock %}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/> {% block javascripts %}{% endblock %}
+		</head>
+		<body>
+			{% include '_partials/_header.html.twig' %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+			<main role="main">
+				{% if block('carousel') is defined %}{% endif %}
 
-    {% block javascripts %}
+				<section class="mb-5">
+					{% include '_partials/flash.html.twig' %}
+					{% block body %}{% endblock %}
+				</section>
+			</main>
 
-    {% endblock %}
-  </head>
-  <body>
-    {% include '_partials/_header.html.twig' %}
+			{% include '_partials/_footer.html.twig' %}
 
-    <main role="main" class="container">
-      {% if block('carousel') is defined %}
-
-      {% endif %}
-
-      <section class="mb-5">
-        {% include '_partials/flash.html.twig' %}
-        {% block body %}
-
-        {% endblock %}
-      </section>
-    </main>
-
-    {% include '_partials/_footer.html.twig' %}
-
-    {# js files #}
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/scripts.js') }}" defer></script>
-  </body>
-</html>
+			{# js files #}
+			<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
+			<script src="{{ asset('assets/js/scripts.js') }}" defer></script>
+		</body>
+	</html>

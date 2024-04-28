@@ -1,39 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Tasty Drink - My addresses
+	Tasty Drink - My addresses
 {% endblock %}
 
 {% block body %}
-  <div class="mt-5">
-    <h1 class="main-titles text-center">My account</h1>
-  </div>
-  {# {% include '_partials/flash.html.twig' %} #}
-  <div class="wrapper account">
-    <div class="row p-2">
-      <div class="col-md-3 mb-3">
-        {% include 'account/_menu.html.twig' %}
-      </div>
-      <div class="col-md-9 px-4 py-2 bg-light rounded">
-        <h2 class="text-center text-black mt-3 mb-5">My addresses</h2>
-        <!-- button add address -->
-        <div class="text-end my-4">
-          <a href="{{ path('app_account_address_form') }}" class="btn btn-link">Create address</a>
-        </div>
-        {% if (app.user.addresses|length) == 0 %}
-          <div class="text-center py-4 px-2">
-            <p class="text-dark fw-medium bg-white border border-secondary rounded py-4 px-5">
-              You don’t have any saved address yet at Tasty Drink.<br />
-            </p>
-          </div>
-        {% else %}
-          <div class="row d-flex justify-content-center align-items-start flex-wrap">
-            {% for address in app.user.addresses %}
-              {% include '_partials/_card_address.html.twig' %}
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+	<div class="container">
+
+		<div class="mt-5">
+			<h1 class="main-titles text-center">My account</h1>
+		</div>
+		{# {% include '_partials/flash.html.twig' %} #}
+		<div class="wrapper account">
+			<div class="row p-2">
+				<div class="col-md-3 mb-3">
+					{% include 'account/_menu.html.twig' %}
+				</div>
+				<div class="col-md-9 px-4 py-2 bg-light rounded">
+					<h2 class="text-center text-black mt-3 mb-5">My addresses</h2>
+					<!-- button add address -->
+					<div class="text-end my-4">
+						<a href="{{ path('app_account_address_form') }}" class="btn btn-link">Create address</a>
+					</div>
+					{% if (app.user.addresses|length) == 0 %}
+						<div class="text-center py-4 px-2">
+							<p class="text-dark fw-medium bg-white border border-secondary rounded py-4 px-5">
+								You don’t have any saved address yet at Tasty Drink.<br/>
+							</p>
+						</div>
+					{% else %}
+						<div class="row d-flex justify-content-center align-items-start flex-wrap">
+							{% for address in app.user.addresses %}
+								{% include '_partials/_card_address.html.twig' %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -16,7 +16,6 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank('This field cannot be empty.')]
     #[Assert\Length(
         min: 3,
         max: 40,

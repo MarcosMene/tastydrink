@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProductController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $em)
-    {
-    }
+    // public function __construct(private EntityManagerInterface $em)
+    // {
+    // }
 
     // #[Route('/our-products', name: 'products')]
     // public function index(Request $request): Response
@@ -50,7 +50,8 @@ class ProductController extends AbstractController
         }
 
         return $this->render('products/show.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'productSuggestions' => $productRepository->findByIsSuggestion(true, ['id' => 'DESC'], 3),
         ]);
     }
 }
