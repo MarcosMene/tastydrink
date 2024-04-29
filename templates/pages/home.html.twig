@@ -9,42 +9,44 @@
 {% block body %}
 
 	{# CAROUSEL #}
-	{% if headers|length>0 %}
+	<div class="d-none d-md-block">
+		{% if headers|length>0 %}
 
-		<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-			<div class="carousel-indicators">
-				{%if headers|length >1 %}
-					{% for key,header in headers %}
-						<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{key}}" aria-label="{{header.title}}" {% if key == 0 %} class="active" aria-current="true" {% endif %}></button>
-					{% endfor %}
-				{% endif %}
-			</div>
-			<div class="carousel-inner">
-				{% for key, header in headers %}
-					<div {% if key == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
-						<img src="/uploads/header_carousel/{{ header.illustration }}" class="bd-placeholder-img" width="100%" height="100%" x/>
-						<div class="container">
-							<div class="carousel-caption text-start">
-								<h1>{{ header.title }}</h1>
-								<p class="opacity-75">{{ header.content }}</p>
-								<p>
-									<a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a>
-								</p>
+			<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					{%if headers|length >1 %}
+						{% for key,header in headers %}
+							<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{key}}" aria-label="{{header.title}}" {% if key == 0 %} class="active" aria-current="true" {% endif %}></button>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<div class="carousel-inner">
+					{% for key, header in headers %}
+						<div {% if key == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+							<img src="/uploads/header_carousel/{{ header.illustration }}" class="bd-placeholder-img" width="100%" height="100%" x/>
+							<div class="container">
+								<div class="carousel-caption text-start">
+									<h1>{{ header.title }}</h1>
+									<p class="opacity-75">{{ header.content }}</p>
+									<p>
+										<a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				{% endfor %}
+					{% endfor %}
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
-	{% endif %}
+		{% endif %}
+	</div>
 	{# -----------------DRINK SHOP & BAR #}
 	<div class="container">
 		<div class="mt-5">
@@ -105,8 +107,8 @@
 				<div class="row d-flex align-items-center justify-content-between ">
 
 					{% for product in newProducts %}
-						<div class="col-12 col-sm-6 col-md-4 my-2">
-							<div class="product-card m-auto img-hover-zoom">
+						<div class="col-12 col-sm-6 col-md-4 my-2 ">
+							<div class="product-card m-auto img-hover-zoom rounded">
 								<a href="{{ path('app_product', { slug: product.slug }) }}">
 									<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"/></a>
 							</div>
@@ -129,38 +131,56 @@
 
 			{# -----------------OPENNING HOURS #}
 
-			<section class="text-center mt-5">
-				<h2 class="headers">Openning Hours</h2>
-				<div class="mt-4 mx-auto">
-					<div class="row justify-content-center">
-						<div class="col-0 col-sm-1col-lg-0 d-none"></div>
-						<div class="col-0 col-lg-3 d-flex align-items-stretch p-0 border border-light d-none d-lg-block">
-							<img src="{{ asset('assets/images/open.jpeg') }}" alt="open hours sign" width="100%" height="100%"/>
+			{% if barSchedules|length >0 and shopSchedules|length>0 %}
+				<section class="text-center mt-5">
+					<h2 class="headers">Openning Hours</h2>
+					<div class="mt-5 mx-auto table-hours">
+						<div class="row justify-content-center">
+							<div class="col-0 col-sm-1col-lg-0 d-none"></div>
+							<div class="col-0 col-lg-3 d-flex align-items-stretch p-0 border border-light d-none d-lg-block">
+								<img src="{{ asset('assets/images/open.jpeg') }}" alt="open hours sign" width="100%" height="100%"/>
+							</div>
+							<div
+								class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
+
+								{# SHOP TIME  #}
+								<h3 class="sub-titles text-uppercase fw-medium">Shop</h3>
+								{% for schedule in shopSchedules %}
+									<p>
+										<span>{{ schedule.day }}:</span>
+
+										<span class="open-time">{{ schedule.openTime|date('G') }}h</span>
+										-
+										<span class="close-time">{{ schedule.closeTime|date('G') }}h</span>
+									</p>
+								{% endfor %}
+
+							</div>
+							<div
+								class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
+
+								{# BAR TIME  #}
+								<h3 class="sub-titles text-uppercase fw-medium">Bar</h3>
+								{% for schedule in barSchedules %}
+									<p>
+										<span>{{ schedule.day }}:</span>
+
+										<span class="open-time">{{ schedule.openTime|date('G') }}h</span>
+										-
+										<span class="close-time">{{ schedule.closeTime|date('G') }}h</span>
+									</p>
+								{% endfor %}
+
+							</div>
+							<div class="col-0 col-sm-1 col-lg-0 d-none"></div>
 						</div>
-						<div class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
-							<h3 class="sub-titles">Shop</h3>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-						</div>
-						<div class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
-							<h3 class="sub-titles">Bar</h3>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-							<p>Sunday 14h - 18h</p>
-						</div>
-						<div class="col-0 col-sm-1 col-lg-0 d-none"></div>
 					</div>
-				</div>
-			</section>
+				</section>
+			{% else %}
+
+				{# VACATION MESSAGE  #}
+				<div class="text-capitalize fs-1 bg-light p-5 text-center text-black">We're on holiday. Tasky Drink will open its doors at the end of the month. See you soon.</div>
+			{% endif %}
 		</div>
 
 	{% endblock %}

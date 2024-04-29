@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\BarTime;
 use App\Entity\Carrier;
 use App\Entity\Category;
 use App\Entity\Departament;
@@ -14,6 +15,7 @@ use App\Entity\Header;
 use App\Entity\MenuDrink;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\ShopTime;
 use App\Entity\Team;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -58,5 +60,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Menu drink', 'fas fa-tag', DrinkCategory::class);
         yield MenuItem::linkToCrud('Food', 'fas fa-tag', Food::class);
         yield MenuItem::linkToCrud('Menu food', 'fas fa-tag', FoodCategory::class);
+        yield MenuItem::section('Open close hours');
+        yield MenuItem::linkToCrud('Shop open/close', 'fas fa-tag', ShopTime::class);
+        yield MenuItem::linkToCrud('Bar open/close', 'fas fa-tag', BarTime::class);
     }
 }
