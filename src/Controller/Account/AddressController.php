@@ -59,11 +59,6 @@ class AddressController extends AbstractController
 
             //if cart is not empty, redirect to app_order
             if ($cart->fullQuantity() > 0) {
-                // $this->addFlash(
-                //     'success',
-                //     'fasasdfasdfasdfafdafdfa.'
-                // );
-
                 return $this->redirectToRoute('app_order');
             }
 

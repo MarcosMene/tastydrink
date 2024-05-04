@@ -20,12 +20,6 @@ class Order
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * state order
-     * 1 stand by for paying the order
-     * 2 payiment accepted by not shipped yet
-     * 3 shipped
-     */
     #[ORM\Column]
     private ?int $state = null;
 
@@ -63,7 +57,7 @@ class Order
             $coeff = 1 + ($product->getProductTva() / 100);
             $totalTTC += ($product->getProductPrice() * $coeff) * $product->getProductQuantity();
         };
-        return   number_format(($totalTTC + $this->getCarrierPrice()) / 100, '2', '.', ',');
+        return   number_format(($totalTTC + $this->getCarrierPrice()), '2', '.', ',');
     }
 
 
@@ -73,7 +67,7 @@ class Order
         $products = $this->getOrderDetails();
 
         foreach ($products as $product) {
-            $coeff = $product->getProductTva() / 100;
+            $coeff = $product->getProductTva();
             $totalTva += $product->getProductPrice() * $coeff;
         }
         return number_format($totalTva / 100, '2', '.', ',');

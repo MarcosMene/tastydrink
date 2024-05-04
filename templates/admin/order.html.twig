@@ -1,7 +1,27 @@
 {# layout to show detail orders on easyadmin #}
 {% extends '@!EasyAdmin/layout.html.twig' %}
 {% block main %}
-	<p class="h4">Order n#{{ order.id }}</p>
+	<h2>Act on the orders</h2>
+
+	{# verify order state to show the link or not #}
+	{% if order.state != 1 %}
+		{# link to url order with the state  #}
+		<a href="{{current_url}}&state=3" class="{% if order.state == 3 %}d-none{% endif %} p-1 bg-info bg-opacity-10 border border-info rounded me-2 text-black">Order in progress</a>
+		<a href="{{current_url}}&state=4" class="{% if order.state == 4 %}d-none{% endif %} p-1 bg-info bg-opacity-10 border border-info rounded me-2 text-black">Order shipped</a>
+		<a href="{{current_url}}&state=5" class="{% if order.state == 5 %}d-none{% endif %} p-1 bg-info bg-opacity-10 border border-info rounded me-2 text-black">Order canceled</a>
+	{% else %}
+		<p class="fw-semibold">You cannot act on an unpaid order.</p>
+	{% endif %}
+	<hr>
+	<div class="text-end">
+		<a class="btn btn-success" href="{{path('app_invoice_admin',{id_order:order.id})}}" target="_blank">Show/Print order</a>
+	</div>
+	<p class="h4">Order n#{{ order.id }}
+		{# field is inside of state.html.twig #}
+		<span class="ms-4">{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</span>
+	</p>
+
+
 	<p>
 		<strong>Date of your order:</strong>
 		{{ order.createdAt|date('d/m/Y') }}
@@ -9,8 +29,6 @@
 	<p>Stripe session id :
 		{{ order.stripeSessionId }}</p>
 
-	{# field is inside of state.html.twig #}
-	<p>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</p>
 
 	<div class="row">
 		<div class="col-md-6">
@@ -46,7 +64,7 @@
 					<td>{{ product.productQuantity }}</td>
 					<td>{{ product.productPrice|price }}</td>
 					<td>{{ product.productTva }}%</td>
-					{% set coeff = 1 + product.productTva %}
+					{% set coeff = 1 + product.productTva / 100 %}
 					<td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
 				</tr>
 			{% endfor %}

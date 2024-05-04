@@ -25,6 +25,9 @@
 							Back to account</a>
 					</div>
 					<div class="bg-white rounded p-5 mb-5">
+						<div class="text-end">
+							<a class="btn btn-primary btn-signOut" href="{{path('app_invoice_customer',{id_order:order.id})}}" target="_blank">Print order</a>
+						</div>
 						<p class="h3">Order n#{{ order.id }}</p>
 						<p>
 							<strong>Date of your order:</strong>
@@ -67,10 +70,10 @@
 											</td>
 											<td>{{ product.productName }}</td>
 											<td>{{ product.productQuantity }}</td>
-											<td>{{ (product.productPrice / 100)|price }}</td>
+											<td>{{ (product.productPrice )|price }}</td>
 											<td>{{ product.productTva }}%</td>
 											{% set coeff = 1 + product.productTva / 100 %}
-											<td>{{ (product.productPrice * coeff * product.productQuantity / 100)|price }}</td>
+											<td>{{ (product.productPrice * coeff * product.productQuantity )|price }}</td>
 										</tr>
 									{% endfor %}
 									<tr>
@@ -87,12 +90,12 @@
 							</table>
 							<div class="text-start fs-3 me-5">
 								<strong>Total Ex.T.:</strong>
-								${{ order.totalWt - order.totalTva }}
+								{{ (order.totalWt - order.totalTva)|price }}
 								<br/>
 								<strong>Tax:</strong>
-								{{ order.totalTva }}%<br/>
+								{{ order.totalTva|price }}%<br/>
 								<strong>Total VAT:</strong>
-								${{ order.totalWt }}
+								${{ order.totalWt|price }}
 								<br/>
 							</div>
 						</div>

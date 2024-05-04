@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\BarTime;
+use App\Entity\Capacity;
 use App\Entity\Carrier;
 use App\Entity\Category;
 use App\Entity\Departament;
@@ -15,6 +16,7 @@ use App\Entity\Header;
 use App\Entity\MenuDrink;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\Reservation;
 use App\Entity\ShopTime;
 use App\Entity\Team;
 use App\Entity\User;
@@ -63,5 +65,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Open close hours');
         yield MenuItem::linkToCrud('Shop open/close', 'fas fa-tag', ShopTime::class);
         yield MenuItem::linkToCrud('Bar open/close', 'fas fa-tag', BarTime::class);
+        yield MenuItem::linkToCrud('capacity', 'fas fa-tag', Capacity::class);
+        yield MenuItem::linkToCrud('reservations', 'fas fa-tag', Reservation::class);
     }
 }
