@@ -42,6 +42,12 @@ h6 {
   font-weight: 400;
 }
 
+hr.divisor {
+  border: 1px solid $primary;
+  opacity: 1;
+  margin: 10px 0;
+}
+
 .container {
   max-width: $maxContainer;
   padding: 0 80px;
