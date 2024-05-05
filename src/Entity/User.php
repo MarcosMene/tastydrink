@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -26,13 +27,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank('This field cannot be empty.')]
-    #[Assert\Length(
-        min: 10,
-        max: 60,
-        minMessage: 'Your email must be at least {{ limit }} characters long',
-        maxMessage: 'Your email must be no longer than {{ limit }} characters'
-    )]
+
     private ?string $email = null;
 
     #[ORM\Column]
@@ -42,34 +37,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank('This field cannot be empty.')]
-    #[Assert\Length(
-        min: 6,
-        max: 18,
-        minMessage: 'Your password must be at least {{ limit }} characters long',
-        maxMessage: 'Your password must be no longer than {{ limit }} characters'
-    )]
+
 
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank('This field cannot be empty.')]
-    #[Assert\Length(
-        min: 2,
-        max: 30,
-        minMessage: 'First name must be at least {{ limit }} characters long',
-        maxMessage: 'First name must be no longer than {{ limit }} characters'
-    )]
+
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank('This field cannot be empty.')]
-    #[Assert\Length(
-        min: 5,
-        max: 45,
-        minMessage: 'Last name must be at least {{ limit }} characters long',
-        maxMessage: 'Last name must be no longer than {{ limit }} characters'
-    )]
+
     private ?string $lastname = null;
 
     #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'user')]
@@ -80,6 +57,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: Product::class)]
     private Collection $wishlists;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $token = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $tokenExpireAt = null;
 
     public function __construct()
     {
@@ -267,6 +250,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeWishlist(Product $wishlist): static
     {
         $this->wishlists->removeElement($wishlist);
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): static
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getTokenExpireAt(): ?\DateTimeInterface
+    {
+        return $this->tokenExpireAt;
+    }
+
+    public function setTokenExpireAt(?\DateTimeInterface $tokenExpireAt): static
+    {
+        $this->tokenExpireAt = $tokenExpireAt;
 
         return $this;
     }
