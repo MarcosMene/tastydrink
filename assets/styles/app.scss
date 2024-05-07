@@ -18,7 +18,10 @@ $placeholder: #b8b8b8;
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 // --------------------GENERAL-----------
-
+body,
+html {
+  height: 100%;
+}
 html {
   background-color: $dark;
   max-width: $limit;
@@ -893,4 +896,20 @@ footer {
       font-size: 0.9rem;
     }
   }
+}
+
+//---------------------ERROR PAGE
+
+.title-hero {
+  font-size: 4rem;
+}
+
+.bg-hero {
+  background: url('/public/assets/images/hero.jpeg') center/cover;
+  height: calc(100vh - 100px);
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }

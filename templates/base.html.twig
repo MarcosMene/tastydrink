@@ -18,10 +18,10 @@
 			<main role="main">
 				{% if block('carousel') is defined %}{% endif %}
 
-				<section class="mb-5">
-					{% include '_partials/flash.html.twig' %}
-					{% block body %}{% endblock %}
-				</section>
+				{# <section class="mb-5"> #}
+				{% include '_partials/flash.html.twig' %}
+				{% block body %}{% endblock %}
+				{# </section> #}
 			</main>
 
 			{% include '_partials/_footer.html.twig' %}

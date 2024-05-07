@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Tasty Drink - Login
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="wrapper p-0 m-0">
+			<div class="row p-0 m-0">
+				<div
+					class="col-12 col-md-6 p-5 d-flex align-items-center justify-content-center flex-column">
+
+					{# TEXT  #}
+					<h1 class="mb-5 text-uppercase fw-medium h2">Page not found</h1>
+					<h1 class="title-hero">Look like you've lost your path.</h1>
+					<p class="h2 my-3">Don't worry, we can find a better way for you.</p>
+					<div class="text-center mt-5">
+						<a href="{{ path('app_home') }}" class="btn btn-outline mt-2">Back to home</a>
+					</div>
+				</div>
+
+				{# IMAGE  #}
+				<div class="col-12 col-md-6 p-5 d-flex align-items-center justify-content-center flex-column bg-hero"></div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
