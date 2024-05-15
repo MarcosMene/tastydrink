@@ -6,6 +6,8 @@ use App\Entity\BarTime;
 use App\Entity\Capacity;
 use App\Entity\Carrier;
 use App\Entity\Category;
+use App\Entity\ColorProduct;
+use App\Entity\CountryProduct;
 use App\Entity\Departament;
 use App\Entity\Drink;
 use App\Entity\DrinkCategory;
@@ -48,7 +50,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('User');
         yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-list', Category::class);
+        yield MenuItem::section('Product');
         yield MenuItem::linkToCrud('Products', 'fas fa-tag', Product::class);
+        yield MenuItem::linkToCrud('Color', 'fas fa-tag', ColorProduct::class);
+        yield MenuItem::linkToCrud('Country', 'fas fa-tag', CountryProduct::class);
         yield MenuItem::linkToCrud('Carriers', 'fas fa-tag', Carrier::class);
         yield MenuItem::linkToCrud('Orders', 'fas fa-tag', Order::class);
         yield MenuItem::section('Header');
@@ -65,7 +70,5 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Open close hours');
         yield MenuItem::linkToCrud('Shop open/close', 'fas fa-tag', ShopTime::class);
         yield MenuItem::linkToCrud('Bar open/close', 'fas fa-tag', BarTime::class);
-        yield MenuItem::linkToCrud('capacity', 'fas fa-tag', Capacity::class);
-        yield MenuItem::linkToCrud('reservations', 'fas fa-tag', Reservation::class);
     }
 }

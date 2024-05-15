@@ -429,6 +429,12 @@ ul.breadcrumb li a:hover {
 }
 
 //-----------------DRINKS FILTERS
+
+.filter {
+  display: block;
+  position: sticky;
+  top: 20px;
+}
 .accordion-button {
   font-size: 1.6rem;
 }
@@ -451,7 +457,7 @@ ul.breadcrumb li a:hover {
 }
 
 .form-check {
-  margin: 20px 0;
+  margin: 10px 0;
 
   &-label {
     font-size: 1.6rem;
@@ -460,13 +466,13 @@ ul.breadcrumb li a:hover {
   }
 }
 
-.form-check-input {
-  transform: scale(1.3);
-  margin: 10px;
-}
+// .form-check-input {
+//   transform: scale(1.3);
+//   margin: 10px;
+// }
 
 .form-check-input[type='checkbox'] {
-  transform: scale(1.5);
+  transform: scale(1);
   margin-right: 10px;
 }
 
@@ -484,6 +490,26 @@ ul.breadcrumb li a:hover {
     font-size: 1.6rem;
   }
 }
+
+// LOADER
+.is-loading:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 4;
+}
+.is-loading .spinner-border {
+  position: absolute;
+  top: calc(50% - 3rem);
+  left: calc(50% - 3rem);
+  z-index: 5;
+}
+
 //------------------OUR PRODUCTS
 
 .products {
@@ -625,38 +651,44 @@ ul.breadcrumb li a:hover {
   }
 }
 
-.pagination {
+ul.pagination {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 30px 0;
 
-  .pagination-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $light;
-    padding: 5px 10px;
-    border-radius: 10px;
-
-    .prev-button,
-    .next-button {
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: $primary;
-      color: $dark;
-      border-radius: 50%;
-    }
-
-    .pages {
-      color: $dark;
-      padding: 0 20px;
-    }
+  .page-link,
+  .page-item {
+    font-size: 1.3rem;
+    color: $black;
   }
 }
+//   .pagination-buttons {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: $light;
+//     padding: 5px 10px;
+//     border-radius: 10px;
+
+//     .prev-button,
+//     .next-button {
+//       width: 30px;
+//       height: 30px;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       background-color: $primary;
+//       color: $dark;
+//       border-radius: 50%;
+//     }
+
+//     .pages {
+//       color: $dark;
+//       padding: 0 20px;
+//     }
+//   }
+// }
 
 //-----------CONTACT
 .contact {

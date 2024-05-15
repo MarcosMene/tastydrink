@@ -64,6 +64,14 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?bool $isSuggestion = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?ColorProduct $colorProduct = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?CountryProduct $countryProduct = null;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -180,6 +188,30 @@ class Product
     public function setIsSuggestion(?bool $isSuggestion): static
     {
         $this->isSuggestion = $isSuggestion;
+
+        return $this;
+    }
+
+    public function getColorProduct(): ?ColorProduct
+    {
+        return $this->colorProduct;
+    }
+
+    public function setColorProduct(?ColorProduct $colorProduct): static
+    {
+        $this->colorProduct = $colorProduct;
+
+        return $this;
+    }
+
+    public function getCountryProduct(): ?CountryProduct
+    {
+        return $this->countryProduct;
+    }
+
+    public function setCountryProduct(?CountryProduct $countryProduct): static
+    {
+        $this->countryProduct = $countryProduct;
 
         return $this;
     }

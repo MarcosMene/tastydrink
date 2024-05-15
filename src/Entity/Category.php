@@ -38,7 +38,7 @@ class Category
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->name;
     }
     public function getId(): ?int
     {

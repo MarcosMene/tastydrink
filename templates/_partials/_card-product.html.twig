@@ -1,31 +1,28 @@
-<div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-2">
-	<div class="card">
-		{# heart #}
-		{# <div class="heart">
-						      <i class="fa-regular fa-heart"></i>
-						    </div> #}
-
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-2 card-product" id="product-{{product.id}}">
+	<div
+		class="card">
 		{# image #}
-			<a href="{{ path('app_product', { slug: product.slug }) }}"> <img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"/></a>
+		<a href="{{ path('app_product', { slug: product.slug }) }}">
+			<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"/></a>
 
 		{# card body #}
 		<div class="card-body bg-light">
 			<h2 class="card-title text-uppercase">{{ product.name }}</h2>
 			<h3 class="text-capitalize product-subtitle">{{ product.subtitle }}</h3>
+			<h3 class="text-capitalize product-subtitle mt-4">Category:
+				{{ product.category.name }}</h3>
+			<h3 class="text-capitalize product-subtitle">Country:
+				{{ product.countryProduct }}</h3>
+			<h3 class="text-capitalize product-subtitle">Color:
+				{{ product.colorProduct }}</h3>
 
-			<div
-				class="row">
-				{# description #}
-				<div class="col-8 col-sm-6 col-lg-8">
-					<div class="product-description mt-4 lead">{{ product.description|raw }}</div>
-				</div>
-				<div
-					class="col-4 col-sm-6 col-lg-4 d-flex align-items-end justify-content-end">
-					{# price #}
-					<div class="products-price text-end">
-						<span class="card-price">{{ product.pricewt|price }}</span>
-					</div>
-				</div>
+			{# description #}
+			<div class="product-description mt-4 lead">{{ product.description|raw }}</div>
+
+
+			{# price #}
+			<div class="products-price text-end my-2">
+				<span class="card-price">{{ product.pricewt|price }}</span>
 			</div>
 
 			{# button add basket #}

@@ -1,0 +1,73 @@
+{{form_start(form, {attr:{class:'js-filter-form'}})}}
+
+{# LOADING  #}
+
+<div class="spinner-border text-warning js-loading" roler="status" aria-hidden="true" style="display:none; width: 5rem; height: 5rem;">
+	<span class="sr-only">
+		Loading...
+	</span>
+</div>
+
+
+{{form_row(form.q)}}
+
+{# ACCORDION  #}
+<div class="accordion" id="accordionPanelsStayOpenExample">
+
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+				Categories
+			</button>
+		</h2>
+		<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+			<div class="accordion-body">
+				{{form_row(form.categories)}}
+
+			</div>
+		</div>
+	</div>
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+				Country
+			</button>
+		</h2>
+		<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+			<div class="accordion-body">
+				{{form_row(form.country)}}
+			</div>
+		</div>
+	</div>
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+				Color
+			</button>
+		</h2>
+		<div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+			<div class="accordion-body">
+				{{form_row(form.color)}}
+			</div>
+		</div>
+	</div>
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+				Price
+			</button>
+		</h2>
+		<div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+			<div class="accordion-body">
+				<div class="row">
+					<div class="col-md-6">{{form_row(form.min)}}</div>
+					<div class="col-md-6">{{form_row(form.max)}}</div>
+					<div id="price-slider" data-min="{{min}}" data-max="{{max}}" class="mt-3"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<button type="submit" class="btn btn-primary btn-primary btn-link w-100 fs-4 fw-medium text-uppercase mt-5 mb-3">Filter</button>
+{{form_end(form)}}

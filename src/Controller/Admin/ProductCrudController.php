@@ -58,7 +58,9 @@ class ProductCrudController extends AbstractCrudController
                     '20%' => '20',
                 ])
                 ->setLabel('VAT'),
-            AssociationField::new('category')->setHelp('Category of the product')
+            AssociationField::new('category')->setHelp('Category of the product'),
+            // AssociationField::new('colorProduct')->setHelp('Color of the product'),
+            AssociationField::new('countryProduct')->setHelp('Country of the product')
 
         ];
     }
