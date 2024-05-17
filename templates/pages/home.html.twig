@@ -181,6 +181,34 @@
 				{# VACATION MESSAGE  #}
 				<div class="text-capitalize fs-1 bg-light p-5 text-center text-black">We're on holiday. Tasky Drink will open its doors at the end of the month. See you soon.</div>
 			{% endif %}
-		</div>
 
+			{# -----------DIVISOR #}
+			<div class="divisor divisor-lg"></div>
+
+			{# NEWSLETTER  #}
+			<h2 class="headers text-center my-5">Newsletter</h2>
+			<div class="wrapper info wrapper-max m-auto my-5">
+				<div class="row d-flex align-items-center p-5">
+					<div class="col-12 col-md-6 text-center p-1 p-md-5">
+						<h2 class="fs-1 text-uppercase">Stay in touch</h2>
+						<p>Subscribe to our newsletter so we can send you offers and discounts!</p>
+						<div class="d-block d-md-none">
+							<div class="divisor divisor-lg my-5"></div>
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6 text-center p-1 p-md-5">
+						<div class="d-flex justify-content-center">
+							{{form_start(NewsletterForm)}}
+							<div class="d-flex justify-content-between">
+
+								{{form_row(NewsletterForm.email)}}
+								{{form_row(NewsletterForm.submit)}}
+							</div>
+							{{form_end(NewsletterForm)}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	{% endblock %}
