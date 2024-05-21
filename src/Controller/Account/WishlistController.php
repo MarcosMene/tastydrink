@@ -61,7 +61,6 @@ class WishlistController extends AbstractController
       );
     }
 
-
     // back to last page visited 
     return $this->redirect($request->headers->get('referer'));
   }

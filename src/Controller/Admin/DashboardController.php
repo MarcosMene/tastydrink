@@ -70,5 +70,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Open close hours');
         yield MenuItem::linkToCrud('Shop open/close', 'fas fa-tag', ShopTime::class);
         yield MenuItem::linkToCrud('Bar open/close', 'fas fa-tag', BarTime::class);
+        yield MenuItem::section('Reservations');
+        yield MenuItem::linkToCrud('Reservation', 'fas fa-tag', Reservation::class);
     }
 }

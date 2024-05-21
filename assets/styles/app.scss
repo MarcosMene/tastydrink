@@ -439,7 +439,8 @@ ul.breadcrumb li a:hover {
   font-size: 1.6rem;
 }
 
-.col-form-label {
+.col-form-label,
+.form-label {
   font-size: 1.6rem;
   text-transform: uppercase;
   font-weight: 300;
@@ -944,4 +945,11 @@ footer {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+//----------RESERVATION
+#reservation {
+  .input-group {
+    width: 200px;
+  }
 }
