@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Tasty Drink - Your opinion
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="mt-5">
+			<h1 class="main-titles text-center">Your opinion</h1>
+		</div>
+		<div class="wrapper wrapper-form bg-light text-black contact">
+			<div class="row px-2 px-md-5 py-3">
+				<div class="col-12 col-md-7 px-2 px-md-3 mx-auto">
+					<h2 class="mb-3 fw-medium">Would you like to leave your opinion?</h2>
+					<p class="fw-normal mb-5">We'd love to hear your feedback! Please share your thoughts and experiences with us to help us improve and serve you better.</p>
+
+
+					{{ form_start(formOpinionClient) }}
+					<div class="col-12">{{ form_row(formOpinionClient.firstname) }}</div>
+					<div class="col-12">{{ form_row(formOpinionClient.rate) }}</div>
+					<div class="col-12">{{ form_row(formOpinionClient.comment) }}</div>
+
+					{{ form_end(formOpinionClient) }}
+				</div>
+
+				<div class="col-12  col-md-5 px-5">
+
+					<div class=" mx-auto revie">
+						<img class="img-fluid" src="{{ asset('assets/images/opinion.jpeg') }}" alt="tasty drink building"/>
+					</div>
+
+				</div>
+
+
+				{# divisor #}
+				<div class="divisor divisor-light d-block d-lg-none"></div>
+			</div>
+
+		</div>
+	</div>
+</div>{% endblock %}

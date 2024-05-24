@@ -10,6 +10,8 @@ use App\Entity\ShopTime;
 use App\Form\NewsletterType;
 use App\Repository\HeaderRepository;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewClientRepository;
+use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,8 +21,13 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(HeaderRepository $headerRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, Request $request): Response
+    public function index(HeaderRepository $headerRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, Request $request, ReviewClientRepository $reviewRepository): Response
     {
+
+        //reviews
+        $reviewsClientApproved = $reviewRepository->findBy(['isApproved' => true]);
+
+
 
         //schedule of the bar
         $barSchedules = $entityManager
@@ -59,7 +66,9 @@ class HomeController extends AbstractController
             'newProducts' => $newProducts,
             'barSchedules' => $barSchedules,
             'shopSchedules' => $shopSchedules,
-            'NewsletterForm' => $form->createView()
+            'NewsletterForm' => $form->createView(),
+            // 'reviews' => $reviews,
+            'reviewsClient' => $reviewsClientApproved
         ]);
     }
 }

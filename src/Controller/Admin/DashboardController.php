@@ -19,6 +19,8 @@ use App\Entity\MenuDrink;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Reservation;
+use App\Entity\Review;
+use App\Entity\ReviewClient;
 use App\Entity\ShopTime;
 use App\Entity\Team;
 use App\Entity\User;
@@ -72,5 +74,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Bar open/close', 'fas fa-tag', BarTime::class);
         yield MenuItem::section('Reservations');
         yield MenuItem::linkToCrud('Reservation', 'fas fa-tag', Reservation::class);
+        yield MenuItem::section('Reviews');
+        yield MenuItem::linkToCrud('Product review', 'fas fa-tag', Review::class);
+        yield MenuItem::linkToCrud('Client review ', 'fas fa-tag', ReviewClient::class);
     }
 }

@@ -70,12 +70,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'user')]
     private Collection $reservations;
 
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $reviews;
+
+    #[ORM\OneToMany(targetEntity: ReviewClient::class, mappedBy: 'user')]
+    private Collection $reviewClients;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->wishlists = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->reviewClients = new ArrayCollection();
     }
 
     public function __toString()
@@ -321,6 +329,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($reservation->getUser() === $this) {
                 $reservation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getUser() === $this) {
+                $review->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReviewClient>
+     */
+    public function getReviewClients(): Collection
+    {
+        return $this->reviewClients;
+    }
+
+    public function addReviewClient(ReviewClient $reviewClient): static
+    {
+        if (!$this->reviewClients->contains($reviewClient)) {
+            $this->reviewClients->add($reviewClient);
+            $reviewClient->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReviewClient(ReviewClient $reviewClient): static
+    {
+        if ($this->reviewClients->removeElement($reviewClient)) {
+            // set the owning side to null (unless already changed)
+            if ($reviewClient->getUser() === $this) {
+                $reviewClient->setUser(null);
             }
         }
 
