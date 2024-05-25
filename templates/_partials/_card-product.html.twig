@@ -6,7 +6,26 @@
 			<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"/></a>
 
 		{# card body #}
-		<div class="card-body bg-light">
+		<div
+			class="card-body bg-light p-4">
+			{# reviews stars #}
+			<div class="reviews d-flex align-items-end flex-column justify-content-end mb-5">
+				{% if product.reviews|length > 0 %}
+					<p class="fw-medium text-end">Average Rating:
+						{{ (product.getAverageRating())|number_format(2) }}</p>
+					<div class="average-rating">
+						{% for i in 1..5 %}
+							{% if i <= product.getAverageRating() %}
+								<i class="fas fa-star positive-star"></i>
+							{% else %}
+								<i class="far fa-star border-star"></i>
+							{% endif %}
+						{% endfor %}
+					</div>
+				{% else %}
+					<p>This product doesn't have a review yet.</p>
+				{% endif %}
+			</div>
 			<h2 class="card-title text-uppercase">{{ product.name }}</h2>
 			<h3 class="text-capitalize product-subtitle">{{ product.subtitle }}</h3>
 			<h3 class="text-capitalize product-subtitle mt-4">Category:
@@ -21,12 +40,12 @@
 
 
 			{# price #}
-			<div class="products-price text-end my-2">
-				<span class="card-price">{{ product.pricewt|price }}</span>
+			<div class="products-price text-end my-5">
+				<span class="card-price fs-1">{{ product.pricewt|price }}</span>
 			</div>
 
 			{# button add basket #}
-			<div class="col-12 text-center mt-5 mb-2">
+			<div class="col-12 text-center  my-3">
 				<a href="{{ path('app_cart_add', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
 			</div>
 		</div>

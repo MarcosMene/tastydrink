@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Classe\Search;
 use App\Data\SearchData;
 use App\Entity\Product;
-use App\Form\SearchType;
+use App\Entity\Review;
+use App\Form\ReviewType;
 use App\FormFilter\SearchForm;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -53,20 +54,42 @@ class ProductController extends AbstractController
         ]);
     }
 
-
     #[Route('/product/{slug}', name: 'app_product')]
-
-    public function show($slug, ProductRepository $productRepository): Response
+    public function show($slug, ProductRepository $productRepository, Request $request, ReviewRepository $reviewRepository, Product $productreview): Response
     {
+        $user = $this->getUser();
 
+        //   PRODUCT 
         $product = $productRepository->findOneBySlug($slug);
         if (!$product) {
             return $this->redirectToRoute('app_shop');
         }
 
+        // REVIEW 
+        //find user review for a movie
+        $review = $reviewRepository->findOneBy(['product' => $product, 'user' => $this->getUser()]);
+
+        $review = new Review();
+        $formReview = $this->createForm(ReviewType::class, $review);
+        $formReview->handleRequest($request);
+
+        if ($formReview->isSubmitted() && $formReview->isValid()) {
+            $review->setIsApproved(false);
+            $review->setProduct($product);
+            $review->setUser($this->getUser());
+
+            $this->em->persist($review);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Your review has been submitted successfully. Thank you very much.');
+            return $this->redirectToRoute('app_product', ['slug' => $slug]);
+        }
         return $this->render('products/show.html.twig', [
             'product' => $product,
             'productSuggestions' => $productRepository->findByIsSuggestion(true, ['id' => 'DESC'], 3),
+            'formReview' => $formReview->createView(),
+            // 'averageRate' => $averageRate,
+            'user_reviewed' => $reviewRepository->findOneBy(['product' => $product, 'user' => $user]) !== null,
         ]);
     }
 }

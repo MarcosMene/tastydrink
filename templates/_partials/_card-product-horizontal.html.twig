@@ -17,7 +17,7 @@
 		{# heart #}
 
 		<div class="row g-0">
-			<div class="col-12 col-md-4 col-lg-2 bg-light" style="position:relative;">
+			<div class="col-12 col-md-4 col-lg-3 bg-light" style="position:relative;">
 				{% if app.user %}
 					{% if product in app.user.wishlists %}
 						<div class="heart">
@@ -42,53 +42,55 @@
 
 				<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" style="height: 100%; width:100%;"/>
 			</div>
-			<div class="col-12 col-md-8 col-lg-10 bg-light px-1 px-sm-4">
+			<div class="col-12 col-md-8 col-lg-9 bg-light px-1 px-sm-4">
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
 						<div class="card-titles d-flex flex-column">
 							<h2 class="card-title text-uppercase">{{ product.name }}</h2>
 							<h3 class="text-capitalize mt-2">{{ product.subtitle }}</h3>
 						</div>
-						<div class="reviews d-flex align-items-end flex-column">
-							<div class="reviews-title">5 reviews</div>
-							<div class="reviews-star">
-								<i class="fa-solid fa-star full-star"></i>
-								<i class="fa-solid fa-star full-star"></i>
-								<i class="fa-solid fa-star full-star"></i>
-								<i class="fa-solid fa-star full-star"></i>
-								<i class="fa-regular fa-star border-star"></i>
-							</div>
+
+						{# reviews stars #}
+						<div class="reviews d-flex align-items-end flex-column justify-content-end">
+							{% if product.reviews|length > 0 %}
+								<p class="fw-medium text-end">Average Rating:
+									{{ (product.getAverageRating())|number_format(2) }}</p>
+								<div class="average-rating">
+									{% for i in 1..5 %}
+										{% if i <= product.getAverageRating() %}
+											<i class="fas fa-star positive-star"></i>
+										{% else %}
+											<i class="far fa-star border-star"></i>
+										{% endif %}
+									{% endfor %}
+								</div>
+							{% else %}
+								<p>This product doesn't have a review yet.</p>
+							{% endif %}
 						</div>
 					</div>
-					<div class="row d-flex justify-content-end align-items-start">
-						<div class="col-7">
-							<div class="card-text">
-								Origin:
-								<span>France</span>
-							</div>
+					<div
+						class="row d-flex justify-content-end align-items-end">
+						{# DESCRIPTION PRODUCT  #}
+						<div class="col-12">
 							<div class="card-text">
 								Category:
 								<span>{{ product.category }}</span>
 							</div>
 							<div class="card-text">
-								Year:
-								<span>2021</span>
+								Origin:
+								<span>{{product.countryProduct}}</span>
 							</div>
 							<div class="card-text">
-								Quatity:
-								<span>100cl</span>
+								Color:
+								<span>{{product.colorProduct}}</span>
 							</div>
 						</div>
-						<div
-							class="col-5 text-end">
-							{# quantity #}
-							<p class="card-available-text mx-0 mx-md-1">
-								<i class="fa-solid fa-check"></i>Available in store
-							</p>
-
-							<div class="products-price text-end my-3">
-								<span class="card-price">{{ product.pricewt|price }}</span>
-							</div>
+					</div>
+					{# PRICE PRODUCT  #}
+					<div class="col-12 text-end">
+						<div class="products-price text-end my-3">
+							<span class="card-price fs-1">{{ product.pricewt|price }}</span>
 						</div>
 					</div>
 					{# divisor #}
@@ -97,7 +99,7 @@
 					<div class="product-description my-3 lead">{{ product.description|raw }}</div>
 
 					{# CARD BOTTOM #}
-					<div class="mt-5 row card-bottom d-flex flex-column-reverse align-items-center align-items-lg-start flex-lg-row">
+					<div class="mt-5 row card-bottom d-flex flex-column-reverse align-items-end align-items-lg-end flex-lg-row">
 						<div class="col-md-12 col-lg-6">
 							<div class="social-networks text-center text-lg-start">
 								<p class="social-networks-message">Share this product on your favorite social networks.</p>
@@ -110,8 +112,38 @@
 								</div>
 							</div>
 						</div>
+						{# BUTTON BASKET #}
 						<div class="col-md-12 col-lg-6 text-center text-lg-end mb-4 mt-lg-0">
 							<a href="{{ path('app_cart_add', { id: product.id }) }}" class="btn btn-primary btn-link">Add to basket</a>
+						</div>
+
+					</div>
+					<div
+						class="review bg-light">
+						{# FORM  #}
+						<div class="form-review mb-5">
+							{% if is_granted('IS_AUTHENTICATED_FULLY') and not user_reviewed %}
+								<div class="card p-2">
+									<h2 class="text-center mt-1">Give your opinion</h2>
+									<div class="card-body">
+										{{ form_start(formReview) }}
+										{{ form_row(formReview.rate) }}
+										{{ form_row(formReview.review) }}
+										{{ form_row(formReview.submit) }}
+										{{ form_end(formReview) }}
+									</div>
+								</div>
+							{% elseif is_granted('IS_AUTHENTICATED_FULLY') and user_reviewed %}
+								{# DIVISOR  #}
+								<div class="divisor-line mt-3 mb-5 "></div>
+								<p class="mt-1 h5 fw-normal text-center">You have already reviewed this product.</p>
+							{% else %}
+								{# DIVISOR  #}
+								<div class="divisor-line my-3 "></div>
+								<p class="text-center">Please
+									<a href="{{ path('app_login') }}" class="text-dark text-decoration-underline">login</a>
+									to review this product.</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>
