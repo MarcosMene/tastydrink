@@ -43,22 +43,7 @@ class HomeController extends AbstractController
         $newProducts = $productRepository->findBy([], ['id' => 'DESC'], 3);
 
 
-        //newsletter
-        $newsletter = new Newsletter();
-        $form = $this->createForm(NewsletterType::class, $newsletter);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($newsletter);
-            $entityManager->flush();
-
-            $mail = new Mail();
-            $mail->send($newsletter->getEmail(), 'Tasty Drink User', 'Confirmation newsletter', 'newsletter.html');
-
-            $this->addFlash('success', 'Your have successfully subscribed to our newsletter');
-
-            return $this->redirectToRoute('app_home');
-        }
 
         return $this->render('pages/home.html.twig', [
             'headers' => $headerRepository->findAll(),
@@ -66,7 +51,7 @@ class HomeController extends AbstractController
             'newProducts' => $newProducts,
             'barSchedules' => $barSchedules,
             'shopSchedules' => $shopSchedules,
-            'NewsletterForm' => $form->createView(),
+            // 'NewsletterForm' => $form->createView(),
             // 'reviews' => $reviews,
             'reviewsClient' => $reviewsClientApproved
         ]);

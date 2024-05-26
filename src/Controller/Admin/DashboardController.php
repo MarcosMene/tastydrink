@@ -16,6 +16,7 @@ use App\Entity\Food;
 use App\Entity\FoodCategory;
 use App\Entity\Header;
 use App\Entity\MenuDrink;
+use App\Entity\Newsletter;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Reservation;
@@ -77,5 +78,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Reviews');
         yield MenuItem::linkToCrud('Product review', 'fas fa-tag', Review::class);
         yield MenuItem::linkToCrud('Client review ', 'fas fa-tag', ReviewClient::class);
+        yield MenuItem::section('Newsletter');
+        yield MenuItem::linkToCrud('Newsletter', 'fas fa-tag', Newsletter::class);
     }
 }

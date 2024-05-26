@@ -1,0 +1,9 @@
+<div class="p-1 p-md-5">
+	{{ form_start(form, {'action': path('subscribe'), 'method': 'POST'}) }}
+	<h4 class="mb-3">Subscribe to our newsletter so we can send you offers and discounts!</h4>
+	<div class="d-flex justify-content-center align-items-center">
+		{{ form_row(form.email) }}
+		{{form_row(form.submit)}}
+	</div>
+	{{ form_end(form) }}
+</div>

@@ -945,22 +945,6 @@ footer {
     font-size: 1.4rem;
   }
 
-  .btn {
-    font-weight: 500;
-    color: $black;
-    border-radius: 2px;
-    font-size: 1.6rem;
-
-    &:hover {
-      background-color: transparent;
-      color: $white;
-      border-color: $white;
-    }
-  }
-  .btn-primary {
-    font-size: 1.6rem;
-  }
-
   p {
     padding: 0;
     margin: 0;
@@ -974,9 +958,9 @@ footer {
     color: $primary;
   }
 
-  .footer-subscribe {
-    max-width: 400px;
-  }
+  // .footer-subscribe {
+  //   max-width: 400px;
+  // }
 
   .copyright span {
     font-size: 1.2rem;

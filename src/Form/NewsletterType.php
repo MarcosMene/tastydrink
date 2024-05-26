@@ -15,9 +15,9 @@ class NewsletterType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => false,
                 'attr' => [
-                    'placeholder' => 'Your email',
+                    'placeholder' => 'Enter your email',
                     'class' => 'form-control',
                     'style' => 'my-4',
                 ],
@@ -25,7 +25,7 @@ class NewsletterType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Subscribe',
                 'attr' => [
-                    'class' => 'btn btn-primary btn-link mt-5 mx-auto d-flex'
+                    'class' => 'btn btn-primary btn-link mx-auto d-flex'
                 ]
             ]);;
     }

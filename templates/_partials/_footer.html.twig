@@ -11,6 +11,13 @@
 			<i class="fa-brands fa-twitter"></i>
 			<i class="fa-brands fa-linkedin"></i>
 		</div>
+
+		{# SUBSCRIBE FORM  #}
+		<div class=" mx-auto px-3 px-md-5 footer-subscribe">
+			{{- renderSubscribeForm() -}}
+		</div>
+
+		<div class="divisor divisor-sm"></div>
 	</div>
 	<div>
 		<ul class="nav justify-content-center d-flex flex-column align-items-center flex-lg-row">
@@ -18,13 +25,13 @@
 				<a href="#" class="nav-link text-primary">Our Story</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">The team</a>
+				<a href="#" class="nav-link text-primary">Our Team</a>
 			</li>
 			<li class="nav-item m-3">
 				<a href="#" class="nav-link text-primary">Menu Drink</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Menu Eats</a>
+				<a href="#" class="nav-link text-primary">Menu Foods</a>
 			</li>
 			<li class="nav-item m-3">
 				<a href="#" class="nav-link text-primary">Shop</a>
@@ -35,8 +42,8 @@
 		</ul>
 
 		<!-- button reservation -->
-		<div class="reservation text-center my-4">
-			<a href="#" class="btn btn-primary border-white">Make Reservation</a>
+		<div class="text-center">
+			<a href="{{ path('app_reservation') }}" class="btn btn-outline mt-2 mt-5 fs-4">Make reservation</a>
 		</div>
 
 		<!-- Address -->
@@ -56,20 +63,10 @@
 				</div>
 			</div>
 		</div>
-		<div
-			class="col-12 col-sm-8 col-lg-4 mb-5 mx-auto px-3 px-md-5 footer-subscribe">{# <form>
-																	<h4 class="text-center text-primary">Subscribe to our newsletter</h4>
-																	<div class="d-flex flex-column flex-sm-row gap-2">
-																		<div class="input-group mb-3">
-																			<input type="text" class="form-control" placeholder="Your email" aria-label="Your email" aria-describedby="button-addon2"/>
-																			<button class="btn btn-primary" type="button" id="button-addon2">Subscribe</button>
-																		</div>
-																	</div>
-																</form> #}
-
-		</div>
 		<!-- end address -->
 
+
+		{# COPYRIGHT  #}
 		<div class="m-auto text-white copyright text-center bg-dark py-3">
 			<div class="m-auto container d-flex justify-content-between flex-column flex-lg-row">
 				<span>© 2024 All rights reserved. Designed by Marcos Meneghetti</span>
