@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Age Verification
+{% endblock %}
+
+{% block body %}
+	<h1>Age Verification</h1>
+	<form action="{{ path('verify_age') }}" method="post">
+		<div class="mb-3">
+			<label for="age" class="form-label">Enter your age</label>
+			<input type="number" class="form-control" id="age" name="age" required>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+{% endblock %}

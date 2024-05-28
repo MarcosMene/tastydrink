@@ -1,0 +1,39 @@
+<div class="modal fade" id="ageModal" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header d-flex justify-content-center flex-column">
+				<img src="{{ asset('assets/images/logo.jpeg') }}" alt="logo tasty drink" class="img-fluid" width="100px"/>
+				<h2 class="modal-title text-black" id="ageModalLabel">Age Verification</h2>
+			</div>
+			<div class="modal-body text-black text-center">
+				<h3 class="my-4">Are you at least 18 years old?</h3>
+				<button id="yesButton" type="button" class="btn btn-primary fs-4 fw-medium mx-2">Yes</button>
+				<button id="noButton" type="button" class="btn btn-danger fs-4 fw-medium mx-2">No</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{{ asset('build/runtime.js') }}"></script>
+<script src="{{ asset('build/app.js') }}"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+if (!localStorage.getItem('ageVerified')) {
+var ageModal = new bootstrap.Modal(document.getElementById('ageModal'), {
+backdrop: 'static',
+keyboard: false
+});
+ageModal.show();
+
+document.getElementById('yesButton').addEventListener('click', function () {
+localStorage.setItem('ageVerified', 'true');
+ageModal.hide();
+});
+
+document.getElementById('noButton').addEventListener('click', function () {
+alert('You must be at least 18 years old to visit this site.');
+window.location.href = 'https://www.google.com';
+});
+}
+});
+</script>
