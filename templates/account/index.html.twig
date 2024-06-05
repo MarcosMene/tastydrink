@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Tasty Drink - My account
+	Tasty Drink - My orders
 {% endblock %}
 
 {% block body %}
@@ -19,7 +19,11 @@
 					<h2 class="text-center text-black mt-3 mb-5">My last orders</h2>
 
 					{% if (orders|length) == 0 %}
-						<div class="alert alert-info">You have not yet placed an order</div>
+						<div class="text-center w-100 p-5">
+							<p class="text-dark fw-medium bg-white border border-secondary rounded py-4 px-5">
+								You have not yet placed an order.<br/>
+							</p>
+						</div>
 					{% else %}
 						<table class="table table-striped">
 							<thead>

@@ -503,7 +503,8 @@ ul.breadcrumb li a:hover {
 .form-label {
   font-size: 1.6rem;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 400;
+  padding-top: 0;
   // margin-bottom: 10px;
 
   // color: $primary;
@@ -996,5 +997,30 @@ footer {
 #reservation {
   .input-group {
     width: 200px;
+  }
+}
+
+.past-reservation-card {
+  background-color: rgb(220, 237, 239);
+  color: $black;
+}
+
+.current-reservation-card {
+  background-color: white;
+}
+
+.btn-buttonSubmit {
+  font-weight: 400;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  color: $dark;
+  padding: 2px 3px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+
+  &:hover {
+    background-color: $primary;
+    color: $white;
   }
 }

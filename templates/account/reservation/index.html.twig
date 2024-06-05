@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Tasty Drink - My reservations
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="mt-5">
+			<h1 class="main-titles text-center">My account</h1>
+		</div>
+		<div class="wrapper account">
+			<div class="row p-2">
+				<div class="col-md-3 mb-3">
+					{% include 'account/_menu.html.twig' %}
+				</div>
+				<div class="col-md-9 px-4 py-2 bg-light rounded">
+					<h2 class="text-center text-black mt-3 mb-5">My reservations</h2>
+
+					{% if (app.user.reservations|length) == 0 %}
+						<div class="text-center w-100 p-5">
+							<p class="text-dark fw-medium bg-white border border-secondary rounded py-4 px-5">
+								You don’t have any reservation yet at Tasty Drink.<br/>
+							</p>
+						</div>
+					{% else %}
+						<div class="row d-flex justify-content-center align-items-start flex-wrap">
+							{% for reservationWithStatus in reservations %}
+								{% set reservation = reservationWithStatus.reservation %}
+								{% set isPast = reservationWithStatus.isPast %}
+								{% include '_partials/_card_reservation.html.twig' %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

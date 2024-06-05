@@ -27,7 +27,6 @@ class NewsletterController extends AbstractController
             // Check if email already exists
             $existingSubscriber = $newsletterRepository->findOneBy(['email' => $newsletter->getEmail()]);
 
-            // dd($existingSubscriber);
             if ($existingSubscriber) {
                 $this->addFlash('danger', 'This email already exists.');
             } else {

@@ -15,10 +15,17 @@
 						class="col-12 col-md-7 px-5">
 						{# FORM  #}
 						{{ form_start(form) }}
-						{{ form_widget(form) }}
-						{# button Reservation #}
-						<div class="col-12 text-center mt-3 mb-2">
-							<button type="submit" href="#" class="btn btn-primary btn-link my-4">Reservation</button>
+						<div class="row d-flex">
+							<div class="col-12 col-lg-6">{{ form_row(form.firstname) }}</div>
+							<div class="col-12 col-lg-6">{{ form_row(form.lastname) }}</div>
+							<div class="col-12 col-lg-6">{{ form_row(form.telephone) }}</div>
+							<div class="col-12 col-lg-6">{{ form_row(form.numberOfPeople) }}</div>
+							<div class="col-12 col-lg-6">{{ form_row(form.reservationDate) }}</div>
+							<div class="col-12 col-lg-6 text-black py-0">{{ form_row(form.reservationTime) }}</div>
+							<div class="col-12 ">{{ form_row(form.comments) }}</div>
+						</div>
+						<div class="text-center">
+							<button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-50">Send</button>
 						</div>
 						{{ form_end(form) }}
 
@@ -46,7 +53,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 
 			{# USER NOT CONNECTED  #}
@@ -59,9 +65,7 @@
 						<a href="{{path('app_login')}}" class="text-dark text-decoration-underline">Click here to login</a>
 					</p>
 				</div>
-
 			</div>
 		{% endif %}
 	</div>
-
 {% endblock %}

@@ -1,0 +1,57 @@
+<div class="col-md-6 col-lg-4 mb-3">
+
+	<div class="card rounded p-3 {{ isPast ? 'past-reservation-card' : 'current-reservation-card' }}">
+		<div class="card-body">
+			<div class="card-title text-capitalize">{{ reservation.firstname }}
+				{{ reservation.lastname }}</div>
+			<p class="card-text">
+				<span>
+					<strong>Telephone:
+					</strong>
+					{{ reservation.telephone }}</span>
+				<br/>
+				<span>
+					<strong>Number of people:
+					</strong>
+					{{ reservation.numberOfPeople }}</span>
+				<br/>
+				<span>
+					<strong>Date:
+					</strong>
+					{{ reservation.reservationDate|date('Y-m-d') }}</span>
+				<br/>
+				<span>
+					<strong>Hour:
+					</strong>
+					{{ reservation.reservationTime|date('h:i') }}
+					pm</span>
+				<br/>
+				<div class="product-description my-3 lead">{{ reservation.comments }}</div>
+			</p>
+			{# divisor #}
+			<div class="divisor my-3"></div>
+
+			{# IF RESERVATION IS OVER  #}
+			{% if (isPast) %}
+				<div class="reservation text-danger text-end">
+					That reservation is over
+				</div>
+			{% else %}
+				<div class="reservation">
+					{% if reservation.cancelReservation %}
+						<span class="text-danger">
+							<strong>Cancelled</strong>
+						</span>
+					{% else %}
+						<a href="{{ path('app_account_reservation_form', { id: reservation.id }) }}" class="btn btn-buttonSubmit">Modify</a>
+						|
+						<form action="{{ path('app_reservation_cancel', {id: reservation.id}) }}" method="post" class="d-inline">
+							<input type="hidden" name="_token" value="{{ csrf_token('cancel' ~ reservation.id) }}">
+							<button type="submit" class="btn btn-buttonSubmit">Cancel</button>
+						</form>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
