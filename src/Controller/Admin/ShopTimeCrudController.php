@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ShopTime;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -16,6 +17,13 @@ class ShopTimeCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return ShopTime::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Shop time')
+            ->setEntityLabelInPlural('Shop times');
     }
 
     public function configureFields(string $pageName): iterable
@@ -35,10 +43,5 @@ class ShopTimeCrudController extends AbstractCrudController
             TimeField::new('openTime')->setFormat('HH:mm'),
             TimeField::new('closeTime')->setFormat('HH:mm'),
         ];
-    }
-
-    public function configureMenuItems(): iterable
-    {
-        yield MenuItem::linkToCrud('Bar Time', 'fas fa-clock', ShopTime::class);
     }
 }

@@ -15,28 +15,22 @@
 					<h2 class="mb-3 fw-medium">Would you like to leave your opinion?</h2>
 					<p class="fw-normal mb-5">We'd love to hear your feedback! Please share your thoughts and experiences with us to help us improve and serve you better.</p>
 
-
 					{{ form_start(formOpinionClient) }}
-					<div class="col-12">{{ form_row(formOpinionClient.firstname) }}</div>
-					<div class="col-12">{{ form_row(formOpinionClient.rate) }}</div>
-					<div class="col-12">{{ form_row(formOpinionClient.comment) }}</div>
-
+					<div class="col-12 my-5">{{ form_row(formOpinionClient.firstname) }}</div>
+					<div class="col-12 my-5">{{ form_row(formOpinionClient.rate) }}</div>
+					<div class="col-12 my-5">{{ form_row(formOpinionClient.comment) }}</div>
 					{{ form_end(formOpinionClient) }}
 				</div>
 
 				<div class="col-12  col-md-5 px-5">
-
 					<div class=" mx-auto revie">
 						<img class="img-fluid" src="{{ asset('assets/images/opinion.jpeg') }}" alt="tasty drink building"/>
 					</div>
-
 				</div>
-
 
 				{# divisor #}
 				<div class="divisor divisor-light d-block d-lg-none"></div>
 			</div>
-
 		</div>
 	</div>
 </div>{% endblock %}

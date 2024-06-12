@@ -21,14 +21,12 @@
 		<span class="ms-4">{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</span>
 	</p>
 
-
 	<p>
 		<strong>Date of your order:</strong>
 		{{ order.createdAt|date('d/m/Y') }}
 	</p>
 	<p>Stripe session id :
 		{{ order.stripeSessionId }}</p>
-
 
 	<div class="row">
 		<div class="col-md-6">
@@ -42,44 +40,45 @@
 	</div>
 	<hr/>
 	<h5>Order content:</h5>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">Image</th>
-				<th scope="col">Name of product</th>
-				<th scope="col">Quantity</th>
-				<th scope="col">Unitary price Ex.T.</th>
-				<th scope="col">Tax</th>
-				<th scope="col">Total VAT</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for product in order.orderDetails %}
+	<div style="overflow-x:auto;">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Image</th>
+					<th scope="col">Name of product</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Unitary price Ex.T.</th>
+					<th scope="col">Tax</th>
+					<th scope="col">Total VAT</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in order.orderDetails %}
+					<tr>
+						<td>
+							<img src="/uploads/products/{{ product.productIllustration }}" alt="{{ product.productName }}" width="100"/>
+						</td>
+						<td>{{ product.productName }}</td>
+						<td>{{ product.productQuantity }}</td>
+						<td>{{ product.productPrice|price }}</td>
+						<td>{{ product.productTva }}%</td>
+						{% set coeff = 1 + product.productTva / 100 %}
+						<td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
+					</tr>
+				{% endfor %}
 				<tr>
 					<td>
-						<img src="/uploads/products/{{ product.productIllustration }}" alt="{{ product.productName }}" width="100"/>
+						<strong>Carrier company</strong>
 					</td>
-					<td>{{ product.productName }}</td>
-					<td>{{ product.productQuantity }}</td>
-					<td>{{ product.productPrice|price }}</td>
-					<td>{{ product.productTva }}%</td>
-					{% set coeff = 1 + product.productTva / 100 %}
-					<td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
+					<td>{{ order.carrierName }}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>{{ order.carrierPrice|price }}</td>
 				</tr>
-			{% endfor %}
-			<tr>
-				<td>
-					<strong>Carrier company</strong>
-				</td>
-				<td>{{ order.carrierName }}</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td>{{ order.carrierPrice|price }}</td>
-			</tr>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
 	<div class="text-end fs-5 me-5">
 		<strong>Total Ex.T.:</strong>
 		${{ order.totalWt - order.totalTva }}

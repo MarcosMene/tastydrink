@@ -14,9 +14,11 @@
 					<div
 						class="col-12 col-md-7 px-5">
 						{# FORM  #}
-						{{ form_start(form) }}
+						{{ form_start(form, { 'attr': { 'id': 'reservationForm' } }) }}
 						<div class="row d-flex">
-							<div class="col-12 col-lg-6">{{ form_row(form.firstname) }}</div>
+							<div class="col-12 col-lg-6">{{ form_row(form.firstname) }}
+							</div>
+
 							<div class="col-12 col-lg-6">{{ form_row(form.lastname) }}</div>
 							<div class="col-12 col-lg-6">{{ form_row(form.telephone) }}</div>
 							<div class="col-12 col-lg-6">{{ form_row(form.numberOfPeople) }}</div>
@@ -25,7 +27,7 @@
 							<div class="col-12 ">{{ form_row(form.comments) }}</div>
 						</div>
 						<div class="text-center">
-							<button type="submit" href="#" class="btn btn-primary btn-link my-4 text-capitalize w-50">Send</button>
+							<button type="submit" class="btn btn-primary btn-link my-4 text-capitalize w-100">Send</button>
 						</div>
 						{{ form_end(form) }}
 
@@ -68,4 +70,5 @@
 			</div>
 		{% endif %}
 	</div>
+
 {% endblock %}

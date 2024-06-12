@@ -16,18 +16,22 @@ class Employee
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+  #[Assert\NotBlank]
   #[Assert\Length(
     min: 3,
-    max: 60,
+    max: 25,
     minMessage: 'First name must be at least {{ limit }} characters long',
     maxMessage: 'First name must be no longer than {{ limit }} characters'
   )]
   private ?string $firstName = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+  #[Assert\NotBlank]
   #[Assert\Length(
     min: 5,
-    max: 60,
+    max: 25,
     minMessage: 'Last name must be at least {{ limit }} characters long',
     maxMessage: 'Last name must be no longer than {{ limit }} characters'
   )]
@@ -42,7 +46,9 @@ class Employee
   private ?string $email = null;
 
   #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-  #[Assert\GreaterThanOrEqual('today', message: 'The join date must be today or ten days after today.')]
+  #[Assert\NotBlank]
+  #[Assert\Type("\DateTimeInterface")]
+  #[Assert\GreaterThanOrEqual('2020-01-01')]
   private ?\DateTimeInterface $joinDate = null;
 
   #[ORM\ManyToOne(inversedBy: 'employees')]
@@ -50,9 +56,18 @@ class Employee
   private ?Team $team = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\NotBlank]
   private ?string $illustration = null;
 
   #[ORM\Column(nullable: true)]
+  #[Assert\NotBlank]
+  #[Assert\Positive]
+  #[Assert\GreaterThanOrEqual(
+    value: 1,
+  )]
+  #[Assert\LessThan(
+    value: 5,
+  )]
   private ?int $orderAppear = null;
 
   public function getId(): ?int

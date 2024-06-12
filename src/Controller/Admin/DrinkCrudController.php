@@ -38,8 +38,8 @@ class DrinkCrudController extends AbstractCrudController
   public function configureCrud(Crud $crud): Crud
   {
     return $crud
-      ->setEntityLabelInSingular('Menu drink')
-      ->setEntityLabelInPlural('Menu drinks');
+      ->setEntityLabelInSingular('Menu Drink')
+      ->setEntityLabelInPlural('Menu Drinks');
   }
 
 
@@ -90,7 +90,7 @@ class DrinkCrudController extends AbstractCrudController
         ->setUploadDir('public/uploads/menu') // the relative directory to store files in
         ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
         ->setRequired($required)
-        ->setHelp('Image of your product, 600x600px'),
+        ->setHelp('Image of your product, max 500x500px'),
       AssociationField::new('drinkcategory', 'category of drinks')
         ->setRequired(true)
     ];

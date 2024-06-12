@@ -22,7 +22,7 @@ class ProductController extends AbstractController
     {
     }
 
-    #[Route('/our-products', name: 'products')]
+    #[Route('/our-products', name: 'app_products')]
     public function index(ProductRepository $repository, Request $request): Response
     {
         // CREATE FORM TO FIND A PRODUCT 

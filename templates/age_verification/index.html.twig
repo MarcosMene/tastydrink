@@ -5,7 +5,7 @@
 
 {% block body %}
 	<h1>Age Verification</h1>
-	<form action="{{ path('verify_age') }}" method="post">
+	<form action="{{ path('app_verify_age') }}" method="post">
 		<div class="mb-3">
 			<label for="age" class="form-label">Enter your age</label>
 			<input type="number" class="form-control" id="age" name="age" required>

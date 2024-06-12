@@ -4,13 +4,23 @@
 {% endblock %}
 
 {% block body %}
+
+	{# HERO IMAGE  #}
+	<div class="hero_bg">
+		<img class="img-fluid" src="{{ asset('assets/images/our_story.jpg') }}" alt="tasty drink building"/>
+		<div class="hero_title">
+			<span class="d-block p-0 m-0">Our</span>
+			<span>Story</span>
+		</div>
+	</div>
+
+	{# CONTAINER  #}
 	<div
 		class="container">
-
 		{# -----------------AN IDEA IS BORN #}
-		<div class="row gx-4 wrapper-max mt-5">
+		<section class="row gx-4 wrapper-max mt-5">
+			<h2 class="headers text-capitalize">an idea is born</h2>
 			<div class="col-12 col-md-6 col-lg-8">
-				<h2 class="headers text-capitalize">an idea is born</h2>
 				<p class="pe-lg-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
 				<p class="pe-lg-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione unde nam accusamus perferendis similique, iure, hic sint illum, est tempora fugit dolores ex. Aliquid sed sint fuga doloribus esse culpa sunt laborum minima reiciendis voluptatibus hic dicta iusto tenetur provident dolorem necessitatibus accusantium ipsam delectus, eligendi distinctio illum! Repudiandae, temporibus.</p>
 			</div>
@@ -22,107 +32,103 @@
 						Tasty Drink Owners</p>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		{# -----------DIVISOR #}
 		<div class="divisor divisor-lg"></div>
 
 		{# -----------------STORE #}
-
-		<div class="mt-5 wrapper-max mx-auto">
+		<section class="mt-5 wrapper-max mx-auto">
 			<h2 class="headers text-capitalize text-center">Our Store</h2>
 			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
-		</div>
 
-		<div class="row gx-4 wrapper-max">
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/client01.jpeg') }}" alt="tasty drink building"/>
+			<div class="row gx-4 wrapper-max">
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/client01.jpeg') }}" alt="tasty drink building"/>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/wine_box.jpeg') }}" alt="tasty drink building"/>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/drinks.jpeg') }}" alt="tasty drink building"/>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/client_waitress.jpeg') }}" alt="tasty drink building"/>
+				</div>
 			</div>
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/wine_box.jpeg') }}" alt="tasty drink building"/>
+			<!-- BUTTON our products -->
+			<div class="text-center mt-5">
+				<a href="{{path('app_shop')}}" class="btn btn-outline text-capitalize">Our products</a>
 			</div>
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/drinks.jpeg') }}" alt="tasty drink building"/>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/client_waitress.jpeg') }}" alt="tasty drink building"/>
-			</div>
-		</div>
-		<!-- BUTTON our products -->
-		<div class="text-center mt-5">
-			<a href="{{path('app_shop')}}" class="btn btn-outline text-capitalize">Our products</a>
-		</div>
-
+		</section>
 		{# -----------DIVISOR #}
 		<div class="divisor divisor-lg"></div>
 
 		{# -----------------BAR #}
-
-		<div class="mt-5">
+		<section class="mt-5">
 			<h2 class="headers text-capitalize text-center">Our Bar</h2>
 			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
-		</div>
 
-		<div class="row gx-4 wrapper-max">
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/inside.jpeg') }}" alt="tasty drink building"/>
+			<div class="row gx-4 wrapper-max">
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/inside.jpeg') }}" alt="tasty drink building"/>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/table_clients1.jpeg') }}" alt="tasty drink building"/>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/table_clients2.jpeg') }}" alt="tasty drink building"/>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-3 my-3">
+					<img class="img-fluid" src="{{ asset('assets/images/terrace.jpeg') }}" alt="tasty drink building"/>
+				</div>
 			</div>
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/table_clients1.jpeg') }}" alt="tasty drink building"/>
+			<!-- BUTTON STORY -->
+			<div class="text-center mt-5">
+				<a href="{{path('app_our_bar')}}" class="btn btn-outline text-capitalize">Visit our bar</a>
 			</div>
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/table_clients2.jpeg') }}" alt="tasty drink building"/>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3 my-3">
-				<img class="img-fluid" src="{{ asset('assets/images/terrace.jpeg') }}" alt="tasty drink building"/>
-			</div>
-		</div>
-		<!-- BUTTON STORY -->
-		<div class="text-center mt-5">
-			<a href="{{path('app_our_bar')}}" class="btn btn-outline text-capitalize">Visit our bar</a>
-		</div>
-
+		</section>
 		{# -----------DIVISOR #}
 		<div class="divisor divisor-lg"></div>
 
 		{# --------------------------------- GALLERY #}
-		<div class="mt-5">
+		<section class="mt-5">
 			<h2 class="headers text-capitalize wrapper-max text-center">Gallery</h2>
 			<div class="wrapper info wrapper-max p-lg-5">
 				<div class="row wrapper-max">
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/cachaca.jpeg') }}" alt="" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/cachaca.jpeg') }}" alt="brazilian licor bottle" class="img-fluid"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/box_wine.jpeg') }}" alt="" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/box_wine.jpeg') }}" alt="a box with three wine bottle" class="img-fluid"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/wine_bottle.jpeg') }}" alt="" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/wine_bottle.jpeg') }}" alt="a bottle of wine beside a beautiful box" class="img-fluid"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/pasta.jpeg') }}" alt="" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/pasta.jpeg') }}" alt="a special dishes of tasty drink bar and shop menu" class="img-fluid"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/drinks.jpeg') }}" alt="" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/drinks.jpeg') }}" alt="multiple glasses with different cocktails" class="img-fluid"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/cheese.jpeg') }}" alt="" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/cheese.jpeg') }}" alt="different cheeses over a table with a glass of beer" class="img-fluid"/>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		{# END GALLERY #}
 	</div>

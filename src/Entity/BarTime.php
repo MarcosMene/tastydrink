@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\BarTimeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: BarTimeRepository::class)]
+
+//to not repeat the week day
+#[UniqueEntity('day')]
+
 class BarTime
 {
     #[ORM\Id]

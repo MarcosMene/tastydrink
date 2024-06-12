@@ -6,6 +6,7 @@ use App\Repository\ColorProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ColorProductRepository::class)]
 class ColorProduct
@@ -16,6 +17,12 @@ class ColorProduct
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        max: 20,
+        minMessage: 'The color of the product must be at least {{ limit }} characters long.',
+        maxMessage: 'The color of the product must be no longer than {{ limit }} characters.'
+    )]
     private ?string $color = null;
 
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'colorProduct')]

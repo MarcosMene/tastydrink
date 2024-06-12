@@ -6,8 +6,12 @@ use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
+
+#[UniqueEntity('nameTeam')]
 class Team
 {
   #[ORM\Id]
@@ -15,7 +19,14 @@ class Team
   #[ORM\Column]
   private ?int $id = null;
 
-  #[ORM\Column(length: 255, unique: true)]
+  #[ORM\Column(length: 255)]
+  #[Assert\Length(
+    min: 3,
+    max: 15,
+    minMessage: 'The name of the team must be at least {{ limit }} characters long.',
+    maxMessage: 'The name of the team must be no longer than {{ limit }} characters.'
+  )]
+
   private ?string $nameTeam = null;
 
   #[ORM\OneToMany(targetEntity: Employee::class, mappedBy: 'team', orphanRemoval: true)]

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FoodRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FoodRepository::class)]
 class Food
@@ -15,12 +16,27 @@ class Food
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+  #[Assert\Length(
+    min: 3,
+    max: 25,
+    minMessage: 'Name must be at least {{ limit }} characters long',
+    maxMessage: 'Name must be no longer than {{ limit }} characters'
+  )]
   private ?string $name = null;
 
   #[ORM\Column(type: Types::TEXT)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+  #[Assert\Length(
+    min: 20,
+    max: 140,
+    minMessage: 'Description must be at least {{ limit }} characters long',
+    maxMessage: 'Description must be no longer than {{ limit }} characters'
+  )]
   private ?string $description = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\NotBlank]
   private ?string $illustration = null;
 
   #[ORM\ManyToOne(inversedBy: 'food')]
@@ -28,6 +44,12 @@ class Food
   private ?FoodCategory $foodcategory = null;
 
   #[ORM\Column]
+  #[Assert\Positive]
+  #[Assert\Range(
+    min: 5,
+    max: 70,
+    notInRangeMessage: "Price must be between {{ min }} and {{ max }}."
+  )]
   private ?float $price = null;
 
 

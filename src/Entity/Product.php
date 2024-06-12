@@ -18,6 +18,7 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
     #[Assert\Length(
         min: 3,
         max: 40,
@@ -30,9 +31,11 @@ class Product
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $illustration = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
     #[Assert\Length(
         min: 3,
         max: 40,
@@ -42,6 +45,7 @@ class Product
     private ?string $subtitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
     #[Assert\Length(
         min: 20,
         max: 200,
@@ -52,8 +56,11 @@ class Product
 
     #[ORM\Column]
     #[Assert\Positive]
-    #[Assert\LessThanOrEqual(100, message: 'The maximum price for this product is ${{ compared_value }}.')]
-    #[Assert\GreaterThanOrEqual(10, message: 'The mininum price for this product is ${{ compared_value }}.')]
+    #[Assert\Range(
+        min: 10,
+        max: 100,
+        notInRangeMessage: "Price must be between {{ min }} and {{ max }}."
+    )]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]

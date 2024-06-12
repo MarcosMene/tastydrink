@@ -85,7 +85,7 @@ class FoodCrudController extends AbstractCrudController
         ->setUploadDir('public/uploads/menu') // the relative directory to store files in
         ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
         ->setRequired($required)
-        ->setHelp('Image of your product, 600x600px'),
+        ->setHelp('Image of your product, max 500x500px.'),
       AssociationField::new('foodcategory', 'category of foods')
         ->setRequired(true)
     ];

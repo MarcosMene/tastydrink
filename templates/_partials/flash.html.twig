@@ -1,6 +1,5 @@
 {% for type, messages in app.flashes %}
 	<div class="container">
-
 		<div class="my-4 alert alert-{{ type }} alert-dismissible" role="alert">
 			{{ messages|join('. ') }}
 			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>

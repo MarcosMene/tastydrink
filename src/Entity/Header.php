@@ -16,6 +16,7 @@ class Header
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
   #[Assert\NotBlank]
   #[Assert\Length(
     min: 10,
@@ -26,29 +27,39 @@ class Header
   private ?string $title = null;
 
   #[ORM\Column(type: Types::TEXT)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
   #[Assert\NotBlank]
   #[Assert\Length(
     min: 10,
     max: 70,
-    minMessage: 'The title must be at least {{ limit }} characters long.',
-    maxMessage: 'The title must be no longer than {{ limit }} characters.'
+    minMessage: 'The content must be at least {{ limit }} characters long.',
+    maxMessage: 'The content must be no longer than {{ limit }} characters.'
   )]
   private ?string $content = null;
+
+  #[ORM\Column(length: 255)]
+  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+  #[Assert\NotBlank]
+  #[Assert\Length(
+    min: 3,
+    max: 10,
+    minMessage: 'The button title of button must be at least {{ limit }} characters long.',
+    maxMessage: 'The button title of button must be no longer than {{ limit }} characters.'
+  )]
+  private ?string $buttonTitle = null;
 
   #[ORM\Column(length: 255)]
   #[Assert\NotBlank]
   #[Assert\Length(
     min: 3,
-    max: 20,
-    minMessage: 'The title of button must be at least {{ limit }} characters long.',
-    maxMessage: 'The title of button must be no longer than {{ limit }} characters.'
+    max: 10,
+    minMessage: 'The URL button of button must be at least {{ limit }} characters long.',
+    maxMessage: 'The URL button of button must be no longer than {{ limit }} characters.'
   )]
-  private ?string $buttonTitle = null;
-
-  #[ORM\Column(length: 255)]
   private ?string $buttonLink = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\NotBlank]
   private ?string $illustration = null;
 
   public function getId(): ?int

@@ -1,6 +1,10 @@
 <footer class="pt-5">
-	<h4 class="text-center text-primary footer-title">Tasty Drink</h4>
-	<h5 class="text-center text-white footer-description">Drink Store & Bar</h5>
+	<div class="text-center w-100">
+		<img src="{{ asset('assets/images/logo.png') }}" alt="logo tasty drink" width="40px" class="mx-auto"/>
+	</div>
+
+
+	<h4 class="text-center text-white footer-title my-2">Tasty Drink Bar & Store</h4>
 	<div
 		class="text-center">
 		<!-- divisor -->
@@ -22,16 +26,19 @@
 	<div>
 		<ul class="nav justify-content-center d-flex flex-column align-items-center flex-lg-row">
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Our Story</a>
+				<a href="{{path('app_home')}}" class="nav-link text-primary">Home</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Our Team</a>
+				<a href="{{ path('app_our_story') }}" class="nav-link text-primary">Our Story</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Menu Drink</a>
+				<a href="{{ path('app_team') }}" class="nav-link text-primary">Our Team</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Menu Foods</a>
+				<a href="{{path('app_menu_drinks')}}" class="nav-link text-primary">Menu Drink</a>
+			</li>
+			<li class="nav-item m-3">
+				<a href="{{path('app_menu_foods')}}" class="nav-link text-primary">Menu Foods</a>
 			</li>
 			<li class="nav-item m-3">
 				<a href="#" class="nav-link text-primary">Shop</a>
@@ -64,7 +71,6 @@
 			</div>
 		</div>
 		<!-- end address -->
-
 
 		{# COPYRIGHT  #}
 		<div class="m-auto text-white copyright text-center bg-dark py-3">

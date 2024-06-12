@@ -30,12 +30,12 @@ class UserCrudController extends AbstractCrudController
         return [
             TextField::new('firstname')->setLabel('First name'),
             TextField::new('lastname')->setLabel('Last name'),
+            TextField::new('email')->setLabel('Email'),
             DateField::new('lastLoginAt')->setLabel('Last connection time')->onlyOnIndex(),
             ChoiceField::new('roles')->setLabel('Role permission')->setHelp('Choose the role of this user')->setChoices([
                 'ROLE_USER' => 'ROLE_USER',
                 'ROLE_ADMIN' => 'ROLE_ADMIN',
             ])->allowMultipleChoices(),
-            TextField::new('email')->setLabel('Email')->onlyOnIndex(),
         ];
     }
 }

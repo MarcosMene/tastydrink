@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="row mt-5">
-			<div class="products">
+			<div class="menu">
 				<section
 					class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
 
@@ -27,18 +27,18 @@
 
 								{%for  drink in categoryDrink.drinks%}
 									{# -----------CARD #}
-									<div class="card m-3 " style="max-width: 540px;">
+									<div class="card m-3 ">
 										<div class="row g-0 bg-white">
-											<div class="col-md-10">
+											<div class="col-md-9">
 												<div class="card-body">
 													<h5 class="card-title text-capitalize">{{drink.name}}</h5>
-													<p class="card-text lead">{{drink.description|raw}}</p>
+													<div class="card-text menu-description my-3">{{ drink.description|raw }}</div>
 													<div class="card-text">
 														<h3 class="products-price text-end">{{drink.price|price}}</h3>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-2 d-none d-sm-block">
+											<div class="col-md-3 d-none d-md-block">
 												<img src="/uploads/menu/{{ drink.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ drink.name }}"/>
 											</div>
 										</div>

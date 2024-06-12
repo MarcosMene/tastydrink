@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ReviewClientRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ReviewClientRepository::class)]
 class ReviewClient
@@ -18,6 +20,13 @@ class ReviewClient
     private ?int $rate = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+    #[Assert\Length(
+        min: 25,
+        max: 200,
+        minMessage: 'Comment must be at least {{ limit }} characters long',
+        maxMessage: 'Comment must be no longer than {{ limit }} characters'
+    )]
     private ?string $comment = null;
 
     #[ORM\Column(nullable: true)]
@@ -27,6 +36,13 @@ class ReviewClient
     private ?User $user = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+    #[Assert\Length(
+        min: 10,
+        max: 25,
+        minMessage: 'Name must be at least {{ limit }} characters long',
+        maxMessage: 'Name must be no longer than {{ limit }} characters'
+    )]
     private ?string $firstname = null;
 
     public function getId(): ?int

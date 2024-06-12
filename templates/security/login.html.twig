@@ -16,16 +16,25 @@
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
 
-		<form method="post" action="{{ path('app_login') }}">
+		<form
+			method="post" action="{{ path('app_login') }}">
+			{# EMAIL  #}
 			<div class="mb-4">
 				<label for="inputEmail">Email</label>
-				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus/>
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="off" required autofocus minlength="10" maxlength="100"/>
 			</div>
 
-			<div class="mb-4">
-				<label for="inputPassword">Password</label>
-				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required/>
+			{# PASSWORD  #}
+			<label for="inputPassword">Password</label>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend"></div>
+				<input type="password" name="password" id="password" class="form-control" autocomplete="off" required minlength="6" maxlength="16">
+				<div class="input-group-text" id="togglePassword" height="100%">
+					<i class="fas fa-eye" id="show_eye"></i>
+					<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+				</div>
 			</div>
+
 
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
 			<input
@@ -46,4 +55,8 @@
 			<a href="{{ path('app_sign-up') }}" class="text-dark text-decoration-underline">Create one here.</a>
 		</p>
 	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('assets/js/show-hide-password.js') }}"></script>
 {% endblock %}

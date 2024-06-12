@@ -35,6 +35,14 @@ class ReservationController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function reservation(Request $request, EntityManagerInterface $entityManager)
     {
+
+        $user = $this->security->getUser();
+        if (!$user) {
+            $this->addFlash('danger', 'You must to login to make a reservation.');
+            return $this->redirectToRoute('app_login');
+        }
+
+
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
@@ -95,6 +103,7 @@ class ReservationController extends AbstractController
     {
         $user = $this->security->getUser();
         if (!$user) {
+            $this->addFlash('danger', 'You must to login to make a reservation.');
             return $this->redirectToRoute('app_login');
         }
 

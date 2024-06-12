@@ -22,7 +22,7 @@ class AgeVerificationListener
 
     if (!$session->has('ageVerified') || !$session->get('ageVerified')) {
       if (!$request->isXmlHttpRequest()) {
-        $event->setResponse(new RedirectResponse($this->router->generate('age_verification')));
+        $event->setResponse(new RedirectResponse($this->router->generate('app_age_verification')));
       }
     }
   }

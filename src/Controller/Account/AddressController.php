@@ -37,6 +37,10 @@ class AddressController extends AbstractController
 
             //security to verify  that the user owns this adress
             if (!$address or $address->getUser() != $this->getUser()) {
+                $this->addFlash(
+                    'danger',
+                    'Your don\'t have permission to access it.'
+                );
                 return $this->redirectToRoute('app_account_address');
             }
         } else {

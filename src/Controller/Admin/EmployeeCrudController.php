@@ -82,8 +82,9 @@ class EmployeeCrudController extends AbstractCrudController
         ->setUploadDir('public/uploads/team') // the relative directory to store files in
         ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
         ->setRequired($required)
-        ->setHelp('Image of your product, 600x600px'),
-      DateField::new('joinDate'),
+        ->setHelp('Image of your product, max 500x500px'),
+      DateField::new('joinDate')
+        ->setRequired(true),
       TextField::new('email'),
       AssociationField::new('team', 'Team')->setHelp('Which team to work')
         ->setRequired(true),
@@ -93,7 +94,7 @@ class EmployeeCrudController extends AbstractCrudController
           array_flip($jobChoices)
         )
         ->setRequired(true),
-      NumberField::new('orderAppear')->setHelp('Order appear on the team page')
+      NumberField::new('orderAppear')->setHelp('Order appear on the team page. From 1 to 5')
     ];
   }
 

@@ -22,17 +22,4 @@ class FoodCategoryCrudController extends AbstractCrudController
       ->setEntityLabelInSingular('Category of food')
       ->setEntityLabelInPlural('Category of foods');
   }
-
-
-
-  /*
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
-    }
-    */
 }

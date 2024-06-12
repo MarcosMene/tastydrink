@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Newsletter;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -15,14 +16,10 @@ class NewsletterCrudController extends AbstractCrudController
         return Newsletter::class;
     }
 
-    /*
-    public function configureFields(string $pageName): iterable
+    public function configureCrud(Crud $crud): Crud
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        return $crud
+            ->setEntityLabelInSingular('Newsletter')
+            ->setEntityLabelInPlural('Newsletters');
     }
-    */
 }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CarrierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarrierRepository::class)]
 class Carrier
@@ -15,12 +16,34 @@ class Carrier
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+    #[Assert\NotBlank()]
+    #[Assert\Length(
+        min: 3,
+        max: 40,
+        minMessage: 'The name of the carrier must be at least {{ limit }} characters long.',
+        maxMessage: 'The name of the carrier must be no longer than {{ limit }} characters.'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-!]*$/', message: 'Only numbers and letters and spaces.')]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 10,
+        max: 40,
+        minMessage: 'The description of the carrier must be at least {{ limit }} characters long.',
+        maxMessage: 'The description of the carrier must be no longer than {{ limit }} characters.'
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
+    #[Assert\Range(
+        min: 2,
+        max: 20,
+        notInRangeMessage: "Price must be between {{ min }} and {{ max }}."
+    )]
     private ?float $price = null;
 
     public function __toString()

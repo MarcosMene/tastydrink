@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -55,10 +56,25 @@ Encore
 
   // enables Sass/SCSS support
   .enableSassLoader()
-// .copyFiles({
-//   from: './assets/images',
-//   to: 'images/[path][name].[ext]',
-// })
+
+  // enable PostCSS support
+  .enablePostCssLoader((options) => {
+    options.postcssOptions = {
+      plugins: [require('autoprefixer')()],
+    }
+  })
+
+  // enable CSS minification
+  .addPlugin(
+    new MiniCssExtractPlugin({
+      filename: Encore.isProduction()
+        ? '[name].[contenthash].css'
+        : '[name].css',
+    })
+  )
+
+  // empty the outputPath dir before each build
+  .cleanupOutputBeforeBuild()
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()

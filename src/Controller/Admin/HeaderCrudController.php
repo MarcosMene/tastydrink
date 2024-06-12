@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Header;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -15,6 +16,13 @@ class HeaderCrudController extends AbstractCrudController
   public static function getEntityFqcn(): string
   {
     return Header::class;
+  }
+
+  public function configureCrud(Crud $crud): Crud
+  {
+    return $crud
+      ->setEntityLabelInSingular('Header')
+      ->setEntityLabelInPlural('Headers');
   }
 
   public function configureFields(string $pageName): iterable

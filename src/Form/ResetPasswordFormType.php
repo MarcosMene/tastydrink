@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ResetPasswordFormType extends AbstractType
 {
@@ -16,6 +19,18 @@ class ResetPasswordFormType extends AbstractType
     {
         $builder
             ->add('new_password', RepeatedType::class, [
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'Your password is required.',
+                    ]),
+
+                    new Assert\Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password must be at least {{ limit }} characters long.',
+                        'max' => 16,
+                        'maxMessage' => 'Your password cannot be longer than {{ limit }} characters.',
+                    ]),
+                ],
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'invalid_message' => 'The new passwords fields must match.',
@@ -23,14 +38,18 @@ class ResetPasswordFormType extends AbstractType
                 'first_options'  => [
                     'label' => 'Your new password',
                     'attr' => [
-                        'placeholder' => 'Enter your new password'
+                        'placeholder' => 'Enter your new password',
+                        'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('Your password must be between 6 and 16 characters long.');",
+                        'oninvalid' => "this.setCustomValidity('Please Enter valid password')",
                     ],
                     'hash_property_path' => 'password'
                 ],
                 'second_options' => [
                     'label' => 'Confirm your new password',
                     'attr' => [
-                        'placeholder' => 'New password'
+                        'placeholder' => 'New password',
+                        'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('The passwords must be the same.');",
+                        'oninvalid' => "this.setCustomValidity('The passwords must be the same.')",
                     ]
                 ],
             ])

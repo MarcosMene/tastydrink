@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ReviewClient;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -19,6 +20,13 @@ class ReviewClientCrudController extends AbstractCrudController
         return ReviewClient::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Review Client')
+            ->setEntityLabelInPlural('Reviews Client');
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -30,7 +38,7 @@ class ReviewClientCrudController extends AbstractCrudController
                     '4' => '4',
                     '5' => '5',
                 ])->renderExpanded(),
-            TextareaField::new('firstname'),
+            TextField::new('firstname'),
             AssociationField::new('user'),
             TextareaField::new('comment'),
             BooleanField::new('isApproved')->setHelp('Review client approved to appear on the homepage.'),

@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TeamController extends AbstractController
 {
-    #[Route('/our-team', name: 'team')]
+    #[Route('/our-team', name: 'app_team')]
     public function index(EmployeeRepository $employeeRepository, DepartamentRepository $departamentRepository): Response
     {
 

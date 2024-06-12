@@ -4,21 +4,14 @@ namespace App\Entity;
 
 use App\Repository\DepartamentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DepartamentRepository::class)]
+
+#[UniqueEntity('name')]
 class Departament
 {
-
-  // public function __construct()
-  // {
-  //     $this->setDefault();
-  // }
-
-  // public function setDefault()
-  // {
-  //     $this->name = 'no job';
-  // }
-
 
   #[ORM\Id]
   #[ORM\GeneratedValue]
@@ -26,6 +19,13 @@ class Departament
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
+  #[Assert\Regex('/^[a-zA-Z0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+  #[Assert\Length(
+    min: 3,
+    max: 15,
+    minMessage: 'The name of the team must be at least {{ limit }} characters long.',
+    maxMessage: 'The name of the team must be no longer than {{ limit }} characters.'
+  )]
   private ?string $name = null;
 
   public function getId(): ?int

@@ -1,11 +1,11 @@
 {% if field.value == 1 %}
-	<span class="badge border border-danger h6 p-1">Waiting for payment</span>
+	<span class="badge border border-danger h6 p-2 fw-medium">Waiting for payment</span>
 {% elseif field.value == 2 %}
-	<span class="badge text-bg-success h6 p-1">Paid</span>
+	<span class="badge text-bg-success h6 p-2 fw-medium">Paid</span>
 {% elseif field.value == 3 %}
-	<span class="badge text-bg-warning h6 p-1">In progress</span>
+	<span class="badge text-bg-warning h6 p-2 fw-medium">In progress</span>
 {% elseif field.value == 4 %}
-	<span class="badge text-bg-primary h6 p-1">Shipped</span>
+	<span class="badge text-bg-primary h6 p-2 fw-medium">Shipped</span>
 {% elseif field.value == 5 %}
-	<span class="badge text-bg-danger h6 p-1">Cancel</span>
+	<span class="badge text-bg-danger h6 p-2 text-white fw-medium">Cancel</span>
 {% endif %}

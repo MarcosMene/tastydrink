@@ -16,10 +16,16 @@ class Review
     private ?int $id = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    #[Assert\Range(min: 1, max: 5)]
-    private ?int $rate = 1;
+    private ?int $rate = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\-\0-9]/', message: 'Only letters and numbers.')]
+    #[Assert\Length(
+        min: 20,
+        max: 150,
+        minMessage: 'Review must be at least {{ limit }} characters long',
+        maxMessage: 'Review must be no longer than {{ limit }} characters'
+    )]
     private ?string $review = null;
 
     #[ORM\Column]

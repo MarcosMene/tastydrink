@@ -20,7 +20,7 @@ class DrinkCategoryCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Category of drink')
-      ->setEntityLabelInPlural('Category of drinks');
+      ->setEntityLabelInPlural('Categories of drink');
   }
 
 

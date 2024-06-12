@@ -5,16 +5,23 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<div class="mt-5">
-			<h1 class="main-titles text-center">Contact Us</h1>
+
+	{# HERO IMAGE  #}
+	<div class="hero_bg">
+		<img class="img-fluid" src="{{ asset('assets/images/contact.jpg') }}" alt="tasty drink building"/>
+		<div class="hero_title">
+			<span class="d-block p-0 m-0">Contact</span>
 		</div>
+	</div>
+
+
+	<div class="container">
+		<h1 class="main-titles text-center mt-5">Contact Us</h1>
 		<div class="wrapper wrapper-form bg-light text-black contact">
 			<div class="row px-2 px-md-5 py-3">
 				<div class="col-12 col-lg-8 px-2 px-md-3">
 					<h2 class="mb-3 fw-medium">Have a question?</h2>
 					<p class="fw-normal mb-5">Our team is dedicated to ensuring your experience with us is nothing short of excellent. We look forward to hearing from you!"</p>
-
 
 					{{ form_start(form) }}
 					<div class="row">
@@ -24,9 +31,9 @@
 						<div class="col-12">{{ form_row(form.subject) }}</div>
 						<div class="col-12">{{ form_row(form.message) }}</div>
 					</div>
-					{# button add basket #}
+					{# button send #}
 					<div class="col-12 text-center mt-3 mb-2">
-						<button type="submit" href="#" class="btn btn-primary btn-link my-4">Send</button>
+						<button type="submit" class="btn btn-primary btn-link my-4 w-100">Send</button>
 					</div>
 					{{ form_end(form) }}
 

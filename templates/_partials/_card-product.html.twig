@@ -9,7 +9,7 @@
 		<div
 			class="card-body bg-light p-4">
 			{# reviews stars #}
-			<div class="reviews d-flex align-items-end flex-column justify-content-end mb-5">
+			<div class="reviews d-flex align-items-end flex-column justify-content-end mb-2">
 				{% if product.reviews|length > 0 %}
 					<p class="fw-medium text-end">Average Rating:
 						{{ (product.getAverageRating())|number_format(2) }}</p>
@@ -37,7 +37,6 @@
 
 			{# description #}
 			<div class="product-description mt-4 lead">{{ product.description|raw }}</div>
-
 
 			{# price #}
 			<div class="products-price text-end my-5">

@@ -20,6 +20,10 @@ class NewsletterType extends AbstractType
                     'placeholder' => 'Enter your email',
                     'class' => 'form-control',
                     'style' => 'my-4',
+                    'minlength' => 10,
+                    'maxlength' => 50,
+                    'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('Your email must be between 10 and 50 characters long and can only contain letters.');",
+                    'oninvalid' => "this.setCustomValidity('Please Enter valid email')",
                 ],
             ])
             ->add('submit', SubmitType::class, [

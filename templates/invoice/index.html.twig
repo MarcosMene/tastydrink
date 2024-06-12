@@ -65,48 +65,51 @@
 			{{ order.createdAt|date('d/m/Y') }}
 		</p>
 		<div>
-			<table>
-				<tr>
-					<td class="start">
-						<strong>Tasty Drink Bar & Shop</strong><br/>
-						34 av. du Pont<br/>
-						34RE3G<br/>
-						Vancouver<br/>
-						555-55554444<br/>
-						contact@tastydrink.com<br/>
-					</td>
-					<td class="right">
-						<strong>Customer Information</strong><br/>
-						{{ order.delivery|raw }}
-					</td>
-				</tr>
-			</table>
-
+			<div class="div" style="overflow-x:auto;">
+				<table>
+					<tr>
+						<td class="start">
+							<strong>Tasty Drink Bar & Shop</strong><br/>
+							34 av. du Pont<br/>
+							34RE3G<br/>
+							Vancouver<br/>
+							555-55554444<br/>
+							contact@tastydrink.com<br/>
+						</td>
+						<td class="right">
+							<strong>Customer Information</strong><br/>
+							{{ order.delivery|raw }}
+						</td>
+					</tr>
+				</table>
+			</div>
 			{# ORDER DETAILS #}
 			<h3>Order detail</h3>
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Name of product</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Unitary price Ex.T.</th>
-						<th scope="col">Tax</th>
-						<th scope="col">Total VAT</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for product in order.orderDetails %}
+			<div class="div" style="overflow-x:auto;">
+				<table class="table">
+					<thead>
 						<tr>
-							<td>{{ product.productName }}</td>
-							<td>{{ product.productQuantity }}</td>
-							<td>{{ product.productPrice|price }}</td>
-							<td>{{ product.productTva }}%</td>
-							{% set coeff = 1 + product.productTva / 100 %}
-							<td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
+							<th scope="col">Name of product</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Unitary price Ex.T.</th>
+							<th scope="col">Tax</th>
+							<th scope="col">Total VAT</th>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{% for product in order.orderDetails %}
+							<tr>
+								<td>{{ product.productName }}</td>
+								<td>{{ product.productQuantity }}</td>
+								<td>{{ product.productPrice|price }}</td>
+								<td>{{ product.productTva }}%</td>
+								{% set coeff = 1 + product.productTva / 100 %}
+								<td>{{ (product.productPrice * coeff * product.productQuantity)|price }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 			<h3>Carrier company</h3>
 			<span>{{ order.carrierName }}</span>
 			<span>{{ order.carrierPrice|price }}</span>

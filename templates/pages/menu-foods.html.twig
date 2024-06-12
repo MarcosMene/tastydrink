@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Tasty Drink - Menu Drinks
+	Tasty Drink - Menu Foods
 {% endblock %}
 
 {% block body %}
@@ -11,12 +11,13 @@
 			<h1 class="main-titles text-center text-capitalize">Our menu foods</h1>
 			<p class="mt-5">A slice of heaven. O for awesome, this chocka full cuzzie is as rip-off as a cracker. Meanwhile, in behind the bicycle shed, Hercules Morse, as big as a horse and Mrs Falani were up to no good with a bunch of crook pikelets. Meanwhile, at the black singlet woolshed party, not even au, sort your drinking out.</p>
 		</div>
+
 		<div class="row mt-5">
-			<div class="products">
+			<div class="menu">
 				<section
 					class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
 
-					{# FOODS  #}
+					{# DRINKS  #}
 					{% for categoryFood in allFoodCategories|sort((a, b) => a.orderAppear <=> b.orderAppear) %}
 						{% if (categoryFood.food|length) > 0 %}
 
@@ -24,21 +25,21 @@
 
 							<div class="d-flex flex-wrap align-items-center justify-content-center  gap-3">
 
-								{%for  drink in categoryFood.food%}
+								{% for  food in categoryFood.food %}
 									{# -----------CARD #}
-									<div class="card m-3 " style="max-width: 540px;">
+									<div class="card m-3 ">
 										<div class="row g-0 bg-white">
-											<div class="col-md-10">
+											<div class="col-md-9">
 												<div class="card-body">
-													<h5 class="card-title text-capitalize">{{drink.name}}</h5>
-													<p class="card-text lead">{{drink.description|raw}}</p>
+													<h5 class="card-title text-capitalize">{{food.name}}</h5>
+													<div class="card-text menu-description my-3">{{ food.description|raw }}</div>
 													<div class="card-text">
-														<h3 class="products-price text-end">{{drink.price|price}}</h3>
+														<h3 class="products-price text-end">{{food.price|price}}</h3>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-2 d-none d-sm-block">
-												<img src="/uploads/menu/{{ drink.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ drink.name }}"/>
+											<div class="col-md-3 d-none d-md-block">
+												<img src="/uploads/menu/{{ food.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ food.name }}"/>
 											</div>
 										</div>
 									</div>

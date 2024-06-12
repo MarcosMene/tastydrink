@@ -1,9 +1,12 @@
 {# LOGIN BAR #}
 <div class="py-3 bg-info">
 	<div class="container d-flex justify-content-between align-items-center flex-column flex-md-row">
-		<a class="navbar-brand fs-3" href="{{ path('app_home') }}">Tasty Drink</a>
+
+		<a class="navbar-brand fs-3" href="{{ path('app_home') }}">
+			<img src="{{ asset('assets/images/logo.png') }}" alt="logo tasty drink" class="img-fluid" width="40px"/>
+		</a>
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="d-flex  flex-sm-row my-2 justify-content-end align-items-center my-md-0 text-small">
+			<div class="d-flex flex-column  flex-md-row my-2 justify-content-end align-items-center my-md-0 text-small">
 				{% if app.user %}
 					<div class="shopping-icon d-flex align-items-center flex-column flex-md-row">
 						<div class="my-2 my-md-0">
@@ -26,12 +29,12 @@
 								<span>{{ app.user.wishlists|length }}</span>
 							{% endif %}
 						</a>
-					{% else %}
-
-						<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary mr-5 btn-signIn">Login</a>
-						|
-						<a href="{{ path('app_sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
 					</div>
+				{% else %}
+
+					<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary mr-5 btn-signIn">Login</a>
+					|
+					<a href="{{ path('app_sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
 				{% endif %}
 				<div class="shopping-icon">
 					<a href="{{ path('app_cart') }}">
@@ -57,10 +60,10 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-sm-center justify-content-sm-between px-0">
 				<li class="nav-item">
-					<a class="nav-link active text-center" href="{{ path('our_story') }}">Our Story</a>
+					<a class="nav-link active text-center" href="{{ path('app_our_story') }}">Our Story</a>
 				</li>
 				<li class="nav-item text-center">
-					<a class="nav-link" href="{{ path('team') }}">Our Team</a>
+					<a class="nav-link" href="{{ path('app_team') }}">Our Team</a>
 				</li>
 				<li class="nav-item dropdown text-center">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar</a>
@@ -100,6 +103,9 @@
 
 				<li class="nav-item text-center">
 					<a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+				</li>
+				<li class="nav-item text-center">
+					<a class="btn btn-primary btn-link mt-2 fs-4" href="{{ path('app_reservation') }}">Reservation</a>
 				</li>
 			</ul>
 		</div>

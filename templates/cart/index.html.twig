@@ -7,7 +7,6 @@
 
 {% block body %}
 	<div class="container">
-
 		<div class="mt-5">
 			<h1 class="main-titles text-center">My shopping</h1>
 		</div>
@@ -73,7 +72,7 @@
 								</div>
 								{% set total = total + product.object.pricewt * product.qty %}
 							{% endfor %}
-							<a href="{{ path('app_cart_remove') }}" class="small btn btn-light border-white text-black">Empty the basket</a>
+							<a href="{{ path('app_cart_remove') }}" class="small btn btn-light border-white text-black fw-medium fs-5">Empty the basket</a>
 						</div>
 					</div>
 

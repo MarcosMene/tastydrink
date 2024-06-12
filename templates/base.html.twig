@@ -22,16 +22,15 @@
 			<main role="main">
 				{% if block('carousel') is defined %}{% endif %}
 
-				{# <section class="mb-5"> #}
+				{# MESSAGES  #}
 				{% include '_partials/flash.html.twig' %}
 				{% block body %}{% endblock %}
-				{# </section> #}
 			</main>
-
 			{% include '_partials/_footer.html.twig' %}
 
 			{# js files #}
 			<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
 			<script src="{{ asset('assets/js/scripts.js') }}" defer></script>
+
 		</body>
 	</html>

@@ -1,18 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Tasty Drink - Welcome
+	Tasty Drink - Our bar
 {% endblock %}
 
 {% block body %}
+
+	{# HERO IMAGE  #}
+	<div class="hero_bg">
+		<img class="img-fluid" src="{{ asset('assets/images/our_bar.jpg') }}" alt="tasty drink building"/>
+		<div class="hero_title">
+			<span class="d-block p-0 m-0">Our</span>
+			<span>Bar</span>
+		</div>
+	</div>
+
 	{# -----------------DRINK SHOP & BAR #}
 	<div class="container">
 
-		<div class="mt-5">
+		<section class="mt-5">
 			<h2 class="main-titles text-capitalize text-center">The Tasty Drink Bar</h2>
 			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
 			<p>Mattis integer cursus viverra sem sodales augue nascetur, quis faucibus magna mi lacus praesent ornare justo, feugiat quisque nibh tempus est leo. Pharetra iaculis lobortis duis pulvinar turpis donec imperdiet aliquet, dictumst dictum fames urna blandit conubia rutrum.</p>
-		</div>
+		</section>
 
 		{# -----------DIVISOR #}
 		<div class="divisor divisor-lg"></div>
@@ -39,7 +49,7 @@
 				<p>Aturient taciti facilisi fermentum at sociis tincidunt, venenatis mollis iaculis eget curabitur cras. Metus curabitur pellentesque hac laoreet sollicitudin condimentum nibh penatibus nec scelerisque facilisi, torquent himenaeos nunc risus pretium eleifend conubia.</p>
 			</div>
 			<div class="col-12 col-md-6 p-0">
-				<img src="{{ asset('assets/images/terrace.jpeg') }}" alt="" class="img-fluid"/>
+				<img src="{{ asset('assets/images/terrace.jpeg') }}" alt="terrace of tasty drink bar and shop" class="img-fluid"/>
 			</div>
 		</div>
 
@@ -47,8 +57,9 @@
 		<div class="divisor divisor-lg"></div>
 
 		{# --------------------------------- OUR MENU #}
-		<section class="text-center mt-5">
-			<h2 class="headers text-capitalize">Our Menu</h2>
+		<section class=" mt-5">
+			<h2 class="headers text-center text-capitalize">Our Menu</h2>
+			<p class="text-left mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quas tenetur ad ipsam suscipit molestiae unde, architecto consectetur minima dolor eaque esse! Eaque blanditiis esse iste eligendi nostrum voluptas, facere commodi voluptatum, omnis suscipit maiores consequatur totam, repellendus laborum sit aliquam odio ducimus tempore. A laboriosam aliquam magni ducimus saepe. Aturient taciti facilisi fermentum at sociis tincidunt, venenatis mollis iaculis eget curabitur cras. Metus curabitur pellentesque hac laoreet sollicitudin condimentum nibh penatibus nec scelerisque facilisi, torquent himenaeos nunc risus pretium eleifend conubia.</p>
 			<div class="wrapper wrapper-max info m-auto p-5">
 				<div class="row d-flex justify-content-around justify-content-lg-center">
 					<div class="col-9 col-lg-3 m-5 p-1">
@@ -66,7 +77,9 @@
 						<a href="{{path('app_menu_foods')}}" class="btn btn-primary btn-link mt-5 w-100">Menu Food</a>
 					</div>
 				</div>
-				<a href="" class="mx-1 btn btn-primary bg-white fs-5  text-black">Download our menu</a>
+				<div class="text-center">
+					<a href="" class=" btn btn-primary bg-white fs-5  text-black">Download our menu</a>
+				</div>
 			</div>
 		</section>
 	</div>

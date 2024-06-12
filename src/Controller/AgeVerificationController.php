@@ -10,13 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AgeVerificationController extends AbstractController
 {
-    #[Route('/age-verification', name: 'age_verification')]
+    #[Route('/age-verification', name: 'app_age_verification')]
     public function index(SessionInterface $session): Response
     {
         return $this->render('_partials/ageVerification/index.html.twig');
     }
 
-    #[Route('/verify-age', name: 'verify_age', methods: ['POST'])]
+    #[Route('/verify-age', name: 'app_verify_age', methods: ['POST'])]
     public function verifyAge(Request $request, SessionInterface $session): Response
     {
         if ($request->request->get('age') >= 18) {
@@ -24,6 +24,6 @@ class AgeVerificationController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->redirectToRoute('age_verification');
+        return $this->redirectToRoute('app_age_verification');
     }
 }

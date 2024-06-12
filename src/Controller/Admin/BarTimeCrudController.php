@@ -3,10 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\BarTime;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 
@@ -15,6 +15,13 @@ class BarTimeCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return BarTime::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Bar Time')
+            ->setEntityLabelInPlural('Bar Times');
     }
 
     public function configureFields(string $pageName): iterable

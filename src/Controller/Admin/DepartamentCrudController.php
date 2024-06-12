@@ -29,7 +29,7 @@ class DepartamentCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Department')
-      ->setEntityLabelInPlural('Department');
+      ->setEntityLabelInPlural('Departments');
   }
 
   public function configureFields(string $pageName): iterable

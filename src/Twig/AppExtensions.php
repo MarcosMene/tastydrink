@@ -27,7 +27,6 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
     $this->teamRepository = $teamRepository;
   }
 
-
   public function getFilters()
   {
     return [
@@ -40,11 +39,7 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
     return '$ ' . number_format($number, '2', '.', ',');
   }
 
-
-
-
   //variable global get all categories on all pages
-
   public function getGlobals(): array
   {
     return [
