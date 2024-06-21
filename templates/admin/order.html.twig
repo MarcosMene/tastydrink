@@ -1,7 +1,13 @@
 {# layout to show detail orders on easyadmin #}
 {% extends '@!EasyAdmin/layout.html.twig' %}
 {% block main %}
-	<h2>Act on the orders</h2>
+	<div class="text-end">
+		<button class="btn btn-info" onclick="window.history.back()">Back to order list</button>
+	</div>
+	<div class="d-flex">
+		<h2>Act on the orders</h2>
+		<a href=""></a>
+	</div>
 
 	{# verify order state to show the link or not #}
 	{% if order.state != 1 %}
@@ -56,7 +62,7 @@
 				{% for product in order.orderDetails %}
 					<tr>
 						<td>
-							<img src="/uploads/products/{{ product.productIllustration }}" alt="{{ product.productName }}" width="100"/>
+							<img src="/uploads/products/{{ product.productIllustration }}" alt="{{ product.productName }}" width="100" loading="lazy"/>
 						</td>
 						<td>{{ product.productName }}</td>
 						<td>{{ product.productQuantity }}</td>

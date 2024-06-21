@@ -17,13 +17,7 @@ class FoodCategory
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
-  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\-\0-9]/', message: 'Only letters and numbers.')]
-  #[Assert\Length(
-    min: 3,
-    max: 25,
-    minMessage: 'Name must be at least {{ limit }} characters long',
-    maxMessage: 'Name must be no longer than {{ limit }} characters'
-  )]
+  #[Assert\NotBlank]
   private ?string $name = null;
 
   #[ORM\OneToMany(targetEntity: Food::class, mappedBy: 'foodcategory', orphanRemoval: true)]
@@ -31,13 +25,6 @@ class FoodCategory
 
   #[ORM\Column(nullable: true)]
   #[Assert\NotBlank]
-  #[Assert\Positive]
-  #[Assert\GreaterThanOrEqual(
-    value: 1,
-  )]
-  #[Assert\LessThan(
-    value: 5,
-  )]
   private ?int $orderAppear = null;
 
   public function __construct()
@@ -63,7 +50,6 @@ class FoodCategory
   public function setName(string $name): static
   {
     $this->name = $name;
-
     return $this;
   }
 
@@ -81,7 +67,6 @@ class FoodCategory
       $this->food->add($food);
       $food->setFoodcategory($this);
     }
-
     return $this;
   }
 
@@ -93,7 +78,6 @@ class FoodCategory
         $food->setFoodcategory(null);
       }
     }
-
     return $this;
   }
 

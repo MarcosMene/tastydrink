@@ -22,7 +22,6 @@ class PasswordController extends AbstractController
         $form = $this->createForm(ChangePasswordType::class, $user);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $old_pwd = $form->get('current_password')->getData();
 

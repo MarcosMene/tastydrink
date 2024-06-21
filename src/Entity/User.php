@@ -25,9 +25,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-
     #[ORM\Column(length: 180, unique: true)]
-
+    #[Assert\NotBlank]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -37,13 +36,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-
+    #[Assert\NotBlank]
     private ?string $lastname = null;
 
     #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'user')]
@@ -101,7 +102,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -130,7 +130,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -145,7 +144,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -208,7 +206,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $address->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -226,7 +223,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->orders->add($order);
             $order->setUser($this);
         }
-
         return $this;
     }
 
@@ -238,7 +234,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -255,14 +250,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->wishlists->contains($wishlist)) {
             $this->wishlists->add($wishlist);
         }
-
         return $this;
     }
 
     public function removeWishlist(Product $wishlist): static
     {
         $this->wishlists->removeElement($wishlist);
-
         return $this;
     }
 
@@ -274,7 +267,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setToken(?string $token): static
     {
         $this->token = $token;
-
         return $this;
     }
 
@@ -286,7 +278,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTokenExpireAt(?\DateTimeInterface $tokenExpireAt): static
     {
         $this->tokenExpireAt = $tokenExpireAt;
-
         return $this;
     }
 
@@ -298,7 +289,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastLoginAt(?\DateTimeInterface $lastLoginAt): static
     {
         $this->lastLoginAt = $lastLoginAt;
-
         return $this;
     }
 
@@ -316,7 +306,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->reservations->add($reservation);
             $reservation->setUser($this);
         }
-
         return $this;
     }
 
@@ -328,7 +317,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reservation->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -346,7 +334,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->reviews->add($review);
             $review->setUser($this);
         }
-
         return $this;
     }
 
@@ -358,7 +345,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $review->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -376,7 +362,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->reviewClients->add($reviewClient);
             $reviewClient->setUser($this);
         }
-
         return $this;
     }
 
@@ -388,7 +373,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reviewClient->setUser(null);
             }
         }
-
         return $this;
     }
 }

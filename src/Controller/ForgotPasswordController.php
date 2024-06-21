@@ -7,7 +7,6 @@ use App\Form\ForgotPasswordFormType;
 use App\Form\ResetPasswordFormType;
 use App\Repository\UserRepository;
 use DateTime;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,7 +72,6 @@ class ForgotPasswordController extends AbstractController
     #[Route('/password/reset/{token}', name: 'app_password_reset')]
     public function reset(Request $request,  UserRepository $userRepository, $token): Response
     {
-
         if (!$token) {
             return $this->redirectToRoute('app_forgot_password');
         }
@@ -101,8 +99,6 @@ class ForgotPasswordController extends AbstractController
             $this->addFlash('success', 'Your password has been updated correctly');
             return $this->redirectToRoute('app_login');
         }
-
-
         return $this->render(
             'forgot_password/reset.html.twig',
             [

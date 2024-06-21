@@ -21,7 +21,7 @@
 			{# EMAIL  #}
 			<div class="mb-4">
 				<label for="inputEmail">Email</label>
-				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="off" required autofocus minlength="10" maxlength="100"/>
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="off" required autofocus minlength="10" maxlength="50"/>
 			</div>
 
 			{# PASSWORD  #}
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 
-
+			{# security csrf  #}
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
 			<input
 			type="hidden" name="_target_path" value="{{ path('app_account') }}"/>

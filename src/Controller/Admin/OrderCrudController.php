@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Classe\Mail;
 use App\Classe\State;
 use App\Entity\Order;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -16,23 +15,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Request;
 
 class OrderCrudController extends AbstractCrudController
 {
-
     private $em;
 
     public function __construct(EntityManagerInterface $entityManagerInterface)
     {
         $this->em = $entityManagerInterface;
     }
-
-
-
 
     public static function getEntityFqcn(): string
     {
@@ -44,17 +38,16 @@ class OrderCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Order')
             ->setEntityLabelInPlural('Orders')
-
+            ->setDefaultSort(['createdAt' => 'DESC'])
             // the max number of entities to display per page
-            ->setPaginatorPageSize(10);
+            ->setPaginatorPageSize(5);
     }
 
     //to hide create button order on dashboard and hide edit and delete button on order
     public function configureActions(Actions $actions): Actions
     {
-        //variable to create buton show detail order
+        //variable to create button show detail order
         $show = Action::new('Show')->linkToCrudAction('show');
-
 
         return $actions
             //add personal action to show detail order
@@ -69,15 +62,11 @@ class OrderCrudController extends AbstractCrudController
      */
     public function changeState($order, $state)
     {
-
         //change state of order status
         $order->setState($state);
         $this->em->flush();
 
         $this->addFlash('success', 'Updated order status');
-
-
-
 
         //send email to client to inform the situation of his/her order
         $mail = new Mail();
@@ -88,6 +77,7 @@ class OrderCrudController extends AbstractCrudController
         ];
         $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstName() . ' ' . $order->getUser()->getLastName(), State::STATE[$state]['email_subject'], State::STATE[$state]['email_template'], $vars);
     }
+
     //function to show details of order on easyadmin
     //adminurlgenerator to generate the state value on the url
     public function show(AdminContext $context, AdminUrlGenerator $adminUrlGenerator, Request $request)

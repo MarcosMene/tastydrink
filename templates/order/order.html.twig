@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="w-75 mx-auto">
 		<div class="mt-5">
 			<h1 class="main-titles text-center">Your order</h1>
 		</div>
@@ -13,7 +13,7 @@
 		<div class="row bg-info products d-flex justify-content-between p-5">
 			<p class="text-white text-center mt-3">Choose your preferences before placing your order on Tasty Drink.</p>
 			<p class="text-white text-center mb-5"></p>
-			<div class="col-12 col-lg-8 text-dark">
+			<div class="col-12 col-xl-8 text-dark">
 				<p class="text-white text-center text-uppercase my-3">Order</p>
 				<div
 					class="cards bg-light rounded p-5">
@@ -22,8 +22,8 @@
 						<div
 							class="row d-flex my-3 bg-white p-3 rounded shadow-sm">
 							{# product #}
-							<div class="col-6 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
-								<img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px"/>
+							<div class="col-7 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
+								<img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid d-none d-sm-block" style="width:80px; height:80px" loading="lazy"/>
 								<div class="card-product my-2 my-sm-0 mx-sm-4">
 									<h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
 									<p>
@@ -34,7 +34,7 @@
 							</div>
 							{# quantity and price #}
 							<div
-								class="col-6 col-md-6 d-flex flex-column flex-sm-row justify-content-between">
+								class="col-5 col-md-6 d-flex flex-column flex-sm-row justify-content-between">
 								{# quantity #}
 								<div class="fs-4 fw-bold">x
 									{{ product.qty }}</div>
@@ -50,7 +50,7 @@
 			</div>
 
 			{# ------------total #}
-			<div class="col-12 col-lg-4 mt-4 mt-lg-0 account">
+			<div class="col-12 col-xl-4 mt-4 mt-xl-0 account">
 				<p class="text-white text-center text-uppercase my-3">Delivery information</p>
 				{# card address #}
 				<div class="wrapper info wrapper-max m-0 mb-3 border border-primary rounded">
@@ -62,7 +62,7 @@
 						{{ form_start(deliveryForm) }}
 						<div>{{ form_row(deliveryForm.addresses) }}</div>
 						<hr class="divison-line my-3"/>
-						<div>{{ form_row(deliveryForm.carriers) }}</div>
+						<div class="d-flex">{{ form_row(deliveryForm.carriers) }}</div>
 						{{ form_end(deliveryForm) }}
 					</div>
 				</div>

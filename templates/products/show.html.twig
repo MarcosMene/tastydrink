@@ -6,31 +6,31 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="w-75 mx-auto">
 		<div class="mt-5">
 			<h1 class="main-titles text-center">{{ product.category.name }}</h1>
 		</div>
 
 		<div class="p-0 text-end">
-			<a href="{{ path('app_shop') }}" class="back-to">
+			<a href="{{ path('app_products') }}" class="back-to">
 				<span>
 					<i class="fa-solid fa-angles-left"></i>
 				</span>
 				Back to shop</a>
 		</div>
-		<div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
-			{# {% include '_partials/flash.html.twig' %} #}
-			{# -----------------breadcrump #}
-
-				<div class="d-flex flex-wrap align-items-center justify-content-between"> <div class="mt-4 mb-1 mb-md-0 breadcrumbs">
+		<div
+			class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+			{# --------------------------------- breadcrump #}
+			<div class="d-flex flex-wrap align-items-center justify-content-between">
+				<div class="mt-4 mb-1 mb-md-0 breadcrumbs">
 					<div class="d-flex align-items-start justify-content-between mx-0">
 						<nav class="p-0">
 							<ul class="breadcrumb p-0">
 								<li>
-									<a href="{{ path('app_shop') }}">Shop</a>
+									<a href="{{ path('app_products') }}">All products</a>
 								</li>
 								<li>
-									<a href="{{ path('app_category', { slug: product.category.slug }) }}">{{ product.category }}s</a>
+									<a href="{{ path('app_category', { slug: product.category.slug }) }}">{{ product.category }}</a>
 								</li>
 								<li class="text-capitalize">{{ product.name }}</li>
 							</ul>
@@ -50,32 +50,98 @@
 					<div class="row gx-4 wrapper-max d-flex justify-content-center">
 						{% include '_partials/_card-product-horizontal.html.twig' %}
 					</div>
-				</div>
-			</div>
-
-			{# -----------DIVISOR #}
-			<div class="divisor divisor-lg"></div>
-
-			{# --------------------------------- OUR SUGGESTIONS #}
-			<section class="text-center mt-5 p-1 ">
-				<h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
-				<div class="wrapper info wrapper-max m-auto p-0 w-75">
-					<div class="row d-flex align-items-center justify-content-between ">
-						{% for product in productSuggestions %}
-							<div class="col-12 col-sm-6 col-md-4 my-3 ">
-								<div class="product-card m-auto img-hover-zoom rounded-1">
-									<a href="{{ path('app_product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid "/></a>
+					{# BUTTON GIVE OPINION  #}
+					{% if is_granted('IS_AUTHENTICATED_FULLY') and not user_reviewed %}
+						<p class="d-inline-flex gap-1 mt-2">
+							<button class="btn btn-white fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+								Give your opinion for this product
+							</button>
+						</p>
+					{% else %}
+						<p class="m-0  fw-normal text-start text-white p-2 fs-5 text-decoration-underline">
+							You have already reviewed this product.</p>
+					{% endif %}
+					<div class="collapse" id="collapseExample">
+						<div class="card card-body">
+							<div
+								class="review bg-light">
+								{# FORM  #}
+								<div class="form-review">
+									{% if is_granted('IS_AUTHENTICATED_FULLY') and not user_reviewed %}
+										<div class="card p-2">
+											<h2 class="text-center mt-1">Give your opinion</h2>
+											<div class=" bg-white">
+												{{ form_start(formReview) }}
+												{{ form_row(formReview.rate) }}
+												{{ form_row(formReview.review) }}
+												{{ form_row(formReview.submit) }}
+												{{ form_end(formReview) }}
+											</div>
+										</div>
+									{% elseif is_granted('IS_AUTHENTICATED_FULLY') and user_reviewed %}
+										{# DIVISOR  #}
+										<p class="m-0 h5 fw-normal text-start bg-white text-black">
+											You have already reviewed this product.</p>
+									{% else %}
+										{# DIVISOR  #}
+										<p class="text-center bg-white m-0 text-black">Please
+											<a href="{{ path('app_login') }}" class="text-dark text-decoration-underline">login</a>
+											to review this product.</p>
+									{% endif %}
 								</div>
 							</div>
-						{% endfor %}
+						</div>
 					</div>
-
-					{# button add basket #}
-					<div class="col-12 text-center mt-5">
-						<a href="{{ path('app_shop') }}" class="btn btn-outline mt-2">Find other products</a>
-					</div>
+					{# END BUTTON GIVE OPINION  #}
 				</div>
-			</section>
+
+
+				{# USERS OPINION  #}
+				{% for review in product.reviews %}
+
+					{% if review|length > 0 and review.isIsApproved %}
+						<section>
+							<hr>
+							<p class="p-0 m-0">{{review.user.firstname}}'s opinion</p>
+							{# starts  #}
+							<div class="average-rating">
+								{% for i in 1..5 %}
+									{% if i <= review.rate %}
+										<i class="fa-2xs fas fa-star positive-star"></i>
+									{% else %}
+										<i class="fa-2xs far fa-star border-star"></i>
+									{% endif %}
+								{% endfor %}
+							</div>
+							<p>{{review.review}}</p>
+						</section>
+					{% endif %}
+				{% endfor %}
+			</div>
 		</div>
+
+		{# -----------DIVISOR #}
+		<div class="divisor divisor-lg"></div>
+
+		{# --------------------------------- OUR SUGGESTIONS #}
+		<section class="text-center mt-5 p-1 ">
+			<h2 class="headers text-capitalize wrapper-max">Our suggestions</h2>
+			<div class="wrapper info wrapper-max m-auto">
+				<div class="row d-flex align-items-center justify-content-between ">
+					{% for product in productSuggestions %}
+						<div class="col-12 col-sm-6 col-md-4 my-3 ">
+							<div class="product-card m-auto img-hover-zoom rounded-1">
+								<a href="{{ path('app_product', { slug: product.slug }) }}"><img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid " loading="lazy"/></a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				{# button add basket #}
+				<div class="col-12 text-center mt-5">
+					<a href="{{ path('app_products') }}" class="btn btn-outline mt-2">Find other products</a>
+				</div>
+			</div>
+		</section>
 	</div>
 {% endblock %}

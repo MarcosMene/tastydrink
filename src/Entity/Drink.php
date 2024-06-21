@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use App\Repository\DrinkRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DrinkRepository::class)]
+
+//to not repeat the name of menu drink
+#[UniqueEntity('name')]
+
 class Drink
 {
   #[ORM\Id]
@@ -15,32 +20,15 @@ class Drink
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
-  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\-\0-9]/', message: 'Only letters and numbers.')]
-  #[Assert\Length(
-    min: 10,
-    max: 25,
-    minMessage: 'Name must be at least {{ limit }} characters long',
-    maxMessage: 'Name must be no longer than {{ limit }} characters'
-  )]
+  #[Assert\NotBlank]
   private ?string $name = null;
 
   #[ORM\Column(length: 255)]
-  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
-  #[Assert\Length(
-    min: 20,
-    max: 140,
-    minMessage: 'Description must be at least {{ limit }} characters long',
-    maxMessage: 'Description must be no longer than {{ limit }} characters'
-  )]
+  #[Assert\NotBlank]
   private ?string $description = null;
 
   #[ORM\Column]
-  #[Assert\Positive]
-  #[Assert\Range(
-    min: 5,
-    max: 50,
-    notInRangeMessage: "Price must be between {{ min }} and {{ max }}."
-  )]
+  #[Assert\NotBlank]
   private ?float $price = null;
 
   #[ORM\Column(length: 255)]

@@ -6,10 +6,10 @@
 
 {% block body %}
 	{# --------------------------------- foods container #}
-	<div class="container">
+	<div class="w-75 mx-auto">
 		<div class="mt-5">
 			<h1 class="main-titles text-center text-capitalize">Our menu foods</h1>
-			<p class="mt-5">A slice of heaven. O for awesome, this chocka full cuzzie is as rip-off as a cracker. Meanwhile, in behind the bicycle shed, Hercules Morse, as big as a horse and Mrs Falani were up to no good with a bunch of crook pikelets. Meanwhile, at the black singlet woolshed party, not even au, sort your drinking out.</p>
+			<p class="mt-5">Step into the inviting ambiance of Tasty Drink Bar & Shop, where the menu dances between luscious meats and vibrant vegetarian delights, each dish a masterpiece crafted to tantalize every palate. Pair these delectable dishes with their curated selection of fine wines or artisanal cocktails, and let each sip and bite transport you to a realm where taste meets elegance in perfect harmony.</p>
 		</div>
 
 		<div class="row mt-5">
@@ -22,12 +22,11 @@
 						{% if (categoryFood.food|length) > 0 %}
 
 							<h2 class="text-center mt-3 text-uppercase">{{categoryFood.name}}</h2>
-
-							<div class="d-flex flex-wrap align-items-center justify-content-center  gap-3">
+							<div class="d-flex flex-wrap justify-content-around">
 
 								{% for  food in categoryFood.food %}
 									{# -----------CARD #}
-									<div class="card m-3 ">
+									<div class="card m-3">
 										<div class="row g-0 bg-white">
 											<div class="col-md-9">
 												<div class="card-body">
@@ -39,13 +38,12 @@
 												</div>
 											</div>
 											<div class="col-md-3 d-none d-md-block">
-												<img src="/uploads/menu/{{ food.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ food.name }}"/>
+												<img src="/uploads/menu/{{ food.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ food.name }}" loading="lazy"/>
 											</div>
 										</div>
 									</div>
 									{%endfor%}
 								</div>
-
 								{# -----------DIVISOR #}
 								<div class="divisor divisor-drink"></div>
 							{% endif %}

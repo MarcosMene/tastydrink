@@ -21,7 +21,6 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-
     /**
      * show orders from user's member space
      *

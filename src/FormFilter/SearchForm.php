@@ -23,7 +23,7 @@ class SearchForm extends AbstractType
         'label' => false,
         'required' => false,
         'attr' => [
-          'placeholder' => 'Find a product'
+          'placeholder' => 'Name of a product'
         ]
       ])
 

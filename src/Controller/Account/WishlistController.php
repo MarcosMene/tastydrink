@@ -14,14 +14,21 @@ class WishlistController extends AbstractController
   #[Route('/account/wishlist', name: 'app_account_wishlist')]
   public function index(): Response
   {
-    return $this->render('account/wishlist/index.html.twig');
-  }
+    // Check if the user is logged in and redirect based on role
+    $user = $this->getUser();
 
+    if ($user) {
+      if (in_array('ROLE_ADMIN', $user->getRoles())) {
+        return $this->redirectToRoute('app_account');
+      } else {
+        return $this->render('account/wishlist/index.html.twig');
+      }
+    }
+  }
 
   #[Route('/account/wishlist/add/{id}', name: 'app_account_wishlist_add')]
   public function add(ProductRepository $productRepository, EntityManagerInterface $entityManager, $id, Request $request): Response
   {
-
     // get product from database by id
     $product = $productRepository->findOneById($id);
 
@@ -38,11 +45,9 @@ class WishlistController extends AbstractController
     return $this->redirect($request->headers->get('referer'));
   }
 
-
   #[Route('/account/wishlist/remove/{id}', name: 'app_account_wishlist_remove')]
   public function remove(ProductRepository $productRepository, EntityManagerInterface $entityManager, $id, Request $request): Response
   {
-
     // get product from database by id and remove it from user's wishlist
     $product = $productRepository->findOneById($id);
 
@@ -60,7 +65,6 @@ class WishlistController extends AbstractController
         'This product doesn\'t exist.'
       );
     }
-
     // back to last page visited 
     return $this->redirect($request->headers->get('referer'));
   }

@@ -16,17 +16,27 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+    #[Assert\NotBlank]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+    #[Assert\NotBlank]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 20)]
+
     private ?string $telephone = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive(
+        message: 'The number of people must be a positive number',
+    )]
+    #[Assert\Range(
+        min: 1,
+        max: 20,
+        notInRangeMessage: 'You must be between {{ min }}cm and {{ max }}cm tall to enter',
+    )]
     private ?int $numberOfPeople = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
@@ -34,9 +44,14 @@ class Reservation
     private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
+    #[Assert\Type("\DateTimeInterface")]
+    #[Assert\GreaterThanOrEqual('today')]
+    #[Assert\LessThanOrEqual('6 months')]
     private ?\DateTimeInterface $reservationDate = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $reservationTime = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -63,7 +78,6 @@ class Reservation
     public function setNumberOfPeople(int $numberOfPeople): static
     {
         $this->numberOfPeople = $numberOfPeople;
-
         return $this;
     }
 
@@ -75,7 +89,6 @@ class Reservation
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -87,7 +100,6 @@ class Reservation
     public function setReservationDate(\DateTimeInterface $reservationDate): static
     {
         $this->reservationDate = $reservationDate;
-
         return $this;
     }
 
@@ -99,7 +111,6 @@ class Reservation
     public function setReservationTime(\DateTimeInterface $reservationTime): static
     {
         $this->reservationTime = $reservationTime;
-
         return $this;
     }
 
@@ -111,7 +122,6 @@ class Reservation
     public function setFirstname(string $firstname): static
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -123,7 +133,6 @@ class Reservation
     public function setLastname(string $lastname): static
     {
         $this->lastname = $lastname;
-
         return $this;
     }
 
@@ -135,7 +144,6 @@ class Reservation
     public function setTelephone(string $telephone): static
     {
         $this->telephone = $telephone;
-
         return $this;
     }
 
@@ -147,7 +155,6 @@ class Reservation
     public function setComments(?string $comments): static
     {
         $this->comments = $comments;
-
         return $this;
     }
 
@@ -159,7 +166,6 @@ class Reservation
     public function setCancelReservation(?bool $cancelReservation): static
     {
         $this->cancelReservation = $cancelReservation;
-
         return $this;
     }
 }

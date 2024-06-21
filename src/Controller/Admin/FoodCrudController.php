@@ -12,20 +12,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class FoodCrudController extends AbstractCrudController
 {
-
   private $foodCategoryRepository;
 
   public function __construct(FoodCategoryRepository $foodCategoryRepository)
   {
     $this->foodCategoryRepository = $foodCategoryRepository;
   }
-
-
 
   public static function getEntityFqcn(): string
   {
@@ -46,7 +44,6 @@ class FoodCrudController extends AbstractCrudController
     if ($pageName == 'edit') {
       $required = false;
     }
-
 
     //find all food categories
     $foodCategs = $this->foodCategoryRepository->findAll();
@@ -77,20 +74,67 @@ class FoodCrudController extends AbstractCrudController
 
     return [
       IdField::new('id')->hideOnForm(),
-      TextField::new('name'),
-      TextEditorField::new('description'),
-      NumberField::new('price'),
+      TextField::new('name')
+        ->setHelp('Minimum length is 5, maximum 25 characters')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 5,
+              'max' => 25,
+              'minMessage' => 'Food name must be at least {{ limit }} characters long',
+              'maxMessage' => 'Food name cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ0-9\s\-_]*$/',
+              'message' => 'Food name can only contain letters, numbers, and underscores',
+            ]),
+          ]
+        ]),
+      TextareaField::new('description')
+        ->setHelp('Minimum length is 20, maximum 140 characters')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 20,
+              'max' => 140,
+              'minMessage' => 'Description must be at least {{ limit }} characters long',
+              'maxMessage' => 'Description cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ0-9.,\s\-_]*$/',
+              'message' => 'Description can only contain letters, numbers, and underscores',
+            ]),
+          ]
+        ]),
+      NumberField::new('price')
+        ->setHelp('Minimum 5, maximum 70 dolars')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Positive(),
+            new Assert\Range([
+              'min' => 5,
+              'max' => 70,
+              'notInRangeMessage' => 'The price must be from {{ min }} to {{ max }}.',
+            ])
+          ]
+        ])
+        ->setRequired(true),
       ImageField::new('illustration')
         ->setBasePath('/uploads/menu') // the base path where files are stored
         ->setUploadDir('public/uploads/menu') // the relative directory to store files in
         ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
         ->setRequired($required)
-        ->setHelp('Image of your product, max 500x500px.'),
+        ->setHelp('Image of your product, max 500x500px.')
+        ->setFormTypeOption('constraints', [
+          new Assert\NotBlank([
+            'message' => 'Image is required.'
+          ]),
+        ]),
       AssociationField::new('foodcategory', 'category of foods')
-        ->setRequired(true)
+        ->setFormTypeOption('placeholder', 'Choose a Category')
+        ->setRequired(true),
     ];
   }
-
 
   private function getCategoryEmptyAlert(): ?string
   {
@@ -100,7 +144,6 @@ class FoodCrudController extends AbstractCrudController
     if (count($foodCategs) == 0) {
       return 'The list of category drinks is empty. Please create one, before create an drink.';
     }
-
     return null;
   }
 
@@ -108,7 +151,6 @@ class FoodCrudController extends AbstractCrudController
   {
     //find all food categories
     $foodCategs = $this->foodCategoryRepository->findAll();
-
 
     if (count($foodCategs) == 0) {
       return $actions

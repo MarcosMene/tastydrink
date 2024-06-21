@@ -11,8 +11,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ShopController extends AbstractController
 {
-
-
     public function __construct(private EntityManagerInterface $em)
     {
     }
@@ -21,7 +19,6 @@ class ShopController extends AbstractController
     public function index(): Response
     {
         $categories = $this->em->getRepository(Category::class)->findAll();
-
 
         return $this->render('shop/shop.html.twig', [
             'categories' => $categories

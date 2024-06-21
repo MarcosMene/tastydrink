@@ -37,9 +37,15 @@ class BarTimeCrudController extends AbstractCrudController
                     'Friday' => 'Friday',
                     'Saturday' => 'Saturday',
                     'Sunday' => 'Sunday',
-                ]),
-            TimeField::new('openTime')->setFormat('HH:mm'),
-            TimeField::new('closeTime')->setFormat('HH:mm'),
+                ])
+                ->setFormTypeOption('placeholder', 'Choose a day')
+                ->setRequired(true),
+            TimeField::new('openTime')
+                ->setFormat('HH:mm')
+                ->setRequired(true),
+            TimeField::new('closeTime')
+                ->setFormat('HH:mm')
+                ->setRequired(true),
         ];
     }
 

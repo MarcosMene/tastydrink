@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Classe\Mail;
 use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
@@ -16,7 +17,6 @@ class PaymentController extends AbstractController
     #[Route('/order/payment/{id_order}', name: 'app_payment')]
     public function index($id_order, OrderRepository $orderRepository, EntityManagerInterface $entityManager): Response
     {
-
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
         //find order and user on database by id to inject in stripe data and  check if the user is allowed to access this page
@@ -59,7 +59,6 @@ class PaymentController extends AbstractController
             'quantity' => 1,
         ];
 
-
         $checkout_session = Session::create([
             'customer_email' => $this->getUser()->getEmail(),
             'line_items' => [[
@@ -80,13 +79,23 @@ class PaymentController extends AbstractController
     #[Route('/order/thank-you/{stripe_session_id}', name: 'app_payment_success')]
     public function success($stripe_session_id, OrderRepository $orderRepository, EntityManagerInterface $entityManager, Cart $cart): Response
     {
-        //here you can send email to user to confirm  his order or do whatever you want after successful payment with neworder.html file. Same email method on registerController
-
-
         $order = $orderRepository->findOneBy([
             'stripe_session_id' => $stripe_session_id,
             'user' => $this->getUser()
         ]);
+
+        //send email to user to confirm the order
+        $mail = new Mail();
+        $vars = [
+            "firstname" => $this->getUser()->getFirstname(),
+            "lastname" => $this->getUser()->getLastname(),
+            "date" => $order->getCreatedAt()->format('Y-m-d H:i:s'),
+            "carrierName" => $order->getCarrierName(),
+            "carrierPrice" => $order->getCarrierPrice(),
+            "orderId" => $order->getId()
+
+        ];
+        $mail->send($this->getUser()->getEmail(), $this->getUser()->getFirstName() . ' ' . $this->getUser()->getLastName(), 'Welcome to Tasty Drink Bar & Shop', 'confirmationOrder.html', $vars);
 
         //change state of order after payment accepted
         if ($order->getState() == 1) {
@@ -96,7 +105,6 @@ class PaymentController extends AbstractController
             $cart->remove();
             $entityManager->flush();
         }
-
         return $this->render('payment/success.html.twig', [
             'order' => $order,
         ]);

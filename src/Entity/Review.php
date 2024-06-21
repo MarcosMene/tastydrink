@@ -52,7 +52,6 @@ class Review
     public function setRate(int $rate): static
     {
         $this->rate = $rate;
-
         return $this;
     }
 
@@ -64,7 +63,6 @@ class Review
     public function setReview(?string $review): static
     {
         $this->review = $review;
-
         return $this;
     }
 
@@ -76,7 +74,6 @@ class Review
     public function setIsApproved(bool $is_approved): static
     {
         $this->is_approved = $is_approved;
-
         return $this;
     }
 
@@ -88,7 +85,6 @@ class Review
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -100,7 +96,6 @@ class Review
     public function setProduct(?Product $product): static
     {
         $this->product = $product;
-
         return $this;
     }
 }

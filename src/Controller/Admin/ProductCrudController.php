@@ -11,8 +11,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -36,9 +40,23 @@ class ProductCrudController extends AbstractCrudController
             $required = false;
         }
 
-
         return [
-            TextField::new('name')->setLabel('Name'),
+            TextField::new('name')
+                ->setLabel('Name')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Length([
+                            'min' => 3,
+                            'max' => 40,
+                            'minMessage' => 'Product name must be at least {{ limit }} characters long',
+                            'maxMessage' => 'Product name cannot be longer than {{ limit }} characters',
+                        ]),
+                        new Assert\Regex([
+                            'pattern' => '/^[a-zA-ZÀ-ÿ0-9\s\-_]*$/',
+                            'message' => 'Product name can only contain letters, numbers, and underscores',
+                        ]),
+                    ]
+                ]),
             BooleanField::new('isSuggestion')->setHelp('Product suggestion on home page.'),
             SlugField::new('slug')->setTargetFieldName('name')->setHelp('URL of the category based on the title'),
             ImageField::new('illustration')
@@ -47,9 +65,38 @@ class ProductCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/products') // the relative directory to store files in
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
                 ->setRequired($required),
-            TextField::new('subtitle')->setHelp('Subtitle of your product'),
-            TextEditorField::new('description'),
-            NumberField::new('price')->setHelp('Price of the product without tax'),
+            TextareaField::new('description')
+                ->setHelp('Minimum length is 20, maximum 200 characters')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Length([
+                            'min' => 20,
+                            'max' => 200,
+                            'minMessage' => 'Description must be at least {{ limit }} characters long',
+                            'maxMessage' => 'Description cannot be longer than {{ limit }} characters',
+                        ]),
+                        new Assert\Regex([
+                            'pattern' => '/^[a-zA-ZÀ-ÿ0-9\s!?,.]*$/',
+                            'message' => 'Description can only contain letters, numbers, and underscores',
+                        ]),
+                    ]
+                ]),
+            AssociationField::new('colorProduct')
+                ->setLabel('Color of product')
+                ->setFormTypeOption('placeholder', 'Choose a color')
+                ->setRequired(true),
+            NumberField::new('price')->setHelp('Price of the product without tax. From 10 to 100')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Positive(),
+                        new Assert\Range([
+                            'min' => 10,
+                            'max' => 100,
+                            'notInRangeMessage' => 'The price must be from {{ min }} to {{ max }}.',
+                        ])
+                    ]
+                ])
+                ->setRequired(true),
             ChoiceField::new('tva')
                 ->setHelp('Tax of the product')
                 ->setChoices([
@@ -58,10 +105,13 @@ class ProductCrudController extends AbstractCrudController
                     '20%' => '20',
                 ])
                 ->setLabel('VAT'),
-            AssociationField::new('category')->setHelp('Category of the product'),
-            // AssociationField::new('colorProduct')->setHelp('Color of the product'),
+            AssociationField::new('category')->setHelp('Category of the product')
+                ->setFormTypeOption('placeholder', 'Choose a Category')
+                ->setRequired(true),
             AssociationField::new('countryProduct')->setHelp('Country of the product')
-                ->setLabel('Country'),
+                ->setLabel('Country')
+                ->setFormTypeOption('placeholder', 'Choose a country')
+                ->setRequired(true),
         ];
     }
 }

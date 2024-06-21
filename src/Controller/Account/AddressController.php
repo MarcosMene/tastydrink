@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class AddressController extends AbstractController
 {
-
     private $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -25,7 +24,16 @@ class AddressController extends AbstractController
     #[Route('/account/addresses', name: 'app_account_address')]
     public function index(): Response
     {
-        return $this->render('account/address/index.html.twig');
+        // Check if the user is logged in and redirect based on role
+        $user = $this->getUser();
+
+        if ($user) {
+            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                return $this->redirectToRoute('app_account');
+            } else {
+                return $this->render('account/address/index.html.twig');
+            }
+        }
     }
 
     //route to create and modify address

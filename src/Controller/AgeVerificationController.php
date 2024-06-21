@@ -23,7 +23,6 @@ class AgeVerificationController extends AbstractController
             $session->set('ageVerified', true);
             return $this->redirectToRoute('app_home');
         }
-
         return $this->redirectToRoute('app_age_verification');
     }
 }

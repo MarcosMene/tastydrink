@@ -29,7 +29,6 @@ class Settings
     public function setMaxSeats(int $maxSeats): static
     {
         $this->maxSeats = $maxSeats;
-
         return $this;
     }
 }

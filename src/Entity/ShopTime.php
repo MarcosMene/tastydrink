@@ -6,6 +6,7 @@ use App\Repository\ShopTimeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ShopTimeRepository::class)]
 
@@ -19,12 +20,15 @@ class ShopTime
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $day = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $openTime = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $closeTime = null;
 
     public function getId(): ?int
@@ -40,7 +44,6 @@ class ShopTime
     public function setDay(string $day): static
     {
         $this->day = $day;
-
         return $this;
     }
 
@@ -52,7 +55,6 @@ class ShopTime
     public function setOpenTime(\DateTimeInterface $openTime): static
     {
         $this->openTime = $openTime;
-
         return $this;
     }
 
@@ -64,7 +66,6 @@ class ShopTime
     public function setCloseTime(\DateTimeInterface $closeTime): static
     {
         $this->closeTime = $closeTime;
-
         return $this;
     }
 }

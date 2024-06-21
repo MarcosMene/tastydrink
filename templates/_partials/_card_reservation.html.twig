@@ -43,11 +43,11 @@
 							<strong>Cancelled</strong>
 						</span>
 					{% else %}
-						<a href="{{ path('app_account_reservation_form', { id: reservation.id }) }}" class="btn btn-buttonSubmit">Modify</a>
+						<a href="{{ path('app_account_reservation_form', { id: reservation.id }) }}" class="modify">Modify</a>
 						|
 						<form action="{{ path('app_reservation_cancel', {id: reservation.id}) }}" method="post" class="d-inline">
 							<input type="hidden" name="_token" value="{{ csrf_token('cancel' ~ reservation.id) }}">
-							<button type="submit" class="btn btn-buttonSubmit">Cancel</button>
+							<button type="submit" class="btn btn-buttonSubmit cancel">Cancel</button>
 						</form>
 					{% endif %}
 				</div>

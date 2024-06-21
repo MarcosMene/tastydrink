@@ -4,30 +4,34 @@
 	{# IS GRANTED IS TO VERIFY IF USER HAS A ROLE  #}
 	{% if is_granted('ROLE_ADMIN')%}
 		<li class="account-item text-center">
-			<a href="{{ path('admin') }}" class="account-link text-white">Administration</a>
+			<a href="{{ path('app_account') }}" class="account-link text-white">Administration</a>
+		</li>
+		<li class="account-item text-center">
+			<a href="{{ path('app_account_password') }}" class="account-link text-white">Modify my password</a>
+		</li>
+		<li>
+			<hr class="divisor w-50 mx-auto"/>
+		</li>
+	{% else %}
+		<li class="account-item text-center">
+			<a href="{{ path('app_account') }}" class="account-link text-white">My orders</a>
+		</li>
+		<li class="account-item text-center">
+			<a href="{{ path('app_account_address') }}" class="account-link text-white">My addresses</a>
+		</li>
+		<li class="account-item text-center">
+			<a href="{{ path('app_account_wishlist') }}" class="account-link text-white">My wishlist</a>
+		</li>
+		<li class="account-item text-center">
+			<a href="{{ path('app_account_password') }}" class="account-link text-white">Modify my password</a>
+		</li>
+		<li class="account-item text-center">
+			<a href="{{ path('app_account_reservation') }}" class="account-link text-white">Reservations</a>
 		</li>
 		<li>
 			<hr class="divisor w-50 mx-auto"/>
 		</li>
 	{% endif %}
-	<li class="account-item text-center">
-		<a href="{{ path('app_account') }}" class="account-link text-white">My orders</a>
-	</li>
-	<li class="account-item text-center">
-		<a href="{{ path('app_account_address') }}" class="account-link text-white">My addresses</a>
-	</li>
-	<li class="account-item text-center">
-		<a href="{{ path('app_account_wishlist') }}" class="account-link text-white">My whishlist</a>
-	</li>
-	<li class="account-item text-center">
-		<a href="{{ path('app_account_password') }}" class="account-link text-white">Modify my password</a>
-	</li>
-	<li class="account-item text-center">
-		<a href="{{ path('app_account_reservation') }}" class="account-link text-white">Reservations</a>
-	</li>
-	<li>
-		<hr class="divisor w-50 mx-auto"/>
-	</li>
 	<li class="account-item text-center mt-2">
 		<a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-signOut">Log out</a>
 	</li>

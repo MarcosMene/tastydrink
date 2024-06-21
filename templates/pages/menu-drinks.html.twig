@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-	{# --------------------------------- drinks container #}
-	<div class="container">
+	{# --------------------------------- foods container #}
+	<div class="w-75 mx-auto">
 		<div class="mt-5">
 			<h1 class="main-titles text-center text-capitalize">Our menu drinks</h1>
-			<p class="mt-5">A slice of heaven. O for awesome, this chocka full cuzzie is as rip-off as a cracker. Meanwhile, in behind the bicycle shed, Hercules Morse, as big as a horse and Mrs Falani were up to no good with a bunch of crook pikelets. Meanwhile, at the black singlet woolshed party, not even au, sort your drinking out.</p>
+			<p class="mt-5">Our meticulously curated menu of beer, wines, champagnes and  artisanal cocktails and spirits invites you to indulge in a symphony of taste and texture. At Tasty Drink Bar & Shop, every drink is crafted with passion and precision, promising an unforgettable experience with every sip.</p>
 		</div>
 
 		<div class="row mt-5">
@@ -19,13 +19,14 @@
 
 					{# DRINKS  #}
 					{% for categoryDrink in allDrinkCategories|sort((a, b) => a.name <=> b.name) %}
+
 						{% if (categoryDrink.drinks|length) > 0 %}
 
 							<h2 class="text-center mt-3 text-uppercase">{{categoryDrink.name}}</h2>
 
 							<div class="d-flex flex-wrap align-items-center justify-content-center  gap-3">
 
-								{%for  drink in categoryDrink.drinks%}
+								{% for  drink in categoryDrink.drinks %}
 									{# -----------CARD #}
 									<div class="card m-3 ">
 										<div class="row g-0 bg-white">
@@ -39,7 +40,7 @@
 												</div>
 											</div>
 											<div class="col-md-3 d-none d-md-block">
-												<img src="/uploads/menu/{{ drink.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ drink.name }}"/>
+												<img src="/uploads/menu/{{ drink.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ drink.name }}" loading="lazy"/>
 											</div>
 										</div>
 									</div>

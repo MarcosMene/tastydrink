@@ -1,17 +1,17 @@
-<div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-2 card-product" id="product-{{product.id}}">
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-3 card-product mx-3" id="product-{{product.id}}">
 	<div
-		class="card">
+		class="card mb-5">
 		{# image #}
 		<a href="{{ path('app_product', { slug: product.slug }) }}">
-			<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"/></a>
+			<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" loading="lazy"/></a>
 
 		{# card body #}
 		<div
 			class="card-body bg-light p-4">
 			{# reviews stars #}
-			<div class="reviews d-flex align-items-end flex-column justify-content-end mb-2">
+			<div class="reviews d-flex align-items-end flex-column justify-content-end mb-4">
 				{% if product.reviews|length > 0 %}
-					<p class="fw-medium text-end">Average Rating:
+					<p class="fw-normal fs-5 text-end p-0 m-0">Average Rating:
 						{{ (product.getAverageRating())|number_format(2) }}</p>
 					<div class="average-rating">
 						{% for i in 1..5 %}
@@ -23,17 +23,19 @@
 						{% endfor %}
 					</div>
 				{% else %}
-					<p>This product doesn't have a review yet.</p>
+					<p class="text-end  fs-5 fw-normal col-12 col-sm-8 m-0 p-0 ">This product doesn't have a review yet.</p>
 				{% endif %}
 			</div>
 			<h2 class="card-title text-uppercase">{{ product.name }}</h2>
-			<h3 class="text-capitalize product-subtitle">{{ product.subtitle }}</h3>
-			<h3 class="text-capitalize product-subtitle mt-4">Category:
-				{{ product.category.name }}</h3>
-			<h3 class="text-capitalize product-subtitle">Country:
-				{{ product.countryProduct }}</h3>
-			<h3 class="text-capitalize product-subtitle">Color:
-				{{ product.colorProduct }}</h3>
+			<p class="text-capitalize product-subtitle  m-0 p-0">
+				<strong>Category:</strong>
+				{{ product.category.name }}</p>
+			<p class="text-capitalize product-subtitle m-0 p-0">
+				<strong>Country:</strong>
+				{{ product.countryProduct }}</p>
+			<p class="text-capitalize product-subtitle m-0 p-0">
+				<strong>Color:</strong>
+				{{ product.colorProduct }}</p>
 
 			{# description #}
 			<div class="product-description mt-4 lead">{{ product.description|raw }}</div>

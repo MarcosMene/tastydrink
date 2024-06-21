@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CategoryCrudController extends AbstractCrudController
 {
@@ -26,7 +27,21 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name')->setLabel('Title')->setHelp('Title of the category'),
+            TextField::new('name')->setLabel('Title')->setHelp('Title of the category')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Length([
+                            'min' => 3,
+                            'max' => 20,
+                            'minMessage' => 'Title must be at least {{ limit }} characters long',
+                            'maxMessage' => 'Title cannot be longer than {{ limit }} characters',
+                        ]),
+                        new Assert\Regex([
+                            'pattern' => '/^[a-zA-ZÀ-ÿ\s\-\0-9]/',
+                            'message' => 'Title can only contain letters, numbers, and underscores',
+                        ]),
+                    ]
+                ]),
             SlugField::new('slug')->setLabel('URL')->setTargetFieldName('name')->setHelp('URL of the category based on the title'),
             ImageField::new('illustration')
                 ->setBasePath('/uploads/category') // the base path where files are stored

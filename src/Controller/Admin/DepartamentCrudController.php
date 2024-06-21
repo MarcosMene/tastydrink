@@ -4,12 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\Departament;
 use App\Entity\Employee;
-use App\Entity\JobTitle;
 use App\Repository\EmployeeRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class DepartamentCrudController extends AbstractCrudController
 {
@@ -35,7 +34,23 @@ class DepartamentCrudController extends AbstractCrudController
   public function configureFields(string $pageName): iterable
   {
     return [
-      TextField::new('name'),
+      TextField::new('name')
+        ->setLabel('Name of department')
+        ->setHelp('Minimum 3, maximum length is 15 characters')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 3,
+              'max' => 15,
+              'minMessage' => 'Name department must be at least {{ limit }} characters long',
+              'maxMessage' => 'Name department cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ\s\-_]*$/',
+              'message' => 'Name department can only contain letters and underscores',
+            ]),
+          ]
+        ]),
     ];
   }
 
@@ -49,7 +64,6 @@ class DepartamentCrudController extends AbstractCrudController
     foreach ($employees as $employee) {
       $employee->setPosition('no job');
     }
-
     $this->employeeRepository->flush();
   }
 }

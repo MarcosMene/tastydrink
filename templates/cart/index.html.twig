@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="w-75 mx-auto">
 		<div class="mt-5">
 			<h1 class="main-titles text-center">My shopping</h1>
 		</div>
 
 		<div class="p-0 text-end">
-			<a href="{{ path('app_shop') }}" class="back-to">
+			<a href="{{ path('app_products') }}" class="back-to">
 				<span>
 					<i class="fa-solid fa-angles-left"></i>
 				</span>
@@ -20,24 +20,23 @@
 		</div>
 
 		{% if (cart|length) > 0 %}
-			{# {% include '_partials/flash.html.twig' %} #}
 			<div class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
 				<p class="text-center mb-5">All the products you have added to your shoppping cart.</p>
 
 				<div class="row d-flex flex-column flex-md-row">
 					{# verify is cart is empty or not to send a message #}
 					{# PRODUCTS #}
-						<div class="col-12 col-lg-8 mx-auto"> <div
+						<div class="col-12 col-xl-8 mx-auto"> <div
 							class="products wrapper wrapper-form m-0 bg-light text-black contact p-3 p-md-5">
-							{# total variable #}
 
+							{# total variable #}
 							{% set total = null %}
 							{% for product in cart %}
 								<div
 									class="row d-flex">
 									{# product #}
 									<div class="col-6 col-md-6 d-flex flex-column flex-sm-row align-items-start justify-content-start">
-										<img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px"/>
+										<img src="/uploads/products/{{ product.object.illustration }}" alt="{{ product.object.name }}" class="img-fluid" style="width:80px; height:80px" loading="lazy"/>
 										<div class="card-product my-2 my-sm-0 mx-sm-4">
 											<h2 class="card-title text-uppercase text-start">{{ product.object.name }}</h2>
 											<p>
@@ -77,7 +76,7 @@
 					</div>
 
 					{# TOTAL AND SUBTOTAL #}
-					<div class="col-12 col-lg-4 my-5 my-lg-0">
+					<div class="col-12 col-xl-4 my-5 my-xl-0">
 						<div
 							class="products wrapper wrapper-form m-0 border border-primary text-white">
 							{# total #}
@@ -97,7 +96,7 @@
 							</div>
 							{# button continue shopping #}
 							<div class="col-12 text-center">
-								<a href="{{ path('app_shop') }}" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</a>
+								<a href="{{ path('app_products') }}" class="w-100 btn-block btn btn-outline-info bg-info mx-auto btn btn-link my-2 text-white">Continue shopping</a>
 							</div>
 							<p class="text-center mt-3">Shiping taxes and discout codes calculated at checkout.</p>
 						</div>
@@ -105,13 +104,11 @@
 				</div>
 			</div>
 		{% else %}
-			{# {% include '_partials/flash.html.twig' %} #}
 			<div class="col-12 col-md-10 mx-auto p-3 p-md-5">
 				<div class="products wrapper m-0 bg-light text-black contact p-3 p-md-5">
 					<h2 class="text-center mt-3">Your shopping cart is empty.</h2>
-					{# button continue shopping #}
 					<div class="text-center">
-						<a href="{{ path('app_shop') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
+						<a href="{{ path('app_products') }}" class="btn btn-primary btn-link mt-5">Continue shopping</a>
 					</div>
 				</div>
 			</div>

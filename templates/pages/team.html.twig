@@ -8,7 +8,7 @@
 
 	{# HERO IMAGE  #}
 	<div class="hero_bg">
-		<img class="img-fluid" src="{{ asset('assets/images/the_team.jpeg') }}" alt="tasty drink building"/>
+		<img class="img-fluid" src="{{ asset('assets/images/the_team.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 		<div class="hero_title">
 			<span class="d-block p-0 m-0">The</span>
 			<span>Team</span>
@@ -16,11 +16,14 @@
 	</div>
 
 	<div
-		class="container">
+		class="w-75 mx-auto">
 		{# -----------------main title #}
 		<section class="mt-5">
 			<h2 class="main-titles text-capitalize text-center">Our team</h2>
-			<p>Curae ridiculus vivamus volutpat mus magnis aliquam, placerat ut nulla torquent risus orci, donec dis convallis eget odio. Nisl suspendisse duis tempus tristique ultricies feugiat integer nulla aptent malesuada sociis est ac non et, laoreet conubia eu interdum quam urna convallis eget arcu rutrum auctor sagittis at aenean. Porttitor dapibus bibendum et mattis pharetra aliquam nibh, placerat scelerisque vel .</p>
+			<p>
+				Our dedicated team at the bar crafts each drink with passion and precision, ensuring every sip is an experience worth savoring. Their expertise and friendly service make every visit a delightful indulgence.
+			</p>
+			<p>In our store, the team excels in providing personalized and attentive service, guiding you to find exactly what you need with a smile. Their commitment to quality ensures your shopping experience is both enjoyable and memorable.</p>
 
 			{# CATEGORY  #}
 			{% for category in teamCategories|sort((a, b) => b.nameTeam <=> a.nameTeam) %}
@@ -35,7 +38,7 @@
 									{% if employee.orderAppear == 1 %}
 										<div class="d-block">
 											<div class="col-12 col-sm-6 col-lg-3 mx-auto my-5">
-												<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto"/>
+												<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto" loading="lazy"/>
 												<div class="text-center p-3">
 													<h4 class="team-title">{{employee.firstName}}
 														{{employee.lastName}}</h4>
@@ -47,7 +50,7 @@
 									{% endif %}
 									{% if employee.orderAppear != 1 %}
 										<div class="col-12 col-sm-6 col-lg-3 mx-auto my-5">
-											<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto"/>
+											<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto" loading="lazy"/>
 											<div class="text-center p-3">
 												<h4 class="team-title">{{employee.firstName}}
 													{{employee.lastName}}</h4>

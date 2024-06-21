@@ -20,16 +20,13 @@ class OrderController extends AbstractController
     #[Route('/order/delivery', name: 'app_order')]
     public function index(Cart $cart): Response
     {
-
         $addresses = $this->getUser()->getAddresses();
 
         if (count($addresses) == 0) {
-
             $this->addFlash(
                 'danger',
                 'You need to create an address to complet your order.'
             );
-
             return $this->redirectToRoute('app_account_address_form');
         }
 
@@ -38,13 +35,11 @@ class OrderController extends AbstractController
             'addresses' => $addresses,
             'action' => $this->generateUrl('app_order_summary') //if form validate, send user to summary page
         ]);
-
         return $this->render('order/order.html.twig', [
             'deliveryForm' => $form->createView(),
             'cart' => $cart->getCart()
         ]);
     }
-
 
     #[Route('/order/summary', name: 'app_order_summary')]
     public function add(Request $request, Cart $cart, EntityManagerInterface $entityManager): Response
@@ -55,7 +50,6 @@ class OrderController extends AbstractController
 
         //get information from cart
         $products = $cart->getCart();
-
 
         $form = $this->createForm(OrderType::class, null, [
             //to find only addresses of the connected user
@@ -75,7 +69,6 @@ class OrderController extends AbstractController
             $address .= $addressObj->getCountry() . '<br/>';
             $address .= $addressObj->getPhone();
 
-
             // create order and set values
             $order = new Order();
             $order->setUser($this->getUser());
@@ -84,7 +77,6 @@ class OrderController extends AbstractController
             $order->setCarrierName($form->get('carriers')->getData()->getName());
             $order->setCarrierPrice($form->get('carriers')->getData()->getPrice());
             $order->setDelivery($address);
-
 
             foreach ($products as $product) {
                 $orderDetail = new OrderDetail();
@@ -99,7 +91,6 @@ class OrderController extends AbstractController
             $entityManager->persist($order);
             $entityManager->flush();
         }
-
         return $this->render('order/summary.html.twig', [
             'choices' => $form->getData(),
             'cart' => $products,

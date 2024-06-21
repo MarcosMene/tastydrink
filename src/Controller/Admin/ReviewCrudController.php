@@ -3,16 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Review;
-use Doctrine\DBAL\Types\BooleanType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ReviewCrudController extends AbstractCrudController
 {
@@ -31,6 +29,8 @@ class ReviewCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            AssociationField::new('user'),
+            AssociationField::new('product'),
             ChoiceField::new('rate', 'Note')
                 ->setChoices([
                     '1' => '1',
@@ -41,8 +41,14 @@ class ReviewCrudController extends AbstractCrudController
                 ])->renderExpanded(),
             TextareaField::new('review'),
             BooleanField::new('is_approved'),
-            AssociationField::new('user'),
-            AssociationField::new('product')
         ];
+    }
+
+    //to hide create button order on dashboard and hide edit and delete button on user
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            //remove button new from dashboard
+            ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }

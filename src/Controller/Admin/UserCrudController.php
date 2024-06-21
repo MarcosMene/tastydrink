@@ -3,13 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -22,20 +23,77 @@ class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('User')
-            ->setEntityLabelInPlural('Users');
+            ->setEntityLabelInPlural('Users')
+            ->setDefaultSort(['email' => 'DESC'])
+            ->setPaginatorPageSize(5);
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('firstname')->setLabel('First name'),
-            TextField::new('lastname')->setLabel('Last name'),
-            TextField::new('email')->setLabel('Email'),
+            TextField::new('firstname')
+                ->setLabel('First name')
+                ->setHelp('Maximum length is 25 characters')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Length([
+                            'min' => 3,
+                            'max' => 25,
+                            'minMessage' => 'First name must be at least {{ limit }} characters long',
+                            'maxMessage' => 'First name cannot be longer than {{ limit }} characters',
+                        ]),
+                        new Assert\Regex([
+                            'pattern' => '/^[a-zA-ZÀ-ÿ\s\-_]*$/',
+                            'message' => 'First name can only contain letters and underscores',
+                        ]),
+                    ]
+                ]),
+            TextField::new('lastname')
+                ->setLabel('Last name')
+                ->setHelp('Minimum 3, maximum length is 25 characters')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Length([
+                            'min' => 3,
+                            'max' => 25,
+                            'minMessage' => 'First name must be at least {{ limit }} characters long',
+                            'maxMessage' => 'First name cannot be longer than {{ limit }} characters',
+                        ]),
+                        new Assert\Regex([
+                            'pattern' => '/^[a-zA-ZÀ-ÿ\s\-_]*$/',
+                            'message' => 'First name can only contain letters and underscores',
+                        ]),
+                    ]
+                ]),
+            TextField::new('email')
+                ->setLabel('Email')
+                ->setHelp('Minimum 10, maximum length is 50 characters')
+                ->setFormTypeOptions([
+                    'constraints' => [
+                        new Assert\Length([
+                            'min' => 10,
+                            'max' => 50,
+                            'minMessage' => 'Email must be at least {{ limit }} characters long',
+                            'maxMessage' => 'Email cannot be longer than {{ limit }} characters',
+                        ]),
+                        new Assert\Email([
+                            'message' => 'Invalid email address',
+                        ]),
+                    ]
+                ]),
             DateField::new('lastLoginAt')->setLabel('Last connection time')->onlyOnIndex(),
             ChoiceField::new('roles')->setLabel('Role permission')->setHelp('Choose the role of this user')->setChoices([
                 'ROLE_USER' => 'ROLE_USER',
                 'ROLE_ADMIN' => 'ROLE_ADMIN',
             ])->allowMultipleChoices(),
         ];
+    }
+
+    //to hide create button order on dashboard and hide edit and delete button on user
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            //remove new button from dashboard
+            ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }

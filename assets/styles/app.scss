@@ -73,6 +73,13 @@ hr.divisor {
   margin: 0 auto;
 }
 
+.brand {
+  font-family: 'Merriweather', serif;
+  p {
+    font-size: 2rem;
+  }
+}
+
 .navbar {
   .nav-link {
     font-size: 2rem;
@@ -391,6 +398,20 @@ ul.breadcrumb li a:hover {
   }
 }
 
+.btn-white {
+  background-color: $white;
+  color: $black;
+  border-color: $primary;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 400;
+  &:hover {
+    background-color: $info;
+    color: $white;
+    border-color: $primary;
+  }
+}
+
 //----------------LOGIN
 
 //-----------------PRODUCTS
@@ -572,8 +593,12 @@ ul.breadcrumb li a:hover {
     font-size: 1.6rem;
     font-weight: 300;
     cursor: pointer;
-    margin: 0 30px 0 2px;
+    margin: 0 30px 10px 2px;
   }
+}
+
+.form-check-label {
+  width: auto;
 }
 
 .form-check-input[type='checkbox'] {
@@ -760,7 +785,7 @@ ul.pagination {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30px 0;
+  margin-top: 20px;
 
   .page-link,
   .page-item {
@@ -812,6 +837,10 @@ ul.pagination {
   cursor: pointer;
   font-size: 2rem;
   margin-left: 20px;
+  @media screen and (max-width: 576px) {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
 
 .fa-heart-header {
@@ -888,18 +917,27 @@ ul.pagination {
   &-description {
     font-size: 1.6rem;
     color: $dark;
-    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-    line-clamp: 3;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    overflow: hidden;
     font-weight: 300;
     flex-grow: 3;
+
+    &:first-child {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
   }
 
   .card {
     width: 100%;
-    max-width: 540px;
+    max-width: 520px;
+
+    @media screen and (max-width: 1400px) {
+      max-width: 600px;
+    }
   }
 
   .card-body {
@@ -910,17 +948,16 @@ ul.pagination {
   }
 
   @media screen and (max-width: 576px) {
-    &-description {
-      flex-grow: 1;
-      -webkit-line-clamp: 3; /* number of lines to show */
-      line-clamp: 3;
-    }
-    .card-body {
-      height: auto;
-      max-height: 300px;
-    }
-    .card {
-      width: 100%;
+    .menu {
+      &-description {
+        flex-grow: 1;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        line-clamp: 4;
+      }
+      .card-body {
+        height: auto;
+        max-height: 300px;
+      }
     }
   }
 }
@@ -965,11 +1002,15 @@ ul.pagination {
       padding: 2px 3px;
       border-radius: 5px;
       cursor: pointer;
+    }
 
-      &:hover {
-        background-color: $primary;
-        color: $white;
-      }
+    &.change:hover {
+      background-color: $primary;
+      color: $white;
+    }
+    &.delete:hover {
+      background-color: $danger;
+      color: $white;
     }
   }
 }
@@ -1081,7 +1122,30 @@ footer {
   font-size: 1.2rem;
 
   &:hover {
-    background-color: $primary;
+    background-color: $danger;
     color: $white;
+  }
+}
+
+.reservation {
+  a {
+    font-size: 1.2rem;
+    padding: 5px;
+    color: $info;
+
+    &.modify {
+      font-weight: 400;
+      border-bottom: 2px solid transparent;
+      display: inline-block;
+      color: $dark;
+      padding: 2px 3px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    &.modify:hover {
+      background-color: $primary;
+      color: $white;
+    }
   }
 }

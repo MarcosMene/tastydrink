@@ -7,21 +7,21 @@
 {% block carousel %}{% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="w-75 mx-auto">
 		{# -----------------DRINK SHOP & BAR #}
 
 		{# --------------------------------- SHOPS #}
 			<div class="text-center mt-5"> <h2 class="main-titles text-capitalize text-center">Tasty Drink Shop</h2>
 			<p class="text-start mb-5">Tasty Drink dolor sit amet consectetur adipisicing elit. Enim magni unde earum impedit nesciunt doloremque quam eaque praesentium exercitationem asperiores tenetur nisi accusamus atque recusandae sequi itaque doloribus quos, minima ut sunt saepe voluptate ducimus quisquam. Sit sunt, doloribus eos accusantium ipsa sint vitae, porro animi vero, recusandae repudiandae? Quibusdam?</p>
-			<div class="wrapper info wrapper-max m-auto p-4">
-				<div class="row gx-4 wrapper-max d-flex justify-content-around">
+			<div class="wrapper info wrapper-max mx-auto p-4">
+				<div class="row gx-4 wrapper-max d-flex justify-content-start">
 					{% for category in categories %}
 
 						{# verify if category has a product - if not dont show category #}
 						{% if (category.products|length) > 0 %}
 							<div class="col-12 col-sm-6 col-lg-3 my-2">
 								<div class="product-card m-auto">
-									<img src="/uploads/category/{{ category.illustration }}" alt="{{ category.name }}" class="img-fluid"/>
+									<img src="/uploads/category/{{ category.illustration }}" alt="{{ category.name }}" class="img-fluid" loading="lazy"/>
 									<a href="{{ path('app_category', { slug: category.slug }) }}">
 										<div class="overlay rounded-bottom">
 											<i class="fa-solid fa-circle-plus fa-2xl"></i>

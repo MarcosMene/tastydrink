@@ -1,0 +1,68 @@
+{# layout to show detail orders on easyadmin #}
+{% extends '@!EasyAdmin/layout.html.twig' %}
+{% block main %}
+
+	<div class="text-end">
+		<button class="btn btn-info" onclick="window.history.back()">Back to reservation list</button>
+	</div>
+	<h2>Reservation</h2>
+	<hr>
+	<p class="h4">Reservation n#
+		{{ reservation.id }}
+	</p>
+	<div class="d-flex justify-content-start mt-4">
+		<div class="info-reservation me-5">
+			<span>
+				<strong>Date of reservation:</strong>
+				{{ reservation.reservationDate|date('Y/m/d') }}
+			</span>
+			<span class="ms-4">
+				<strong>Time of reservation:</strong>
+				{{ reservation.reservationTime|date("H:i") }}
+			</span>
+		</div>
+		<div class="user-reservation">
+			<span class="ms-4">
+				<strong>User name:</strong>
+				<span>{{ reservation.user.firstname }}</span>
+				<span>{{ reservation.user.lastname }}</span>
+			</span>
+			<span class="ms-4">
+				<strong>Email:</strong>
+				<span>{{reservation.user.email}}</span>
+			</span>
+		</div>
+	</div>
+
+	{# NAME CLIENT  #}
+	<hr>
+	<h5 class="mb-4">Reservation name client</h5>
+	<p>
+		<strong>Name:</strong>
+		<span>{{ reservation.firstname }}</span>
+		<span>{{ reservation.lastname }}</span>
+	</p>
+
+	<p>
+		<strong>telephone:</strong>
+		{{ reservation.telephone }}</p>
+
+	<p>
+		<strong>The event will take place on:</strong>
+		{{ reservation.reservationDate|date("Y-m-d") }}
+		at
+		{{ reservation.reservationTime|date("H:i") }}
+	</p>
+	<p>
+		<strong>Comment:</strong>
+		<span>{{reservation.comments}}</span>
+	</p>
+	<p>
+		<strong>Status reservation:</strong>
+		{% if reservation.cancelReservation %}
+			<span class="bg-danger text-white px-2 py-1 rounded">This reservation is cancel</span>
+		{% else %}
+			<span class="bg-success text-white px-2 py-1 rounded">This reservation is confirmed</span>
+		{% endif %}
+	</p>
+{% endblock %}

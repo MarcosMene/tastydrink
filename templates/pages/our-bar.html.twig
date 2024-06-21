@@ -8,7 +8,7 @@
 
 	{# HERO IMAGE  #}
 	<div class="hero_bg">
-		<img class="img-fluid" src="{{ asset('assets/images/our_bar.jpg') }}" alt="tasty drink building"/>
+		<img class="img-fluid" src="{{ asset('assets/images/our_bar.jpg') }}" alt="tasty drink building" loading="lazy"/>
 		<div class="hero_title">
 			<span class="d-block p-0 m-0">Our</span>
 			<span>Bar</span>
@@ -16,12 +16,14 @@
 	</div>
 
 	{# -----------------DRINK SHOP & BAR #}
-	<div class="container">
+	<div class="w-75 mx-auto">
 
 		<section class="mt-5">
 			<h2 class="main-titles text-capitalize text-center">The Tasty Drink Bar</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
-			<p>Mattis integer cursus viverra sem sodales augue nascetur, quis faucibus magna mi lacus praesent ornare justo, feugiat quisque nibh tempus est leo. Pharetra iaculis lobortis duis pulvinar turpis donec imperdiet aliquet, dictumst dictum fames urna blandit conubia rutrum.</p>
+			<p>
+				The bar and terrace beckon with an irresistible allure, seamlessly blending elegance with an inviting atmosphere.
+			</p>
+			<p>Softly illuminated by twinkling lights strung above, the terrace becomes a haven under the stars, where cocktails are savored amidst laughter and the city skyline glimmers in the distance. Here, whether bathed in sunlight or illuminated by moonlight, every moment unfolds in a tapestry of warmth and delight, where time slows and every visitor finds a moment to savor.</p>
 		</section>
 
 		{# -----------DIVISOR #}
@@ -31,25 +33,27 @@
 		<div class="row d-flex align-items-start mx-0">
 			<div class="col-12 col-md-6 pt-lg-5">
 				<h2 class="headers text-capitalize">Inside Bar</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
-				<p>Mattis integer cursus viverra sem sodales augue nascetur, quis faucibus magna mi lacus praesent ornare justo, feugiat quisque nibh tempus est leo. Pharetra iaculis lobortis duis pulvinar turpis donec imperdiet aliquet, dictumst dictum fames urna blandit conubia rutrum,</p>
+				<p>Stepping through the door, one is enveloped in an ambiance where black metal accents harmonize seamlessly with warm, polished wood. The soft glow  bulbs casts a gentle radiance over the bar, illuminating shelves lined with an impressive array of spirits and liqueurs.
+				</p>
+				<p>Patrons relax in plush leather seats or gather around the communal wooden tables, savoring each sip amidst the faint murmur of conversation and the occasional clink of ice. It’s a sanctuary for those who appreciate the artistry of mixology and the soothing embrace of a well-designed space.</p>
 
 				{# ----------------BUTTON----------------- #}
-				<a href="" class="btn btn-outline mt-2 mb-5">Make Reservation</a>
+				<a href="{{ path('app_reservation') }}" class="btn btn-outline mt-2 mb-5">Make Reservation</a>
 			</div>
 			<div class="col-12 col-md-6 p-0">
-				<img class="img-fluid" src="{{ asset('assets/images/inside_bar.jpeg') }}" alt="tasty drink building"/>
+				<img class="img-fluid" src="{{ asset('assets/images/inside_bar.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 			</div>
 		</div>
 		{#- --------------- TERRACE #}
 		<div class="row d-flex align-items-start mx-0">
 			<div class="col-12 col-md-6 order-md-2 px-lg-5 pt-lg-5">
 				<h2 class="headers text-capitalize">Terrace</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
-				<p>Aturient taciti facilisi fermentum at sociis tincidunt, venenatis mollis iaculis eget curabitur cras. Metus curabitur pellentesque hac laoreet sollicitudin condimentum nibh penatibus nec scelerisque facilisi, torquent himenaeos nunc risus pretium eleifend conubia.</p>
+				<p>Nestled amidst the serene embrace of the mountains, the Terrace of Tasty Drink Bar & Shop beckons with its elegant fusion of black metal and warm wood accents. A sanctuary of taste and tranquility, it offers a panoramic vista that unfolds before patrons like a living canvas of nature's grandeur.
+				</p>
+				<p>The air is alive with the aromas of freshly brewed beverages and artisanal delights, each sip a symphony of flavors that harmonize with the breathtaking scenery beyond. Here, amidst the melding of modern design and natural beauty, every visit becomes a journey of sensory delight and quiet contemplation.</p>
 			</div>
 			<div class="col-12 col-md-6 p-0">
-				<img src="{{ asset('assets/images/terrace.jpeg') }}" alt="terrace of tasty drink bar and shop" class="img-fluid"/>
+				<img src="{{ asset('assets/images/terrace.jpeg') }}" alt="terrace of tasty drink bar and shop" class="img-fluid" loading="lazy"/>
 			</div>
 		</div>
 
@@ -59,9 +63,11 @@
 		{# --------------------------------- OUR MENU #}
 		<section class=" mt-5">
 			<h2 class="headers text-center text-capitalize">Our Menu</h2>
-			<p class="text-left mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quas tenetur ad ipsam suscipit molestiae unde, architecto consectetur minima dolor eaque esse! Eaque blanditiis esse iste eligendi nostrum voluptas, facere commodi voluptatum, omnis suscipit maiores consequatur totam, repellendus laborum sit aliquam odio ducimus tempore. A laboriosam aliquam magni ducimus saepe. Aturient taciti facilisi fermentum at sociis tincidunt, venenatis mollis iaculis eget curabitur cras. Metus curabitur pellentesque hac laoreet sollicitudin condimentum nibh penatibus nec scelerisque facilisi, torquent himenaeos nunc risus pretium eleifend conubia.</p>
+			<p class="text-left mb-5">Our menu is a symphony of indulgence, featuring a curated selection of drinks, artisanal cocktails crafted with precision and passion. Complementing our drinks is a menu of culinary delights that elevate your tasting experience to new heights. Whether you're here to unwind with friends or embark on a gastronomic journey, Tasty Drink Bar & Shop promises an unforgettable blend of taste, ambiance, and hospitality. Cheers to memorable moments and culinary excellence!</p>
+
+			{# MENUS  #}
 			<div class="wrapper wrapper-max info m-auto p-5">
-				<div class="row d-flex justify-content-around justify-content-lg-center">
+				<div class="row d-flex justify-content-center ">
 					<div class="col-9 col-lg-3 m-5 p-1">
 						<div class="product-card m-auto">
 							<img src="{{ asset('assets/images/menu_drinks.jpg') }}" alt="image of our drinks" class="img-fluid mx-auto" loading="lazy"/>
@@ -78,7 +84,7 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<a href="" class=" btn btn-primary bg-white fs-5  text-black">Download our menu</a>
+					<a href="" class="btn btn-white fs-5">Download our menu</a>
 				</div>
 			</div>
 		</section>

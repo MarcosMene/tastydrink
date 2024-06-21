@@ -25,15 +25,27 @@ class Order
     private ?int $state = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
+
+    #[Assert\Length(
+        min: 3,
+        max: 40,
+        minMessage: 'The name of the carrier must be at least {{ limit }} characters long.',
+        maxMessage: 'The name of the carrier must be no longer than {{ limit }} characters.'
+    )]
     private ?string $carrierName = null;
 
     #[ORM\Column]
     #[Assert\Positive]
+    #[Assert\Range(
+        min: 2,
+        max: 20,
+        notInRangeMessage: "Price must be from {{ min }} to {{ max }}."
+    )]
     private ?float $carrierPrice = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
     private ?string $delivery = null;
 
     #[ORM\OneToMany(targetEntity: OrderDetail::class, mappedBy: 'myOrder', cascade: ['persist'])]
@@ -64,7 +76,6 @@ class Order
         return   number_format(($totalTTC + $this->getCarrierPrice()), '2', '.', ',');
     }
 
-
     public function getTotalTva()
     {
         $totalTva = 0;
@@ -90,7 +101,6 @@ class Order
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -102,7 +112,6 @@ class Order
     public function setState(int $state): static
     {
         $this->state = $state;
-
         return $this;
     }
 
@@ -114,7 +123,6 @@ class Order
     public function setCarrierName(string $carrierName): static
     {
         $this->carrierName = $carrierName;
-
         return $this;
     }
 
@@ -126,7 +134,6 @@ class Order
     public function setCarrierPrice(float $carrierPrice): static
     {
         $this->carrierPrice = $carrierPrice;
-
         return $this;
     }
 
@@ -138,7 +145,6 @@ class Order
     public function setDelivery(string $delivery): static
     {
         $this->delivery = $delivery;
-
         return $this;
     }
 
@@ -156,7 +162,6 @@ class Order
             $this->orderDetails->add($orderDetail);
             $orderDetail->setMyOrder($this);
         }
-
         return $this;
     }
 
@@ -168,7 +173,6 @@ class Order
                 $orderDetail->setMyOrder(null);
             }
         }
-
         return $this;
     }
 
@@ -180,7 +184,6 @@ class Order
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -192,7 +195,6 @@ class Order
     public function setStripeSessionId(?string $stripe_session_id): static
     {
         $this->stripe_session_id = $stripe_session_id;
-
         return $this;
     }
 }

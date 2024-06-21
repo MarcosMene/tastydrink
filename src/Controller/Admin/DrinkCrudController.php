@@ -3,20 +3,18 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Drink;
-use App\Entity\DrinkCategory;
 use App\Repository\DrinkCategoryRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class DrinkCrudController extends AbstractCrudController
 {
@@ -27,8 +25,6 @@ class DrinkCrudController extends AbstractCrudController
   {
     $this->drinkCategoryRepository = $drinkCategoryRepository;
   }
-
-
 
   public static function getEntityFqcn(): string
   {
@@ -42,8 +38,6 @@ class DrinkCrudController extends AbstractCrudController
       ->setEntityLabelInPlural('Menu Drinks');
   }
 
-
-
   public function configureFields(string $pageName): iterable
   {
     //if mode edit, image is not required, but if new product, image is required
@@ -51,7 +45,6 @@ class DrinkCrudController extends AbstractCrudController
     if ($pageName == 'edit') {
       $required = false;
     }
-
 
     //find all drink categories
     $drinkCategs = $this->drinkCategoryRepository->findAll();
@@ -82,9 +75,51 @@ class DrinkCrudController extends AbstractCrudController
 
     return [
       IdField::new('id')->hideOnForm(),
-      TextField::new('name'),
-      TextEditorField::new('description'),
-      NumberField::new('price'),
+      TextField::new('name')
+        ->setHelp('Minimum length is 10, maximum 25 characters')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 10,
+              'max' => 25,
+              'minMessage' => 'Drink name must be at least {{ limit }} characters long',
+              'maxMessage' => 'Drink name cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ0-9\s\-_]*$/',
+              'message' => 'Drink name can only contain letters, numbers, and underscores',
+            ]),
+          ]
+        ]),
+      TextareaField::new('description')
+        ->setHelp('Minimum length is 20, maximum 140 characters')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 20,
+              'max' => 140,
+              'minMessage' => 'Description must be at least {{ limit }} characters long',
+              'maxMessage' => 'Description cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ0-9.,\s\-_]*$/',
+              'message' => 'Description can only contain letters, numbers, and underscores',
+            ]),
+          ]
+        ]),
+      NumberField::new('price')
+        ->setHelp('Minimum 5, maximum 50 dolars')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Positive(),
+            new Assert\Range([
+              'min' => 5,
+              'max' => 50,
+              'notInRangeMessage' => 'The price must be from {{ min }} to {{ max }}.',
+            ])
+          ]
+        ])
+        ->setRequired(true),
       ImageField::new('illustration')
         ->setBasePath('/uploads/menu') // the base path where files are stored
         ->setUploadDir('public/uploads/menu') // the relative directory to store files in
@@ -92,10 +127,10 @@ class DrinkCrudController extends AbstractCrudController
         ->setRequired($required)
         ->setHelp('Image of your product, max 500x500px'),
       AssociationField::new('drinkcategory', 'category of drinks')
-        ->setRequired(true)
+        ->setFormTypeOption('placeholder', 'Choose a Category')
+        ->setRequired(true),
     ];
   }
-
 
   private function getCategoryEmptyAlert(): ?string
   {
@@ -105,7 +140,6 @@ class DrinkCrudController extends AbstractCrudController
     if (count($drinkCategs) == 0) {
       return 'The list of category drinks is empty. Please create one, before create an drink.';
     }
-
     return null;
   }
 
@@ -113,7 +147,6 @@ class DrinkCrudController extends AbstractCrudController
   {
     //find all drink categories
     $drinkCategs = $this->drinkCategoryRepository->findAll();
-
 
     if (count($drinkCategs) == 0) {
       return $actions

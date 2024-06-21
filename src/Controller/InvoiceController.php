@@ -8,10 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-
 class InvoiceController extends AbstractController
 {
-
   // route account that allow user to see their invoices.
   #[Route('/account/invoice/print/{id_order}', name: 'app_invoice_customer')]
   public function invoice_customer(OrderRepository $orderRepository, $id_order): Response
@@ -76,7 +74,6 @@ class InvoiceController extends AbstractController
     $dompdf->stream('facture.pdf', [
       "Attachment" => false,  # Keep this as false for the pdf to stream in the browser
     ]);
-
     exit();
   }
 }

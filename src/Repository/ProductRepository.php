@@ -47,7 +47,7 @@ class ProductRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            4
+            6
         );
     }
 
@@ -115,7 +115,6 @@ class ProductRepository extends ServiceEntityRepository
                     $search->color
                 );
         }
-
         return $query;
     }
 }

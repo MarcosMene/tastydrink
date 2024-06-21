@@ -7,7 +7,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: ReviewClientRepository::class)]
 class ReviewClient
 {
@@ -29,7 +28,7 @@ class ReviewClient
     )]
     private ?string $comment = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?bool $isApproved = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviewClients')]
@@ -58,7 +57,6 @@ class ReviewClient
     public function setRate(int $rate): static
     {
         $this->rate = $rate;
-
         return $this;
     }
 
@@ -70,7 +68,6 @@ class ReviewClient
     public function setComment(string $comment): static
     {
         $this->comment = $comment;
-
         return $this;
     }
 
@@ -82,7 +79,6 @@ class ReviewClient
     public function setIsApproved(bool $isApproved): static
     {
         $this->isApproved = $isApproved;
-
         return $this;
     }
 
@@ -94,7 +90,6 @@ class ReviewClient
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -106,7 +101,6 @@ class ReviewClient
     public function setFirstname(string $firstname): static
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 }

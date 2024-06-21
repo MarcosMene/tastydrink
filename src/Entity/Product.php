@@ -7,9 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+
+//to not repeat the name of product
+#[UniqueEntity('name')]
+
 class Product
 {
     #[ORM\Id]
@@ -18,49 +23,23 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
-    #[Assert\Length(
-        min: 3,
-        max: 40,
-        minMessage: 'The name of the product must be at least {{ limit }} characters long.',
-        maxMessage: 'The name of the product must be no longer than {{ limit }} characters.'
-    )]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     private ?string $illustration = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
-    #[Assert\Length(
-        min: 3,
-        max: 40,
-        minMessage: 'The subtitle of the product must be at least {{ limit }} characters long.',
-        maxMessage: 'The subtitle of the product must be no longer than {{ limit }} characters.'
-    )]
-    private ?string $subtitle = null;
-
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
-    #[Assert\Length(
-        min: 20,
-        max: 200,
-        minMessage: 'The description of the product must be at least {{ limit }} characters long.',
-        maxMessage: 'The description of the product must be no longer than {{ limit }} characters.'
-    )]
+    #[Assert\NotBlank]
     private ?string $description = null;
 
     #[ORM\Column]
-    #[Assert\Positive]
-    #[Assert\Range(
-        min: 10,
-        max: 100,
-        notInRangeMessage: "Price must be between {{ min }} and {{ max }}."
-    )]
+    #[Assert\NotBlank]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
@@ -68,6 +47,7 @@ class Product
     private ?Category $category = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?float $tva = null;
 
     #[ORM\Column(nullable: true)]
@@ -87,12 +67,10 @@ class Product
         $this->reviews = new ArrayCollection();
     }
 
-
     public function __toString()
     {
         return $this->name;
     }
-
 
     public function getId(): ?int
     {
@@ -107,7 +85,6 @@ class Product
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -119,7 +96,6 @@ class Product
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 
@@ -135,18 +111,6 @@ class Product
         return $this;
     }
 
-    public function getSubtitle(): ?string
-    {
-        return $this->subtitle;
-    }
-
-    public function setSubtitle(string $subtitle): static
-    {
-        $this->subtitle = $subtitle;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -155,7 +119,6 @@ class Product
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -167,7 +130,6 @@ class Product
     public function setPrice(float $price): static
     {
         $this->price = $price;
-
         return $this;
     }
 
@@ -177,7 +139,6 @@ class Product
         return $coeff * $this->price;
     }
 
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -186,7 +147,6 @@ class Product
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -198,7 +158,6 @@ class Product
     public function setTva(float $tva): static
     {
         $this->tva = $tva;
-
         return $this;
     }
 
@@ -210,7 +169,6 @@ class Product
     public function setIsSuggestion(?bool $isSuggestion): static
     {
         $this->isSuggestion = $isSuggestion;
-
         return $this;
     }
 
@@ -222,7 +180,6 @@ class Product
     public function setColorProduct(?ColorProduct $colorProduct): static
     {
         $this->colorProduct = $colorProduct;
-
         return $this;
     }
 
@@ -234,7 +191,6 @@ class Product
     public function setCountryProduct(?CountryProduct $countryProduct): static
     {
         $this->countryProduct = $countryProduct;
-
         return $this;
     }
 
@@ -252,7 +208,6 @@ class Product
             $this->reviews->add($review);
             $review->setProduct($this);
         }
-
         return $this;
     }
 
@@ -264,7 +219,6 @@ class Product
                 $review->setProduct(null);
             }
         }
-
         return $this;
     }
 

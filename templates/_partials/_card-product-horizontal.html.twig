@@ -40,20 +40,19 @@
 					</div>
 				{% endif %}
 
-				<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" style="height: 100%; width:100%;"/>
+				<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" style="height: 100%; width:100%;" loading="lazy"/>
 			</div>
 			<div class="col-12 col-md-8 col-lg-9 bg-light px-1 px-sm-4">
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
 						<div class="card-titles d-flex flex-column">
 							<h2 class="card-title text-uppercase">{{ product.name }}</h2>
-							<h3 class="text-capitalize mt-2">{{ product.subtitle }}</h3>
 						</div>
 
 						{# reviews stars #}
 						<div class="reviews d-flex align-items-end flex-column justify-content-end">
 							{% if product.reviews|length > 0 %}
-								<p class="fw-medium text-end">Average Rating:
+								<p class="fw-medium text-end m-0">Average Rating:
 									{{ (product.getAverageRating())|number_format(2) }}</p>
 								<div class="average-rating">
 									{% for i in 1..5 %}
@@ -118,34 +117,8 @@
 						</div>
 
 					</div>
-					<div
-						class="review bg-light">
-						{# FORM  #}
-						<div class="form-review mb-5">
-							{% if is_granted('IS_AUTHENTICATED_FULLY') and not user_reviewed %}
-								<div class="card p-2">
-									<h2 class="text-center mt-1">Give your opinion</h2>
-									<div class="card-body">
-										{{ form_start(formReview) }}
-										{{ form_row(formReview.rate) }}
-										{{ form_row(formReview.review) }}
-										{{ form_row(formReview.submit) }}
-										{{ form_end(formReview) }}
-									</div>
-								</div>
-							{% elseif is_granted('IS_AUTHENTICATED_FULLY') and user_reviewed %}
-								{# DIVISOR  #}
-								<div class="divisor-line mt-3 mb-5 "></div>
-								<p class="mt-1 h5 fw-normal text-center">You have already reviewed this product.</p>
-							{% else %}
-								{# DIVISOR  #}
-								<div class="divisor-line my-3 "></div>
-								<p class="text-center">Please
-									<a href="{{ path('app_login') }}" class="text-dark text-decoration-underline">login</a>
-									to review this product.</p>
-							{% endif %}
-						</div>
-					</div>
+
+
 				</div>
 			</div>
 		</div>

@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class NewsletterController extends AbstractController
 {
-
     #[Route('/subscribe-form', name: 'app_subscribe', methods: ['POST'])]
     public function subscribe(Request $request, EntityManagerInterface $entityManager, NewsletterRepository $newsletterRepository): Response
     {

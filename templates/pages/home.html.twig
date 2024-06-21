@@ -10,8 +10,8 @@
 
 	{# CAROUSEL #}
 	<div class="d-none d-md-block">
-		{% if headers|length>0 %}
 
+		{% if headers|length>0 %}
 			<div id="heroCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
 				<div class="carousel-indicators">
 					{%if headers|length >1 %}
@@ -23,11 +23,11 @@
 				<div class="carousel-inner">
 					{% for key, header in headers %}
 						<div {% if key == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
-							<img src="/uploads/header_carousel/{{ header.illustration }}" class="bd-placeholder-img" width="100%" height="100%"/>
+							<img src="/uploads/header_carousel/{{ header.illustration }}" class="bd-placeholder-img" width="100%" height="100%" loading="lazy" alt="{{header.title}}"/>
 							<div class="container">
 								<div class="carousel-caption text-start">
 									<h1>{{ header.title }}</h1>
-									<p class="opacity-75">{{ header.content }}</p>
+									<p>{{ header.content }}</p>
 									<p>
 										<a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a>
 									</p>
@@ -36,22 +36,29 @@
 						</div>
 					{% endfor %}
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
+				{%if headers|length >1 %}
+					<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				{% endif %}
 			</div>
 		{% endif %}
 	</div>
+
 	{# -----------------DRINK SHOP & BAR #}
-	<div class="container">
+	<div class="w-75 mx-auto">
 		<section class="mt-5">
 			<h1 class="main-titles text-center">Drink Bar & Shop in Vancouver</h1>
-			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
+			<p>Tasty Drink Bar & Shop is a delightful oasis for connoisseurs and casual enthusiasts alike. This charming establishment seamlessly blends the vibrant energy of a bar with the curated elegance of a specialty shop.
+			</p>
+			<p>At the bar, patrons can savor an array of exquisitely crafted beverages, perfect for sharing moments of joy with friends and family in a warm, inviting atmosphere. Meanwhile, the shop offers a carefully selected range of high-quality products, allowing you to bring a piece of this delightful experience home.
+			</p>
+			<p>Whether you're looking to unwind with a refreshing drink or discover the finest ingredients for your own concoctions, Tasty Drink Bar & Shop promises an unparalleled journey of taste and enjoyment.</p>
 
 			<!-- BUTTON STORY -->
 			<div class="text-center">
@@ -63,11 +70,15 @@
 		<div class="divisor divisor-lg"></div>
 
 		{# -----------------VISIT TASTY DRINK #}
-		<div class="container">
+		<div>
 			<div class="row d-flex align-items-start justify-content-between mx-0">
 				<div class="col-12 col-lg-6 ">
 					<h2 class="headers text-capitalize pt-lg-5">Visit Tasty Drink</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
+					<p>Nestled in the heart of the mountains, Tasty Drink Bar & Shop is a haven for those seeking a perfect blend of rustic charm and modern sophistication. Spanning three exquisite floors, this unique establishment boasts a captivating decor that artfully combines black metal and rich wood, creating an inviting ambiance that is both warm and stylish.
+					</p>
+					<p>Each level offers a distinctive experience, from the cozy ground floor shop filled with artisanal delights to the vibrant bar above, where expertly crafted cocktails await.
+					</p>
+					<p>Whether you're savoring a drink or enjoying panoramic mountain views from the rooftop terrace, Tasty Drink Bar & Shop promises an unforgettable retreat in an idyllic setting.</p>
 					<a href="{{path('app_reservation')}}" class="btn btn-outline mt-2 mb-5">Make Reservation</a>
 				</div>
 				<div class="col-12 col-lg-6 p-0">
@@ -78,68 +89,76 @@
 			<div class="row d-flex align-items-start mx-0">
 				<div class="col-12 col-lg-6 order-lg-2 px-0 pt-5 px-lg-5">
 					<h2 class="headers text-capitalize">Store</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
+					<p>At the Tasty Drink Bar & Shop, the shelves gleam with an exquisite selection of bottles, each a masterpiece of flavor waiting to be discovered. The collection ranges from robust, oak-aged whiskies and velvety red wines to effervescent champagnes and artisanal craft beers.
+					</p>
+					<p>Every bottle is meticulously curated, ensuring a world-class array that caters to both connoisseurs and casual enthusiasts. Whether you're seeking the perfect accompaniment to a gourmet meal or a celebratory toast, our store offers a treasure trove of delightful options, each promising a unique and memorable experience.
+					</p>
+					<p>Step into a haven of taste and elegance, where every sip tells a story of passion and craftsmanship.</p>
 
-					<a href="" class="btn btn-outline mt-2 mb-5">Learn More</a>
+					<a href="{{path('app_products')}}" class="btn btn-outline mt-2 mb-5">Our products</a>
 				</div>
 				<div class="col-12 col-lg-6 p-0">
-					<img src="{{ asset('assets/images/store.jpeg') }}" alt="multiple bottles with different drinks" class="img-fluid"/>
+					<img src="{{ asset('assets/images/store.jpeg') }}" alt="multiple bottles with different drinks" class="img-fluid" loading="lazy"/>
 				</div>
 			</div>
 			{#- --------------- BAR TASTY DRINK #}
 			<div class="row d-flex align-items-start mx-0">
 				<div class="col-12 col-lg-6 pt-lg-5">
 					<h2 class="headers text-capitalize">Bar</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
-					<a href="" class="btn btn-outline mt-2 mb-5 text-capitalize">Learn more</a>
+					<p>Step into the vibrant world of Tasty Drink Bar & Shop, where every sip is a celebration of flavor and creativity. Nestled in the heart of the city, our inviting space is designed to offer an unforgettable experience, whether you're unwinding after a long day or exploring new taste adventures with friends.
+					</p>
+					<p>Delight in our carefully curated selection of artisanal beverages, from refreshing craft cocktails to exquisite mocktails and everything in between. Each drink is crafted with passion, using the finest ingredients to ensure every moment is a feast for the senses.
+					</p>
+					<p>
+						Come and discover your new favorite drink in a warm and welcoming atmosphere that promises to elevate your spirits. We can't wait to raise a glass with you!</p>
+					<a href="{{path('app_our_bar')}}" class="btn btn-outline mt-2 mb-5 text-capitalize">See inside</a>
 				</div>
 				<div class="col-12 col-lg-6 p-0">
-					<img src="{{ asset('assets/images/bar.jpeg') }}" alt="interior of Tasty Drink bar and shop" class="img-fluid"/>
+					<img src="{{ asset('assets/images/bar.jpeg') }}" alt="interior of Tasty Drink bar and shop" class="img-fluid" loading="lazy"/>
 				</div>
 			</div>
-		</div>
 
-		{# -----------DIVISOR #}
-		<div class="divisor divisor-lg"></div>
+			{# -----------DIVISOR #}
+			<div class="divisor divisor-lg"></div>
 
-		{# --------------------------------- NEW PRODUCTS #}
-		<section class="text-center mt-5">
-			<h2 class="headers text-capitalize wrapper-max">New products</h2>
-			<div class="wrapper info wrapper-max m-auto">
+			{# ---------------------- NEW PRODUCTS #}
+			<section class="text-center mt-5">
+				<h2 class="headers text-capitalize wrapper-max">New products</h2>
+				<div class="wrapper info wrapper-max m-auto">
 
-				{% if newProducts|length <= 2 %}
-					<div class="row d-flex align-items-center justify-content-center ">
-					{% else %}
-						<div class="row d-flex align-items-center justify-content-between ">
-						{% endif %}
-						{% for product in newProducts %}
-							<div class="col-12 col-sm-6 col-md-4 my-2 ">
-								<div class="product-card m-auto img-hover-zoom rounded">
-									<a href="{{ path('app_product', { slug: product.slug }) }}">
-										<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"/></a>
+					{% if newProducts|length <= 2 %}
+						<div class="row d-flex align-items-center justify-content-center ">
+						{% else %}
+							<div class="row d-flex align-items-center justify-content-between ">
+							{% endif %}
+							{% for product in newProducts %}
+								<div class="col-12 col-sm-6 col-md-4 my-2 ">
+									<div class="product-card m-auto img-hover-zoom rounded">
+										<a href="{{ path('app_product', { slug: product.slug }) }}">
+											<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" loading="lazy"/></a>
+									</div>
 								</div>
-							</div>
-						{% endfor %}
+							{% endfor %}
 
-						{# button visit all products #}
-						<div class="col-12 text-center mt-5">
-							<a href="{{path('app_shop')}}" class="btn btn-outline mt-2">See all products</a>
+							{# button visit all products #}
+							<div class="col-12 text-center mt-5">
+								<a href="{{path('app_products')}}" class="btn btn-outline mt-2">See all products</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</section>
-		</div>
-		{# END PRODUCTS #}
+				</section>
+			</div>
+			{# END PRODUCTS #}
 
-		{# -----------DIVISOR #}
-		<div class="divisor divisor-lg"></div>
-		<div
-			class="container">
+			{# -----------DIVISOR #}
+			<div class="divisor divisor-lg"></div>
+
 			{# -------------REVIEWS CLIENTS  #}
 			{% if reviewsClient|length > 0%}
 				<section class="text-center mt-5 client">
 					<h2 class="headers">Our clients' opinion</h2>
 					<div class="text-black bg-light p-5">
+						<p class="fs-2 mb-5">Discover what our clients say about Tasty Drink Bar & Shop.</p>
 						<div id="carouselClientOpinion" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-inner text-center ">
 
@@ -196,60 +215,59 @@
 				{# -----------DIVISOR #}
 				<div class="divisor divisor-lg"></div>
 			{% endif %}
-		</div>
 
-		{# -----------------OPENING HOURS #}
-		{% if barSchedules|length >0 and shopSchedules|length>0 %}
-			<section class="text-center mt-5 opening_hours">
-				<h2 class="headers">Opening Hours</h2>
-				<div class="mt-5 mx-auto table-hours mb-5 px-5">
-					<div class="row justify-content-center">
-						<div class="col-0 col-sm-1col-lg-0 d-none"></div>
-						<div class="col-0 col-lg-3 d-flex align-items-stretch  border border-light d-none d-lg-block p-0 m-0">
-							<img src="{{ asset('assets/images/open.jpeg') }}" alt="open hours sign"/>
+
+			{# -----------------OPENING HOURS #}
+			{% if barSchedules|length >0 and shopSchedules|length>0 %}
+				<section class="text-center mt-5 opening_hours">
+					<h2 class="headers">Opening Hours</h2>
+					<div class="mt-5 mx-auto table-hours mb-5 px-5">
+						<div class="row justify-content-center">
+							<div class="col-0 col-sm-1col-lg-0 d-none"></div>
+							<div class="col-0 col-lg-3 d-flex align-items-stretch  border border-light d-none d-lg-block p-0 m-0">
+								<img src="{{ asset('assets/images/open.jpeg') }}" alt="open hours sign" loading="lazy"/>
+							</div>
+							<div
+								class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
+
+								{# SHOP TIME  #}
+								<h3 class="sub-titles text-uppercase fw-medium">Shop</h3>
+								{% for schedule in shopSchedules %}
+									<p>
+										<span>{{ schedule.day }}:</span>
+										<span class="open-time">{{ schedule.openTime|date('G') }}h</span>
+										-
+										<span class="close-time">{{ schedule.closeTime|date('G') }}h</span>
+									</p>
+								{% endfor %}
+							</div>
+							<div
+								class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
+
+								{# BAR TIME  #}
+								<h3 class="sub-titles text-uppercase fw-medium">Bar</h3>
+								{% for schedule in barSchedules %}
+									<p>
+										<span>{{ schedule.day }}:</span>
+										<span class="open-time">{{ schedule.openTime|date('G') }}h</span>
+										-
+										<span class="close-time">{{ schedule.closeTime|date('G') }}h</span>
+									</p>
+								{% endfor %}
+
+							</div>
+							<div class="col-0 col-sm-1 col-lg-0 d-none"></div>
 						</div>
-						<div
-							class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
-
-							{# SHOP TIME  #}
-							<h3 class="sub-titles text-uppercase fw-medium">Shop</h3>
-							{% for schedule in shopSchedules %}
-								<p>
-									<span>{{ schedule.day }}:</span>
-
-									<span class="open-time">{{ schedule.openTime|date('G') }}h</span>
-									-
-									<span class="close-time">{{ schedule.closeTime|date('G') }}h</span>
-								</p>
-							{% endfor %}
-						</div>
-						<div
-							class="col-12 col-sm-5 col-lg-3 p-4 border border-light">
-
-							{# BAR TIME  #}
-							<h3 class="sub-titles text-uppercase fw-medium">Bar</h3>
-							{% for schedule in barSchedules %}
-								<p>
-									<span>{{ schedule.day }}:</span>
-
-									<span class="open-time">{{ schedule.openTime|date('G') }}h</span>
-									-
-									<span class="close-time">{{ schedule.closeTime|date('G') }}h</span>
-								</p>
-							{% endfor %}
-
-						</div>
-						<div class="col-0 col-sm-1 col-lg-0 d-none"></div>
 					</div>
-				</div>
-			</section>
-		{% else %}
+				</section>
+			{% else %}
 
-			{# VACATION MESSAGE  #}
-			<div class="text-capitalize fs-1 bg-light p-5 text-center text-black">We're on holiday. Tasky Drink will open its doors at the end of the month. See you soon.</div>
-		{% endif %}
+				{# VACATION MESSAGE  #}
+				<div class="text-capitalize fs-1 bg-light p-5 text-center text-black">We're on holiday. Tasky Drink will open its doors at the end of the month. See you soon.</div>
+			{% endif %}
 
-		{# -----------DIVISOR #}
-		<div class="divisor divisor-lg"></div>
+			{# -----------DIVISOR #}
+			<div class="divisor divisor-lg"></div>
+		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

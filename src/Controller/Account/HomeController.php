@@ -12,17 +12,19 @@ class HomeController extends AbstractController
     #[Route('/account', name: 'app_account')]
     public function index(OrderRepository $orderRepository): Response
     {
-        // $orders = $orderRepository->findBy([
-        //     'user' => $this->getUser(),
-        //     'state' => [2, 3], // Completed orders and  Delivered orders
-        // ]);
-        //show desc and only paid orders
-        $orders = $orderRepository->findSuccessOrders($this->getUser());
+        // Check if the user is logged in and redirect based on role
+        $user = $this->getUser();
 
-        // dd($orders);
+        if ($user) {
+            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                return $this->render('account/index.html.twig');
+            } else {
+                $orders = $orderRepository->findSuccessOrders($this->getUser());
 
-        return $this->render('account/index.html.twig', [
-            'orders' => $orders
-        ]);
+                return $this->render('account/index.html.twig', [
+                    'orders' => $orders
+                ]);
+            }
+        }
     }
 }

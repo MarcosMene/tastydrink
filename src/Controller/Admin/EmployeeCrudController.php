@@ -17,7 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class EmployeeCrudController extends AbstractCrudController
 {
@@ -37,7 +37,9 @@ class EmployeeCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Employee')
-      ->setEntityLabelInPlural('Employees');
+      ->setEntityLabelInPlural('Employees')
+      ->setDefaultSort(['joinDate' => 'DESC'])
+      ->setPaginatorPageSize(5);
   }
 
   public function configureFields(string $pageName): iterable
@@ -55,7 +57,6 @@ class EmployeeCrudController extends AbstractCrudController
     foreach ($jobTitles as $jobTitle) {
       $jobChoices[$jobTitle->getId()] = $jobTitle->getName();
     }
-
 
     if ($pageName === 'edit' || $pageName === 'new') {
       if (count($jobChoices) == 0 || count($jobTitles) == 0) {
@@ -75,8 +76,38 @@ class EmployeeCrudController extends AbstractCrudController
 
     return [
       IdField::new('id')->hideOnForm(),
-      TextField::new('firstName'),
-      TextField::new('lastName'),
+      TextField::new('firstName')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 3,
+              'max' => 25,
+              'minMessage' => 'First name must be at least {{ limit }} characters long',
+              'maxMessage' => 'First name cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ\s\-]/',
+              'message' => 'First name can only contain letters, numbers, and -',
+            ]),
+          ]
+        ])
+        ->setRequired(true),
+      TextField::new('lastName')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Length([
+              'min' => 3,
+              'max' => 25,
+              'minMessage' => 'Last name must be at least {{ limit }} characters long',
+              'maxMessage' => 'Last name cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Regex([
+              'pattern' => '/^[a-zA-ZÀ-ÿ\s\-]/',
+              'message' => 'Last name can only contain letters, numbers, and -',
+            ]),
+          ]
+        ])
+        ->setRequired(true),
       ImageField::new('illustration')
         ->setBasePath('/uploads/team') // the base path where files are stored
         ->setUploadDir('public/uploads/team') // the relative directory to store files in
@@ -84,17 +115,54 @@ class EmployeeCrudController extends AbstractCrudController
         ->setRequired($required)
         ->setHelp('Image of your product, max 500x500px'),
       DateField::new('joinDate')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Type("\DateTimeInterface"),
+            new Assert\GreaterThanOrEqual('2020-01-01'),
+            new Assert\LessThanOrEqual(new \DateTime('+10 days'))
+          ]
+        ])
         ->setRequired(true),
-      TextField::new('email'),
-      AssociationField::new('team', 'Team')->setHelp('Which team to work')
+      TextField::new('email')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\NotBlank(['message' => 'Email cannot be blank.']),
+            new Assert\Length([
+              'min' => 10,
+              'max' => 50,
+              'minMessage' => 'Email must be at least {{ limit }} characters long',
+              'maxMessage' => 'Email cannot be longer than {{ limit }} characters',
+            ]),
+            new Assert\Email([
+              'message' => 'Invalid email address',
+            ]),
+          ]
+        ])
+        ->setRequired(true),
+      AssociationField::new('team', 'Team')
+        ->setHelp('Which team to work')
+        ->setFormTypeOption('placeholder', 'Choose a team')
         ->setRequired(true),
       ChoiceField::new('position')
         ->setHelp('Which positon on the team')
         ->setChoices(
           array_flip($jobChoices)
         )
+        ->setFormTypeOption('placeholder', 'Choose a position')
         ->setRequired(true),
-      NumberField::new('orderAppear')->setHelp('Order appear on the team page. From 1 to 5')
+      NumberField::new('orderAppear')
+        ->setHelp('Order appear on the team page. From 1 to 2')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Positive(),
+            new Assert\Range([
+              'min' => 1,
+              'max' => 2,
+              'notInRangeMessage' => 'Order must be from {{ min }} to {{ max }}.',
+            ])
+          ]
+        ])
+        ->setRequired(true),
     ];
   }
 
@@ -105,14 +173,12 @@ class EmployeeCrudController extends AbstractCrudController
     if (count($jobTitles) == 0) {
       return 'The job list is empty. Please create one, before create an employee.';
     }
-
     return null;
   }
 
   public function configureActions(Actions $actions): Actions
   {
     $jobTitles = $this->DepartamentRepository->findAll();
-
 
     if (count($jobTitles) == 0) {
       return $actions

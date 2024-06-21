@@ -17,13 +17,7 @@ class DrinkCategory
   private ?int $id = null;
 
   #[ORM\Column(length: 255)]
-  #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\-\0-9]/', message: 'Only letters and numbers.')]
-  #[Assert\Length(
-    min: 3,
-    max: 25,
-    minMessage: 'Name must be at least {{ limit }} characters long',
-    maxMessage: 'Name must be no longer than {{ limit }} characters'
-  )]
+  #[Assert\NotBlank]
   private ?string $name = null;
 
   #[ORM\OneToMany(targetEntity: Drink::class, mappedBy: 'drinkcategory', orphanRemoval: true)]
@@ -82,7 +76,6 @@ class DrinkCategory
         $drink->setDrinkcategory(null);
       }
     }
-
     return $this;
   }
 }

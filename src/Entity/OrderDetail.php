@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderDetailRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderDetailRepository::class)]
 class OrderDetail
@@ -17,15 +18,34 @@ class OrderDetail
     private ?Order $myOrder = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        max: 40,
+        minMessage: 'The name of the product must be at least {{ limit }} characters long.',
+        maxMessage: 'The name of the product must be no longer than {{ limit }} characters.'
+    )]
     private ?string $productName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $productIllustration = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
+    #[Assert\Range(
+        min: 1,
+        max: 20,
+        notInRangeMessage: "The minimum you can buy is {{ min }} and the maximum is {{ max }}."
+    )]
     private ?int $productQuantity = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
+    #[Assert\Range(
+        min: 10,
+        max: 100,
+        notInRangeMessage: "Price must be from {{ min }} to {{ max }}."
+    )]
     private ?float $productPrice = null;
 
     #[ORM\Column]
@@ -44,7 +64,6 @@ class OrderDetail
     public function setMyOrder(?Order $myOrder): static
     {
         $this->myOrder = $myOrder;
-
         return $this;
     }
 
@@ -56,7 +75,6 @@ class OrderDetail
     public function setProductName(string $productName): static
     {
         $this->productName = $productName;
-
         return $this;
     }
 
@@ -68,7 +86,6 @@ class OrderDetail
     public function setProductIllustration(string $productIllustration): static
     {
         $this->productIllustration = $productIllustration;
-
         return $this;
     }
 
@@ -80,7 +97,6 @@ class OrderDetail
     public function setProductQuantity(int $productQuantity): static
     {
         $this->productQuantity = $productQuantity;
-
         return $this;
     }
 
@@ -98,7 +114,6 @@ class OrderDetail
     public function setProductPrice(float $productPrice): static
     {
         $this->productPrice = $productPrice;
-
         return $this;
     }
 
@@ -110,7 +125,6 @@ class OrderDetail
     public function setProductTva(float $productTva): static
     {
         $this->productTva = $productTva;
-
         return $this;
     }
 }

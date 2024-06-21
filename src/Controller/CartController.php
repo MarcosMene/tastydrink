@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
-use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use LDAP\Result;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +12,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CartController extends AbstractController
 {
-
     private $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -31,7 +28,6 @@ class CartController extends AbstractController
                 'Payment canceled: you can update your cart and order. If the problem persists please contact us.'
             );
         }
-
 
         return $this->render('cart/index.html.twig', [
             'cart' => $cart->getCart(),
@@ -63,15 +59,12 @@ class CartController extends AbstractController
             //message
             $this->addFlash('success', 'The product has been deleted from your shopping cart.');
         }
-
-
         return $this->redirectToRoute('app_cart');
     }
 
     #[Route('/cart/remove', name: 'app_cart_remove')]
     public function remove(Cart $cart): Response
     {
-
         $cart->remove();
         //message
         $this->addFlash('danger', 'All products have been deleted from your shopping cart.');

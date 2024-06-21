@@ -75,7 +75,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Reservation', 'fas fa-rectangle-list', Reservation::class);
         yield MenuItem::section('Reviews');
         yield MenuItem::linkToCrud('Product review', 'fas fa-heart', Review::class);
-        yield MenuItem::linkToCrud('Client review ', 'fas fa-face-smile', ReviewClient::class);
+        yield MenuItem::linkToCrud('Client bar review ', 'fas fa-face-smile', ReviewClient::class);
         yield MenuItem::section('Newsletter');
         yield MenuItem::linkToCrud('Newsletter', 'fas fa-envelope-open-text', Newsletter::class);
     }

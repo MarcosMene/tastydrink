@@ -7,7 +7,7 @@
 
 	{# HERO IMAGE  #}
 	<div class="hero_bg">
-		<img class="img-fluid" src="{{ asset('assets/images/our_story.jpg') }}" alt="tasty drink building"/>
+		<img class="img-fluid" src="{{ asset('assets/images/our_story.jpg') }}" alt="tasty drink building" loading="lazy"/>
 		<div class="hero_title">
 			<span class="d-block p-0 m-0">Our</span>
 			<span>Story</span>
@@ -16,16 +16,19 @@
 
 	{# CONTAINER  #}
 	<div
-		class="container">
+		class="w-75 mx-auto">
 		{# -----------------AN IDEA IS BORN #}
 		<section class="row gx-4 wrapper-max mt-5">
-			<h2 class="headers text-capitalize">an idea is born</h2>
+			<h2 class="headers text-capitalize">an idea was born</h2>
 			<div class="col-12 col-md-6 col-lg-8">
-				<p class="pe-lg-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, voluptatum architecto. Corrupti porro vero saepe quaerat alias quidem assumenda nesciunt.</p>
-				<p class="pe-lg-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione unde nam accusamus perferendis similique, iure, hic sint illum, est tempora fugit dolores ex. Aliquid sed sint fuga doloribus esse culpa sunt laborum minima reiciendis voluptatibus hic dicta iusto tenetur provident dolorem necessitatibus accusantium ipsam delectus, eligendi distinctio illum! Repudiandae, temporibus.</p>
+				<p class="pe-lg-3">During their memorable vacation in Switzerland, Amanda and Lucas embarked on a delightful journey exploring numerous bars and shops scattered across charming streets.
+				</p>
+				<p class="pe-lg-3">However, amidst their adventures, they noticed a distinct absence—a place where both a bar and a shop harmoniously coexisted under one roof. Inspired by this revelation and fueled by their passion for quality products, Amanda and Lucas envisioned a unique concept—a tantalizing drink bar and shop nestled in the heart of Vancouver. Here, connoisseurs and explorers alike could indulge in meticulously crafted beverages while perusing an array of curated goods, each selected for its exceptional quality and allure.
+				</p>
+				<p>Their dream was to create not just a place, but an experience—a haven where the art of crafting drinks meets the delight of discovering fine products, all within an ambiance of warmth and sophistication.</p>
 			</div>
 			<div class="col-12 col-md-6 col-lg-4">
-				<img class="img-fluid" src="{{ asset('assets/images/owerns.jpeg') }}" alt="tasty drink building"/>
+				<img class="img-fluid" src="{{ asset('assets/images/owerns.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				<div class="text-center">
 					<p class="team-title p-1 m-0">Amanda and Lucas Atkinson</p>
 					<p>
@@ -40,25 +43,30 @@
 		{# -----------------STORE #}
 		<section class="mt-5 wrapper-max mx-auto">
 			<h2 class="headers text-capitalize text-center">Our Store</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
+			<p>
+				Step into the inviting ambiance of Tasty Drink Bar & Shop, where each bottle of drink is meticulously curated to delight the senses. Our collection boasts a symphony of flavors, from crisp artisanal ciders to velvety red wines and refreshing craft beers.
+			</p>
+			<p>At Tasty Drink, we pride ourselves not only on the quality of our beverages but also on our dedicated team of experts who are eager to assist every client with warmth and expertise. Whether you seek a rare vintage or a trendy new blend, our knowledgeable staff stands ready to guide you to the perfect selection.
+			</p>
+			<p>Come indulge in a world of taste and hospitality at Tasty Drink Bar & Shop, where every sip tells a story of craftsmanship and passion.</p>
 
 			<div class="row gx-4 wrapper-max">
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/client01.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/client01.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/wine_box.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/wine_box.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/drinks.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/drinks.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/client_waitress.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/client_waitress.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 			</div>
 			<!-- BUTTON our products -->
 			<div class="text-center mt-5">
-				<a href="{{path('app_shop')}}" class="btn btn-outline text-capitalize">Our products</a>
+				<a href="{{path('app_products')}}" class="btn btn-outline text-capitalize">Our products</a>
 			</div>
 		</section>
 		{# -----------DIVISOR #}
@@ -67,20 +75,22 @@
 		{# -----------------BAR #}
 		<section class="mt-5">
 			<h2 class="headers text-capitalize text-center">Our Bar</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit leo habitant, inceptos justo natoque arcu netus facilisis donec magnis sapien nisi, per amet consectetur adipiscing elit leo habitant.</p>
+			<p>The bar, with its polished wood and softly glowing lights, exudes a cozy sophistication that invites intimate conversations over perfectly crafted cocktails. As you move through to the terrace, a tranquil oasis awaits, adorned with lush greenery and twinkling fairy lights that cast a gentle glow over the tables.
+			</p>
+			<p>Here, friends clink glasses, couples share stolen glances, and families unwind together amidst the harmonious blend of laughter and the subtle hum of contentment. Whether savoring a signature drink or indulging in a delightful meal, Tasty Drink effortlessly weaves an atmosphere where every moment is infused with joy and connection, making it a cherished destination for all who seek camaraderie and unforgettable experiences at Tasty Drink Bar & Shop.</p>
 
 			<div class="row gx-4 wrapper-max">
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/inside.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/inside.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/table_clients1.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/table_clients1.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/table_clients2.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/table_clients2.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 my-3">
-					<img class="img-fluid" src="{{ asset('assets/images/terrace.jpeg') }}" alt="tasty drink building"/>
+					<img class="img-fluid" src="{{ asset('assets/images/terrace.jpeg') }}" alt="tasty drink building" loading="lazy"/>
 				</div>
 			</div>
 			<!-- BUTTON STORY -->
@@ -98,32 +108,32 @@
 				<div class="row wrapper-max">
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/cachaca.jpeg') }}" alt="brazilian licor bottle" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/cachaca.jpeg') }}" alt="brazilian licor bottle" class="img-fluid" loading="lazy"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/box_wine.jpeg') }}" alt="a box with three wine bottle" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/box_wine.jpeg') }}" alt="a box with three wine bottle" class="img-fluid" loading="lazy"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/wine_bottle.jpeg') }}" alt="a bottle of wine beside a beautiful box" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/wine_bottle.jpeg') }}" alt="a bottle of wine beside a beautiful box" class="img-fluid" loading="lazy"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/pasta.jpeg') }}" alt="a special dishes of tasty drink bar and shop menu" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/pasta.jpeg') }}" alt="a special dishes of tasty drink bar and shop menu" class="img-fluid" loading="lazy"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/drinks.jpeg') }}" alt="multiple glasses with different cocktails" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/drinks.jpeg') }}" alt="multiple glasses with different cocktails" class="img-fluid" loading="lazy"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/cheese.jpeg') }}" alt="different cheeses over a table with a glass of beer" class="img-fluid"/>
+							<img src="{{ asset('uploads/gallery/cheese.jpeg') }}" alt="different cheeses over a table with a glass of beer" class="img-fluid" loading="lazy"/>
 						</div>
 					</div>
 				</div>

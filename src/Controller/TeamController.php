@@ -13,7 +13,6 @@ class TeamController extends AbstractController
     #[Route('/our-team', name: 'app_team')]
     public function index(EmployeeRepository $employeeRepository, DepartamentRepository $departamentRepository): Response
     {
-
         $employee = $employeeRepository->findAll();
         $department = $departamentRepository->findAll();
 

@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ColorProductRepository::class)]
+
+//to not repeat color name
+#[UniqueEntity('color')]
 class ColorProduct
 {
     #[ORM\Id]
@@ -17,12 +21,7 @@ class ColorProduct
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(
-        min: 3,
-        max: 20,
-        minMessage: 'The color of the product must be at least {{ limit }} characters long.',
-        maxMessage: 'The color of the product must be no longer than {{ limit }} characters.'
-    )]
+    #[Assert\NotBlank]
     private ?string $color = null;
 
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'colorProduct')]
@@ -81,7 +80,6 @@ class ColorProduct
                 $product->setColorProduct(null);
             }
         }
-
         return $this;
     }
 }

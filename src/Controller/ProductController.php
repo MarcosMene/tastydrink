@@ -37,13 +37,15 @@ class ProductController extends AbstractController
         [$min, $max] = $repository->findMinMax($data);
 
         $products = $repository->findSearch($data);
+        $totalProducts = $products->getTotalItemCount();
+
         if ($request->get('ajax')) {
             return new JsonResponse([
                 'content' => $this->renderView('_partials/_products.html.twig', ['products' => $products]),
                 'sorting' => $this->renderView('_partials/_sorting.html.twig', ['products' => $products]),
                 'pagination' => $this->renderView('_partials/_pagination.html.twig', ['products' => $products]),
                 'min' => $min,
-                'max' => $max
+                'max' => $max,
             ]);
         }
         return $this->render('products/our-products.html.twig', [
@@ -51,6 +53,7 @@ class ProductController extends AbstractController
             'form' => $form->createView(),
             'min' => $min,
             'max' => $max,
+            'totalProducts' => $totalProducts
         ]);
     }
 
@@ -62,7 +65,7 @@ class ProductController extends AbstractController
         //   PRODUCT 
         $product = $productRepository->findOneBySlug($slug);
         if (!$product) {
-            return $this->redirectToRoute('app_shop');
+            return $this->redirectToRoute('app_products');
         }
 
         // REVIEW 

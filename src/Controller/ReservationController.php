@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ReservationController extends AbstractController
 {
@@ -32,16 +31,13 @@ class ReservationController extends AbstractController
 
     //form from contact page
     #[Route('/reservation', name: 'app_reservation', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
     public function reservation(Request $request, EntityManagerInterface $entityManager)
     {
-
         $user = $this->security->getUser();
         if (!$user) {
             $this->addFlash('danger', 'You must to login to make a reservation.');
             return $this->redirectToRoute('app_login');
         }
-
 
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -91,7 +87,6 @@ class ReservationController extends AbstractController
                 return $this->redirectToRoute('app_reservation');
             }
         }
-
         return $this->render('reservation/index.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -107,23 +102,29 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        //find all reservation
-        $reservations = $entityManager->getRepository(Reservation::class)->findAllOrderedByDateDescForUser($user->getId());
+        if ($user) {
+            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                return $this->redirectToRoute('app_account');
+            } else {
+                //find all reservation
+                $reservations = $entityManager->getRepository(Reservation::class)->findAllOrderedByDateDescForUser($user->getId());
 
-        //get today date to compare
-        $today = new \DateTime();
+                //get today date to compare
+                $today = new \DateTime();
 
-        $reservationsWithStatus = array_map(function ($reservation) use ($today) {
-            $reservationDateTime = new \DateTime($reservation->getReservationDate()->format('Y-m-d') . ' ' . $reservation->getReservationTime()->format('H:i:s'));
-            return [
-                'reservation' => $reservation,
-                'isPast' => $reservationDateTime < $today,
-            ];
-        }, $reservations);
+                $reservationsWithStatus = array_map(function ($reservation) use ($today) {
+                    $reservationDateTime = new \DateTime($reservation->getReservationDate()->format('Y-m-d') . ' ' . $reservation->getReservationTime()->format('H:i:s'));
+                    return [
+                        'reservation' => $reservation,
+                        'isPast' => $reservationDateTime < $today,
+                    ];
+                }, $reservations);
 
-        return $this->render('account/reservation/index.html.twig', [
-            'reservations' => $reservationsWithStatus,
-        ]);
+                return $this->render('account/reservation/index.html.twig', [
+                    'reservations' => $reservationsWithStatus,
+                ]);
+            }
+        }
     }
 
     //route to modify
@@ -213,17 +214,14 @@ class ReservationController extends AbstractController
                 return $this->redirectToRoute('app_account_reservation');
             }
         }
-
         return $this->render('account/reservation/form.html.twig', [
             'reservationForm' => $form->createView(),
         ]);
     }
 
-
     #[Route('/account/reservation/cancel/{id}', name: 'app_reservation_cancel', methods: ['POST'])]
     public function cancel(int $id, Request $request): Response
     {
-
         $user = $this->security->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
@@ -244,7 +242,6 @@ class ReservationController extends AbstractController
             $this->addFlash('danger', 'Reservation not found.');
             return $this->redirectToRoute('app_account_reservation');
         }
-
 
         //security csrf
         $csrfToken = new CsrfToken('cancel' . $reservation->getId(), $request->request->get('_token'));
