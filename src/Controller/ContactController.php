@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\MailContact;
 use App\Form\ContactType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,11 +20,16 @@ class ContactController extends AbstractController
         $this->em = $em;
     }
 
-    #[Route('/contact', name: 'app_contact')]
+    #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
     public function contact(Request $request): Response
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
+
+        $date = new DateTime('now');
+
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mail = new MailContact();
@@ -31,8 +37,10 @@ class ContactController extends AbstractController
                 "firstname" => $form->get('firstName')->getData(),
                 "lastname" => $form->get('lastName')->getData(),
                 "email" => $form->get('email')->getData(),
+                "telephone" => $form->get('telephone')->getData(),
                 "subject" => $form->get('subject')->getData(),
                 "message" => $form->get('message')->getData(),
+                "date" => $date->format('Y')
             ];
 
             $mail->send('meneghettimarcos1@gmail.com', $form->get('firstName')->getData() . $form->get('lastName')->getData(), $form->get('subject')->getData(), 'contact.html', $vars);

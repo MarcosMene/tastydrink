@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -64,6 +65,33 @@ class ContactType extends AbstractType
                     'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('Your last name must be between 3 and 25 characters long and can only contain letters.');",
                     'oninvalid' => "this.setCustomValidity('Please Enter valid last name')",
                 ],
+            ])
+            ->add('telephone', TelType::class, [
+                'empty_data' => '',
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'Your telephone is required',
+                    ]),
+                    new Assert\Length([
+                        'min' => 8,
+                        'minMessage' => 'Your telephone must be at least {{ limit }} characters long.',
+                        'max' => 25,
+                        'maxMessage' => 'Your telephone cannot be longer than {{ limit }} characters.',
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[\+\(\s.\-\/\d\)]{5,30}$/',
+                        'message' => 'The format of the telephone is not correct.',
+                    ])
+                ],
+                'attr' => [
+                    'minlength' => 8,
+                    'maxlength' => 25,
+                    'placeholder' => '+1601020304 or 0909090909',
+                    'oninvalid' => "this.setCustomValidity('Please Enter valid telephone number')",
+                    'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('Your telephone be between 8 and 25 characters long and can only contain letters.');",
+                ],
+                'help' => 'Only numbers with or without + signal and no spaces',
+
             ])
             ->add('email', EmailType::class, [
                 'empty_data' => '',

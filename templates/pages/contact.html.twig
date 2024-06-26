@@ -4,6 +4,12 @@
 	Tasty Drink - Contact
 {% endblock %}
 
+{% block meta_description %}Get in touch with Tasty Drink Bar & Shop in Vancouver. Whether you have questions about our menu, need to make a reservation, or want to know more about our events, our friendly team is here to help. Visit our contact page for our phone number, email address, and location details. We look forward to hearing from you and providing you with an exceptional experience at Tasty Drink Bar & Shop.
+{% endblock %}
+
+{% block meta_keywords %}Tasty Drink Bar & Shop, Vancouver, contact, phone number, email address, location details, reservation, menu, events.
+{% endblock %}
+
 {% block body %}
 
 	{# HERO IMAGE  #}
@@ -15,18 +21,20 @@
 	</div>
 
 	<div class="w-75 mx-auto">
-		<h1 class="main-titles text-center mt-5">Contact Us</h1>
+		<h1 class="headers text-capitalize text-center mt-5">Contact Us</h1>
 		<div class="wrapper wrapper-form bg-light text-black contact">
 			<div class="row px-2 px-md-5 py-3">
 				<div class="col-12 col-lg-7 col-xl-8 px-2 px-md-3">
 					<h2 class="mb-3 fw-medium">Have a question?</h2>
-					<p class="fw-normal mb-5">Our team is dedicated to ensuring your experience with us is nothing short of excellent. We look forward to hearing from you!"</p>
+					<p class="fw-normal mb-5">Whether you have questions about our menu, or want to know more about our events, our friendly team is here to help.</p>
 
 					{{ form_start(form) }}
 					<div class="row">
-						<div class="col-sm">{{ form_row(form.firstName) }}</div>
-						<div class="col-sm">{{ form_row(form.lastName) }}</div>
-						<div class="col-12">{{ form_row(form.email) }}</div>
+						<div class="col-12 col-sm-6">{{ form_row(form.firstName) }}</div>
+						<div class="col-12 col-sm-6">{{ form_row(form.lastName) }}</div>
+						<div class="col-12 col-sm-6">{{ form_row(form.email) }}</div>
+						<div class="col-12 col-sm-6">{{ form_row(form.telephone) }}</div>
+
 						<div class="col-12">{{ form_row(form.subject) }}</div>
 						<div class="col-12">{{ form_row(form.message) }}</div>
 					</div>

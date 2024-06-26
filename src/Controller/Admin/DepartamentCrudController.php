@@ -28,7 +28,9 @@ class DepartamentCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Department')
-      ->setEntityLabelInPlural('Departments');
+      ->setEntityLabelInPlural('Departments')
+      // the max number of entities to display per page
+      ->setPaginatorPageSize(5);
   }
 
   public function configureFields(string $pageName): iterable

@@ -19,7 +19,9 @@ class OrderController extends AbstractController
         ]);
 
         if (!$order) {
-            return $this->redirectToRoute('app_home');
+            //message
+            $this->addFlash('danger', 'This order doesn\'t exist.');
+            return $this->redirectToRoute('app_account');
         }
         return $this->render('account/order/index.html.twig', [
             'order' => $order,

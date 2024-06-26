@@ -20,7 +20,10 @@ class FoodCategoryCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Category of food')
-      ->setEntityLabelInPlural('Category of foods');
+      ->setEntityLabelInPlural('Category of foods')
+      ->setDefaultSort(['id' => 'DESC'])
+      // the max number of entities to display per page
+      ->setPaginatorPageSize(5);
   }
 
   public function configureFields(string $pageName): iterable

@@ -62,6 +62,17 @@ class CartController extends AbstractController
         return $this->redirectToRoute('app_cart');
     }
 
+    #[Route('/cart/delete/{id}', name: 'app_cart_delete')]
+    public function delete($id, Cart $cart): Response
+    {
+        $cart->delete($id);
+
+        //message
+        $this->addFlash('success', 'The product has been deleted from your shopping cart.');
+
+        return $this->redirectToRoute('app_cart');
+    }
+
     #[Route('/cart/remove', name: 'app_cart_remove')]
     public function remove(Cart $cart): Response
     {

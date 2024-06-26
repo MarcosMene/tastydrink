@@ -87,7 +87,7 @@ class ReservationController extends AbstractController
                 return $this->redirectToRoute('app_reservation');
             }
         }
-        return $this->render('reservation/index.html.twig', [
+        return $this->render('pages/reservation.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -129,7 +129,7 @@ class ReservationController extends AbstractController
 
     //route to modify
     #[Route('/account/modify-reservation/{id}', name: 'app_account_reservation_form')]
-    public function edit(int $id, Request $request, ReservationRepository $reservationRepository, EntityManagerInterface $entityManager): Response
+    public function edit($id, Request $request, ReservationRepository $reservationRepository, EntityManagerInterface $entityManager): Response
     {
         $user = $this->security->getUser();
         if (!$user) {

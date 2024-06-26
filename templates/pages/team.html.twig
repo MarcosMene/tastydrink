@@ -4,6 +4,12 @@
 	Tasty Drink - Our Team
 {% endblock %}
 
+{% block meta_description %}Meet the exceptional team at Tasty Drink Bar & Shop in Vancouver. Our dedicated professionals include skilled bartenders, shop sales experts, culinary chefs, and drink and cocktail specialists. Our bar team crafts innovative cocktails and serves premium drinks with precision, while our shop team ensures a seamless purchasing experience with their extensive knowledge of our drink selection. Our culinary chefs create delicious food pairings to complement our beverages, and our drink specialists curate an impressive menu of wines, beers, spirits, and more. Visit Tasty Drink Bar & Shop and experience the expertise and passion of our outstanding team.
+{% endblock %}
+
+{% block meta_keywords %}Tasty Drink Bar & Shop, Vancouver, Vancouver bartenders, team,shop sales experts, culinary chefs, drink specialists, cocktails specialists.
+{% endblock %}
+
 {% block body %}
 
 	{# HERO IMAGE  #}
@@ -19,7 +25,8 @@
 		class="w-75 mx-auto">
 		{# -----------------main title #}
 		<section class="mt-5">
-			<h2 class="main-titles text-capitalize text-center">Our team</h2>
+			<h1 class="headers text-capitalize text-center mt-5">The dream team</h1>
+
 			<p>
 				Our dedicated team at the bar crafts each drink with passion and precision, ensuring every sip is an experience worth savoring. Their expertise and friendly service make every visit a delightful indulgence.
 			</p>
@@ -27,6 +34,9 @@
 
 			{# CATEGORY  #}
 			{% for category in teamCategories|sort((a, b) => b.nameTeam <=> a.nameTeam) %}
+				{# -----------DIVISOR #}
+				<div class="divisor divisor-lg"></div>
+
 				<h2 class="text-white text-center text-uppercase mt-5 mb-0">{{category.nameTeam}}
 					team</h2>
 
@@ -37,8 +47,8 @@
 								{% if employee.position == department.id  %}
 									{% if employee.orderAppear == 1 %}
 										<div class="d-block">
-											<div class="col-12 col-sm-6 col-lg-3 mx-auto my-5">
-												<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto" loading="lazy"/>
+											<div class="col-12 col-sm-6 col-lg-3 mx-auto my-5 ">
+												<img src="/uploads/team/{{ employee.illustration }}" alt="{{employee.firstName}}" class="img-fluid mx-auto rounded" loading="lazy"/>
 												<div class="text-center p-3">
 													<h4 class="team-title">{{employee.firstName}}
 														{{employee.lastName}}</h4>
@@ -65,8 +75,7 @@
 						{% endfor %}
 					</div>
 				</div>
-				{# -----------DIVISOR #}
-				<div class="divisor divisor-lg"></div>
+
 			{% endfor %}
 		</section>
 	{% endblock %}

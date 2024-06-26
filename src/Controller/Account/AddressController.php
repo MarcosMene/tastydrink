@@ -47,7 +47,7 @@ class AddressController extends AbstractController
             if (!$address or $address->getUser() != $this->getUser()) {
                 $this->addFlash(
                     'danger',
-                    'Your don\'t have permission to access it.'
+                    'This page doesn\'t exist.'
                 );
                 return $this->redirectToRoute('app_account_address');
             }

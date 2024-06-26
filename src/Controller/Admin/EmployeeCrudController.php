@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -75,6 +76,7 @@ class EmployeeCrudController extends AbstractCrudController
     }
 
     return [
+      FormField::addColumn(6),
       IdField::new('id')->hideOnForm(),
       TextField::new('firstName')
         ->setFormTypeOptions([
@@ -123,6 +125,7 @@ class EmployeeCrudController extends AbstractCrudController
           ]
         ])
         ->setRequired(true),
+      FormField::addColumn(6),
       TextField::new('email')
         ->setFormTypeOptions([
           'constraints' => [
@@ -150,19 +153,14 @@ class EmployeeCrudController extends AbstractCrudController
         )
         ->setFormTypeOption('placeholder', 'Choose a position')
         ->setRequired(true),
-      NumberField::new('orderAppear')
-        ->setHelp('Order appear on the team page. From 1 to 2')
-        ->setFormTypeOptions([
-          'constraints' => [
-            new Assert\Positive(),
-            new Assert\Range([
-              'min' => 1,
-              'max' => 2,
-              'notInRangeMessage' => 'Order must be from {{ min }} to {{ max }}.',
-            ])
-          ]
+      ChoiceField::new('orderAppear')
+        ->setChoices([
+          '1' => '1',
+          '2' => '2',
         ])
-        ->setRequired(true),
+        ->setFormTypeOption('placeholder', 'Choose a order')
+        ->setRequired(true)
+        ->setHelp('Choose order employee appears on the page'),
     ];
   }
 

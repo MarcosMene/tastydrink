@@ -2,7 +2,7 @@ $primary: #dfb674;
 $danger: #ff4f03;
 $dark: #141414;
 $white: #fff;
-$info: #31343b;
+$info: #282a2d;
 $black: #000000;
 $light: #d9d9d9;
 $limit: 2000px;
@@ -217,7 +217,7 @@ label {
   img {
     width: 100%;
     height: 100%;
-    filter: brightness(40%);
+    filter: brightness(50%);
   }
 
   .hero_title {
@@ -226,7 +226,7 @@ label {
     left: 50%;
     transform: translate(-50%, -50%);
     color: $white;
-    font-size: 5rem;
+    font-size: 4rem;
     font-family: 'Merriweather', serif;
     font-weight: 500;
     line-height: 5rem;
@@ -263,7 +263,11 @@ table {
 //-----------------CAROUSEL OPINION CLIENT-------------
 .client-carousel {
   height: 300px;
-  // width: 90%;
+  width: 90%;
+
+  &-p {
+    min-width: 100px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -329,7 +333,7 @@ ul.breadcrumb li a:hover {
 .headers {
   color: $primary;
   font-weight: 600;
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   font-family: 'Merriweather', serif;
   margin-bottom: 20px;
 }
@@ -420,7 +424,7 @@ ul.breadcrumb li a:hover {
   background-color: $info;
   padding: 20px;
   border-radius: 5px;
-  margin: 20px 0 60px;
+  margin: 20px 0;
 }
 
 .product-card {
@@ -848,6 +852,10 @@ ul.pagination {
   cursor: pointer;
   font-size: 2rem;
   margin-left: 20px;
+  @media screen and (max-width: 576px) {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
 
 .fa-trash-can {
@@ -1030,6 +1038,7 @@ ul.pagination {
 
 footer {
   background-color: $black;
+  margin-top: 60px;
 
   .fa-brands {
     color: white;
@@ -1056,12 +1065,12 @@ footer {
     padding: 0;
     margin: 0;
     font-weight: 300;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 
   .footer-titles {
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: $primary;
   }
 

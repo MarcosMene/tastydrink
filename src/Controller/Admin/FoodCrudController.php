@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -34,7 +35,10 @@ class FoodCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Menu food')
-      ->setEntityLabelInPlural('Menu foods');
+      ->setEntityLabelInPlural('Menu foods')
+      ->setDefaultSort(['id' => 'DESC'])
+      // the max number of entities to display per page
+      ->setPaginatorPageSize(5);
   }
 
   public function configureFields(string $pageName): iterable
@@ -73,6 +77,7 @@ class FoodCrudController extends AbstractCrudController
     }
 
     return [
+      FormField::addColumn(6),
       IdField::new('id')->hideOnForm(),
       TextField::new('name')
         ->setHelp('Minimum length is 5, maximum 25 characters')
@@ -91,12 +96,12 @@ class FoodCrudController extends AbstractCrudController
           ]
         ]),
       TextareaField::new('description')
-        ->setHelp('Minimum length is 20, maximum 140 characters')
+        ->setHelp('Minimum length is 50, maximum 150 characters')
         ->setFormTypeOptions([
           'constraints' => [
             new Assert\Length([
-              'min' => 20,
-              'max' => 140,
+              'min' => 50,
+              'max' => 150,
               'minMessage' => 'Description must be at least {{ limit }} characters long',
               'maxMessage' => 'Description cannot be longer than {{ limit }} characters',
             ]),
@@ -106,19 +111,8 @@ class FoodCrudController extends AbstractCrudController
             ]),
           ]
         ]),
-      NumberField::new('price')
-        ->setHelp('Minimum 5, maximum 70 dolars')
-        ->setFormTypeOptions([
-          'constraints' => [
-            new Assert\Positive(),
-            new Assert\Range([
-              'min' => 5,
-              'max' => 70,
-              'notInRangeMessage' => 'The price must be from {{ min }} to {{ max }}.',
-            ])
-          ]
-        ])
-        ->setRequired(true),
+
+      FormField::addColumn(6),
       ImageField::new('illustration')
         ->setBasePath('/uploads/menu') // the base path where files are stored
         ->setUploadDir('public/uploads/menu') // the relative directory to store files in
@@ -132,6 +126,19 @@ class FoodCrudController extends AbstractCrudController
         ]),
       AssociationField::new('foodcategory', 'category of foods')
         ->setFormTypeOption('placeholder', 'Choose a Category')
+        ->setRequired(true),
+      NumberField::new('price')
+        ->setHelp('Minimum 5, maximum 70 dolars')
+        ->setFormTypeOptions([
+          'constraints' => [
+            new Assert\Positive(),
+            new Assert\Range([
+              'min' => 5,
+              'max' => 70,
+              'notInRangeMessage' => 'The price must be from {{ min }} to {{ max }}.',
+            ])
+          ]
+        ])
         ->setRequired(true),
     ];
   }

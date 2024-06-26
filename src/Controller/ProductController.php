@@ -69,8 +69,12 @@ class ProductController extends AbstractController
         }
 
         // REVIEW 
-        //find user review for a movie
+        //find user review 
         $review = $reviewRepository->findOneBy(['product' => $product, 'user' => $this->getUser()]);
+
+        //find other reviews
+        $reviews = $reviewRepository->findApprovedReviewsByProduct($product->getId());
+
 
         $review = new Review();
         $formReview = $this->createForm(ReviewType::class, $review);
@@ -93,6 +97,7 @@ class ProductController extends AbstractController
             'formReview' => $formReview->createView(),
             // 'averageRate' => $averageRate,
             'user_reviewed' => $reviewRepository->findOneBy(['product' => $product, 'user' => $user]) !== null,
+            'reviews' => $reviews,
         ]);
     }
 }

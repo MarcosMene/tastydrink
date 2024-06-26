@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Carrier;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -21,12 +22,15 @@ class CarrierCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Carrier')
-            ->setEntityLabelInPlural('Carriers');
+            ->setEntityLabelInPlural('Carriers')
+            // the max number of entities to display per page
+            ->setPaginatorPageSize(5);
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
+            FormField::addColumn(6),
             TextField::new('name')
                 ->setLabel('Carriers name')
                 ->setHelp('Minimum 3, maximum length is 15 characters')

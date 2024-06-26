@@ -8,15 +8,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -29,7 +27,10 @@ class ProductCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Product')
-            ->setEntityLabelInPlural('Products');
+            ->setEntityLabelInPlural('Products')
+            ->setDefaultSort(['id' => 'DESC'])
+            // the max number of entities to display per page
+            ->setPaginatorPageSize(5);
     }
 
     public function configureFields(string $pageName): iterable
@@ -41,6 +42,7 @@ class ProductCrudController extends AbstractCrudController
         }
 
         return [
+            FormField::addColumn(6),
             TextField::new('name')
                 ->setLabel('Name')
                 ->setFormTypeOptions([
@@ -57,8 +59,8 @@ class ProductCrudController extends AbstractCrudController
                         ]),
                     ]
                 ]),
-            BooleanField::new('isSuggestion')->setHelp('Product suggestion on home page.'),
             SlugField::new('slug')->setTargetFieldName('name')->setHelp('URL of the category based on the title'),
+            BooleanField::new('isSuggestion')->setHelp('Product suggestion on home page.'),
             ImageField::new('illustration')
                 ->setHelp('Image of the product')
                 ->setBasePath('/uploads/products') // the base path where files are stored
@@ -81,6 +83,7 @@ class ProductCrudController extends AbstractCrudController
                         ]),
                     ]
                 ]),
+            FormField::addColumn(6),
             AssociationField::new('colorProduct')
                 ->setLabel('Color of product')
                 ->setFormTypeOption('placeholder', 'Choose a color')
@@ -100,11 +103,14 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('tva')
                 ->setHelp('Tax of the product')
                 ->setChoices([
-                    '5,5%' => '5.5',
+                    '5.5%' => '5.5',
                     '10%' => '10',
                     '20%' => '20',
                 ])
-                ->setLabel('VAT'),
+                ->setLabel('VAT')
+                ->formatValue(function ($value) {
+                    return number_format($value, 2);
+                }),
             AssociationField::new('category')->setHelp('Category of the product')
                 ->setFormTypeOption('placeholder', 'Choose a Category')
                 ->setRequired(true),

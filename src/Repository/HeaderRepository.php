@@ -20,4 +20,15 @@ class HeaderRepository extends ServiceEntityRepository
   {
     parent::__construct($registry, Header::class);
   }
+
+  /**
+   * @return Product[]
+   */
+  public function findAllOrderedByAppear()
+  {
+    return $this->createQueryBuilder('p')
+      ->orderBy('p.orderAppear', 'ASC')
+      ->getQuery()
+      ->getResult();
+  }
 }

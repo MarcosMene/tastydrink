@@ -1,4 +1,4 @@
-<footer class="pt-5">
+<footer class="pt-5 bg-info">
 	<div class="text-center w-100">
 		<img src="{{ asset('assets/images/logobw.png') }}" alt="logo tasty drink" width="40px" class="mx-auto"/>
 	</div>
@@ -41,16 +41,16 @@
 				<a href="{{path('app_menu_foods')}}" class="nav-link text-primary">Menu Foods</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Shop</a>
+				<a href="{{ path('app_products') }}" class="nav-link text-primary">Shop</a>
 			</li>
 			<li class="nav-item m-3">
-				<a href="#" class="nav-link text-primary">Contact</a>
+				<a href="{{ path('app_contact') }}" class="nav-link text-primary">Contact</a>
 			</li>
 		</ul>
 
 		<!-- button reservation -->
 		<div class="text-center">
-			<a href="{{ path('app_reservation') }}" class="btn btn-outline mt-2 mt-5 fs-4">Make reservation</a>
+			<a href="{{ path('app_reservation') }}" class="btn btn-outline mt-4 fs-4">Make reservation</a>
 		</div>
 
 		<!-- Address -->
@@ -75,9 +75,16 @@
 		{# COPYRIGHT  #}
 		<div class="m-auto text-white copyright text-center bg-dark py-3">
 			<div class="m-auto container d-flex justify-content-between flex-column flex-lg-row">
-				<span>© 2024 All rights reserved. Designed by Marcos Meneghetti</span>
-				<span>Terms & Conditions</span>
-				<span>Privacy Policy</span>
+				<p class="h5">©
+
+					{# GET YEAR AUTOMATICALLY  #}
+					<script>
+						document.write(/\d{4}/.exec(Date())[0])
+					</script>
+					All rights reserved. Designed by Marcos Meneghetti</p>
+				<a href="" class="h5">Terms & Conditions</a>
+				<a href="" class="h5">Privacy Policy</a>
+
 			</div>
 		</div>
 	</div>

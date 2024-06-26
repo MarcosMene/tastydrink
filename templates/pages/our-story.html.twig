@@ -2,6 +2,11 @@
 {% block title %}
 	Tasty Drink - Our Story
 {% endblock %}
+{% block meta_description %}Discover the story behind Tasty Drink Bar & Shop in Vancouver. Inspired by a memorable vacation in Switzerland, Amanda and Lucas envisioned a unique concept where a bar and shop harmoniously coexist under one roof. During their travels, they noticed the absence of such a place and decided to create their own in the heart of Vancouver. Tasty Drink Bar & Shop offers meticulously crafted beverages and a curated selection of fine products, providing an experience of warmth and sophistication. Join us to indulge in our exceptional drinks and discover quality goods. Visit us today!
+{% endblock %}
+
+{% block meta_keywords %}Tasty Drink Bar & Shop, Vancouver, our story, bar and shop, quality products, unique concept, exceptional drinks and snacks.
+{% endblock %}
 
 {% block body %}
 
@@ -19,7 +24,8 @@
 		class="w-75 mx-auto">
 		{# -----------------AN IDEA IS BORN #}
 		<section class="row gx-4 wrapper-max mt-5">
-			<h2 class="headers text-capitalize">an idea was born</h2>
+			<h1 class="headers text-capitalize text-center h2">an idea was born</h1>
+
 			<div class="col-12 col-md-6 col-lg-8">
 				<p class="pe-lg-3">During their memorable vacation in Switzerland, Amanda and Lucas embarked on a delightful journey exploring numerous bars and shops scattered across charming streets.
 				</p>
@@ -108,7 +114,7 @@
 				<div class="row wrapper-max">
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">
 						<div class="product-card m-auto">
-							<img src="{{ asset('uploads/gallery/cachaca.jpeg') }}" alt="brazilian licor bottle" class="img-fluid" loading="lazy"/>
+							<img src="{{ asset('uploads/gallery/cachaca.jpeg') }}" alt="brazilian licor bottle" class="img-fluid rounded" loading="lazy"/>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-4 my-2 p-md-3 p-xl-4">

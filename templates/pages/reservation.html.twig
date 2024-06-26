@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+	Tasty Drink - Reservation
+{% endblock %}
+
+{% block meta_description %}Reserve your table at Tasty Drink Bar & Shop in Vancouver for an unforgettable experience. Whether planning a night out with friends, a family gathering, or a special event, our stylish bar and stunning terrace with mountain views provide the perfect setting. Visit our reservation page to easily book your spot and ensure a memorable visit. Enjoy our exquisite drinks, delicious food, and exceptional service. Reserve now at Tasty Drink Bar & Shop and make your next outing extraordinary. Visit us today!
+{% endblock %}
+
+{% block meta_keywords %}Tasty Drink Bar & Shop, Vancouver, reserve, reservation, book a table, special event, bar, terrace, mountain views, drinks, food, exceptional service
+{% endblock %}
+
 {% block body %}
 	{# HERO IMAGE  #}
 	<div class="hero_bg">
@@ -12,7 +22,7 @@
 
 	<div class="w-75 mx-auto">
 		<div class="mt-5">
-			<h1 class="main-titles text-center mb-5">Reservation</h1>
+			<h1 class="headers text-capitalize text-center mt-5">Reservation</h1>
 			<p class="mb-5">We eagerly await the pleasure of your company. Whether for a romantic evening, a gathering with friends, or a professional outing, Tasty Drink Bar & Shop promises to elevate your expectations of what a bar experience can be.</p>
 			<p>Reserve your table now and treat yourself to an evening of indulgence and relaxation.</p>
 		</div>
@@ -42,15 +52,15 @@
 						{{ form_end(form) }}
 
 					</div>
-					<div class="col-12 col-lg-5 px-5">
-						<div class="d-flex flex-wrap flex-column align-items-center">
-							<p class="fs-3 fw-medium">Tasty Drink Bar & Shop</p>
-							<div class="contact-phone my-1 d-flex align-items-center">
-								<i class="fa-solid fa-phone"></i>
-								<span>555-554545</span>
+					<div class="col-12 col-lg-5 px-0 px-sm-5">
+						<div class="d-flex flex-wrap flex-column align-items-center text-center">
+							<p class="fs-3 fw-medium w-100">Tasty Drink Bar & Shop</p>
+							<div class="contact-phone my-1">
+								<i class="fa-solid fa-phone d-none d-sm-inline"></i>
+								<span class="mx-auto">555-554545</span>
 							</div>
-							<div class="contact-email my-1 d-flex align-items-center">
-								<i class="fa-solid fa-envelope"></i>
+							<div class="contact-email my-1">
+								<i class="fa-solid fa-envelope d-none d-sm-inline"></i>
 								<span>contact@tastydrink.com</span>
 							</div>
 						</div>

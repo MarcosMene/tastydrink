@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -21,7 +22,10 @@ class NewsletterCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Newsletter')
-            ->setEntityLabelInPlural('Newsletters');
+            ->setEntityLabelInPlural('Newsletters')
+            ->setDefaultSort(['createdAt' => 'DESC'])
+            // the max number of entities to display per page
+            ->setPaginatorPageSize(5);
     }
 
     public function configureFields(string $pageName): iterable
@@ -42,6 +46,7 @@ class NewsletterCrudController extends AbstractCrudController
                         ]),
                     ]
                 ]),
+            DateField::new('createdAt')->setLabel('Date'),
         ];
     }
 

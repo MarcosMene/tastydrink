@@ -34,7 +34,7 @@
 					</div>
 				{% else %}
 
-					<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary mr-5 btn-signIn">Login</a>
+					<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary btn-link mr-5 btn-signIn border-primary text-capitalize">Login</a>
 					|
 					<a href="{{ path('app_sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
 				{% endif %}
@@ -68,7 +68,7 @@
 					<a class="nav-link" href="{{ path('app_team') }}">Our Team</a>
 				</li>
 				<li class="nav-item dropdown text-center">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar</a>
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bar/Menu</a>
 					<ul class="dropdown-menu">
 						<li>
 							<a class="dropdown-item text-center" href="{{path('app_our_bar')}}">Our Bar</a>
@@ -82,11 +82,18 @@
 						<li>
 							<a class="dropdown-item text-center" href="{{path('app_menu_foods')}}">Menu Foods</a>
 						</li>
+
 					</ul>
 				</li>
 				<li class="nav-item dropdown text-center">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
 					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item text-center" href="{{ path('app_products') }}">All products</a>
+						</li>
+						<li>
+							<hr class="dropdown-divider bg-primary"/>
+						</li>
 						{% for category in allCategories|sort((a, b) => a.name <=> b.name) %}
 							{% if (category.products|length) > 0 %}
 								<li>
@@ -94,12 +101,6 @@
 								</li>
 							{% endif %}
 						{% endfor %}
-						<li>
-							<hr class="dropdown-divider bg-primary"/>
-						</li>
-						<li>
-							<a class="dropdown-item text-center" href="{{ path('app_products') }}">All products</a>
-						</li>
 					</ul>
 				</li>
 				<li class="nav-item text-center">

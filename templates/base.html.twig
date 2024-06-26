@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>
 			{% block title %}{% endblock %}
 		</title>
+
+		<meta name="title" content="Tasty Drink Bar & Shop">
+		<meta name="description" content="{% block meta_description %}{% endblock %}">
+		<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+		<meta name="robots" content="index, follow">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="language" content="English">
+		<meta name="revisit-after" content="2 days">
+		<meta name="author" content="Marcos Meneghetti">
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1.0"/>
 		{# {% block stylesheets %} #}

@@ -19,7 +19,8 @@ class ColorProductCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Color')
-            ->setEntityLabelInPlural('Colors');
+            ->setEntityLabelInPlural('Colors')
+            ->setPaginatorPageSize(5);
     }
 
     public function configureFields(string $pageName): iterable

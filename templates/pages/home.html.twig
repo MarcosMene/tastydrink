@@ -4,6 +4,13 @@
 	Tasty Drink - Welcome to Tasty Drink Bar & Shop
 {% endblock %}
 
+{% block meta_description %}Discover Tasty Drink Bar & Shop in Vancouver, offering a unique blend of morning bottle drinks and evening cocktails in a beautifully decorated space with black metal and wood accents. Enjoy our stunning terrace with views of the mountains. Visit us today!
+{% endblock %}
+
+{% block meta_keywords %}Tasty Drink Bar & Shop, Vancouver, Vancouver bar, Bottle drinks Vancouver, Bar and food in Vancouver,Best bar terrace Vancouver,Vancouver bar with mountain view,Night bar Vancouver, family, friends, meet new people, drinks, food, cocktails, bar, shop
+{% endblock %}
+
+
 {% block carousel %}{% endblock %}
 
 {% block body %}
@@ -111,7 +118,7 @@
 					</p>
 					<p>
 						Come and discover your new favorite drink in a warm and welcoming atmosphere that promises to elevate your spirits. We can't wait to raise a glass with you!</p>
-					<a href="{{path('app_our_bar')}}" class="btn btn-outline mt-2 mb-5 text-capitalize">See inside</a>
+					<a href="{{path('app_our_bar')}}" class="btn btn-outline mt-2 mb-5 text-capitalize">Get inside</a>
 				</div>
 				<div class="col-12 col-lg-6 p-0">
 					<img src="{{ asset('assets/images/bar.jpeg') }}" alt="interior of Tasty Drink bar and shop" class="img-fluid" loading="lazy"/>
@@ -136,7 +143,10 @@
 									<div class="product-card m-auto img-hover-zoom rounded">
 										<a href="{{ path('app_product', { slug: product.slug }) }}">
 											<img src="/uploads/products/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" loading="lazy"/></a>
+
 									</div>
+									<p class="m-0">{{product.category}}</p>
+									<p>{{product.name}}</p>
 								</div>
 							{% endfor %}
 
@@ -157,7 +167,7 @@
 			{% if reviewsClient|length > 0%}
 				<section class="text-center mt-5 client">
 					<h2 class="headers">Our clients' opinion</h2>
-					<div class="text-black bg-light p-5">
+					<div class="text-black bg-light p-5 rounded">
 						<p class="fs-2 mb-5">Discover what our clients say about Tasty Drink Bar & Shop.</p>
 						<div id="carouselClientOpinion" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-inner text-center ">
@@ -183,7 +193,7 @@
 												{% endfor %}
 											</p>
 
-											<p class="py-2 px-5">{{ reviews.comment }}</p>
+											<p class="">{{ reviews.comment }}</p>
 
 											{# QUOTE RIGHT  #}
 											<div class="text-end text-light w-100">
@@ -266,8 +276,6 @@
 				<div class="text-capitalize fs-1 bg-light p-5 text-center text-black">We're on holiday. Tasky Drink will open its doors at the end of the month. See you soon.</div>
 			{% endif %}
 
-			{# -----------DIVISOR #}
-			<div class="divisor divisor-lg"></div>
 		</div>
 	</div>
 {% endblock %}

@@ -1,0 +1,36 @@
+{# layout to show detail orders on easyadmin #}
+{% extends '@!EasyAdmin/layout.html.twig' %}
+{% block main %}
+
+	<h2>Review</h2>
+	<hr>
+	<p>
+		<strong>review ID:</strong>
+		{{reviewClient.id}}
+	</p>
+	<p>
+		<strong>User:</strong>
+		{{reviewClient.user}}
+	</p>
+	<p>
+		<strong>Client name:</strong>
+		{{reviewClient.firstname}}
+	</p>
+
+	<p>
+		<strong>Review rate:</strong>
+		{{reviewClient.rate}}
+	</p>
+	<p>
+		<strong>Review Comment:</strong>
+		{{reviewClient.comment}}
+	</p>
+	<p>
+		<strong>Status review:</strong>
+		{% if reviewClient.isIsApproved %}
+			<span class="bg-success text-white px-2 py-1 rounded">This review is confirmed</span>
+		{% else %}
+			<span class="bg-danger text-white px-2 py-1 rounded">This review is not approved</span>
+		{% endif %}
+	</p>
+</div>{% endblock %}

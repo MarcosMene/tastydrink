@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -35,7 +36,10 @@ class DrinkCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Menu Drink')
-      ->setEntityLabelInPlural('Menu Drinks');
+      ->setEntityLabelInPlural('Menu Drinks')
+      ->setDefaultSort(['id' => 'DESC'])
+      // the max number of entities to display per page
+      ->setPaginatorPageSize(5);
   }
 
   public function configureFields(string $pageName): iterable
@@ -74,6 +78,7 @@ class DrinkCrudController extends AbstractCrudController
     }
 
     return [
+      FormField::addColumn(6),
       IdField::new('id')->hideOnForm(),
       TextField::new('name')
         ->setHelp('Minimum length is 10, maximum 25 characters')
@@ -92,12 +97,12 @@ class DrinkCrudController extends AbstractCrudController
           ]
         ]),
       TextareaField::new('description')
-        ->setHelp('Minimum length is 20, maximum 140 characters')
+        ->setHelp('Minimum length is 50, maximum 150 characters')
         ->setFormTypeOptions([
           'constraints' => [
             new Assert\Length([
-              'min' => 20,
-              'max' => 140,
+              'min' => 50,
+              'max' => 150,
               'minMessage' => 'Description must be at least {{ limit }} characters long',
               'maxMessage' => 'Description cannot be longer than {{ limit }} characters',
             ]),
@@ -107,6 +112,16 @@ class DrinkCrudController extends AbstractCrudController
             ]),
           ]
         ]),
+      FormField::addColumn(6),
+      AssociationField::new('drinkcategory', 'category of drinks')
+        ->setFormTypeOption('placeholder', 'Choose a Category')
+        ->setRequired(true),
+      ImageField::new('illustration')
+        ->setBasePath('/uploads/menu') // the base path where files are stored
+        ->setUploadDir('public/uploads/menu') // the relative directory to store files in
+        ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
+        ->setRequired($required)
+        ->setHelp('Image of your product, max 500x500px'),
       NumberField::new('price')
         ->setHelp('Minimum 5, maximum 50 dolars')
         ->setFormTypeOptions([
@@ -120,15 +135,9 @@ class DrinkCrudController extends AbstractCrudController
           ]
         ])
         ->setRequired(true),
-      ImageField::new('illustration')
-        ->setBasePath('/uploads/menu') // the base path where files are stored
-        ->setUploadDir('public/uploads/menu') // the relative directory to store files in
-        ->setUploadedFileNamePattern('[year]-[month]-[day]-[randomhash].[extension]') // a pattern that defines how to name the uploaded file (advanced)
-        ->setRequired($required)
-        ->setHelp('Image of your product, max 500x500px'),
-      AssociationField::new('drinkcategory', 'category of drinks')
-        ->setFormTypeOption('placeholder', 'Choose a Category')
-        ->setRequired(true),
+
+
+
     ];
   }
 

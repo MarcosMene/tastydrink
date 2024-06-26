@@ -18,6 +18,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(HeaderRepository $headerRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, Request $request, ReviewClientRepository $reviewRepository): Response
     {
+
+        //headers
+        $headers = $headerRepository->findAllOrderedByAppear();
+
+
+
         //reviews
         $reviewsClientApproved = $reviewRepository->findBy(['isApproved' => true]);
 
@@ -35,7 +41,7 @@ class HomeController extends AbstractController
         $newProducts = $productRepository->findBy([], ['id' => 'DESC'], 3);
 
         return $this->render('pages/home.html.twig', [
-            'headers' => $headerRepository->findAll(),
+            'headers' => $headers,
             'newProducts' => $newProducts,
             'barSchedules' => $barSchedules,
             'shopSchedules' => $shopSchedules,

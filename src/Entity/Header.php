@@ -39,6 +39,9 @@ class Header
   #[Assert\NotBlank]
   private ?string $illustration = null;
 
+  #[ORM\Column]
+  private ?int $orderAppear = null;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -101,5 +104,17 @@ class Header
   {
     $this->illustration = $illustration;
     return $this;
+  }
+
+  public function getOrderAppear(): ?int
+  {
+      return $this->orderAppear;
+  }
+
+  public function setOrderAppear(int $orderAppear): static
+  {
+      $this->orderAppear = $orderAppear;
+
+      return $this;
   }
 }

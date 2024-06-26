@@ -59,6 +59,30 @@ class Cart
     $this->requestStack->getSession()->set('cart', $cart);
   }
 
+  /**
+   * delete()
+   *
+   *function that delete product from the shopping cart
+   */
+  public function delete($id)
+  {
+    $cart = $this->getCart();
+    unset($cart[$id]);
+    //update  the session with the new data
+    $this->requestStack->getSession()->set('cart', $cart);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   //verify total products  in the shopping cart
   public function fullQuantity()
   {

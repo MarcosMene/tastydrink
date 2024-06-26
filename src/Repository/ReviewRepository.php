@@ -21,4 +21,21 @@ class ReviewRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Review::class);
     }
+
+    /**
+     * @param int $productId
+     * @return Review[]
+     */
+    public function findApprovedReviewsByProduct(int $productId): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.product = :productId')
+            ->andWhere('r.is_approved = :is_approved')
+            ->setParameter('productId', $productId)
+            ->setParameter('is_approved', true)
+            ->orderBy('r.is_approved', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -4,7 +4,31 @@
 	Tasty Drink - Our products
 {% endblock %}
 
+{% block meta_description %}Discover the extensive drink selection at Tasty Drink Bar & Shop in Vancouver. We offer a premium range of alcoholic beverages including fine wines, craft beers, absinthe, gin, tequila, champagnes, cane liquor, vodka, rum, whisky, calvados, and cognac. Our curated collection ensures that every taste is catered to, whether you're a connoisseur of fine spirits or just looking for a perfect drink to unwind. Visit Tasty Drink Bar & Shop to explore our exceptional drink offerings and enjoy the best selection in Vancouver.
+{% endblock %}
+
+{% block meta_keywords %}Tasty Drink Bar & Shop, Vancouver, drink selection, wine, beer, absinthe, gin, tequila, champagne, cane liquor, vodka, rum, whisky, calvados, cognac.
+{% endblock %}
+
 {% block body %}
+
+	{# HERO IMAGE  #}
+	<div class="hero_bg">
+		<img class="img-fluid" src="{{ asset('assets/images/our_bar.jpg') }}" alt="tasty drink building" loading="lazy"/>
+		<div class="hero_title">
+			<span class="d-block p-0 m-0">Our</span>
+			<span>Products</span>
+		</div>
+	</div>
+
+
+	<div class="mt-5 w-75 mx-auto">
+		<h1 class="headers text-capitalize text-center mt-5">Tasty Drink products</h1>
+		<p class="mt-5">
+			At Tasty Drink, our selection of alcoholic beverages promises to tantalize every palate. From velvety red wines that whisper of sun-drenched vineyards to crisp, effervescent champagnes that sparkle with celebration, each bottle tells a story of craftsmanship and flavor. Our whisky collection boasts a symphony of oak-aged richness and smoky complexity, while our vodka selection offers pristine purity and smoothness.
+		</p>
+		<p>Whether you're exploring the nuances of craft gin or savoring the bold character of aged rum, Tasty Drink ensures every sip is a journey worth savoring.</p>
+	</div>
 	<div class="container mt-5 js-filter">
 		<div class="row">
 			<div class="col-12 col-lg-4 ">

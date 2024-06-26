@@ -19,7 +19,10 @@ class DrinkCategoryCrudController extends AbstractCrudController
   {
     return $crud
       ->setEntityLabelInSingular('Category of drink')
-      ->setEntityLabelInPlural('Categories of drink');
+      ->setEntityLabelInPlural('Categories of drink')
+      ->setDefaultSort(['id' => 'DESC'])
+      // the max number of entities to display per page
+      ->setPaginatorPageSize(5);
   }
 
   public function configureFields(string $pageName): iterable

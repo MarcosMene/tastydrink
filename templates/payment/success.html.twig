@@ -5,11 +5,32 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container d-flex align-items-center flex-column my-5">
-		<img src="/assets/images/shopping-bag.png" alt="confirmed order" width="120" loading="lazy"/>
-		<h1>Thank you for your order.</h1>
-	</div>
-	<div class="text-center">
-		<a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-link my-5">Check my order</a>
+	<div class="container">
+
+		<div class="mt-5">
+			<h1 class="main-titles text-center">Order success</h1>
+		</div>
+
+		<div class="p-0 text-end">
+			<a href="{{ path('app_products') }}" class="back-to">
+				<span>
+					<i class="fa-solid fa-angles-left"></i>
+				</span>
+				Back to shop</a>
+		</div>
+
+
+		<div class="wrapper bg-light text-black">
+			<div class="container d-flex align-items-center flex-column mt-5">
+				<img src="/assets/images/shopping-bag.png" alt="confirmed order" width="120" loading="lazy" class="bg-body-tertiary rounded-3 p-2"/>
+				<h2 class="text-center mt-4 mb-3">Thank you for choosing Tasty Drink Bar & Shop!</h2>
+				<p class="text-center">We appreciate your purchase and hope you enjoy every sip of your delightful drinks.
+				</p>
+				<p>You can check the status of your order by clicking the button below:</p>
+			</div>
+			<div class="text-center">
+				<a href="{{ path('app_account_order', { id_order: order.id }) }}" class="btn btn-link mt-4">Check my order</a>
+			</div>
+		</div>
 	</div>
 {% endblock %}

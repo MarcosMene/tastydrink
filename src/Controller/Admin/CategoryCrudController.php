@@ -21,7 +21,9 @@ class CategoryCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Category')
-            ->setEntityLabelInPlural('Categories');
+            ->setEntityLabelInPlural('Categories')
+            // the max number of entities to display per page
+            ->setPaginatorPageSize(5);;
     }
 
     public function configureFields(string $pageName): iterable
