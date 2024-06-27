@@ -76,7 +76,14 @@ hr.divisor {
 .brand {
   font-family: 'Merriweather', serif;
   p {
-    font-size: 2rem;
+    font-size: 1.9rem;
+
+    @media screen and (max-width: 992px) {
+      font-size: 1.5rem;
+    }
+  }
+  img {
+    width: 35px;
   }
 }
 
@@ -91,7 +98,9 @@ hr.divisor {
   font-size: 1.6rem;
   color: $dark;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: $primary;
     color: $white;
   }
@@ -106,7 +115,9 @@ hr.divisor {
   text-decoration: underline;
   font-size: 1.3rem;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     color: $primary;
   }
 
@@ -117,8 +128,6 @@ hr.divisor {
 
 img {
   display: block;
-  // width: 100%;
-  // height: auto;
   object-fit: cover;
   max-width: 350px;
 }
@@ -315,7 +324,9 @@ ul.breadcrumb li a {
     font-size: 1rem;
   }
 }
-ul.breadcrumb li a:hover {
+ul.breadcrumb li a:hover,
+ul.breadcrumb li a:active,
+ul.breadcrumb li a:focus {
   color: $primary;
   text-decoration: underline;
 }
@@ -327,7 +338,13 @@ ul.breadcrumb li a:hover {
   font-weight: 600;
   font-size: 3rem;
   font-family: 'Merriweather', serif;
-  // margin: 60px 0 20px;
+
+  @media screen and (max-width: 992px) {
+    font-size: 2.5rem;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 2rem;
+  }
 }
 
 .headers {
@@ -336,6 +353,13 @@ ul.breadcrumb li a:hover {
   font-size: 2.6rem;
   font-family: 'Merriweather', serif;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 992px) {
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 1.8rem;
+  }
 }
 
 .sub-titles {
@@ -350,10 +374,16 @@ ul.breadcrumb li a:hover {
   border-color: $white;
   font-weight: 600;
   letter-spacing: 0.05em;
-  // border-radius: 1px;
   text-transform: capitalize;
   font-size: 1.8rem;
   padding: 5px 20px;
+
+  @media screen and (max-width: 992px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 1.2rem;
+  }
 
   &:hover,
   &:active,
@@ -370,7 +400,6 @@ ul.breadcrumb li a:hover {
     border-color: $primary;
     font-weight: 600;
     letter-spacing: 0.05em;
-    // border-radius: 1px;
     text-transform: uppercase;
     font-size: 1.4rem;
     padding: 5px 20px;
@@ -395,7 +424,9 @@ ul.breadcrumb li a:hover {
   background-color: $primary;
   font-size: 1.6rem;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: $info;
     color: $white;
     border-color: $primary;
@@ -409,14 +440,15 @@ ul.breadcrumb li a:hover {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 400;
-  &:hover {
+
+  &:hover,
+  &:active,
+  &:focus {
     background-color: $info;
     color: $white;
     border-color: $primary;
   }
 }
-
-//----------------LOGIN
 
 //-----------------PRODUCTS
 
@@ -478,7 +510,9 @@ ul.breadcrumb li a:hover {
   }
 }
 
-.product-card:hover .overlay {
+.product-card:hover .overlay,
+.product-card:active .overlay,
+.product-card:focus .overlay {
   height: 80%;
 }
 
@@ -737,22 +771,17 @@ ul.breadcrumb li a:hover {
   .black-star {
     color: $info;
   }
-
-  @media screen and (max-width: 992px) {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  @media screen and (max-width: 768px) {
-    font-size: 1rem;
-  }
 }
 
 .products-price {
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: 600;
 
   @media screen and (max-width: 992px) {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 2.5rem;
   }
 }
 
@@ -769,7 +798,9 @@ ul.breadcrumb li a:hover {
     margin-right: 10px;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       color: $dark;
     }
   }
@@ -834,27 +865,21 @@ ul.pagination {
 .btn-signOut {
   margin-left: 10px;
   font-size: 1.5rem;
-}
 
-.fa-cart-shopping {
-  color: $primary;
-  cursor: pointer;
-  font-size: 2rem;
-  margin-left: 20px;
-  @media screen and (max-width: 576px) {
-    margin-left: 0;
-    margin-top: 10px;
+  @media screen and (max-width: 992px) {
+    font-size: 1.2rem;
   }
 }
 
+.fa-cart-shopping,
 .fa-heart-header {
   color: $primary;
   cursor: pointer;
   font-size: 2rem;
   margin-left: 20px;
-  @media screen and (max-width: 576px) {
-    margin-left: 0;
-    margin-top: 10px;
+  margin-bottom: 0;
+  @media screen and (max-width: 768px) {
+    margin-left: 0px;
   }
 }
 
@@ -871,7 +896,7 @@ ul.pagination {
   span {
     position: absolute;
     top: -10px;
-    right: -15px;
+    right: -10px;
     width: 10px;
     height: 10px;
     padding: 10px;
@@ -982,7 +1007,9 @@ ul.pagination {
     color: $dark;
     padding: 5px;
     border-radius: 5px;
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       background-color: $primary;
       color: $dark;
     }
@@ -1130,7 +1157,9 @@ footer {
   cursor: pointer;
   font-size: 1.2rem;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: $danger;
     color: $white;
   }
@@ -1152,7 +1181,9 @@ footer {
       cursor: pointer;
     }
 
-    &.modify:hover {
+    &.modify:hover,
+    &.modify:active,
+    &.modify:focus {
       background-color: $primary;
       color: $white;
     }

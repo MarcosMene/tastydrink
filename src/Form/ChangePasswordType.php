@@ -32,6 +32,8 @@ class ChangePasswordType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'placeholder' => 'Enter your current password',
+                    'minlength' => 6,
+                    'maxlength' => 16,
                     'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('Your password must be between 6 and 16 characters long.');",
                     'oninvalid' => "this.setCustomValidity('Please Enter valid password')",
                 ]
@@ -58,6 +60,8 @@ class ChangePasswordType extends AbstractType
                     'label' => 'My new password',
                     'attr' => [
                         'placeholder' => 'Enter your new password',
+                        'minlength' => 6,
+                        'maxlength' => 16,
                         'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('Your password must be between 6 and 16 characters long.');",
                         'oninvalid' => "this.setCustomValidity('Please Enter valid password')",
                     ]
@@ -66,6 +70,8 @@ class ChangePasswordType extends AbstractType
                     'label' => 'Confirm your new password',
                     'attr' => [
                         'placeholder' => 'New password',
+                        'minlength' => 6,
+                        'maxlength' => 16,
                         'oninput' => "this.setCustomValidity(''); if (!this.checkValidity()) this.setCustomValidity('The passwords must be the same.');",
                         'oninvalid' => "this.setCustomValidity('The passwords must be the same.')",
                     ]

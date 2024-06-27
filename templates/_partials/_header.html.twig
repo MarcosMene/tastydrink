@@ -1,14 +1,14 @@
 {# LOGIN BAR #}
 <div class="py-3 bg-info">
-	<div class="container d-flex justify-content-between align-items-center flex-column flex-md-row">
-		<div class="brand ">
+	<div class="container d-flex justify-content-between align-items-center flex-column flex-lg-row">
+		<div class="brand mb-1">
 			<a class="navbar-brand  d-flex justify-content-around align-items-center" href="{{ path('app_home') }}">
-				<img src="{{ asset('assets/images/logobw.png') }}" alt="logo tasty drink" class="img-fluid" width="40px"/>
-				<p class=" m-0 p-0 ms-4 fs-4">Tasty Drink Bar & Shop</p>
+				<img src="{{ asset('assets/images/logobw.png') }}" alt="logo tasty drink" class="img-fluid"/>
+				<p class=" m-0 p-0 ms-4">Tasty Drink Bar & Shop</p>
 			</a>
 		</div>
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="d-flex flex-column  flex-md-row my-2 justify-content-end align-items-center my-md-0 text-small">
+			<div class="d-flex flex-column  flex-md-row my-2 justify-content-end align-items-center my-lg-0 text-small">
 				{% if app.user %}
 					<div class="shopping-icon d-flex align-items-center flex-column flex-md-row">
 						<div class="my-2 my-md-0">
@@ -18,7 +18,7 @@
 								-</p>
 						</div>
 						{# my account and logout button #}
-						<div class="my-3 my-md-2">
+						<div class="mt-3 mb-5 mb-md-0 mt-md-0">
 							<a href="{{ path('app_account') }}" class="btn btn-primary btn-signOut">My account</a>
 							<a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-signOut">Log out</a>
 						</div>
@@ -34,11 +34,11 @@
 					</div>
 				{% else %}
 
-					<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary btn-link mr-5 btn-signIn border-primary text-capitalize">Login</a>
+					<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary  mr-5 btn-signIn border-primary text-capitalize">Login</a>
 					|
 					<a href="{{ path('app_sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
 				{% endif %}
-				<div class="shopping-icon">
+				<div class="shopping-icon mt-3 mt-md-0">
 					<a href="{{ path('app_cart') }}">
 						<i class="fa-solid fa-cart-shopping"></i>
 

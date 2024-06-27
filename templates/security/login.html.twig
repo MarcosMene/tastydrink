@@ -5,55 +5,57 @@
 {% endblock %}
 
 {% block body %}
-	<div class="mt-5">
-		<h1 class="main-titles text-center">Login</h1>
-	</div>
+	<div class="w-75 mx-auto">
+		<div class="mt-5">
+			<h1 class="main-titles text-center">Login</h1>
+		</div>
 
-	<div
-		class="wrapper wrapper-form col-12 col-md-10 col-lg-6 mx-auto bg-light text-black p-5">
-		{# error message #}
-		{% if error %}
-			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-		{% endif %}
+		<div
+			class="wrapper wrapper-form col-12 col-md-10 col-lg-6 mx-auto bg-light text-black p-5">
+			{# error message #}
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
 
-		<form
-			method="post" action="{{ path('app_login') }}">
-			{# EMAIL  #}
-			<div class="mb-4">
-				<label for="inputEmail">Email</label>
-				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="off" required autofocus minlength="10" maxlength="50"/>
-			</div>
-
-			{# PASSWORD  #}
-			<label for="inputPassword">Password</label>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend"></div>
-				<input type="password" name="password" id="password" class="form-control" autocomplete="off" required minlength="6" maxlength="16">
-				<div class="input-group-text" id="togglePassword" height="100%">
-					<i class="fas fa-eye" id="show_eye"></i>
-					<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+			<form
+				method="post" action="{{ path('app_login') }}">
+				{# EMAIL  #}
+				<div class="mb-4">
+					<label for="inputEmail">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="off" required autofocus minlength="10" maxlength="50"/>
 				</div>
-			</div>
 
-			{# security csrf  #}
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-			<input
-			type="hidden" name="_target_path" value="{{ path('app_account') }}"/>
+				{# PASSWORD  #}
+				<label for="inputPassword">Password</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend"></div>
+					<input type="password" name="password" id="password" class="form-control" autocomplete="off" required minlength="6" maxlength="16">
+					<div class="input-group-text" id="togglePassword" height="100%">
+						<i class="fas fa-eye" id="show_eye"></i>
+						<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+					</div>
+				</div>
 
-			{# button add basket #}
-			<div class="col-12 text-center mt-3 mb-2">
-				<button type="submit" class="btn btn-primary btn-link mt-4 mb-3">Login</button>
-			</div>
-		</form>
+				{# security csrf  #}
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+				<input
+				type="hidden" name="_target_path" value="{{ path('app_account') }}"/>
 
-		<hr class="divisor-light w-75 mx-auto my-3"/>
-		<p class="text-center">
-			<a href="{{path('app_forgot_password')}}" class="text-dark text-decoration-underline">Forgot your password?</a>
-		</p>
-		<p class="text-center">
-			<span>Don’t you have an account?</span>
-			<a href="{{ path('app_sign-up') }}" class="text-dark text-decoration-underline">Create one here.</a>
-		</p>
+				{# button add basket #}
+				<div class="col-12 text-center mt-3 mb-2">
+					<button type="submit" class="btn btn-primary btn-link mt-4 mb-3">Login</button>
+				</div>
+			</form>
+
+			<hr class="divisor-light w-75 mx-auto my-3"/>
+			<p class="text-center">
+				<a href="{{path('app_forgot_password')}}" class="text-dark text-decoration-underline">Forgot your password?</a>
+			</p>
+			<p class="text-center">
+				<span>Don’t you have an account?</span>
+				<a href="{{ path('app_sign-up') }}" class="text-dark text-decoration-underline">Create one here.</a>
+			</p>
+		</div>
 	</div>
 {% endblock %}
 {% block javascripts %}
