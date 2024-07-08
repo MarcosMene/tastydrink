@@ -34,7 +34,7 @@ class ReviewRepository extends ServiceEntityRepository
             ->setParameter('productId', $productId)
             ->setParameter('is_approved', true)
             ->orderBy('r.is_approved', 'DESC')
-            ->setMaxResults(5)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }

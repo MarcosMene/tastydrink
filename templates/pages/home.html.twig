@@ -35,9 +35,8 @@
 								<div class="carousel-caption text-start">
 									<h1>{{ header.title }}</h1>
 									<p>{{ header.content }}</p>
-									<p>
-										<a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a>
-									</p>
+
+									<a class="btn btn-outline text-capitalize fs-5" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a>
 								</div>
 							</div>
 						</div>
@@ -164,7 +163,7 @@
 			<div class="divisor divisor-lg"></div>
 
 			{# -------------REVIEWS CLIENTS  #}
-			{% if reviewsClient|length > 0%}
+			{% if reviewsClient|length > 0 %}
 				<section class="text-center mt-5 client">
 					<h2 class="headers">Our clients' opinion</h2>
 					<div class="text-black bg-light p-5 rounded">
@@ -223,6 +222,16 @@
 				</section>
 				{# -----------DIVISOR #}
 				<div class="divisor divisor-lg"></div>
+			{% else %}
+				<section class="text-center mt-5 client">
+					<h2 class="headers">Our clients' opinion</h2>
+					<div class="text-black bg-light p-5 rounded">
+						<p class="fs-2 mb-5">Be the first to say about Tasty Drink Bar & Shop.</p>
+
+						{# ----------------BUTTON----------------- #}
+						<a href="{{path('app_opinion_client')}} " class=" btn btn-primary btn-link mt-4">Give your opinion</a>
+					</div>
+				</section>
 			{% endif %}
 
 

@@ -31,6 +31,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->where('r.user = :userId')
             ->setParameter('userId', $userId)
             ->orderBy('r.reservationDate', 'DESC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }

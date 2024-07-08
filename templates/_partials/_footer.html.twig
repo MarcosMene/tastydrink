@@ -78,9 +78,11 @@
 				<p class="h5">©
 
 					{# GET YEAR AUTOMATICALLY  #}
-					<script>
-						document.write(/\d{4}/.exec(Date())[0])
-					</script>
+					<span id="copyright">
+						<script>
+							document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+						</script>
+					</span>
 					All rights reserved. Designed by Marcos Meneghetti</p>
 				<a href="{{path('app_term_conditions')}}" class="h5">Terms & Conditions</a>
 				<a href="{{path('app_privacy_policy')}}" class="h5">Privacy Policy</a>

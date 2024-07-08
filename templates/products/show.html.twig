@@ -65,7 +65,8 @@
 								Give your opinion for this product
 							</button>
 						</p>
-					{% else %}
+					{% endif %}
+					{% if is_granted('IS_AUTHENTICATED_FULLY') and user_reviewed %}
 						<p class="m-0  fw-normal text-start text-white p-2 fs-5 text-decoration-underline">
 							You have already reviewed this product.</p>
 					{% endif %}

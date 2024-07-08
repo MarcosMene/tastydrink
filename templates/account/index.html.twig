@@ -57,7 +57,7 @@
 								<tbody>
 									{% for order in orders %}
 										<tr>
-											<td>{{ order.id }}</td>
+											<td>{{ order.referenceOrder }}</td>
 											<td>{{ order.createdAt|date('m/d/Y') }}</td>
 											<td>{{ include('admin/state.html.twig', { field: { value: order.state } }) }}</td>
 											<td>{{ order.totalWt|price }}</td>

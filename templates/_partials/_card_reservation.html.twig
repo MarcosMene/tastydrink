@@ -47,11 +47,19 @@
 						|
 						<form action="{{ path('app_reservation_cancel', {id: reservation.id}) }}" method="post" class="d-inline">
 							<input type="hidden" name="_token" value="{{ csrf_token('cancel' ~ reservation.id) }}">
-							<button type="submit" class="btn btn-buttonSubmit cancel">Cancel</button>
+							<button type="submit" class="btn btn-buttonSubmit cancel" onclick="return confirmDelete(event)">Cancel</button>
 						</form>
 					{% endif %}
 				</div>
 			{% endif %}
 		</div>
 	</div>
+	{# alert to cancel a reservation  #}
+	<script>
+		function confirmDelete(event) {
+if (!confirm('Are you sure you want to cancel this reservation?')) {
+event.preventDefault();
+}
+}
+	</script>
 </div>

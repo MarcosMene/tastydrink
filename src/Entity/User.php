@@ -74,6 +74,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: ReviewClient::class, mappedBy: 'user')]
     private Collection $reviewClients;
 
+    #[ORM\Column]
+    private ?bool $isConfirmed = false;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
@@ -373,6 +376,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reviewClient->setUser(null);
             }
         }
+        return $this;
+    }
+
+    public function isIsConfirmed(): ?bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setIsConfirmed(bool $isConfirmed): static
+    {
+        $this->isConfirmed = $isConfirmed;
+
         return $this;
     }
 }

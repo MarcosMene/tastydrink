@@ -59,7 +59,7 @@
 		</div>
 		<h2 class="center">Tasty Drink Bar & Shop</h2>
 		<h3 class="center">Order Summary number
-			{{ order.id }}</h3>
+			{{ order.referenceOrder }}</h3>
 		<p class="center">
 			<strong>Date of your order:</strong>
 			{{ order.createdAt|date('d/m/Y') }}
@@ -110,7 +110,9 @@
 					</tbody>
 				</table>
 			</div>
-			<h3>Carrier company</h3>
+			<span class="h3">
+				<strong>Carrier company:</strong>
+			</span>
 			<span>{{ order.carrierName }}</span>
 			<span>{{ order.carrierPrice|price }}</span>
 			<div class="divisor"></div>

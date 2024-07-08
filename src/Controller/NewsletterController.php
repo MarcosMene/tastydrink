@@ -39,7 +39,7 @@ class NewsletterController extends AbstractController
                 $this->addFlash('success', 'You have successfully subscribed to the newsletter!');
             }
             // back to last page visited 
-            return $this->redirect($request->headers->get('referer'));
+            return $this->redirectToRoute('app_home');
         }
         return $this->render('_partials/newsletter/subscribe.html.twig', [
             'formNewsletter' => $form->createView(),

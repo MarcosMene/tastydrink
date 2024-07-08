@@ -58,7 +58,7 @@ class OrderController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //save info on database
+            $date = new \DateTime();
 
             //create address object from form data
             $addressObj = $form->get('addresses')->getData();
@@ -71,8 +71,10 @@ class OrderController extends AbstractController
 
             // create order and set values
             $order = new Order();
+            $reference = $date->format('dmY') . '-' . uniqid();
+            $order->setReferenceOrder($reference);
             $order->setUser($this->getUser());
-            $order->setCreatedAt(new \DateTime());
+            $order->setCreatedAt($date);
             $order->setState(1);
             $order->setCarrierName($form->get('carriers')->getData()->getName());
             $order->setCarrierPrice($form->get('carriers')->getData()->getPrice());

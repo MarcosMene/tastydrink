@@ -15,7 +15,7 @@
 	<div class="hero_bg">
 		<img class="img-fluid" src="{{ asset('assets/images/menu_food.jpg') }}" alt="tasty drink building" loading="lazy"/>
 		<div class="hero_title">
-			<span class="d-block p-0 m-0">The</span>
+			<span class="d-block p-0 m-0">Menu</span>
 			<span>Foods</span>
 		</div>
 	</div>
@@ -32,38 +32,47 @@
 			<div class="menu">
 				<section
 					class="wrapper info wrapper-max mt-3 p-sm-3 p-lg-4">
+					{# DOWNLOAD MENU  #}
+					<div class="text-center mt-4">
+						<a href="{{asset('assets/images/tasty_drink_menu.pdf')}}" target="_blank" class="btn btn-link">Download our menu</a>
+					</div>
 
 					{# DRINKS  #}
 					{% for categoryFood in allFoodCategories|sort((a, b) => a.orderAppear <=> b.orderAppear) %}
 						{% if (categoryFood.food|length) > 0 %}
 							{# -----------DIVISOR #}
 							<div class="divisor divisor-drink"></div>
-							<h2 class="text-center mt-3 text-uppercase">{{categoryFood.name}}</h2>
+							<h2 class="text-center mt-3 text-uppercase">{{categoryFood.name}}
+								{% if categoryFood.name == 'veggie' or categoryFood.name == 'Veggie'%}
+									<span class="text-success">
+										<i class="fa-solid fa-leaf"></i>
+									</span>
+
+								{% endif %}
+							</h2>
 							<div class="d-flex flex-wrap justify-content-around">
 
 								{% for  food in categoryFood.food %}
-
 
 									{# -----------CARD #}
 									<div class="card m-3">
 										<div class="row g-0 bg-white">
 											<div class="col-md-9">
 												<div class="card-body">
-													<h5 class="card-title text-capitalize">{{food.name}}</h5>
+													<p class="card-title text-capitalize h5">{{food.name}}</p>
 													<div class="card-text menu-description my-3">{{ food.description|raw }}</div>
 													<div class="card-text">
 														<h3 class="products-price text-end">{{food.price|price}}</h3>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-3 d-none d-md-block">
-												<img src="/uploads/menu/{{ food.illustration }}" class="img-fluid rounded" style="height: 100%;" alt="{{ food.name }}" loading="lazy"/>
+											<div class="col-md-3 d-none d-md-inline">
+												<img src="/uploads/menu/{{ food.illustration }}" class="img-fluid rounded" alt="{{ food.name }}" loading="lazy"/>
 											</div>
 										</div>
 									</div>
 									{%endfor%}
 								</div>
-
 							{% endif %}
 						{% endfor %}
 					</section>

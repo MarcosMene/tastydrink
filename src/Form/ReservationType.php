@@ -25,6 +25,7 @@ class ReservationType extends AbstractType
         $builder
             ->add('firstname', TextType::class, [
                 'empty_data' => '',
+                'required' => true,
                 'constraints' => [
                     new Assert\NotBlank([
                         'message' => 'Your first name is required.',
@@ -50,6 +51,7 @@ class ReservationType extends AbstractType
             ])
             ->add('lastname', TextType::class, [
                 'empty_data' => '',
+                'required' => true,
                 'constraints' => [
                     new Assert\NotBlank([
                         'message' => 'Your last name is required.',
@@ -75,6 +77,7 @@ class ReservationType extends AbstractType
             ])
             ->add('telephone', TelType::class, [
                 'empty_data' => '',
+                'required' => true,
                 'constraints' => [
                     new Assert\NotBlank([
                         'message' => 'Your telephone is required',
@@ -102,6 +105,7 @@ class ReservationType extends AbstractType
             ])
             ->add('numberOfPeople', IntegerType::class, [
                 'empty_data' => '',
+                'required' => true,
                 'constraints' => [
                     new Assert\Range(['min' => 1, 'max' => 20]),
                     new Assert\NotBlank([

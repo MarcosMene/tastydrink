@@ -26,9 +26,10 @@
 					</div>
 					<div class="bg-white rounded p-5 mb-5">
 						<div class="text-end">
-							<a class="btn btn-primary btn-signOut" href="{{path('app_invoice_customer',{id_order:order.id})}}" target="_blank">Print order</a>
+							<a class="btn btn-outline-primary text-black" href="{{path('app_invoice_customer',{id_order:order.id})}}" target="_blank">Print order</a>
 						</div>
-						<p class="h3">Order n#{{ order.id }}</p>
+						<p class="h3">Order n#
+							{{ order.referenceOrder }}</p>
 						<p>
 							<strong>Date of your order:</strong>
 							{{ order.createdAt|date('Y/m/d') }}

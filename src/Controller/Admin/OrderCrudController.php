@@ -102,10 +102,10 @@ class OrderCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            TextField::new('referenceOrder'),
+            AssociationField::new('user')->setLabel('Client'),
             DateField::new('createdAt')->setLabel('Date'),
             NumberField::new('state')->setTemplatePath('admin/state.html.twig'),
-            AssociationField::new('user')->setLabel('Client'),
             TextField::new('carrierName')->setLabel('Carrier'),
             NumberField::new('totalTva')->setLabel('Total VAT'),
             NumberField::new('totalWt')->setLabel('Total Order'),

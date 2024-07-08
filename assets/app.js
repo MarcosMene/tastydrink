@@ -4,10 +4,6 @@ import './styles/app.scss'
 import noUiSlider from 'nouislider'
 import 'nouislider/dist/nouislider.css'
 
-import Filter from './modules/Filter'
-
-new Filter(document.querySelector('.js-filter'))
-
 const slider = document.getElementById('price-slider')
 
 if (slider) {
@@ -33,9 +29,5 @@ if (slider) {
     if (handle === 1) {
       max.value = Math.round(values[1])
     }
-  })
-  //to activate the min/max price from the input for the filter
-  range.on('end', function (values, handle) {
-    min.dispatchEvent(new Event('change'))
   })
 }

@@ -8,17 +8,24 @@ use App\Form\AddressType;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class AddressController extends AbstractController
 {
     private $entityManager;
+    private $security;
+    private $csrfTokenManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, Security $security,  CsrfTokenManagerInterface $csrfTokenManager)
     {
         $this->entityManager = $entityManager;
+        $this->security = $security;
+        $this->csrfTokenManager = $csrfTokenManager;
     }
 
     #[Route('/account/addresses', name: 'app_account_address')]
@@ -83,7 +90,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/account/delete-address/{id}', name: 'app_account_address_delete')]
-    public function delete(AddressRepository $addressRepository,  $id): Response
+    public function delete(AddressRepository $addressRepository,  $id, Request $request): Response
     {
         $address = $addressRepository->findOneById($id);
 
@@ -97,8 +104,25 @@ class AddressController extends AbstractController
             'Your address has been deleted successfully!'
         );
 
-        $this->entityManager->remove($address);
-        $this->entityManager->flush();
+        // // Validate CSRF token to delete an address
+        // $csrfToken = new CsrfToken('deleteAddress' . $address->getId(), $request->request->get('_token'));
+        // if ($this->isCsrfTokenValid('deleteAddress' . $id, $request->query->get('_token'))) {
+        //     $this->entityManager->remove($address);
+        //     $this->entityManager->flush();
+        // } else {
+        //     $this->addFlash('danger', 'You don\'t have access to it.');
+        // }
+
+        //security csrf
+        $csrfToken = new CsrfToken('deleteAddress' . $id, $request->request->get('_token'));
+        if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
+            // throw $this->createAccessDeniedException('Invalid CSRF token.');
+            $this->addFlash('danger', 'You don\'t have access to it.');
+        } else {
+            $this->entityManager->remove($address);
+            $this->entityManager->flush();
+        }
+
         return $this->redirectToRoute('app_account_address');
     }
 }

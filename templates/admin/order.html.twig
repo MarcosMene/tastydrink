@@ -1,9 +1,7 @@
 {# layout to show detail orders on easyadmin #}
 {% extends '@!EasyAdmin/layout.html.twig' %}
 {% block main %}
-	<div class="text-end">
-		<button class="btn btn-info" onclick="window.history.back()">Back to order list</button>
-	</div>
+
 	<div class="d-flex">
 		<h2>Act on the orders</h2>
 		<a href=""></a>
@@ -13,7 +11,7 @@
 	{% if order.state != 1 %}
 		{# link to url order with the state  #}
 		<a href="{{current_url}}&state=3" class="{% if order.state == 3 %}d-none{% endif %} p-1 bg-info bg-opacity-10 border border-info rounded me-2 text-black">Order in progress</a>
-		<a href="{{current_url}}&state=4" class="{% if order.state == 4 %}d-none{% endif %} p-1 bg-info bg-opacity-10 border border-info rounded me-2 text-black">Order shipped</a>
+		<a href="{{current_url}}&state=4" class="{% if order.state == 4 %}d-none{% endif %} p-1 border border-info rounded me-2 text-black">Order shipped</a>
 		<a href="{{current_url}}&state=5" class="{% if order.state == 5 %}d-none{% endif %} p-1 bg-info bg-opacity-10 border border-info rounded me-2 text-black">Order canceled</a>
 	{% else %}
 		<p class="fw-semibold">You cannot act on an unpaid order.</p>

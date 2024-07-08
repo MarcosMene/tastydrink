@@ -5,12 +5,31 @@ namespace App\Controller\Account;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class WishlistController extends AbstractController
 {
+
+  private $entityManager;
+  private $security;
+  private $csrfTokenManager;
+
+  public function __construct(EntityManagerInterface $entityManager, Security $security,  CsrfTokenManagerInterface $csrfTokenManager)
+  {
+    $this->entityManager = $entityManager;
+    $this->security = $security;
+    $this->csrfTokenManager = $csrfTokenManager;
+  }
+
+
+
+
+
   #[Route('/account/wishlist', name: 'app_account_wishlist')]
   public function index(): Response
   {
@@ -53,6 +72,12 @@ class WishlistController extends AbstractController
 
     //if product exist, delete from database
     if ($product) {
+
+      //security csrf
+      $csrfToken = new CsrfToken('deleteWishlist' . $product->getId(), $request->request->get('_token'));
+      if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
+        throw $this->createAccessDeniedException('Invalid CSRF token.');
+      }
       $this->getUser()->removeWishlist($product);
       $entityManager->flush();
       $this->addFlash(

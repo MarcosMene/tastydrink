@@ -35,4 +35,12 @@
 			</div>
 		</div>
 	</div>
+	{# alert to delete a address from user dashboard  #}
+	<script>
+		function confirmDelete(event) {
+if (!confirm('Are you sure you want to delete this item?')) {
+event.preventDefault();
+}
+}
+	</script>
 {% endblock %}

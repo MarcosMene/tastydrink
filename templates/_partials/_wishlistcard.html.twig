@@ -7,8 +7,10 @@
 			</a>
 			<p class="d-block text-black">{{ product.pricewt|price }}</p>
 			{# buttons #}
-
-			<a href="{{ path('app_account_wishlist_remove', { id: product.id }) }}" class="delete text-black btn btn-outline-primary fw-medium">Delete</a>
+			<form action="{{ path('app_account_wishlist_remove', {id: product.id}) }}" method="post" class="d-inline">
+				<input type="hidden" name="_token" value="{{ csrf_token('deleteWishlist' ~ product.id) }}">
+				<button type="submit" class="delete text-black btn btn-outline-primary fw-medium">Delete</button>
+			</form>
 		</div>
 	{% endfor %}
 </div>

@@ -25,17 +25,17 @@
 
 						{# wishlist #}
 						<a href="{{ path('app_account_wishlist') }}" class="wishlist-icon">
-							<i class="fa-solid fa-heart fa-heart-header"></i>
-
 							{% if (app.user.wishlists|length) > 0 %}
-								<span>{{ app.user.wishlists|length }}</span>
+								<i class="fa-solid fa-heart fa-heart-header"></i>
+							{% else %}
+								<i class="fa-regular fa-heart fa-heart-header"></i>
 							{% endif %}
 						</a>
 					</div>
 				{% else %}
 
 					<a href="{{ path('app_login') }}" class="mx-1 btn btn-primary  mr-5 btn-signIn border-primary text-capitalize">Login</a>
-					|
+					<span class="mx-2">|</span>
 					<a href="{{ path('app_sign-up') }}" class="mx-1 btn btn-outline-primary btn-signOut">Sign Up</a>
 				{% endif %}
 				<div class="shopping-icon mt-3 mt-md-0">

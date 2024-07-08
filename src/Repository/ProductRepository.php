@@ -47,7 +47,7 @@ class ProductRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            6
+            8
         );
     }
 
@@ -61,8 +61,7 @@ class ProductRepository extends ServiceEntityRepository
             ->select('MIN(p.price) as min', 'MAX(p.price) as max')
             ->getQuery()
             ->getScalarResult();
-        return [(int)$results[0]['min'], (int)$results[0]['max'] * 1.20];
-        //1.20 is max tax.
+        return [(int)$results[0]['min'], (int)$results[0]['max']];
     }
 
     public function getSearchQuery(SearchData $search, $ignorePrice = false): QueryBuilder
@@ -115,6 +114,7 @@ class ProductRepository extends ServiceEntityRepository
                     $search->color
                 );
         }
+
         return $query;
     }
 }

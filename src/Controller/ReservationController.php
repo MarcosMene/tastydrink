@@ -33,11 +33,6 @@ class ReservationController extends AbstractController
     #[Route('/reservation', name: 'app_reservation', methods: ['GET', 'POST'])]
     public function reservation(Request $request, EntityManagerInterface $entityManager)
     {
-        $user = $this->security->getUser();
-        if (!$user) {
-            $this->addFlash('danger', 'You must to login to make a reservation.');
-            return $this->redirectToRoute('app_login');
-        }
 
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -98,7 +93,7 @@ class ReservationController extends AbstractController
     {
         $user = $this->security->getUser();
         if (!$user) {
-            $this->addFlash('danger', 'You must to login to make a reservation.');
+            $this->addFlash('danger', 'You don\'t have permission to do that.');
             return $this->redirectToRoute('app_login');
         }
 
@@ -247,28 +242,31 @@ class ReservationController extends AbstractController
         $csrfToken = new CsrfToken('cancel' . $reservation->getId(), $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             throw $this->createAccessDeniedException('Invalid CSRF token.');
+        } else {
+            $reservation->setCancelReservation(true);
+            $this->addFlash('success', 'Your reservation was successfully canceled.');
+
+            //send email to Tasty Drink
+            $mail = new MailReservation();
+            $vars = [
+                "firstname" => $reservation->getFirstName(),
+                "lastname" => $reservation->getLastName(),
+                "telephone" => $reservation->getTelephone(),
+                "number_of_people" => $reservation->getNumberOfPeople(),
+                "date" => $dateString,
+                "hour" => $hourString,
+                "comments" => $reservation->getComments(),
+            ];
+            $mail->send('meneghettimarcos1@gmail.com', $reservation->getFirstName() . $reservation->getLastName(), 'Reservation table cancel at Tasty Drink Bar & Shop', 'reservationCancelClient.html', $vars);
+
+            //send email to Client
+            $mail = new Mail();
+            $mail->send($this->getUser()->getEmail(), 'Tasty Drink Bar & Shop', 'Your reservation is cancel at Tasty Drink Bar&Shop', 'reservationCancel.html', $vars);
+
+            $this->entityManager->flush();
         }
 
-        $reservation->setCancelReservation(true);
 
-        //send email to Tasty Drink
-        $mail = new MailReservation();
-        $vars = [
-            "firstname" => $reservation->getFirstName(),
-            "lastname" => $reservation->getLastName(),
-            "telephone" => $reservation->getTelephone(),
-            "number_of_people" => $reservation->getNumberOfPeople(),
-            "date" => $dateString,
-            "hour" => $hourString,
-            "comments" => $reservation->getComments(),
-        ];
-        $mail->send('meneghettimarcos1@gmail.com', $reservation->getFirstName() . $reservation->getLastName(), 'Reservation table cancel at Tasty Drink Bar & Shop', 'reservationCancelClient.html', $vars);
-
-        //send email to Client
-        $mail = new Mail();
-        $mail->send($this->getUser()->getEmail(), 'Tasty Drink Bar & Shop', 'Your reservation is cancel at Tasty Drink Bar&Shop', 'reservationCancel.html', $vars);
-
-        $this->entityManager->flush();
         return $this->redirectToRoute('app_account_reservation');
     }
 }

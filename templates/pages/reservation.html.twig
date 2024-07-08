@@ -23,12 +23,13 @@
 	<div class="w-75 mx-auto">
 		<div class="mt-5">
 			<h1 class="headers text-capitalize text-center mt-5">Reservation</h1>
-			<p class="mb-5">We eagerly await the pleasure of your company. Whether for a romantic evening, a gathering with friends, or a professional outing, Tasty Drink Bar & Shop promises to elevate your expectations of what a bar experience can be.</p>
-			<p>Reserve your table now and treat yourself to an evening of indulgence and relaxation.</p>
+
 		</div>
 
 		{# IF USER IS CONNECTED  #}
 		{% if app.user %}
+			<p class="mb-5">We eagerly await the pleasure of your company. Whether for a romantic evening, a gathering with friends, or a professional outing, Tasty Drink Bar & Shop promises to elevate your expectations of what a bar experience can be.</p>
+			<p>Reserve your table now and treat yourself to an evening of indulgence and relaxation.</p>
 			<div class="wrapper wrapper-form bg-light text-black contact">
 				<div class="row">
 					<div
@@ -85,6 +86,10 @@
 					<h2>You need to be connected to make a reservation.</h2>
 					<p class="mt-5">
 						<a href="{{path('app_login')}}" class="text-dark text-decoration-underline">Click here to login</a>
+						<br/>
+						or
+						<br/>
+						<a href="{{ path('app_sign-up') }}" class="text-dark text-decoration-underline">Create your account here.</a>
 					</p>
 				</div>
 			</div>

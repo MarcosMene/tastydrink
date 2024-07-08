@@ -208,7 +208,7 @@ label {
 .hero_bg {
   position: relative;
   text-align: center;
-  height: 30vh;
+  height: 200px;
 
   .hero_bg:before {
     content: '';
@@ -220,7 +220,7 @@ label {
     pointer-events: none;
   }
   @media screen and (max-width: 576px) {
-    height: 20vh;
+    height: 120px;
   }
 
   img {
@@ -368,7 +368,13 @@ ul.breadcrumb li a:focus {
 }
 
 // --------------BUTTONS
-.btn-outline {
+.btn.btn-primary:hover,
+.btn.btn-primary:active {
+  background-color: transparent;
+  color: $primary;
+}
+
+.btn.btn-outline {
   color: $white;
   background-color: $dark;
   border-color: $white;
@@ -387,7 +393,6 @@ ul.breadcrumb li a:focus {
 
   &:hover,
   &:active,
-  &:focus,
   &.active {
     background: $primary;
     color: $dark;
@@ -406,7 +411,6 @@ ul.breadcrumb li a:focus {
 
     &:hover,
     &:active,
-    &:focus,
     &.active {
       background: $primary;
       color: $black;
@@ -415,7 +419,7 @@ ul.breadcrumb li a:focus {
   }
 }
 
-.btn-link {
+.btn.btn-link {
   font-weight: 500;
   color: $black;
   text-transform: uppercase;
@@ -425,8 +429,7 @@ ul.breadcrumb li a:focus {
   font-size: 1.6rem;
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background-color: $info;
     color: $white;
     border-color: $primary;
@@ -659,24 +662,24 @@ ul.breadcrumb li a:focus {
   }
 }
 
-// LOADER
-.is-loading:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: white;
-  opacity: 0.5;
-  z-index: 4;
-}
-.is-loading .spinner-border {
-  position: absolute;
-  top: calc(50% - 3rem);
-  left: calc(50% - 3rem);
-  z-index: 5;
-}
+// // LOADER
+// .is-loading:before {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background-color: white;
+//   opacity: 0.5;
+//   z-index: 4;
+// }
+// .is-loading .spinner-border {
+//   position: absolute;
+//   top: calc(50% - 3rem);
+//   left: calc(50% - 3rem);
+//   z-index: 5;
+// }
 
 //------------------OUR PRODUCTS
 
@@ -967,6 +970,12 @@ ul.pagination {
   .card {
     width: 100%;
     max-width: 520px;
+    max-height: 180px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
 
     @media screen and (max-width: 1400px) {
       max-width: 600px;
