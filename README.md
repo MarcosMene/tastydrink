@@ -5,11 +5,9 @@ Tasty Drink Bar & Shop
 
 ## Project Tasty Drink Bar & Shop
 
-Tasty Drink Bar & Shop is a personal project for an ecommerce bar & store realized with Symfony 7.
+Tasty Drink Bar & Shop is a personal project for an ecommerce bar & store realized with Symfony 7. I took advantage of my free time to develop this project.
 
-I created this project from scratch.
-I started by wireframing all the pages on sheets of paper. Then I made the mock-ups in Figma.
-When I finished the mock-ups, I used Trello to keep track of the project step by step.
+I created this project from scratch. I started by wireframing all the pages on sheets of paper. Then I made the mock-ups in Figma. When I finished the mock-ups, I used Trello to keep track of the project step by step.
 
 The next step was to make the front-end. I started by doing all the front-end with hard code. Then it was time for the back-end. I created all the tables and connections. Once the back-end was finished, I moved on to the dynamic site.
 
@@ -133,6 +131,12 @@ In the footer of each page, we have the newsletter, where users can submit their
 In the footer, users can consult the company's terms and conditions as well as the privacy policy.
 
 <hr>
+
+## Download the pdf
+
+Here you can see more details of the project.
+
+- [Download pdf of project](https://github.com/MarcosMene/tastydrink/blob/main/assets/images/tastydrinkprojectmarcosmeneghetti.pdf)
 
 ## personal links
 

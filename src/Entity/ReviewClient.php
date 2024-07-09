@@ -37,7 +37,7 @@ class ReviewClient
     #[ORM\Column(length: 255)]
     #[Assert\Regex('/^[a-zA-ZÀ-ÿ\s\0-9_.-]*$/', message: 'Only numbers and letters and spaces.')]
     #[Assert\Length(
-        min: 10,
+        min: 3,
         max: 25,
         minMessage: 'Name must be at least {{ limit }} characters long',
         maxMessage: 'Name must be no longer than {{ limit }} characters'

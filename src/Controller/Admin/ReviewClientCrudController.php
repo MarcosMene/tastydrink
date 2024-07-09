@@ -38,7 +38,6 @@ class ReviewClientCrudController extends AbstractCrudController
     {
         return [
             FormField::addColumn(6),
-            AssociationField::new('user'),
             TextField::new('firstname')
                 ->setLabel('First name'),
             ChoiceField::new('rate', 'Note')
@@ -65,8 +64,7 @@ class ReviewClientCrudController extends AbstractCrudController
             //remove button new from dashboard
             ->add(Crud::PAGE_INDEX, $show)
             ->remove(Crud::PAGE_INDEX, Action::NEW)
-            ->remove(Crud::PAGE_INDEX, Action::EDIT)
-            ->remove(Crud::PAGE_INDEX, Action::DELETE);
+            ->remove(Crud::PAGE_INDEX, Action::EDIT);
     }
 
     //function to show details of order on easyadmin
