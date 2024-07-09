@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./assets/images/logo.jpeg" width="40"><br>
+<img src="./assets/images/logotastydrink.jpeg" width="40"><br>
 Tasty Drink Bar & Shop
 </div>
 

@@ -31,7 +31,6 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 *.jpg
-*.jpeg
 *.png
 *.gif
 
